@@ -1,0 +1,58 @@
+﻿<%--
+Default skin template. The following skins are provided as examples only.
+
+1. Named control skin. The SkinId should be uniquely defined because
+   duplicate SkinId's per control type are not allowed in the same theme.
+
+<asp:GridView runat="server" SkinId="gridviewSkin" BackColor="White" >
+   <AlternatingRowStyle BackColor="Blue" />
+</asp:GridView>
+
+2. Default skin. The SkinId is not defined. Only one default 
+   control skin per control type is allowed in the same theme.
+
+<asp:Image runat="server" ImageUrl="~/images/image1.jpg" />
+--%>
+
+<asp:Button CssClass="button" runat="server" Width="75px"/>
+<asp:Button SkinID="Btn140" CssClass="button" runat="server" Width="140px"/>
+<asp:Button SkinID="Btn120" CssClass="button" runat="server" Width="120px"/>
+<asp:Button SkinID="Btn100" CssClass="button" runat="server" Width="100px"/>
+<asp:GridView runat="server" HeaderStyle-CssClass="ProdespGridViewHeaderStyleClass"  EmptyDataText="Não foram encontrados registros." PageSize="50" 
+PagerStyle-CssClass="pgr"  CssClass="tabela" DataKeyNames="Id" AutoGenerateColumns="False" AllowPaging="True">
+<PagerSettings FirstPageText="&lt;&lt;" LastPageText="&gt;&gt;"  Mode="NumericFirstLast" NextPageText="&lt;" PageButtonCount="5" PreviousPageText="&lt;" />
+<PagerStyle HorizontalAlign="Center" Font-Bold="False" Font-Overline="False" Font-Underline="False"  />
+<AlternatingRowStyle CssClass="odd" />
+<RowStyle CssClass="" HorizontalAlign="Left" />
+<HeaderStyle CssClass="corpo"></HeaderStyle>
+</asp:GridView>
+<asp:TextBox runat="server" style="line-height: 22px;" Height="20"></asp:TextBox>
+<asp:TextBox SkinID="MultiLine" runat="server"> </asp:TextBox>
+
+
+<asp:GridView SkinID="GridNovo" runat="server" HeaderStyle-CssClass="ProdespGridViewHeaderStyleClass"  EmptyDataText="Não foram encontrados registros." PageSize="50"
+PagerStyle-CssClass="pgr"  CssClass="tabela"  AutoGenerateColumns="False" AllowPaging="True">
+<PagerSettings FirstPageText="&lt;&lt;" LastPageText="&gt;&gt;"  Mode="NumericFirstLast" NextPageText="&lt;" PageButtonCount="5" PreviousPageText="&lt;" />
+<PagerStyle HorizontalAlign="Center" Font-Bold="False" Font-Overline="False" Font-Underline="False"  />
+<AlternatingRowStyle CssClass="odd" />
+<RowStyle CssClass="" HorizontalAlign="Left" />
+<HeaderStyle CssClass="corpo"></HeaderStyle>
+</asp:GridView>
+
+<asp:GridView SkinID="GridModal" runat="server" HeaderStyle-CssClass="ProdespGridViewHeaderStyleClass"  EmptyDataText="Não foram encontrados registros." PageSize="20"
+PagerStyle-CssClass="pgr"  CssClass="tabela"  AutoGenerateColumns="False" AllowPaging="True">
+<PagerSettings FirstPageText="&lt;&lt;" LastPageText="&gt;&gt;"  Mode="NumericFirstLast" NextPageText="&lt;" PageButtonCount="5" PreviousPageText="&lt;" />
+<PagerStyle HorizontalAlign="Center" Font-Bold="False" Font-Overline="False" Font-Underline="False"  />
+<AlternatingRowStyle CssClass="odd" />
+<RowStyle CssClass="" HorizontalAlign="Left" />
+<HeaderStyle CssClass="corpo"></HeaderStyle>
+</asp:GridView>
+
+<asp:GridView SkinID="GridAuto" runat="server" HeaderStyle-CssClass="ProdespGridViewHeaderStyleClass"  EmptyDataText="Não foram encontrados registros." 
+PagerStyle-CssClass="pgr"  CssClass="tabela"  AutoGenerateColumns="True" AllowPaging="True">
+<PagerSettings FirstPageText="&lt;&lt;" LastPageText="&gt;&gt;"  Mode="NumericFirstLast" NextPageText="&lt;" PageButtonCount="5" PreviousPageText="&lt;" />
+<PagerStyle HorizontalAlign="Center" Font-Bold="False" Font-Overline="False" Font-Underline="False"  />
+<AlternatingRowStyle CssClass="odd" />
+<RowStyle CssClass="" HorizontalAlign="Left" />
+<HeaderStyle CssClass="corpo"></HeaderStyle>
+</asp:GridView>

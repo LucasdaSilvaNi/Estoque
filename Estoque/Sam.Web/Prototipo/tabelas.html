@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
+
+<head>
+	<title>SAM - Sistema de Administração de Materiais</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<meta name="classification" content="Governo" />
+	<meta name="author" content="Prodesp" />
+	
+	<link type="text/css" media="all"   href="css/estilo.css"    rel="stylesheet" title="pattern"  />
+	<link type="text/css" media="all"   href="css/contraste.css" rel="alternate stylesheet" title="modify"   />
+	<link type="text/css" media="print" href="css/print.css"     rel="stylesheet" />
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/generic.js"></script> 
+	<!-- Abas -->
+	<script type="text/javascript" src="js/jquery.abas.js"></script>
+</head>
+
+<body>
+
+<!-- Habilitar JavaScript -->
+<noscript>
+	<p>O javascript de seu navegador está desabilitado. Favor habilitá-lo para acessar as funcionalidades deste site.</p>
+</noscript>
+	
+<!-- Acessibilidade -->
+<a class="esconder" href="#content">Ir para o conteúdo</a>
+
+<!-- Barra do Governo Obrigatória -->
+<div id="barragoverno" hidden="hidden">
+	<script type="text/javascript" src="http://www.saopaulo.sp.gov.br/barrasp/js/include_centralizada.js.php"></script>
+</div>
+
+<div id="global">
+
+		<!-- Cabeçalho -->
+		<div id="header">
+
+			<!-- Link para o Cliente -->
+			<div id="barraCliente">
+				<a href="http://www.fazenda.sp.gov.br/" target="_blank" title="Secretaria da Fazenda">Secretaria da Fazenda</a>
+			</div>
+			
+			<!-- Logo e Icones -->
+			<h1 id="logo"><a href="index.html" title="SAM - Sistema de Administração de Materiais - Tecla de atalho (1)" accesskey="1">SAM - Sistema de Administração de Materiais</a></h1>    
+			<ul id="toolbox">
+				<li class="tamanho">
+					<a href="#" class="decrease" style="padding-left:0"><img src="imagens/fontsize_decrease.gif" align="top" title="Diminuir tamanho do texto" alt="Diminuir tamanho do texto" /></a> 
+					<a href="#" class="increase" style="padding-left:0"><img src="imagens/fontsize_increase.gif" align="top" title="Aumentar tamanho do texto" alt="Aumentar tamanho do texto" /></a> 
+					<span>Tamanho do Texto</span>
+				</li>
+				<li class="contrasteLink"><a href="#" class="contraste" title="Contraste"><span>Contraste</span></a></li>
+				<li class="fale"><a href="#" title="Contatos"><span>Contatos</span></a></li>
+			</ul>
+		        
+			<!-- Dados do usuário -->
+			<ul id="usuario">
+				<li><strong>Usuário:</strong> 234567890-12</li>
+				<li>01/09/2011  09:20</li>
+				<li class="last"><a href="index.html" title="Fazer Logoff">Sair</a></li>		
+			</ul>
+				  
+			<!-- Navegação Principal Superior -->	
+			<div id="nav_main">
+				<ul id="jqueryAnimated">
+					<li><a href="home.html" class="firstNavMain">Início</a></li>
+					<li><a href="seguranca.html">Segurança</a></li>
+					<li><a href="tabelas.html" class="selected">Tabelas</a></li>
+					<li><a href="almoxarifado.html">Almoxarifado</a></li>
+					<li><a href="patrimonio.html">Patrimônio</a></li>
+				</ul>		
+			</div>	
+			
+		</div> 
+		<!-- fim id header-->	
+		
+		<!-- Barra com informações do Gestor -->	
+		<!--div id="barraGestor">
+			<div class="gestor">
+				<p><strong>Gestor:</strong> 20001 - Secretaria da Fazenda</p>
+				<p><strong>Almoxarifado:</strong> 1 - Sede</p>			
+			</div>
+			<div class="mesref">
+				<p><strong>Mês/ano referência:</strong> 09/2011</p>
+			</div>
+		</div-->	
+		
+		
+		<!-- Conteúdo -->
+		<div id="content">	 
+		 
+			<div id="container_abas_tabelas">
+			
+				<!-- Inicio Aba 1 - Estrutura Organizacional -->
+				<div id="aba1" class="aba">
+					<h1>Módulo Tabelas - Estrutura Organizacional</h1>				
+	         	<img src="imagens/menu_estrutura_organizacional.gif" alt="Menu Estrutura Organizacional" usemap="#MapEstOrg" />
+	            <map name="MapEstOrg" id="MapEstOrg">
+	                <area shape="rect" coords="360,8,546,47" href="cadastroOrgao.html" alt="Órgão" />
+	                <area shape="rect" coords="11,388,152,427" href="cadastroResponsavel.html" alt="Responsável" />
+	                <area shape="rect" coords="202,95,388,135" href="cadastroUO.html" alt="UO" />
+	                <area shape="rect" coords="542,388,683,429" href="cadastroAlmoxarifado.html" alt="Almoxarifado" />
+	                <area shape="rect" coords="10,291,151,332" href="cadastroCentroCusto.html" alt="Centrp de Custo" />
+	                <area shape="rect" coords="207,388,392,427" href="cadastroDivisao.html" alt="Divisão" />
+	                <area shape="rect" coords="499,92,684,131" href="cadastroGestor.html" alt="Gestor" />
+	                <area shape="rect" coords="434,290,575,331" href="cadastroUnidade.html" alt="Unidade" />
+	                <area shape="rect" coords="203,291,387,331" href="cadastroUA.html" alt="UA" />
+	                <area shape="rect" coords="202,195,388,235" href="cadastroUGE.html" alt="UGE" />
+	            </map>
+	        	</div>
+			  	<!-- Fim Aba 1 - Estrutura Organizacional -->								
+						
+				<!-- Inicio Aba 2 - Catálogo-->
+				<div id="aba2" class="aba">
+					<h1>Módulo Tabelas - Catálogo</h1>
+	            <img src="imagens/menu_catalogo.gif" alt="Menu Catálogo" usemap="#MapCatalogo"/>
+	            <map name="MapCatalogo" id="MapCatalogo">
+	                <area shape="rect" coords="236,7,421,47" href="cadastroGrupo.html" alt="Grupo" />
+	                <area shape="rect" coords="236,411,421,451" href="cadastroSubItemMaterial.html" alt="Subitem de Material" />
+	                <area shape="rect" coords="236,184,421,224" href="cadastroMaterial.html" alt="Material" />
+	                <area shape="rect" coords="506,501,691,541" href="cadastroContaAuxiliar.html" alt="Conta Auxiliar" />
+	                <area shape="rect" coords="236,94,421,134" href="cadastroClasse.html" alt="Classe" />
+	                <area shape="rect" coords="236,275,421,315" href="cadastroItemMaterial.html" alt="Item de Material" />
+	                <area shape="rect" coords="506,411,690,451" href="cadastroUnidadeFornecimento.html" alt="Unidade de Fornecimento" />
+	                <area shape="rect" coords="506,313,691,353" href="cadastroNaturezaDespesa.html" alt="Natureza de Despesa" />
+	                <area shape="rect" coords="7,344,192,384" href="cadastroRelacaoItemSubItem.html" alt="Definir Relação ItemxSubitem" />
+	            </map>        
+	        	</div>
+			  	<!-- Fim Aba 2 - Catálogo -->								
+						
+				<!-- Inicio Aba 3 - Outros -->
+				<div id="aba3" class="aba">
+					<h1>Módulo Tabelas - Outros</h1>
+	            <img src="imagens/menu_outros.gif" alt="Menu Outros" usemap="#MapOutros" />
+	            <map name="MapOutros" id="MapOutros">
+	                <area shape="rect" coords="473,308,658,348" href="cadastroMotivoBaixa.html" alt="Tipo de Baixa" />
+	                <area shape="rect" coords="33,223,218,263" href="cadastroPTRes.html" alt="PT_RES" />
+	                <area shape="rect" coords="33,93,218,133" href="cadastroFontesRecurso.html" alt="Fonte de Recurso" />
+	                <area shape="rect" coords="473,14,658,54" href="cadastroSigla.html" alt="Sigla" />
+	                <area shape="rect" coords="33,8,218,48" href="cadastroFornecedor.html" alt="Fornecedor" />
+	                <area shape="rect" coords="473,212,658,252" href="cadastroTipoIncorp.html" alt="Tipo de Incorporação" />
+	                <area shape="rect" coords="473,112,658,152" href="cadastroTerceiro.html" alt="Terceiro" />
+	            </map>	 
+	        	</div>			  
+				<!-- Fim Aba 3 - Outros -->
+					
+			</div>
+			<!-- Fim do container das Abas -->
+		  
+		
+		</div> 
+		<!-- fim id content -->
+		
+		<!-- Rodapé -->
+		<div id="footer">
+			<address class="vcard">
+				<span class="adr">
+					<span class="org fn">
+						<span class="organization-name"><strong>Prodesp - Companhia de Processamento de Dados do Estado de São Paulo </strong></span>
+					</span>
+					<br />
+					<span class="street-address">Rua Agueda Gonçalves, 240</span> -
+					CEP <span class="postal-code">06760-900</span> - 
+					<span class="locality">Taboão da Serra</span> -
+					<abbr class="region">SP</abbr> -
+					PABX <span class="tel">(11) 2845-6000</span> -
+					Fax <span class="fax">(11) 4787-0058</span>
+				</span>
+			</address>        
+		</div>		
+		  
+</div> 
+<!-- fim id global-->		  
+
+</body>
+
+</html>

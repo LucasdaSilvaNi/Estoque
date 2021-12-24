@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Sam.Infrastructure.BaseInfraestructure">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAQAgAAEAAAAAAAAAAAAAAAAAAAAIAAEAA=</HashCode>
+      <FileName>BaseInfraestructure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Infrastructure.OrgaoInfraestructure">
+    <Position X="2.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EIAAAAAAAEAAAAAuAAAAAAAAAAAABAAgAAAAAAAAAAA=</HashCode>
+      <FileName>OrgaoInfraestructure.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

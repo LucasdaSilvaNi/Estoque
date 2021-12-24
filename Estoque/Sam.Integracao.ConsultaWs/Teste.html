@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="Scripts/jquery-2.1.4.min.js"></script>
+</head>
+<body>
+    <!----<form action="/Estoque/ServiceWs.svc/GeraRelacaoMovimentacaoMaterialWs" method="post">---->
+        <form>
+           
+
+                <b>Relação de Movimentação de Material - WCF</b>
+                <p />
+                <p />
+
+                <label>Usuário</label>
+                <input id="cpf1" type="text" />
+                <label>Senha</label>
+                <input id="senha1" type="text" />
+
+                <label>Codigo Orgão</label>
+                <input id="codigoOrgao1" type="text" />
+                <label>UGE:</label>
+                <input id="ugeCodigo" type="text" />
+                <label>Cod. almox:</label>
+                <input id="codigoAlmox1" type="text" />
+
+                <label>UA:</label>
+                <input id="uaCodigo" type="text" />
+
+                <label>Divisão:</label>
+                <input id="divisaoUaCodigo" type="text" />
+
+                <label>Tipo movimentação:</label>
+                <input id="tipoMovimentacaoMaterialCodigo" type="text" />
+
+                <label>Agrupamento movimentação:</label>
+                <input id="agrupamentoTipoMovimentacaoMaterialCodigo" type="text" />
+
+                <label>Cpf fornecedor:</label>
+                <input id="cpfCnpjFornecedor" type="text" />
+
+                <label>Periodo de:</label>
+                <input id="dataInicial" type="text" />
+
+                <label>Periodo ate:</label>
+                <input id="dataFinal" type="text" />
+
+                <label>Consulta transferencia:</label>
+                <input id="consultaTransfs" type="radio" />
+
+                <input type="button" id="enviar1" value="GeraRelacaoMovimentacaoMaterialWs" />
+
+                <p />
+                <p />
+                <strong>resultado:</strong><span class="resultado"></span>
+                <div id="resultado">
+
+                </div>
+
+            </form>
+    <p/>
+    <p/>
+    <hr />
+    <!----<form action="/Estoque/ServiceWs.svc/GeraRelacaoMovimentacaoMaterialWs" method="post">---->
+    <form >
+    
+
+            Busca de sub item de Material
+
+            <label>CPF</label>
+            <input id="cpf2" type="text" />
+            <label>Senha</label>
+            <input id="senha2" type="text" />
+            <label>Codigo Orgão</label>
+            <input id="codigoOrgao2" type="text" />
+            <label>Termo Pesquisa:</label>
+            <input id="termoParaPesquisa2" type="text" />
+            <label>Cod. almox:</label>
+            <input id="codigoAlmox2" type="text" />
+            <label>Disp. requisição:</label>
+            <input id="dispRequisicao2" type="radio" />
+            <input type="button" id="enviar2" value="BuscaSubItemMaterialRequisicaoParaWs" />
+            <div id="resultado">
+                <strong>resultado:</strong><span class="resultado"></span>
+            </div>
+
+        </form>
+
+
+</body>
+</html>
+<script>
+    var Type;
+    var Url;
+    var Data;
+    var ContentType;
+    var DataType;
+    var ProcessData;
+    var method;
+
+    $(window).load(function () {
+        $('#enviar2').click(function () {
+            // CreateEmployee();
+            var cpf = $('#cpf2').val();
+            var senha = $('#senha2').val();
+            var termoParaPesquisa = $('#termoParaPesquisa2').val();
+            var codigoOrgao = $('#codigoOrgao2').val();
+            var codigoAlmox = $('#codigoAlmox2').val();
+            var dispRequisicao = $('#dispRequisicao2').val();
+            ////alert(dispRequisicao);
+            var buscaItem = {
+                "cpf": cpf,
+                "senha": senha,
+                "termoParaPesquisa": termoParaPesquisa,
+                "codigoOrgao": codigoOrgao,
+                "codigoAlmox": codigoAlmox,
+                "dispRequisicao": dispRequisicao
+            }
+            var jsonData = JSON.stringify(buscaItem);
+            $.ajax({
+                type: 'POST',
+                crossDomain: true,
+                url: "http://localhost:8377/ConsultaWs/BuscaSubItemMaterialRequisicaoParaWs",
+                ///url: "http://samdes.prodesp.sp.gov.br/Estoque/WsConsulta/FCasa/BuscaSubItemMaterialRequisicaoParaWs",
+                data: jsonData,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                processData: true,
+               
+                error: function (e) {
+                    console.log(e);
+                },
+                success: function (data) {//On Successfull service call
+                    //Respondendo na tela todos os itens
+                    alert(data);
+                },
+
+            });
+        });
+
+            $('#enviar1').click(function () {
+                // CreateEmployee();
+                var cpf = $('#cpf1').val();
+                var senha = $('#senha1').val();
+                var codigoOrgao = $('#codigoOrgao1').val();
+                var codigoAlmox = $('#codigoAlmox1').val();
+                var ugeCodigo = $('#ugeCodigo').val();
+                var uaCodigo = $('#uaCodigo').val();
+                var divisaoUaCodigo = $('#divisaoUaCodigo').val();
+                var tipoMovimentacaoMaterialCodigo = $('#tipoMovimentacaoMaterialCodigo').val();
+                var agrupamentoTipoMovimentacaoMaterialCodigo = $('#agrupamentoTipoMovimentacaoMaterialCodigo').val();
+                var cpfCnpjFornecedor = $('#cpfCnpjFornecedor').val();
+                var dataInicial = $('#dataInicial').val();
+                var dataFinal = $('#dataFinal').val();
+                var consultaTransfs = $('#consultaTransfs').val();
+
+                var buscaItem = {
+                    "cpf": cpf,
+                    "senha": senha,
+                    "codigoOrgao": codigoOrgao,
+                    "ugeCodigo": ugeCodigo,
+                    "uaCodigo": uaCodigo,
+                    "codigoAlmox": codigoAlmox,
+                    "divisaoUaCodigo": divisaoUaCodigo,
+                    "tipoMovimentacaoMaterialCodigo": tipoMovimentacaoMaterialCodigo,
+                    "agrupamentoTipoMovimentacaoMaterialCodigo": agrupamentoTipoMovimentacaoMaterialCodigo,
+                    "cpfCnpjFornecedor": cpfCnpjFornecedor,
+                    "dataInicial": dataInicial,
+                    "dataFinal": dataFinal,
+                    "consultaTransfs": consultaTransfs,
+
+
+
+                }
+                var jsonData = JSON.stringify(buscaItem);
+                $.ajax({
+                    type: 'POST',
+                    crossDomain: true,
+                    ///url: "ServiceWs.svc/GeraRelacaoMovimentacaoMaterialWs",
+                    url: "http://localhost:8377/ConsultaWs/GeraRelacaoMovimentacaoMaterialWs",
+                    ///url: "http://samdes.prodesp.sp.gov.br/Estoque/WsConsulta/FCasa/GeraRelacaoMovimentacaoMaterialWs",
+                    data: jsonData,
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    processData: true,
+                   
+                    error: function (e) {
+                        console.log(e);
+                    },
+                    success: function (objeto) {//On Successfull service call
+                        //redireciona
+                        $('#resultado').text(objeto);
+                    },
+
+                });
+            });
+        });
+
+</script>

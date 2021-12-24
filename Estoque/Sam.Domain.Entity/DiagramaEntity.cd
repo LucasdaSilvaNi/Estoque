@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Sam.Domain.Entity.ContaAuxiliarEntity" Collapsed="true">
+    <Position X="12.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ContaAuxiliarEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.AtividadeItemMaterialEntity" Collapsed="true">
+    <Position X="17" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AtividadeItemMaterialEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.CargoEntity" Collapsed="true">
+    <Position X="14.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAQABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CargoEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.CentroCustoEntity" Collapsed="true">
+    <Position X="19.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAQABAAAgAQAAoACAAIAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CentroCustoEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.ClasseEntity" Collapsed="true">
+    <Position X="10.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQABAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ClasseEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.DivisaoEntity">
+    <Position X="10.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQABoBOAAQAzoAAwIQAAMACQABgAkAAIMAAIASACiIE=</HashCode>
+      <FileName>DivisaoEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.UsuarioEntity" Collapsed="true">
+    <Position X="64.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AUAAgADIACgAiAA8AgAEsAIQAKBAEAAFYIAEgSGAAIA=</HashCode>
+      <FileName>UsuarioEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.FontesRecursoEntity" Collapsed="true">
+    <Position X="28.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAQABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FontesRecursoEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.FornecedorEntity" Collapsed="true">
+    <Position X="37.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CQCAIAoAoCACAKIkAAACFACAQBAAgEAAAAEAAAEBAAA=</HashCode>
+      <FileName>FornecedorEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.GestorEntity" Collapsed="true">
+    <Position X="46.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQABAAEIAQAgCAEkIAKBJASSAAAEkAAAAACAAAECgAA=</HashCode>
+      <FileName>GestorEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.GrupoEntity" Collapsed="true">
+    <Position X="55.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GrupoEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.IndicadorAtividadeEntity" Collapsed="true">
+    <Position X="12.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAQABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IndicadorAtividadeEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.IndicadorBemProprioEntity" Collapsed="true">
+    <Position X="21.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAQABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IndicadorBemProprioEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.ItemMaterialEntity" Collapsed="true">
+    <Position X="30.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAABAAQABAAAAAgQAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>ItemMaterialEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.MaterialEntity" Collapsed="true">
+    <Position X="39.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQABAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MaterialEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.MotivoBaixaEntity" Collapsed="true">
+    <Position X="48.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAQABAAAAAQIAAACAAAAAgAAAAAIAAAAAAAA=</HashCode>
+      <FileName>MotivoBaixaEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.NaturezaDespesaEntity" Collapsed="true">
+    <Position X="57.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQABAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>NaturezaDespesaEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.PTResEntity" Collapsed="true">
+    <Position X="14.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAQABAAAAAQAAAACAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PTResEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.RelacaoMaterialItemSubItemEntity" Collapsed="true">
+    <Position X="23.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAABAAAAAAAQAEAIQAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>RelacaoMaterialItemSubItemEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.ResponsavelEntity" Collapsed="true">
+    <Position X="32.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAQABAAAgAQAAoACAAIAAgAABAAAQAQAAEAA=</HashCode>
+      <FileName>ResponsavelEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.SiglaEntity" Collapsed="true">
+    <Position X="41.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAQQABAAAgAQAAoACAQIAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SiglaEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.SubItemMaterialEntity" Collapsed="true">
+    <Position X="50.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAVABIAACAQAAAAgBEIABAggEAAIoCGAQAAA=</HashCode>
+      <FileName>SubItemMaterialEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.TerceiroEntity" Collapsed="true">
+    <Position X="59.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CQCAIAoAoAACAKIkAAACpACAAIAAgAAAAAEAAAEBACA=</HashCode>
+      <FileName>TerceiroEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.TipoIncorpEntity" Collapsed="true">
+    <Position X="17" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAQABAAAAAQIAAACAAAAAgAAAAAIAAAAAAAA=</HashCode>
+      <FileName>TipoIncorpEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.TipoUGEEntity" Collapsed="true">
+    <Position X="26" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TipoUGEEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.UAEntity" Collapsed="true">
+    <Position X="35" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAiBAAAIAQABIAAkAQAApASAAAAEgAAAAAAIAAAACAA=</HashCode>
+      <FileName>UAEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.UFEntity" Collapsed="true">
+    <Position X="44" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UFEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.UGEEntity" Collapsed="true">
+    <Position X="53" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAQABAAAhAQAAIASAAAAEgAAAAAAAAAAAAAE=</HashCode>
+      <FileName>UGEEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.UnidadeEntity" Collapsed="true">
+    <Position X="62" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAQABAAAgAQAAoACAAIAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UnidadeEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.UOEntity" Collapsed="true">
+    <Position X="19.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQABAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UOEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.AlmoxarifadoEntity" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQABoAOQAQAjoAAkIQAApACQAIgAkAAIIAAIACACiIA=</HashCode>
+      <FileName>AlmoxarifadoEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.AtividadeNaturezaDespesaEntity" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AtividadeNaturezaDespesaEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.BaseEntity" Collapsed="true">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>BaseEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.OrgaoEntity">
+    <Position X="0.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAQABAAAAAAAAAACAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>OrgaoEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.RelatorioEntity">
+    <Position X="5.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABgEAAAA=</HashCode>
+      <FileName>RelatorioEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.UnidadeFornecimentoEntity">
+    <Position X="2.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAQABAAAAAQAAgAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UnidadeFornecimentoEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.MovimentoItemEntity">
+    <Position X="70.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACBACAAAAAgAgACAEIAAAAAAAAIAkAEAAQCABAAAA=</HashCode>
+      <FileName>MovimentoItemEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Entity.MovimentoEntity">
+    <Position X="68.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAEAAEQgAEgAAAAQEAAAIACEAAAhAAAA=</HashCode>
+      <FileName>MovimentoEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

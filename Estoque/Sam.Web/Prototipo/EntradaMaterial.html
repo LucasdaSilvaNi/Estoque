@@ -1,0 +1,504 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
+
+<head>
+	<title>SAM - Sistema de Administração de Materiais</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<meta name="classification" content="Governo" />
+	<meta name="author" content="Prodesp" />
+	
+	<link type="text/css" media="all"   href="css/estilo.css"    rel="stylesheet" title="pattern"  />
+	<link type="text/css" media="all"   href="css/contraste.css" rel="alternate stylesheet" title="modify"   />
+	<link type="text/css" media="print" href="css/print.css"     rel="stylesheet" />
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/generic.js"></script> 
+	<script type="text/javascript">	
+		function pesquisaFornecedor() {
+			window.open('pesquisaFornecedor.html', '', 'height=400, width=800, top=20, left=20, scrollbars=no, resizable=no');
+		}
+
+		function pesquisaItem() {
+			window.open('pesquisaItem.html', '', 'height=400, width=800, top=20, left=20, scrollbars=no, resizable=no');
+		}
+
+		function mostraListagem(){
+			document.getElementById("listagem").style.display='block';
+		}	
+		
+	</script>	
+</head>
+
+<body>
+
+<!-- Habilitar JavaScript -->
+<noscript>
+	<p>O javascript de seu navegador está desabilitado. Favor habilitá-lo para acessar as funcionalidades deste site.</p>
+</noscript>
+	
+<!-- Acessibilidade -->
+<a class="esconder" href="#content">Ir para o conteúdo</a>
+
+<!-- Barra do Governo Obrigatória -->
+<div id="barragoverno" hidden="hidden">
+	<script type="text/javascript" src="http://www.saopaulo.sp.gov.br/barrasp/js/include_centralizada.js.php"></script>
+</div>
+
+<div id="global">
+
+		<!-- Cabeçalho -->
+		<div id="header">
+
+			<!-- Link para o Cliente -->
+			<div id="barraCliente">
+				<a href="http://www.fazenda.sp.gov.br/" target="_blank" title="Secretaria da Fazenda">Secretaria da Fazenda</a>
+			</div>
+			
+			<!-- Logo e Icones -->
+			<h1 id="logo"><a href="index.html" title="SAM - Sistema de Administração de Materiais - Tecla de atalho (1)" accesskey="1">SAM - Sistema de Administração de Materiais</a></h1>    
+			<ul id="toolbox">
+				<li class="tamanho">
+					<a href="#" class="decrease" style="padding-left:0"><img src="imagens/fontsize_decrease.gif" align="top" title="Diminuir tamanho do texto" alt="Diminuir tamanho do texto" /></a> 
+					<a href="#" class="increase" style="padding-left:0"><img src="imagens/fontsize_increase.gif" align="top" title="Aumentar tamanho do texto" alt="Aumentar tamanho do texto" /></a> 
+					<span>Tamanho do Texto</span>
+				</li>
+				<li class="contrasteLink"><a href="#" class="contraste" title="Contraste"><span>Contraste</span></a></li>
+				<li class="fale"><a href="#" title="Contatos"><span>Contatos</span></a></li>
+			</ul>
+		        
+			<!-- Dados do usuário -->
+			<ul id="usuario">
+				<li><strong>Usuário:</strong> 234567890-12</li>
+				<li>01/09/2011  09:20</li>
+				<li class="last"><a href="index.html" title="Fazer Logoff">Sair</a></li>		
+			</ul>
+				  
+			<!-- Navegação Principal Superior -->	
+			<div id="nav_main">
+				<ul id="jqueryAnimated">
+					<li><a href="home.html" class="firstNavMain">Início</a></li>
+					<li><a href="seguranca.html">Segurança</a></li>
+					<li><a href="tabelas.html">Tabelas</a></li>
+					<li><a href="almoxarifado.html" class="selected">Almoxarifado</a></li>
+					<li><a href="patrimonio.html">Patrimônio</a></li>
+				</ul>		
+			</div>	
+			
+		</div> 
+		<!-- fim id header-->	
+		
+		<!-- Barra com informações do Gestor -->	
+		<div id="barraGestor">
+			<div class="gestor">
+				<p><strong>Gestor:</strong> 20001 - Secretaria da Fazenda</p>
+				<p><strong>Almoxarifado:</strong> 1 - Sede</p>			
+			</div>
+			<div class="mesref">
+				<p><strong>Mês/ano referência:</strong> 09/2011</p>
+			</div>
+		</div>	
+		
+		<!-- Conteúdo -->
+		<div id="content">	  
+		
+			<div id="interno">
+		
+				<h1>Módulo Almoxarifado - Entrada de Material  </h1>
+
+				<form name="entrada_mat" action=" " class="formulario">
+	            
+					<fieldset class="sideLeft">			            
+						<fieldset>
+							<legend>Tipo:</legend>
+							<p><input type="radio" name="tipo" value="0" /> Aquisição compra direta</p>
+							<p><input type="radio" name="tipo" value="1" /> Aquisição pela BEC</p>
+							<p><input type="radio" name="tipo" value="2" /> Aquisição por Pregão</p>
+							<p><input type="radio" name="tipo" value="3" /> Aquisição Avulsa </p>
+							<p><input type="radio" name="tipo" value="4" /> Transferência</p>
+							<p><input type="radio" name="tipo" value="5" /> Doação</p>
+							<p><input type="radio" name="tipo" value="6" /> Devolução</p>
+							<p><input type="radio" name="tipo" value="7" /> Material Transformado</p>
+						</fieldset>							
+					</fieldset>
+
+					<fieldset class="sideRight">	
+		            <p>
+				        <label for="uge">UGE:</label>
+				        <select id="uge" class="selecioneMedio">
+						  	<option> </option>
+						  </select>
+		            </p>		
+						
+						<p>
+				        <label for="empenho">Empenho:</label>
+				        <input id="empenho" type="text" size="20" value="" />
+		            </p>								
+						
+						<p>
+				        <label for="fornc">Fornecedor:</label>
+				        <input id="fornc" type="text" size="60" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaFornecedor();" />
+		            </p>								
+						
+		            <p>
+				        <label for="doc">Documento:</label>
+				        <select id="doc" class="selecioneMedio">
+						  	<option> </option>
+						  </select>
+		            </p>		
+						
+						<p>
+				        <label for="dt_em">Data Emissão:</label>
+				        <input id="dt_em" type="text" size="20" value="" />
+		            </p>								
+						
+						<p>
+				        <label for="dt_rec">Data Recebimento:</label>
+				        <input id="dt_rec" type="text" size="20" value="" />
+		            </p>								
+						
+						<p>
+				        <label for="total">Valor Total:</label>
+				        <input id="total" type="text" size="20" value="" />
+		            </p>								
+						
+						<p>
+				        <label for="obs">Observações:</label>
+				        <textarea id="obs" cols="60" rows="4"></textarea>
+		            </p>								
+						
+					</fieldset>
+					
+				<div id="listagem" style="display: none;">
+				<table class="tabela almoxarifado" summary="">
+					<tr>
+						<th rowspan="2" width="58">&nbsp;</th>
+						<th rowspan="2" width="18">#</th>
+						<th width="80">Item</th>
+						<th width="128">Subitem</th>
+						<th width="80">Classif.</th>
+						<th rowspan="2" width="60">Qtd. a<br />Liquid.</th>
+						<th rowspan="2" width="60">Qtd. a<br />Entrar</th>
+						<th rowspan="2" width="40">Un.</th>
+						<th rowspan="2" width="70">Valor do<br />Mov.</th>
+						<th colspan="2">(Lote) Marca</th>
+					</tr>
+					<tr>
+						<th colspan="3">Descrição</th>
+						<th width="57">Venc.</th>
+						<th width="57">Ident.</th>
+					</tr>
+						
+					<!-- linha 01 -->	
+					<tr>
+						<td rowspan="2">
+							<a class="button" href="#"><span>del</span></a><br /><br /> 
+							<a class="button" href="#"><span>div</span></a>
+						</td>
+						<td rowspan="2"><a href="">01</a></td>
+						<td nowrap="nowrap"><input id="" type="text" size="6" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaItem();" /> </td>
+						<td>
+						 <select id="" class="selecioneMenor">
+						  	<option> </option>
+						  </select>
+						</td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td rowspan="2"><input id="" type="text" size="5" value="" /></td>
+						<td rowspan="2"><input id="" type="text" size="5" value="" /></td>
+						<td rowspan="2"><input id="" type="text" size="1" value="" /></th>
+						<td rowspan="2"><input id="" type="text" size="7" value="" /></td>
+						<td colspan="2"><input id="" type="text" size="16" value="" /></td>
+					</tr>
+					<tr>
+						<td colspan="3"><input id="" type="text" size="50" value="" /></td>
+						<td><input id="" type="text" size="4" value="" /></td>
+						<td><input id="" type="text" size="4" value="" /></td>
+					</tr>
+
+					<!-- linha 02 -->	
+					<tr class="odd">
+						<td rowspan="2">
+							<a class="button" href="#"><span>del</span></a><br /><br /> 
+							<a class="button" href="#"><span>div</span></a>
+						</td>
+						<td rowspan="2"><a href="">02</a></td>
+						<td nowrap="nowrap"><input id="" type="text" size="6" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaItem();" /></td>
+						<td>
+						 <select id="" class="selecioneMenor">
+						  	<option> </option>
+						  </select>
+						</td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td rowspan="2"><input id="" type="text" size="5" value="" /></td>
+						<td rowspan="2"><input id="" type="text" size="5" value="" /></td>
+						<td rowspan="2"><input id="" type="text" size="1" value="" /></th>
+						<td rowspan="2"><input id="" type="text" size="7" value="" /></td>
+						<td colspan="2"><input id="" type="text" size="16" value="" /></td>
+					</tr>
+					<tr class="odd">
+						<td colspan="3"><input id="" type="text" size="50" value="" /></td>
+						<td><input id="" type="text" size="4" value="" /></td>
+						<td><input id="" type="text" size="4" value="" /></td>
+					</tr>
+
+					<!-- linha 03 -->	
+					<tr>
+						<td rowspan="2">
+							<a class="button" href="#"><span>del</span></a><br /><br /> 
+							<a class="button" href="#"><span>div</span></a>
+						</td>
+						<td rowspan="2"><a href="">03</a></td>
+						<td nowrap="nowrap"><input id="" type="text" size="6" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaItem();" /></td>
+						<td>
+						 <select id="" class="selecioneMenor">
+						  	<option> </option>
+						  </select>
+						</td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td rowspan="2"><input id="" type="text" size="5" value="" /></td>
+						<td rowspan="2"><input id="" type="text" size="5" value="" /></td>
+						<td rowspan="2"><input id="" type="text" size="1" value="" /></th>
+						<td rowspan="2"><input id="" type="text" size="7" value="" /></td>
+						<td colspan="2"><input id="" type="text" size="16" value="" /></td>
+					</tr>
+					<tr>
+						<td colspan="3"><input id="" type="text" size="50" value="" /></td>
+						<td><input id="" type="text" size="4" value="" /></td>
+						<td><input id="" type="text" size="4" value="" /></td>
+					</tr>
+
+					<!-- linha 04 -->	
+					<tr class="odd">
+						<td rowspan="2">
+							<a class="button" href="#"><span>del</span></a><br /><br /> 
+							<a class="button" href="#"><span>div</span></a>
+						</td>
+						<td rowspan="2"><a href="">04</a></td>
+						<td nowrap="nowrap"><input id="" type="text" size="6" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaItem();" /></td>
+						<td>
+						 <select id="" class="selecioneMenor">
+						  	<option> </option>
+						  </select>
+						</td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td rowspan="2"><input id="" type="text" size="5" value="" /></td>
+						<td rowspan="2"><input id="" type="text" size="5" value="" /></td>
+						<td rowspan="2"><input id="" type="text" size="1" value="" /></th>
+						<td rowspan="2"><input id="" type="text" size="7" value="" /></td>
+						<td colspan="2"><input id="" type="text" size="16" value="" /></td>
+					</tr>
+					<tr class="odd">
+						<td colspan="3"><input id="" type="text" size="50" value="" /></td>
+						<td><input id="" type="text" size="4" value="" /></td>
+						<td><input id="" type="text" size="4" value="" /></td>
+					</tr>
+
+					<!-- linha 05 -->	
+					<tr>
+						<td rowspan="2">
+							<a class="button" href="#"><span>del</span></a><br /><br /> 
+							<a class="button" href="#"><span>div</span></a>
+						</td>
+						<td rowspan="2"><a href="">05</a></td>
+						<td nowrap="nowrap"><input id="" type="text" size="6" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaItem();" /></td>
+						<td>
+						 <select id="" class="selecioneMenor">
+						  	<option> </option>
+						  </select>
+						</td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td rowspan="2"><input id="" type="text" size="5" value="" /></td>
+						<td rowspan="2"><input id="" type="text" size="5" value="" /></td>
+						<td rowspan="2"><input id="" type="text" size="1" value="" /></th>
+						<td rowspan="2"><input id="" type="text" size="7" value="" /></td>
+						<td colspan="2"><input id="" type="text" size="16" value="" /></td>
+					</tr>
+					<tr>
+						<td colspan="3"><input id="" type="text" size="50" value="" /></td>
+						<td><input id="" type="text" size="4" value="" /></td>
+						<td><input id="" type="text" size="4" value="" /></td>
+					</tr>
+
+					<!-- linha 06 -->	
+					<tr class="odd">
+						<td rowspan="2">
+							<a class="button" href="#"><span>del</span></a><br /><br /> 
+							<a class="button" href="#"><span>div</span></a>
+						</td>
+						<td rowspan="2"><a href="">06</a></td>
+						<td nowrap="nowrap"><input id="" type="text" size="6" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaItem();" /></td>
+						<td>
+						 <select id="" class="selecioneMenor">
+						  	<option> </option>
+						  </select>
+						</td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td rowspan="2"><input id="" type="text" size="5" value="" /></td>
+						<td rowspan="2"><input id="" type="text" size="5" value="" /></td>
+						<td rowspan="2"><input id="" type="text" size="1" value="" /></th>
+						<td rowspan="2"><input id="" type="text" size="7" value="" /></td>
+						<td colspan="2"><input id="" type="text" size="16" value="" /></td>
+					</tr>
+					<tr class="odd">
+						<td colspan="3"><input id="" type="text" size="50" value="" /></td>
+						<td><input id="" type="text" size="4" value="" /></td>
+						<td><input id="" type="text" size="4" value="" /></td>
+					</tr>
+
+					<!-- linha 07 -->	
+					<tr>
+						<td rowspan="2">
+							<a class="button" href="#"><span>del</span></a><br /><br /> 
+							<a class="button" href="#"><span>div</span></a>
+						</td>
+						<td rowspan="2"><a href="">07</a></td>
+						<td nowrap="nowrap"><input id="" type="text" size="6" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaItem();" /></td>
+						<td>
+						 <select id="" class="selecioneMenor">
+						  	<option> </option>
+						  </select>
+						</td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td rowspan="2"><input id="" type="text" size="5" value="" /></td>
+						<td rowspan="2"><input id="" type="text" size="5" value="" /></td>
+						<td rowspan="2"><input id="" type="text" size="1" value="" /></th>
+						<td rowspan="2"><input id="" type="text" size="7" value="" /></td>
+						<td colspan="2"><input id="" type="text" size="16" value="" /></td>
+					</tr>
+					<tr>
+						<td colspan="3"><input id="" type="text" size="50" value="" /></td>
+						<td><input id="" type="text" size="4" value="" /></td>
+						<td><input id="" type="text" size="4" value="" /></td>
+					</tr>
+
+					<!-- linha 08 -->	
+					<tr class="odd">
+						<td rowspan="2">
+							<a class="button" href="#"><span>del</span></a><br /><br /> 
+							<a class="button" href="#"><span>div</span></a>
+						</td>
+						<td rowspan="2"><a href="">08</a></td>
+						<td nowrap="nowrap"><input id="" type="text" size="6" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaItem();" /></td>
+						<td>
+						 <select id="" class="selecioneMenor">
+						  	<option> </option>
+						  </select>
+						</td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td rowspan="2"><input id="" type="text" size="5" value="" /></td>
+						<td rowspan="2"><input id="" type="text" size="5" value="" /></td>
+						<td rowspan="2"><input id="" type="text" size="1" value="" /></th>
+						<td rowspan="2"><input id="" type="text" size="7" value="" /></td>
+						<td colspan="2"><input id="" type="text" size="16" value="" /></td>
+					</tr>
+					<tr class="odd">
+						<td colspan="3"><input id="" type="text" size="50" value="" /></td>
+						<td><input id="" type="text" size="4" value="" /></td>
+						<td><input id="" type="text" size="4" value="" /></td>
+					</tr>
+
+					<!-- linha 09 -->	
+					<tr>
+						<td rowspan="2">
+							<a class="button" href="#"><span>del</span></a><br /><br /> 
+							<a class="button" href="#"><span>div</span></a>
+						</td>
+						<td rowspan="2"><a href="">09</a></td>
+						<td nowrap="nowrap"><input id="" type="text" size="6" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaItem();" /></td>
+						<td>
+						 <select id="" class="selecioneMenor">
+						  	<option> </option>
+						  </select>
+						</td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td rowspan="2"><input id="" type="text" size="5" value="" /></td>
+						<td rowspan="2"><input id="" type="text" size="5" value="" /></td>
+						<td rowspan="2"><input id="" type="text" size="1" value="" /></th>
+						<td rowspan="2"><input id="" type="text" size="7" value="" /></td>
+						<td colspan="2"><input id="" type="text" size="16" value="" /></td>
+					</tr>
+					<tr>
+						<td colspan="3"><input id="" type="text" size="50" value="" /></td>
+						<td><input id="" type="text" size="4" value="" /></td>
+						<td><input id="" type="text" size="4" value="" /></td>
+					</tr>
+
+					<!-- linha 10 -->	
+					<tr class="odd">
+						<td rowspan="2">
+							<a class="button" href="#"><span>del</span></a><br /><br /> 
+							<a class="button" href="#"><span>div</span></a>
+						</td>
+						<td rowspan="2"><a href="">10</a></td>
+						<td nowrap="nowrap"><input id="" type="text" size="6" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaItem();" /></td>
+						<td>
+						 <select id="" class="selecioneMenor">
+						  	<option> </option>
+						  </select>
+						</td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td rowspan="2"><input id="" type="text" size="5" value="" /></td>
+						<td rowspan="2"><input id="" type="text" size="5" value="" /></td>
+						<td rowspan="2"><input id="" type="text" size="1" value="" /></th>
+						<td rowspan="2"><input id="" type="text" size="7" value="" /></td>
+						<td colspan="2"><input id="" type="text" size="16" value="" /></td>
+					</tr>
+					<tr class="odd">
+						<td colspan="3"><input id="" type="text" size="50" value="" /></td>
+						<td><input id="" type="text" size="4" value="" /></td>
+						<td><input id="" type="text" size="4" value="" /></td>
+					</tr>
+											
+				</table>		
+				</div>	
+								
+				</form>
+
+				<!--p><small>Os campos marcados com (*) são obrigatórios. </small></p-->			
+			
+			</div>  
+			<!-- fim id interno -->
+
+			<div class="botao">				
+
+				<p class="botaoLeft">
+					<a class="button" href="javascript:mostraListagem();" accesskey="N"><span><u>N</u>ovo</span></a>
+					<a class="button" href="#" accesskey="S"><span><u>S</u>alvar</span></a>
+					<a class="button" href="#" accesskey="E"><span class="desabil"><u>E</u>stornar</span></a>
+					<a class="button" href="#" accesskey="C"><span><u>C</u>ancelar</span></a>
+					<a class="button" href="#" accesskey="O"><span>Adicionar <u>O</u>utra Linha</span></a>
+				</p>
+
+				<p class="botaoRight">
+					<a class="button" href="#" accesskey="R"><span><u>R</u>elatório</span></a> 
+					<a class="button" href="#" accesskey="A"><span><u>A</u>juda</span></a>
+					<a class="button" href="almoxarifado.html" accesskey="V"><span><u>V</u>oltar</span></a> 
+				</p>
+			</div>
+		
+		</div> 
+		<!-- fim id content -->
+		
+		<!-- Rodapé -->
+		<div id="footer">
+			<address class="vcard">
+				<span class="adr">
+					<span class="org fn">
+						<span class="organization-name"><strong>Prodesp - Companhia de Processamento de Dados do Estado de São Paulo </strong></span>
+					</span>
+					<br />
+					<span class="street-address">Rua Agueda Gonçalves, 240</span> -
+					CEP <span class="postal-code">06760-900</span> - 
+					<span class="locality">Taboão da Serra</span> -
+					<abbr class="region">SP</abbr> -
+					PABX <span class="tel">(11) 2845-6000</span> -
+					Fax <span class="fax">(11) 4787-0058</span>
+				</span>
+			</address>        
+		</div>		
+		  
+</div> 
+<!-- fim id global-->		
+
+</body>
+
+</html>

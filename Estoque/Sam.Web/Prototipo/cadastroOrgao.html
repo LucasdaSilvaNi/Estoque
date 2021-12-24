@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
+
+<head>
+	<title>SAM - Sistema de Administração de Materiais</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<meta name="classification" content="Governo" />
+	<meta name="author" content="Prodesp" />
+	
+	<link type="text/css" media="all"   href="css/estilo.css"    rel="stylesheet" title="pattern"  />
+	<link type="text/css" media="all"   href="css/contraste.css" rel="alternate stylesheet" title="modify"   />
+	<link type="text/css" media="print" href="css/print.css"     rel="stylesheet" />
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/generic.js"></script> 
+</head>
+
+<body>
+
+<!-- Habilitar JavaScript -->
+<noscript>
+	<p>O javascript de seu navegador está desabilitado. Favor habilitá-lo para acessar as funcionalidades deste site.</p>
+</noscript>
+	
+<!-- Acessibilidade -->
+<a class="esconder" href="#content">Ir para o conteúdo</a>
+
+<!-- Barra do Governo Obrigatória -->
+<div id="barragoverno" hidden="hidden">
+	<script type="text/javascript" src="http://www.saopaulo.sp.gov.br/barrasp/js/include_centralizada.js.php"></script>
+</div>
+
+<div id="global">
+
+		<!-- Cabeçalho -->
+		<div id="header">
+
+			<!-- Link para o Cliente -->
+			<div id="barraCliente">
+				<a href="http://www.fazenda.sp.gov.br/" target="_blank" title="Secretaria da Fazenda">Secretaria da Fazenda</a>
+			</div>
+			
+			<!-- Logo e Icones -->
+			<h1 id="logo"><a href="index.html" title="SAM - Sistema de Administração de Materiais - Tecla de atalho (1)" accesskey="1">SAM - Sistema de Administração de Materiais</a></h1>    
+			<ul id="toolbox">
+				<li class="tamanho">
+					<a href="#" class="decrease" style="padding-left:0"><img src="imagens/fontsize_decrease.gif" align="top" title="Diminuir tamanho do texto" alt="Diminuir tamanho do texto" /></a> 
+					<a href="#" class="increase" style="padding-left:0"><img src="imagens/fontsize_increase.gif" align="top" title="Aumentar tamanho do texto" alt="Aumentar tamanho do texto" /></a> 
+					<span>Tamanho do Texto</span>
+				</li>
+				<li class="contrasteLink"><a href="#" class="contraste" title="Contraste"><span>Contraste</span></a></li>
+				<li class="fale"><a href="#" title="Contatos"><span>Contatos</span></a></li>
+			</ul>
+		        
+			<!-- Dados do usuário -->
+			<ul id="usuario">
+				<li><strong>Usuário:</strong> 234567890-12</li>
+				<li>01/09/2011  09:20</li>
+				<li class="last"><a href="index.html" title="Fazer Logoff">Sair</a></li>		
+			</ul>
+				  
+			<!-- Navegação Principal Superior -->	
+			<div id="nav_main">
+				<ul id="jqueryAnimated">
+					<li><a href="home.html" class="firstNavMain">Início</a></li>
+					<li><a href="seguranca.html">Segurança</a></li>
+					<li><a href="tabelas.html" class="selected">Tabelas</a></li>
+					<li><a href="almoxarifado.html">Almoxarifado</a></li>
+					<li><a href="patrimonio.html">Patrimônio</a></li>
+				</ul>		
+			</div>	
+			
+		</div> 
+		<!-- fim id header-->	
+		
+		<!-- Conteúdo -->
+		<div id="content">	  
+		
+			<div id="interno">
+		
+				<h1>Módulo Tabelas - Estrutura Organizacional - Órgãos</h1>
+				
+				<table class="tabela" summary="Tabela de Órgãos">
+					<tr>
+						<th width="6%" class="center">Cód.</th>
+						<th width="87%">Descrição</th>
+						<th width="7%" class="center">Editar</th>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>Assembléia Legislativa do Estado</td>
+						<td class="center"><a href="cadastroOrgaoEdit.html"><img src="imagens/alterar.gif" alt="Editar ou Excluir Órgão" /></a></td>
+					</tr>			
+					<tr class="odd">
+						<td>2</td>
+						<td>Tribunal de Contas do Estado</td>
+						<td class="center"><a href="cadastroOrgaoEdit.html"><img src="imagens/alterar.gif" alt="Editar ou Excluir Órgão" /></a></td>
+					</tr>			
+					<tr>
+						<td>3</td>
+						<td>Tribunal de Justiça</td>
+						<td class="center"><a href="cadastroOrgaoEdit.html"><img src="imagens/alterar.gif" alt="Editar ou Excluir Órgão" /></a></td>
+					</tr>			
+					<tr class="odd">
+						<td>4</td>
+						<td>Primeiro Tribunal de Alçada Civil</td>
+						<td class="center"><a href="cadastroOrgaoEdit.html"><img src="imagens/alterar.gif" alt="Editar ou Excluir Órgão" /></a></td>
+					</tr>			
+					<tr>
+						<td>5</td>
+						<td>Tribunal de Alçada Criminal</td>
+						<td class="center"><a href="cadastroOrgaoEdit.html"><img src="imagens/alterar.gif" alt="Editar ou Excluir Órgão" /></a></td>
+					</tr>			
+					<tr class="odd">
+						<td>6</td>
+						<td>Tribunal de Justiça Militar</td>
+						<td class="center"><a href="cadastroOrgaoEdit.html"><img src="imagens/alterar.gif" alt="Editar ou Excluir Órgão" /></a></td>
+					</tr>			
+					<tr>
+						<td>7</td>
+						<td>Gabinete do Governador</td>
+						<td class="center"><a href="cadastroOrgaoEdit.html"><img src="imagens/alterar.gif" alt="Editar ou Excluir Órgão" /></a></td>
+					</tr>			
+					<tr class="odd">
+						<td>8</td>
+						<td>Secretaria da Educação</td>
+						<td class="center"><a href="cadastroOrgaoEdit.html"><img src="imagens/alterar.gif" alt="Editar ou Excluir Órgão" /></a></td>
+					</tr>			
+					<tr>
+						<td>9</td>
+						<td>Secretaria da Saúde</td>
+						<td class="center"><a href="cadastroOrgaoEdit.html"><img src="imagens/alterar.gif" alt="Editar ou Excluir Órgão" /></a></td>
+					</tr>			
+					<tr class="odd">
+						<td>10</td>
+						<td>Secretaria de Ciência, Tecnologia e Desenvolvimento Econômico</td>
+						<td class="center"><a href="cadastroOrgaoEdit.html"><img src="imagens/alterar.gif" alt="Editar ou Excluir Órgão" /></a></td>
+					</tr>			
+				</table>
+				
+				<div class="paginacao">
+					<div class="navwrap">
+						<ul class="nav">
+							<li class="first"> « </li>			
+							<li class="previous"> ‹ </li>			
+							<li class="active">1</li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">4</a></li>
+							<li class="next"><a href="#"> › </a></li>			
+							<li class="last"><a href="#"> » </a></li>		
+						</ul>		
+					</div>		
+				</div>
+			
+			</div>  
+			<!-- fim id interno -->
+
+			<div class="botao">
+				<p class="botaoLeft">
+					<a class="button" href="cadastroOrgaoEdit.html?include=true" accesskey="N"><span><u>N</u>ovo</span></a>
+				</p>
+
+				<p class="botaoRight">
+					<a class="button" href="#" accesskey="R"><span><u>R</u>elatório</span></a> 
+					<a class="button" href="#" accesskey="A"><span><u>A</u>juda</span></a>
+					<a class="button" href="tabelas.html" accesskey="V"><span><u>V</u>oltar</span></a> 
+				</p>
+			</div>
+		
+		</div> 
+		<!-- fim id content -->
+		
+		<!-- Rodapé -->
+		<div id="footer">
+			<address class="vcard">
+				<span class="adr">
+					<span class="org fn">
+						<span class="organization-name"><strong>Prodesp - Companhia de Processamento de Dados do Estado de São Paulo </strong></span>
+					</span>
+					<br />
+					<span class="street-address">Rua Agueda Gonçalves, 240</span> -
+					CEP <span class="postal-code">06760-900</span> - 
+					<span class="locality">Taboão da Serra</span> -
+					<abbr class="region">SP</abbr> -
+					PABX <span class="tel">(11) 2845-6000</span> -
+					Fax <span class="fax">(11) 4787-0058</span>
+				</span>
+			</address>        
+		</div>		
+		  
+</div> 
+<!-- fim id global-->		  
+
+</body>
+
+</html>

@@ -1,0 +1,1053 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dbSAMwebDesenvolvimento" Class="dbSawDataContext" BaseType="Doddle.Linq.Audit.LinqToSql.AuditableDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="ConnectionString" ConnectionString="Data Source=10.200.240.5\MSSQL2008R2;Initial Catalog=dbSAMwebDesenvolvimento;User ID=usudbsamweb" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.TB_ALMOX_RELATORIOS_MENSAIS" Member="TB_ALMOX_RELATORIOS_MENSAIs">
+    <Type Name="TB_ALMOX_RELATORIOS_MENSAI">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Descricao" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="NomeRelatorio" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UnidadesSAP" Member="UnidadesSAPs">
+    <Type Name="UnidadesSAP">
+      <Column Name="Código" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Descrição" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_ALMOXARIFADO" Member="TB_ALMOXARIFADOs">
+    <Type Name="TB_ALMOXARIFADO">
+      <Column Name="TB_ALMOXARIFADO_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_GESTOR_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_ALMOXARIFADO_CODIGO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_ALMOXARIFADO_DESCRICAO" Type="System.String" DbType="VarChar(120) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_ALMOXARIFADO_LOGRADOURO" Type="System.String" DbType="VarChar(120) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_ALMOXARIFADO_NUMERO" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_ALMOXARIFADO_COMPLEMENTO" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TB_ALMOXARIFADO_BAIRRO" Type="System.String" DbType="VarChar(45)" CanBeNull="true" />
+      <Column Name="TB_ALMOXARIFADO_MUNICIPIO" Type="System.String" DbType="VarChar(45)" CanBeNull="true" />
+      <Column Name="TB_UF_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_ALMOXARIFADO_CEP" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_ALMOXARIFADO_TELEFONE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="TB_ALMOXARIFADO_FAX" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="TB_ALMOXARIFADO_RESPONSAVEL" Type="System.String" DbType="VarChar(120)" CanBeNull="true" />
+      <Column Name="TB_UGE_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_ALMOXARIFADO_MES_REF_INICIAL" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="TB_ALMOXARIFADO_MES_REF" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="TB_ALMOXARIFADO_INDICADOR_ATIVIDADE" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="TB_ALMOXARIFADO_TB_DIVISAO" Member="TB_DIVISAOs" ThisKey="TB_ALMOXARIFADO_ID" OtherKey="TB_ALMOXARIFADO_ID" Type="TB_DIVISAO" />
+      <Association Name="TB_ALMOXARIFADO_TB_FECHAMENTO" Member="TB_FECHAMENTOs" ThisKey="TB_ALMOXARIFADO_ID" OtherKey="TB_ALMOXARIFADO_ID" Type="TB_FECHAMENTO" />
+      <Association Name="TB_ALMOXARIFADO_TB_SALDO_SUBITEM" Member="TB_SALDO_SUBITEMs" ThisKey="TB_ALMOXARIFADO_ID" OtherKey="TB_ALMOXARIFADO_ID" Type="TB_SALDO_SUBITEM" />
+      <Association Name="TB_ALMOXARIFADO_TB_SUBITEM_MATERIAL_ALMOX" Member="TB_SUBITEM_MATERIAL_ALMOXes" ThisKey="TB_ALMOXARIFADO_ID" OtherKey="TB_ALMOXARIFADO_ID" Type="TB_SUBITEM_MATERIAL_ALMOX" />
+      <Association Name="TB_ALMOXARIFADO_TB_MOVIMENTO" Member="TB_MOVIMENTOs" ThisKey="TB_ALMOXARIFADO_ID" OtherKey="TB_ALMOXARIFADO_ID" Type="TB_MOVIMENTO" />
+      <Association Name="TB_GESTOR_TB_ALMOXARIFADO" Member="TB_GESTOR" ThisKey="TB_GESTOR_ID" OtherKey="TB_GESTOR_ID" Type="TB_GESTOR" IsForeignKey="true" />
+      <Association Name="TB_UGE_TB_ALMOXARIFADO" Member="TB_UGE" ThisKey="TB_UGE_ID" OtherKey="TB_UGE_ID" Type="TB_UGE" IsForeignKey="true" />
+      <Association Name="TB_UGE_TB_ALMOXARIFADO1" Member="TB_UGE1" ThisKey="TB_UGE_ID" OtherKey="TB_UGE_ID" Type="TB_UGE" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_CARGA" Member="TB_CARGAs">
+    <Type Name="TB_CARGA">
+      <Column Name="TB_CARGA_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_CONTROLE_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_ITEM_MATERIAL_CODIGO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_SUBITEM_MATERIAL_CODIGO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_SUBITEM_MATERIAL_DESCRICAO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_NATUREZA_DESPESA_CODIGO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_UNIDADE_FORNECIMENTO_CODIGO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_SUBITEM_MATERIAL_LOTE" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="TB_SUBITEM_MATERIAL_INDICADOR_ATIVIDADE" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="TB_INDICADOR_DISPONIVEL_DESCRICAO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_SUBITEM_MATERIAL_ESTOQUE_MIN" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_SUBITEM_MATERIAL_ESTOQUE_MAX" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_CONTA_AUXILIAR_CODIGO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_ALMOXARIFADO_CODIGO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_UGE_CODIGO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_SALDO_SUBITEM_SALDO_QTDE" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_SALDO_SUBITEM_SALDO_VALOR" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_SALDO_SUBITEM_LOTE_DT_VENC" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_SALDO_SUBITEM_LOTE_IDENT" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_SALDO_SUBITEM_LOTE_FAB" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_ITEM_MATERIAL_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_GESTOR_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_SUBITEM_MATERIAL_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_NATUREZA_DESPESA_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_UNIDADE_FORNECIMENTO_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_INDICADOR_DISPONIVEL_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+	   <Column Name="TB_INDICADOR_ITEM_SALDO_ZERADO_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_ALMOXARIFADO_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_CARGA_SEQ" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_GESTOR_NOME_REDUZIDO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_CONTA_AUXILIAR_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_CARGA_VALIDO" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TB_UGE_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_DIVISAO_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_UA_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_RESPONSAVEL_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_UF_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_DIVISAO_CODIGO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_DIVISAO_DESCRICAO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_DIVISAO_LOGRADOURO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_DIVISAO_NUMERO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_DIVISAO_COMPLEMENTO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_DIVISAO_BAIRRO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_DIVISAO_MUNICIPIO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_DIVISAO_CEP" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_DIVISAO_TELEFONE" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_DIVISAO_FAX" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_DIVISAO_AREA" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_DIVISAO_QTDE_FUNC" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_DIVISAO_INDICADOR_ATIVIDADE" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_RESPONSAVEL_CODIGO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_UA_CODIGO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_UNIDADE_CODIGO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_UF_SIGLA" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_TIPO_MOVIMENTO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_TIPO_MOVIMENTO_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_GERADOR_DESCRICAO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ANO_MES_REFERENCIA" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_DATA_DOCUMENTO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_DATA_MOVIMENTO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_FONTE_RECURSO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_VALOR_DOCUMENTO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_FORNECEDOR_CNPJ" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_FORNECEDOR_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_LOTE_DATA_VENC" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_LOTE_IDENT" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_LOTE_FABR" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_QTDE_MOV" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_VALOR_MOV" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_PRECO_UNIT" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_SALDO_VALOR" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_SALDO_QTDE" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_SALDO_QTDE_LOTE" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_ATIVO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_SALDO_SUBITEM_PRECO_UNIT" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_DATA_OPERACAO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_SALDO_SUBITEM_ID" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_NUMERO_DOCUMENTO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_CENTRO_CUSTO_CODIGO" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="TB_CARGA_TB_CARGA_ERRO" Member="TB_CARGA_ERROs" ThisKey="TB_CARGA_ID" OtherKey="TB_CARGA_ID" Type="TB_CARGA_ERRO" />
+      <Association Name="TB_CONTROLE_TB_CARGA" Member="TB_CONTROLE" ThisKey="TB_CONTROLE_ID" OtherKey="TB_CONTROLE_ID" Type="TB_CONTROLE" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_CARGA_ERRO" Member="TB_CARGA_ERROs">
+    <Type Name="TB_CARGA_ERRO">
+      <Column Name="TB_CARGA_ERRO_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_CARGA_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_ERRO_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="TB_CARGA_TB_CARGA_ERRO" Member="TB_CARGA" ThisKey="TB_CARGA_ID" OtherKey="TB_CARGA_ID" Type="TB_CARGA" IsForeignKey="true" />
+      <Association Name="TB_ERRO_TB_CARGA_ERRO" Member="TB_ERRO" ThisKey="TB_ERRO_ID" OtherKey="TB_ERRO_ID" Type="TB_ERRO" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_CENTRO_CUSTO" Member="TB_CENTRO_CUSTOs">
+    <Type Name="TB_CENTRO_CUSTO">
+      <Column Name="TB_CENTRO_CUSTO_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_CENTRO_CUSTO_CODIGO" Type="System.String" DbType="VarChar(22) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_CENTRO_CUSTO_DESCRICAO" Type="System.String" DbType="VarChar(120) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_GESTOR_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="TB_CENTRO_CUSTO_TB_UA" Member="TB_UAs" ThisKey="TB_CENTRO_CUSTO_ID" OtherKey="TB_CENTRO_CUSTO_ID" Type="TB_UA" />
+      <Association Name="TB_GESTOR_TB_CENTRO_CUSTO" Member="TB_GESTOR" ThisKey="TB_GESTOR_ID" OtherKey="TB_GESTOR_ID" Type="TB_GESTOR" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_CLASSE_MATERIAL" Member="TB_CLASSE_MATERIALs">
+    <Type Name="TB_CLASSE_MATERIAL">
+      <Column Name="TB_CLASSE_MATERIAL_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_CLASSE_MATERIAL_CODIGO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_CLASSE_MATERIAL_DESCRICAO" Type="System.String" DbType="VarChar(120) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_GRUPO_MATERIAL_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_MATERIAL_ATIVO" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="TB_CLASSE_MATERIAL_TB_MATERIAL" Member="TB_MATERIALs" ThisKey="TB_CLASSE_MATERIAL_ID" OtherKey="TB_CLASSE_MATERIAL_ID" Type="TB_MATERIAL" />
+      <Association Name="TB_GRUPO_MATERIAL_TB_CLASSE_MATERIAL" Member="TB_GRUPO_MATERIAL" ThisKey="TB_GRUPO_MATERIAL_ID" OtherKey="TB_GRUPO_MATERIAL_ID" Type="TB_GRUPO_MATERIAL" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_CONTA_AUXILIAR" Member="TB_CONTA_AUXILIARs">
+    <Type Name="TB_CONTA_AUXILIAR">
+      <Column Name="TB_CONTA_AUXILIAR_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_CONTA_AUXILIAR_CODIGO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_CONTA_AUXILIAR_DESCRICAO" Type="System.String" DbType="VarChar(60) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_CONTA_AUXILIAR_CONTA_CONTABIL" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="TB_CONTA_AUXILIAR_TB_SUBITEM_MATERIAL" Member="TB_SUBITEM_MATERIALs" ThisKey="TB_CONTA_AUXILIAR_ID" OtherKey="TB_CONTA_AUXILIAR_ID" Type="TB_SUBITEM_MATERIAL" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_CONTROLE" Member="TB_CONTROLEs">
+    <Type Name="TB_CONTROLE">
+      <Column Name="TB_CONTROLE_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_CONTROLE_SITUACAO_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_CONTROLE_NOME_ARQUIVO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_CONTROLE_DATA_OPERACAO" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TB_LOGIN_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_TIPO_CONTROLE_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="TB_CONTROLE_TB_CARGA" Member="TB_CARGAs" ThisKey="TB_CONTROLE_ID" OtherKey="TB_CONTROLE_ID" Type="TB_CARGA" />
+      <Association Name="TB_CONTROLE_SITUACAO_TB_CONTROLE" Member="TB_CONTROLE_SITUACAO" ThisKey="TB_CONTROLE_SITUACAO_ID" OtherKey="TB_CONTROLE_SITUACAO_ID" Type="TB_CONTROLE_SITUACAO" IsForeignKey="true" />
+      <Association Name="TB_TIPO_CONTROLE_TB_CONTROLE" Member="TB_TIPO_CONTROLE" ThisKey="TB_TIPO_CONTROLE_ID" OtherKey="TB_TIPO_CONTROLE_ID" Type="TB_TIPO_CONTROLE" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_CONTROLE_SITUACAO" Member="TB_CONTROLE_SITUACAOs">
+    <Type Name="TB_CONTROLE_SITUACAO">
+      <Column Name="TB_CONTROLE_SITUACAO_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TB_CONTROLE_SITUACAO_DESCRICAO" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="TB_CONTROLE_SITUACAO_TB_CONTROLE" Member="TB_CONTROLEs" ThisKey="TB_CONTROLE_SITUACAO_ID" OtherKey="TB_CONTROLE_SITUACAO_ID" Type="TB_CONTROLE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_DIVISAO" Member="TB_DIVISAOs">
+    <Type Name="TB_DIVISAO">
+      <Column Name="TB_DIVISAO_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_UA_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_DIVISAO_CODIGO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_DIVISAO_DESCRICAO" Type="System.String" DbType="VarChar(120)" CanBeNull="true" />
+      <Column Name="TB_RESPONSAVEL_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_ALMOXARIFADO_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_DIVISAO_LOGRADOURO" Type="System.String" DbType="VarChar(120)" CanBeNull="true" />
+      <Column Name="TB_DIVISAO_NUMERO" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TB_DIVISAO_COMPLEMENTO" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TB_DIVISAO_BAIRRO" Type="System.String" DbType="VarChar(45)" CanBeNull="true" />
+      <Column Name="TB_DIVISAO_MUNICIPIO" Type="System.String" DbType="VarChar(45)" CanBeNull="true" />
+      <Column Name="TB_UF_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_DIVISAO_CEP" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="TB_DIVISAO_TELEFONE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="TB_DIVISAO_FAX" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="TB_DIVISAO_AREA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_DIVISAO_QTDE_FUNC" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_DIVISAO_INDICADOR_ATIVIDADE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="TB_DIVISAO_TB_MOVIMENTO_EST" Member="TB_MOVIMENTO_ESTs" ThisKey="TB_DIVISAO_ID" OtherKey="TB_DIVISAO_ID" Type="TB_MOVIMENTO_EST" />
+      <Association Name="TB_DIVISAO_TB_MOVIMENTO" Member="TB_MOVIMENTOs" ThisKey="TB_DIVISAO_ID" OtherKey="TB_DIVISAO_ID" Type="TB_MOVIMENTO" />
+      <Association Name="TB_ALMOXARIFADO_TB_DIVISAO" Member="TB_ALMOXARIFADO" ThisKey="TB_ALMOXARIFADO_ID" OtherKey="TB_ALMOXARIFADO_ID" Type="TB_ALMOXARIFADO" IsForeignKey="true" />
+      <Association Name="TB_RESPONSAVEL_TB_DIVISAO" Member="TB_RESPONSAVEL" ThisKey="TB_RESPONSAVEL_ID" OtherKey="TB_RESPONSAVEL_ID" Type="TB_RESPONSAVEL" IsForeignKey="true" />
+      <Association Name="TB_UA_TB_DIVISAO" Member="TB_UA" ThisKey="TB_UA_ID" OtherKey="TB_UA_ID" Type="TB_UA" IsForeignKey="true" />
+      <Association Name="TB_UF_TB_DIVISAO" Member="TB_UF" ThisKey="TB_UF_ID" OtherKey="TB_UF_ID" Type="TB_UF" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_EMPENHO_EVENTO" Member="TB_EMPENHO_EVENTOs">
+    <Type Name="TB_EMPENHO_EVENTO">
+      <Column Name="TB_EMPENHO_EVENTO_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_EMPENHO_EVENTO_CODIGO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_EMPENHO_EVENTO_DESCRICAO" Type="System.String" DbType="VarChar(120)" CanBeNull="true" />
+      <Column Name="TB_EMPENHO_EVENTO_DESCRICAO_DETALHADA" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="TB_EMPENHO_EVENTO_ATIVO" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TB_EMPENHO_EVENTO_ANO_BASE" Type="System.String" DbType="Char(4)" CanBeNull="true" />
+      <Association Name="TB_EMPENHO_EVENTO_TB_MOVIMENTO" Member="TB_MOVIMENTOs" ThisKey="TB_EMPENHO_EVENTO_ID" OtherKey="TB_EMPENHO_EVENTO_ID" Type="TB_MOVIMENTO" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_EMPENHO_LICITACAO" Member="TB_EMPENHO_LICITACAOs">
+    <Type Name="TB_EMPENHO_LICITACAO">
+      <Column Name="TB_EMPENHO_LICITACAO_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TB_EMPENHO_LICITACAO_DESCRICAO" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Association Name="TB_EMPENHO_LICITACAO_TB_MOVIMENTO" Member="TB_MOVIMENTOs" ThisKey="TB_EMPENHO_LICITACAO_ID" OtherKey="TB_EMPENHO_LICITACAO_ID" Type="TB_MOVIMENTO" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_ERRO" Member="TB_ERROs">
+    <Type Name="TB_ERRO">
+      <Column Name="TB_ERRO_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TB_ERRO_DESCRICAO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="TB_ERRO_TB_CARGA_ERRO" Member="TB_CARGA_ERROs" ThisKey="TB_ERRO_ID" OtherKey="TB_ERRO_ID" Type="TB_CARGA_ERRO" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_FECHAMENTO" Member="TB_FECHAMENTOs">
+    <Type Name="TB_FECHAMENTO">
+      <Column Name="TB_FECHAMENTO_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_ALMOXARIFADO_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_FECHAMENTO_ANO_MES_REF" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_UGE_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_SUBITEM_MATERIAL_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_FECHAMENTO_QTDE_MOV_ENT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_FECHAMENTO_VALOR_MOV_ENT" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TB_FECHAMENTO_QTDE_MOV_SAI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_FECHAMENTO_VALOR_MOV_SAI" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TB_FECHAMENTO_SALDO_QTDE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_FECHAMENTO_SALDO_VALOR" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TB_FECHAMENTO_SITUACAO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="TB_ALMOXARIFADO_TB_FECHAMENTO" Member="TB_ALMOXARIFADO" ThisKey="TB_ALMOXARIFADO_ID" OtherKey="TB_ALMOXARIFADO_ID" Type="TB_ALMOXARIFADO" IsForeignKey="true" />
+      <Association Name="TB_SUBITEM_MATERIAL_TB_FECHAMENTO" Member="TB_SUBITEM_MATERIAL" ThisKey="TB_SUBITEM_MATERIAL_ID" OtherKey="TB_SUBITEM_MATERIAL_ID" Type="TB_SUBITEM_MATERIAL" IsForeignKey="true" />
+      <Association Name="TB_UGE_TB_FECHAMENTO" Member="TB_UGE" ThisKey="TB_UGE_ID" OtherKey="TB_UGE_ID" Type="TB_UGE" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_FORNECEDOR" Member="TB_FORNECEDORs">
+    <Type Name="TB_FORNECEDOR">
+      <Column Name="TB_FORNECEDOR_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_FORNECEDOR_CPFCNPJ" Type="System.String" DbType="VarChar(14) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_FORNECEDOR_NOME" Type="System.String" DbType="VarChar(60) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_FORNECEDOR_LOGRADOURO" Type="System.String" DbType="VarChar(120)" CanBeNull="true" />
+      <Column Name="TB_FORNECEDOR_NUMERO" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TB_FORNECEDOR_COMPLEMENTO" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TB_FORNECEDOR_BAIRRO" Type="System.String" DbType="VarChar(45)" CanBeNull="true" />
+      <Column Name="TB_FORNECEDOR_CEP" Type="System.String" DbType="NChar(8)" CanBeNull="true" />
+      <Column Name="TB_FORNECEDOR_CIDADE" Type="System.String" DbType="VarChar(45)" CanBeNull="true" />
+      <Column Name="TB_UF_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_FORNECEDOR_TELEFONE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="TB_FORNECEDOR_FAX" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="TB_FORNECEDOR_EMAIL" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TB_FORNECEDOR_INFO_COMPLEMENTAR" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="TB_FORNECEDOR_TB_MOVIMENTO_EST" Member="TB_MOVIMENTO_ESTs" ThisKey="TB_FORNECEDOR_ID" OtherKey="TB_FORNECEDOR_ID" Type="TB_MOVIMENTO_EST" />
+      <Association Name="TB_FORNECEDOR_TB_MOVIMENTO" Member="TB_MOVIMENTOs" ThisKey="TB_FORNECEDOR_ID" OtherKey="TB_FORNECEDOR_ID" Type="TB_MOVIMENTO" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_GESTOR" Member="TB_GESTORs">
+    <Type Name="TB_GESTOR">
+      <Column Name="TB_GESTOR_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_GESTOR_NOME" Type="System.String" DbType="VarChar(120) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_GESTOR_NOME_REDUZIDO" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_GESTOR_LOGRADOURO" Type="System.String" DbType="VarChar(120) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_GESTOR_NUMERO" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_GESTOR_COMPLEMENTO" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TB_GESTOR_TELEFONE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="TB_GESTOR_CODIGO_GESTAO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_GESTOR_IMAGEM" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="TB_ORGAO_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_UO_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_UGE_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="TB_GESTOR_TB_ALMOXARIFADO" Member="TB_ALMOXARIFADOs" ThisKey="TB_GESTOR_ID" OtherKey="TB_GESTOR_ID" Type="TB_ALMOXARIFADO" />
+      <Association Name="TB_GESTOR_TB_CENTRO_CUSTO" Member="TB_CENTRO_CUSTOs" ThisKey="TB_GESTOR_ID" OtherKey="TB_GESTOR_ID" Type="TB_CENTRO_CUSTO" />
+      <Association Name="TB_GESTOR_TB_RESPONSAVEL" Member="TB_RESPONSAVELs" ThisKey="TB_GESTOR_ID" OtherKey="TB_GESTOR_ID" Type="TB_RESPONSAVEL" />
+      <Association Name="TB_GESTOR_TB_UA" Member="TB_UAs" ThisKey="TB_GESTOR_ID" OtherKey="TB_GESTOR_ID" Type="TB_UA" />
+      <Association Name="TB_GESTOR_TB_UNIDADE" Member="TB_UNIDADEs" ThisKey="TB_GESTOR_ID" OtherKey="TB_GESTOR_ID" Type="TB_UNIDADE" />
+      <Association Name="TB_ORGAO_TB_GESTOR" Member="TB_ORGAO" ThisKey="TB_ORGAO_ID" OtherKey="TB_ORGAO_ID" Type="TB_ORGAO" IsForeignKey="true" />
+      <Association Name="TB_UGE_TB_GESTOR" Member="TB_UGE" ThisKey="TB_UGE_ID" OtherKey="TB_UGE_ID" Type="TB_UGE" IsForeignKey="true" />
+      <Association Name="TB_UO_TB_GESTOR" Member="TB_UO" ThisKey="TB_UO_ID" OtherKey="TB_UO_ID" Type="TB_UO" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_GRUPO_MATERIAL" Member="TB_GRUPO_MATERIALs">
+    <Type Name="TB_GRUPO_MATERIAL">
+      <Column Name="TB_GRUPO_MATERIAL_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_GRUPO_MATERIAL_CODIGO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_GRUPO_MATERIAL_DESCRICAO" Type="System.String" DbType="VarChar(120) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_MATERIAL_ATIVO" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="TB_GRUPO_MATERIAL_TB_CLASSE_MATERIAL" Member="TB_CLASSE_MATERIALs" ThisKey="TB_GRUPO_MATERIAL_ID" OtherKey="TB_GRUPO_MATERIAL_ID" Type="TB_CLASSE_MATERIAL" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_HIST_MOVIMENTO" Member="TB_HIST_MOVIMENTOs">
+    <Type Name="TB_HIST_MOVIMENTO">
+      <Column Name="TB_HIST_MOVIMENTO_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_MOVIMENTO_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_ALMOXARIFADO_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_TIPO_MOVIMENTO_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_MOVIMENTO_GERADOR_DESCRICAO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_NUMERO_DOCUMENTO" Type="System.String" DbType="VarChar(12) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_MOVIMENTO_ANO_MES_REFERENCIA" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_MOVIMENTO_DATA_DOCUMENTO" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TB_MOVIMENTO_DATA_MOVIMENTO" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TB_MOVIMENTO_FONTE_RECURSO" Type="System.String" DbType="VarChar(9) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_MOVIMENTO_VALOR_DOCUMENTO" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="TB_MOVIMENTO_OBSERVACOES" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_INSTRUCOES" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_EMPENHO" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ALMOX_ID_ORIGEM_DESTINO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_DATA_APROVACAO" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TB_FORNECEDOR_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_DIVISAO_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_UGE_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ATIVO" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TB_EMPENHO_EVENTO_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_DATA_OPERACAO" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TB_LOGIN_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_EMPENHO_LICITACAO_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_LOGIN_ID_ESTORNO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_DATA_ESTORNO" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_HIST_MOVIMENTO_ITEM" Member="TB_HIST_MOVIMENTO_ITEMs">
+    <Type Name="TB_HIST_MOVIMENTO_ITEM">
+      <Column Name="TB_HIST_MOVIMENTO_ITEM_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_MOVIMENTO_ITEM_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_HIST_MOVIMENTO_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_UGE_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_ITEM_MATERIAL_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_SUBITEM_MATERIAL_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_HIST_MOVIMENTO_ITEM_LOTE_DATA_VENC" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TB_HIST_MOVIMENTO_ITEM_LOTE_IDENT" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_HIST_MOVIMENTO_ITEM_LOTE_FABR" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_HIST_MOVIMENTO_ITEM_QTDE_MOV" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_HIST_MOVIMENTO_ITEM_QTDE_LIQ" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_HIST_MOVIMENTO_ITEM_PRECO_UNIT" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TB_HIST_MOVIMENTO_ITEM_SALDO_VALOR" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TB_HIST_MOVIMENTO_ITEM_SALDO_QTDE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_HIST_MOVIMENTO_ITEM_SALDO_QTDE_LOTE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_HIST_MOVIMENTO_ITEM_VALOR_MOV" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TB_HIST_MOVIMENTO_ITEM_DESD" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TB_HIST_MOVIMENTO_ITEM_ATIVO" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="TB_PTRES_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_HISTORICO" Member="TB_HISTORICOs">
+    <Type Name="TB_HISTORICO">
+      <Column Name="TB_HISTORICO_ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_HISTORICO_ACAO" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="TB_HISTORICO_TABELA" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_HISTORICO_TABELA_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_HISTORICO_RELACIONAMENTO" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TB_HISTORICO_RELACIONAMENTO_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_HISTORICO_DATA" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TB_HISTORICO_NOMEUSUARIO" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_HISTORICO_CPF" Type="System.String" DbType="VarChar(11) NOT NULL" CanBeNull="false" />
+      <Association Name="TB_HISTORICO_TB_HISTORICO_CAMPO" Member="TB_HISTORICO_CAMPOs" ThisKey="TB_HISTORICO_ID" OtherKey="TB_HISTORICO_ID" Type="TB_HISTORICO_CAMPO" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_HISTORICO_CAMPOS" Member="TB_HISTORICO_CAMPOs">
+    <Type Name="TB_HISTORICO_CAMPO">
+      <Column Name="TB_HISTORICO_CAMPOS_ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_HISTORICO_ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="TB_HISTORICO_CAMPO_NOME" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_HISTORICO_CAMPO_ANTIGO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_HISTORICO_CAMPO_NOVO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="TB_HISTORICO_TB_HISTORICO_CAMPO" Member="TB_HISTORICO" ThisKey="TB_HISTORICO_ID" OtherKey="TB_HISTORICO_ID" Type="TB_HISTORICO" IsForeignKey="true" />
+    </Type>
+	
+  </Table>
+  <Table Name="dbo.TB_INDICADOR_DISPONIVEL" Member="TB_INDICADOR_DISPONIVELs">
+    <Type Name="TB_INDICADOR_DISPONIVEL">
+      <Column Name="TB_INDICADOR_DISPONIVEL_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TB_INDICADOR_DISPONIVEL_DESCRICAO" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="TB_INDICADOR_DISPONIVEL_TB_SUBITEM_MATERIAL_ALMOX" Member="TB_SUBITEM_MATERIAL_ALMOXes" ThisKey="TB_INDICADOR_DISPONIVEL_ID" OtherKey="TB_INDICADOR_DISPONIVEL_ID" Type="TB_SUBITEM_MATERIAL_ALMOX" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_ITEM_MATERIAL" Member="TB_ITEM_MATERIALs">
+    <Type Name="TB_ITEM_MATERIAL">
+      <Column Name="TB_ITEM_MATERIAL_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_ITEM_MATERIAL_CODIGO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_ITEM_MATERIAL_DESCRICAO" Type="System.String" DbType="VarChar(120) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_ITEM_MATERIAL_INDICADOR_ATIVIDADE" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="TB_MATERIAL_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="TB_ITEM_MATERIAL_TB_ITEM_NATUREZA_DESPESA" Member="TB_ITEM_NATUREZA_DESPESAs" ThisKey="TB_ITEM_MATERIAL_ID" OtherKey="TB_ITEM_MATERIAL_ID" Type="TB_ITEM_NATUREZA_DESPESA" />
+      <Association Name="TB_ITEM_MATERIAL_TB_ITEM_SUBITEM_MATERIAL" Member="TB_ITEM_SUBITEM_MATERIALs" ThisKey="TB_ITEM_MATERIAL_ID" OtherKey="TB_ITEM_MATERIAL_ID" Type="TB_ITEM_SUBITEM_MATERIAL" />
+      <Association Name="TB_ITEM_MATERIAL_TB_MOVIMENTO_ITEM" Member="TB_MOVIMENTO_ITEMs" ThisKey="TB_ITEM_MATERIAL_ID" OtherKey="TB_ITEM_MATERIAL_ID" Type="TB_MOVIMENTO_ITEM" />
+      <Association Name="TB_MATERIAL_TB_ITEM_MATERIAL" Member="TB_MATERIAL" ThisKey="TB_MATERIAL_ID" OtherKey="TB_MATERIAL_ID" Type="TB_MATERIAL" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_ITEM_NATUREZA_DESPESA" Member="TB_ITEM_NATUREZA_DESPESAs">
+    <Type Name="TB_ITEM_NATUREZA_DESPESA">
+      <Column Name="TB_ITEM_NATUREZA_DESPESA_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_NATUREZA_DESPESA_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_ITEM_MATERIAL_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="TB_ITEM_MATERIAL_TB_ITEM_NATUREZA_DESPESA" Member="TB_ITEM_MATERIAL" ThisKey="TB_ITEM_MATERIAL_ID" OtherKey="TB_ITEM_MATERIAL_ID" Type="TB_ITEM_MATERIAL" IsForeignKey="true" />
+      <Association Name="TB_NATUREZA_DESPESA_TB_ITEM_NATUREZA_DESPESA" Member="TB_NATUREZA_DESPESA" ThisKey="TB_NATUREZA_DESPESA_ID" OtherKey="TB_NATUREZA_DESPESA_ID" Type="TB_NATUREZA_DESPESA" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_ITEM_SUBITEM_MATERIAL" Member="TB_ITEM_SUBITEM_MATERIALs">
+    <Type Name="TB_ITEM_SUBITEM_MATERIAL">
+      <Column Name="TB_ITEM_SUBITEM_MATERIAL_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_SUBITEM_MATERIAL_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_ITEM_MATERIAL_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_GESTOR_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="TB_ITEM_MATERIAL_TB_ITEM_SUBITEM_MATERIAL" Member="TB_ITEM_MATERIAL" ThisKey="TB_ITEM_MATERIAL_ID" OtherKey="TB_ITEM_MATERIAL_ID" Type="TB_ITEM_MATERIAL" IsForeignKey="true" />
+      <Association Name="TB_SUBITEM_MATERIAL_TB_ITEM_SUBITEM_MATERIAL" Member="TB_SUBITEM_MATERIAL" ThisKey="TB_SUBITEM_MATERIAL_ID" OtherKey="TB_SUBITEM_MATERIAL_ID" Type="TB_SUBITEM_MATERIAL" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_LOGERRO" Member="TB_LOGERROs">
+    <Type Name="TB_LOGERRO">
+      <Column Name="TB_LOGERRO_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_LOGERRO_MESSAGE" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_LOGERRO_STACKTRACE" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_LOGERRO_DATA" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_MATERIAL" Member="TB_MATERIALs">
+    <Type Name="TB_MATERIAL">
+      <Column Name="TB_MATERIAL_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_MATERIAL_CODIGO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_MATERIAL_DESCRICAO" Type="System.String" DbType="VarChar(120) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_CLASSE_MATERIAL_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_MATERIAL_ATIVO" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="TB_MATERIAL_TB_ITEM_MATERIAL" Member="TB_ITEM_MATERIALs" ThisKey="TB_MATERIAL_ID" OtherKey="TB_MATERIAL_ID" Type="TB_ITEM_MATERIAL" />
+      <Association Name="TB_CLASSE_MATERIAL_TB_MATERIAL" Member="TB_CLASSE_MATERIAL" ThisKey="TB_CLASSE_MATERIAL_ID" OtherKey="TB_CLASSE_MATERIAL_ID" Type="TB_CLASSE_MATERIAL" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_MOVIMENTO_EST" Member="TB_MOVIMENTO_ESTs">
+    <Type Name="TB_MOVIMENTO_EST">
+      <Column Name="TB_MOVIMENTO_ESTORNO_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_MOVIMENTO_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_ALMOXARIFADO_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_TIPO_MOVIMENTO_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_MOVIMENTO_NUMERO_DOCUMENTO" Type="System.String" DbType="VarChar(12) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_MOVIMENTO_ANO_MES_REFERENCIA" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_MOVIMENTO_DATA_DOCUMENTO" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TB_MOVIMENTO_DATA_MOVIMENTO" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TB_MOVIMENTO_FONTE_RECURSO" Type="System.String" DbType="VarChar(9) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_MOVIMENTO_VALOR_DOCUMENTO" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="TB_MOVIMENTO_OBSERVACOES" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_INSTRUCOES" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_EMPENHO" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ALMOX_ID_ORIGEM_DESTINO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_FORNECEDOR_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_DIVISAO_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_UGE_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_GERADOR_DESCRICAO" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Association Name="TB_MOVIMENTO_EST_TB_MOVIMENTO_ITEM_EST" Member="TB_MOVIMENTO_ITEM_ESTs" ThisKey="TB_MOVIMENTO_ESTORNO_ID" OtherKey="TB_MOVIMENTO_ESTORNO_ID" Type="TB_MOVIMENTO_ITEM_EST" />
+      <Association Name="TB_DIVISAO_TB_MOVIMENTO_EST" Member="TB_DIVISAO" ThisKey="TB_DIVISAO_ID" OtherKey="TB_DIVISAO_ID" Type="TB_DIVISAO" IsForeignKey="true" />
+      <Association Name="TB_FORNECEDOR_TB_MOVIMENTO_EST" Member="TB_FORNECEDOR" ThisKey="TB_FORNECEDOR_ID" OtherKey="TB_FORNECEDOR_ID" Type="TB_FORNECEDOR" IsForeignKey="true" />
+      <Association Name="TB_UGE_TB_MOVIMENTO_EST" Member="TB_UGE" ThisKey="TB_UGE_ID" OtherKey="TB_UGE_ID" Type="TB_UGE" IsForeignKey="true" />
+      <Association Name="TB_MOVIMENTO_TB_MOVIMENTO_EST" Member="TB_MOVIMENTO" ThisKey="TB_MOVIMENTO_ID" OtherKey="TB_MOVIMENTO_ID" Type="TB_MOVIMENTO" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_MOVIMENTO_ITEM" Member="TB_MOVIMENTO_ITEMs">
+    <Type Name="TB_MOVIMENTO_ITEM">
+      <Column Name="TB_MOVIMENTO_ITEM_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_MOVIMENTO_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_UGE_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_ITEM_MATERIAL_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_SUBITEM_MATERIAL_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_MOVIMENTO_ITEM_LOTE_DATA_VENC" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_LOTE_IDENT" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_LOTE_FABR" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_QTDE_MOV" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_QTDE_LIQ" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_PRECO_UNIT" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_SALDO_VALOR" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_SALDO_QTDE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_SALDO_QTDE_LOTE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_VALOR_MOV" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_DESD" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_ATIVO" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="TB_MOVIMENTO_ITEM_NL_LIQUIDACAO" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="TB_LOGIN_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_DATA_OPERACAO" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TB_LOGIN_ID_ESTORNO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_DATA_ESTORNO" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TB_PTRES_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="TB_MOVIMENTO_ITEM_TB_MOVIMENTO_ITEM_EST" Member="TB_MOVIMENTO_ITEM_ESTs" ThisKey="TB_MOVIMENTO_ITEM_ID" OtherKey="TB_MOVIMENTO_ITEM_ID" Type="TB_MOVIMENTO_ITEM_EST" />
+      <Association Name="TB_ITEM_MATERIAL_TB_MOVIMENTO_ITEM" Member="TB_ITEM_MATERIAL" ThisKey="TB_ITEM_MATERIAL_ID" OtherKey="TB_ITEM_MATERIAL_ID" Type="TB_ITEM_MATERIAL" IsForeignKey="true" />
+      <Association Name="TB_SUBITEM_MATERIAL_TB_MOVIMENTO_ITEM" Member="TB_SUBITEM_MATERIAL" ThisKey="TB_SUBITEM_MATERIAL_ID" OtherKey="TB_SUBITEM_MATERIAL_ID" Type="TB_SUBITEM_MATERIAL" IsForeignKey="true" />
+      <Association Name="TB_UGE_TB_MOVIMENTO_ITEM" Member="TB_UGE" ThisKey="TB_UGE_ID" OtherKey="TB_UGE_ID" Type="TB_UGE" IsForeignKey="true" />
+      <Association Name="TB_MOVIMENTO_TB_MOVIMENTO_ITEM" Member="TB_MOVIMENTO" ThisKey="TB_MOVIMENTO_ID" OtherKey="TB_MOVIMENTO_ID" Type="TB_MOVIMENTO" IsForeignKey="true" />
+      <Association Name="TB_PTRE_TB_MOVIMENTO_ITEM" Member="TB_PTRE" ThisKey="TB_PTRES_ID" OtherKey="TB_PTRES_ID" Type="TB_PTRE" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_MOVIMENTO_ITEM_EST" Member="TB_MOVIMENTO_ITEM_ESTs">
+    <Type Name="TB_MOVIMENTO_ITEM_EST">
+      <Column Name="TB_MOVIMENTO_ITEM_ESTORNO_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_MOVIMENTO_ESTORNO_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_MOVIMENTO_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_MOVIMENTO_ITEM_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_UGE_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_SUBITEM_MATERIAL_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_MOVIMENTO_ITEM_LOTE_DATA_VENC" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_LOTE_IDENT" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_LOTE_FABR" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_QTDE_MOV" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_QTDE_LIQ" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_PRECO_UNIT" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_SALDO_VALOR" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_SALDO_QTDE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_SALDO_QTDE_LOTE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_VALOR_MOV" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_DESD" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ITEM_ATIVO" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="TB_PTRES_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="TB_MOVIMENTO_EST_TB_MOVIMENTO_ITEM_EST" Member="TB_MOVIMENTO_EST" ThisKey="TB_MOVIMENTO_ESTORNO_ID" OtherKey="TB_MOVIMENTO_ESTORNO_ID" Type="TB_MOVIMENTO_EST" IsForeignKey="true" />
+      <Association Name="TB_MOVIMENTO_ITEM_TB_MOVIMENTO_ITEM_EST" Member="TB_MOVIMENTO_ITEM" ThisKey="TB_MOVIMENTO_ITEM_ID" OtherKey="TB_MOVIMENTO_ITEM_ID" Type="TB_MOVIMENTO_ITEM" IsForeignKey="true" />
+      <Association Name="TB_PTRE_TB_MOVIMENTO_ITEM_EST" Member="TB_PTRE" ThisKey="TB_PTRES_ID" OtherKey="TB_PTRES_ID" Type="TB_PTRE" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_NATUREZA_DESPESA" Member="TB_NATUREZA_DESPESAs">
+    <Type Name="TB_NATUREZA_DESPESA">
+      <Column Name="TB_NATUREZA_DESPESA_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_NATUREZA_DESPESA_CODIGO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_NATUREZA_DESPESA_DESCRICAO" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_NATUREZA_DESPESA_INDICADOR_ATIVIDADE" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="TB_NATUREZA_DESPESA_TB_ITEM_NATUREZA_DESPESA" Member="TB_ITEM_NATUREZA_DESPESAs" ThisKey="TB_NATUREZA_DESPESA_ID" OtherKey="TB_NATUREZA_DESPESA_ID" Type="TB_ITEM_NATUREZA_DESPESA" />
+      <Association Name="TB_NATUREZA_DESPESA_TB_PTRES_MENSAL" Member="TB_PTRES_MENSALs" ThisKey="TB_NATUREZA_DESPESA_ID" OtherKey="TB_NATUREZA_DESPESA_ID" Type="TB_PTRES_MENSAL" />
+      <Association Name="TB_NATUREZA_DESPESA_TB_SUBITEM_MATERIAL" Member="TB_SUBITEM_MATERIALs" ThisKey="TB_NATUREZA_DESPESA_ID" OtherKey="TB_NATUREZA_DESPESA_ID" Type="TB_SUBITEM_MATERIAL" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_ORGAO" Member="TB_ORGAOs">
+    <Type Name="TB_ORGAO">
+      <Column Name="TB_ORGAO_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_ORGAO_CODIGO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_ORGAO_DESCRICAO" Type="System.String" DbType="VarChar(120) NOT NULL" CanBeNull="false" />
+      <Association Name="TB_ORGAO_TB_GESTOR" Member="TB_GESTORs" ThisKey="TB_ORGAO_ID" OtherKey="TB_ORGAO_ID" Type="TB_GESTOR" />
+      <Association Name="TB_ORGAO_TB_UO" Member="TB_UOs" ThisKey="TB_ORGAO_ID" OtherKey="TB_ORGAO_ID" Type="TB_UO" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_PTRES" Member="TB_PTREs">
+    <Type Name="TB_PTRE">
+      <Column Name="TB_PTRES_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_PTRES_CODIGO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_PTRES_DESCRICAO" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_PTRES_CODIGO_GESTAO" Type="System.String" DbType="Char(4)" CanBeNull="true" />
+      <Column Name="TB_PTRES_UGE_CODIGO" Type="System.Int32" DbType="Int NULL" CanBeNull="true" />
+      <Column Name="TB_PTRES_UO_CODIGO" Type="System.Int32" DbType="Int NULL" CanBeNull="true" />
+      <Column Name="TB_PTRES_ANO" Type="System.String" DbType="Char(4) NULL" CanBeNull="true" />
+      <Column Name="TB_PTRES_PT_CODIGO" Type="System.String" DbType="Char(17) NULL" CanBeNull="true" />
+      <Column Name="TB_PTRES_PT_FUNCAO" Type="System.String" DbType="Char(2) NULL" CanBeNull="true" />
+      <Column Name="TB_PTRES_PT_SUBFUNCAO" Type="System.String" DbType="Char(3) NULL" CanBeNull="true" />
+      <Column Name="TB_PTRES_PT_PROGRAMA" Type="System.String" DbType="Char(4) NULL" CanBeNull="true" />
+      <Column Name="TB_PTRES_PT_TIPO_PROJ_ATV" Type="System.String" DbType="Char(1) NULL" CanBeNull="true" />
+      <Column Name="TB_PTRES_PT_PROJ_ATV" Type="System.String" DbType="Char(4) NULL" CanBeNull="true" />
+      <Column Name="TB_PTRES_PT_ACAO" Type="System.String" DbType="Char(4) NULL" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_PTRES_MENSAL" Member="TB_PTRES_MENSALs">
+    <Type Name="TB_PTRES_MENSAL">
+      <Column Name="TB_PTRES_MENSAL_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_PTRES_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_PTRES_MENSAL_SEQ_PTRES" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_ALMOXARIFADO_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_PTRES_MENSAL_ANO_MES_REF" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_UGE_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_UA_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_UGE_ID_ALMOXARIFADO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_PTRES_MENSAL_VALOR" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TB_PTRES_MENSAL_TIPO_LANC" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="TB_PTRES_MENSAL_OBS" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_PTRES_MENSAL_FLAG_LANC" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="TB_PTRES_MENSAL_NL" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="TB_PTRES_MENSAL_WS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_LOGIN_ID" Type="System.Int32" DbType="Int" CanBeNull="false" />
+      <Column Name="TB_PTRES_MENSAL_DATA_PAGAMENTO" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TB_PTRES_MENSAL_RETORNO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_PTRES_MENSAL_MENSAGEM_WS" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_NATUREZA_DESPESA_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="TB_NATUREZA_DESPESA_TB_PTRES_MENSAL" Member="TB_NATUREZA_DESPESA" ThisKey="TB_NATUREZA_DESPESA_ID" OtherKey="TB_NATUREZA_DESPESA_ID" Type="TB_NATUREZA_DESPESA" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_RESERVA_MATERIAL" Member="TB_RESERVA_MATERIALs">
+    <Type Name="TB_RESERVA_MATERIAL">
+      <Column Name="TB_RESERVA_MATERIAL_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_SUBITEM_MATERIAL_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_ALMOXARIFADO_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_UGE_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_RESERVA_MATERIAL_QUANT" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_RESERVA_MATERIAL_DATA" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TB_RESERVA_MATERIAL_OBS" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_RESPONSAVEL" Member="TB_RESPONSAVELs">
+    <Type Name="TB_RESPONSAVEL">
+      <Column Name="TB_RESPONSAVEL_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_RESPONSAVEL_CODIGO" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="TB_RESPONSAVEL_NOME" Type="System.String" DbType="VarChar(60) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_RESPONSAVEL_CARGO" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="TB_RESPONSAVEL_ENDERECO" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="TB_GESTOR_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="TB_RESPONSAVEL_TB_DIVISAO" Member="TB_DIVISAOs" ThisKey="TB_RESPONSAVEL_ID" OtherKey="TB_RESPONSAVEL_ID" Type="TB_DIVISAO" />
+      <Association Name="TB_GESTOR_TB_RESPONSAVEL" Member="TB_GESTOR" ThisKey="TB_GESTOR_ID" OtherKey="TB_GESTOR_ID" Type="TB_GESTOR" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_SALDO_SUBITEM" Member="TB_SALDO_SUBITEMs">
+    <Type Name="TB_SALDO_SUBITEM">
+      <Column Name="TB_SALDO_SUBITEM_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_ALMOXARIFADO_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_UGE_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_SUBITEM_MATERIAL_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_SALDO_SUBITEM_SALDO_QTDE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_SALDO_SUBITEM_SALDO_VALOR" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TB_SALDO_SUBITEM_PRECO_UNIT" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TB_SALDO_SUBITEM_LOTE_DT_VENC" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TB_SALDO_SUBITEM_LOTE_IDENT" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_SALDO_SUBITEM_LOTE_FAB" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="TB_SALDO_SUBITEM_TB_SALDO_SUBITEM_LOTE" Member="TB_SALDO_SUBITEM_LOTEs" ThisKey="TB_SALDO_SUBITEM_ID" OtherKey="TB_SALDO_SUBITEM_ID" Type="TB_SALDO_SUBITEM_LOTE" />
+      <Association Name="TB_ALMOXARIFADO_TB_SALDO_SUBITEM" Member="TB_ALMOXARIFADO" ThisKey="TB_ALMOXARIFADO_ID" OtherKey="TB_ALMOXARIFADO_ID" Type="TB_ALMOXARIFADO" IsForeignKey="true" />
+      <Association Name="TB_SUBITEM_MATERIAL_TB_SALDO_SUBITEM" Member="TB_SUBITEM_MATERIAL" ThisKey="TB_SUBITEM_MATERIAL_ID" OtherKey="TB_SUBITEM_MATERIAL_ID" Type="TB_SUBITEM_MATERIAL" IsForeignKey="true" />
+      <Association Name="TB_UGE_TB_SALDO_SUBITEM" Member="TB_UGE" ThisKey="TB_UGE_ID" OtherKey="TB_UGE_ID" Type="TB_UGE" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_SERIALIZACAO" Member="TB_SERIALIZACAOs">
+    <Type Name="TB_SERIALIZACAO">
+      <Column Name="TB_SERIALIZACAO_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_SERIALIZACAO_LABEL" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TB_SERIALIZACAO_NOME" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_SERIALIZACAO_DESCRICAO" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="TB_SERIALIZACAO_OBJETO" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="TB_SERIALIZACAO_DATA" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TB_LOGIN_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_ALMOXARIFADO_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_SERIALIZACAO_ANO_MES_REFERENCIA" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="TB_TRANSACAO_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_SUBITEM_MATERIAL" Member="TB_SUBITEM_MATERIALs">
+    <Type Name="TB_SUBITEM_MATERIAL">
+      <Column Name="TB_SUBITEM_MATERIAL_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_SUBITEM_MATERIAL_CODIGO" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="TB_SUBITEM_MATERIAL_DESCRICAO" Type="System.String" DbType="VarChar(120) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_SUBITEM_MATERIAL_COD_BARRAS" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="TB_SUBITEM_MATERIAL_LOTE" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="TB_SUBITEM_MATERIAL_DECIMOS" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TB_SUBITEM_MATERIAL_FRACIONA" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TB_SUBITEM_MATERIAL_INDICADOR_ATIVIDADE" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="TB_GESTOR_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_NATUREZA_DESPESA_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_CONTA_AUXILIAR_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_UNIDADE_FORNECIMENTO_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="TB_SUBITEM_MATERIAL_TB_FECHAMENTO" Member="TB_FECHAMENTOs" ThisKey="TB_SUBITEM_MATERIAL_ID" OtherKey="TB_SUBITEM_MATERIAL_ID" Type="TB_FECHAMENTO" />
+      <Association Name="TB_SUBITEM_MATERIAL_TB_ITEM_SUBITEM_MATERIAL" Member="TB_ITEM_SUBITEM_MATERIALs" ThisKey="TB_SUBITEM_MATERIAL_ID" OtherKey="TB_SUBITEM_MATERIAL_ID" Type="TB_ITEM_SUBITEM_MATERIAL" />
+      <Association Name="TB_SUBITEM_MATERIAL_TB_MOVIMENTO_ITEM" Member="TB_MOVIMENTO_ITEMs" ThisKey="TB_SUBITEM_MATERIAL_ID" OtherKey="TB_SUBITEM_MATERIAL_ID" Type="TB_MOVIMENTO_ITEM" />
+      <Association Name="TB_SUBITEM_MATERIAL_TB_SALDO_SUBITEM" Member="TB_SALDO_SUBITEMs" ThisKey="TB_SUBITEM_MATERIAL_ID" OtherKey="TB_SUBITEM_MATERIAL_ID" Type="TB_SALDO_SUBITEM" />
+      <Association Name="TB_SUBITEM_MATERIAL_TB_SUBITEM_MATERIAL_ALMOX" Member="TB_SUBITEM_MATERIAL_ALMOXes" ThisKey="TB_SUBITEM_MATERIAL_ID" OtherKey="TB_SUBITEM_MATERIAL_ID" Type="TB_SUBITEM_MATERIAL_ALMOX" />
+      <Association Name="TB_CONTA_AUXILIAR_TB_SUBITEM_MATERIAL" Member="TB_CONTA_AUXILIAR" ThisKey="TB_CONTA_AUXILIAR_ID" OtherKey="TB_CONTA_AUXILIAR_ID" Type="TB_CONTA_AUXILIAR" IsForeignKey="true" />
+      <Association Name="TB_NATUREZA_DESPESA_TB_SUBITEM_MATERIAL" Member="TB_NATUREZA_DESPESA" ThisKey="TB_NATUREZA_DESPESA_ID" OtherKey="TB_NATUREZA_DESPESA_ID" Type="TB_NATUREZA_DESPESA" IsForeignKey="true" />
+      <Association Name="TB_UNIDADE_FORNECIMENTO_TB_SUBITEM_MATERIAL" Member="TB_UNIDADE_FORNECIMENTO" ThisKey="TB_UNIDADE_FORNECIMENTO_ID" OtherKey="TB_UNIDADE_FORNECIMENTO_ID" Type="TB_UNIDADE_FORNECIMENTO" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_SUBITEM_MATERIAL_ALMOX" Member="TB_SUBITEM_MATERIAL_ALMOXes">
+    <Type Name="TB_SUBITEM_MATERIAL_ALMOX">
+      <Column Name="TB_SUBITEM_MATERIAL_ALMOX_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_ALMOXARIFADO_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_SUBITEM_MATERIAL_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_INDICADOR_DISPONIVEL_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+	   <Column Name="TB_INDICADOR_ITEM_SALDO_ZERADO_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_SUBITEM_MATERIAL_ALMOX_ESTOQUE_MIN" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_SUBITEM_MATERIAL_ALMOX_ESTOQUE_MAX" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_SUBITEM_MATERIAL_ALMOX_INDICADOR_ATIVIDADE" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="TB_ALMOXARIFADO_TB_SUBITEM_MATERIAL_ALMOX" Member="TB_ALMOXARIFADO" ThisKey="TB_ALMOXARIFADO_ID" OtherKey="TB_ALMOXARIFADO_ID" Type="TB_ALMOXARIFADO" IsForeignKey="true" />
+      <Association Name="TB_INDICADOR_DISPONIVEL_TB_SUBITEM_MATERIAL_ALMOX" Member="TB_INDICADOR_DISPONIVEL" ThisKey="TB_INDICADOR_DISPONIVEL_ID" OtherKey="TB_INDICADOR_DISPONIVEL_ID" Type="TB_INDICADOR_DISPONIVEL" IsForeignKey="true" />
+      <Association Name="TB_SUBITEM_MATERIAL_TB_SUBITEM_MATERIAL_ALMOX" Member="TB_SUBITEM_MATERIAL" ThisKey="TB_SUBITEM_MATERIAL_ID" OtherKey="TB_SUBITEM_MATERIAL_ID" Type="TB_SUBITEM_MATERIAL" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_SUBITEM_MATERIAL_HIST" Member="TB_SUBITEM_MATERIAL_HISTs">
+    <Type Name="TB_SUBITEM_MATERIAL_HIST">
+      <Column Name="TB_SUBITEM_MATERIAL_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_SUBITEM_MATERIAL_CODIGO" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="TB_SUBITEM_MATERIAL_DESCRICAO" Type="System.String" DbType="VarChar(120) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_SUBITEM_MATERIAL_COD_BARRAS" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="TB_SUBITEM_MATERIAL_LOTE" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="TB_SUBITEM_MATERIAL_DECIMOS" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TB_SUBITEM_MATERIAL_FRACIONA" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TB_SUBITEM_MATERIAL_INDICADOR_ATIVIDADE" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="TB_GESTOR_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_NATUREZA_DESPESA_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_CONTA_AUXILIAR_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_UNIDADE_FORNECIMENTO_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_SUBITEM_MATERIAL_DATA_INICIO" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TB_SUBITEM_MATERIAL_DATA_FIM" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TB_SUBITEM_MATERIAL_DATA_OPERACAO" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TB_LOGIN_ID_OPERACAO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_SUBITEM_MATERIAL_DATA_EXCLUSAO" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TB_LOGIN_ID_EXCLUSAO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_SUBITEM_MATERIAL_N_INCL" Member="TB_SUBITEM_MATERIAL_N_INCLs">
+    <Type Name="TB_SUBITEM_MATERIAL_N_INCL">
+      <Column Name="TB_SUBITEM_MATERIAL_CODIGO" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="TB_SUBITEM_MATERIAL_DESCRICAO" Type="System.String" DbType="VarChar(120)" CanBeNull="true" />
+      <Column Name="TB_SUBITEM_MATERIAL_COD_BARRAS" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="TB_SUBITEM_MATERIAL_LOTE" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="TB_SUBITEM_MATERIAL_DECIMOS" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TB_SUBITEM_MATERIAL_FRACIONA" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TB_SUBITEM_MATERIAL_INDICADOR_ATIVIDADE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TB_GESTOR_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_NATUREZA_DESPESA_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_CONTA_AUXILIAR_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_UNIDADE_FORNECIMENTO_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_TIPO_CONTROLE" Member="TB_TIPO_CONTROLEs">
+    <Type Name="TB_TIPO_CONTROLE">
+      <Column Name="TB_TIPO_CONTROLE_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TB_TIPO_CONTROLE_DESCRICAO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="TB_TIPO_CONTROLE_TB_CONTROLE" Member="TB_CONTROLEs" ThisKey="TB_TIPO_CONTROLE_ID" OtherKey="TB_TIPO_CONTROLE_ID" Type="TB_CONTROLE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_TIPO_EVENTO" Member="TB_TIPO_EVENTOs">
+    <Type Name="TB_TIPO_EVENTO">
+      <Column Name="TB_TIPO_EVENTO_ID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_TIPO_EVENTO_CODIGO" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_TIPO_EVENTO_DESCRICAO" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="TB_TIPO_EVENTO_TB_TIPO_EVENTO" Member="TB_TIPO_EVENTO2" ThisKey="TB_TIPO_EVENTO_ID" OtherKey="TB_TIPO_EVENTO_ID" Type="TB_TIPO_EVENTO" Cardinality="One" />
+      <Association Name="TB_TIPO_EVENTO_TB_TIPO_EVENTO" Member="TB_TIPO_EVENTO1" ThisKey="TB_TIPO_EVENTO_ID" OtherKey="TB_TIPO_EVENTO_ID" Type="TB_TIPO_EVENTO" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_TIPO_MOVIMENTO" Member="TB_TIPO_MOVIMENTOs">
+    <Type Name="TB_TIPO_MOVIMENTO">
+      <Column Name="TB_TIPO_MOVIMENTO_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TB_TIPO_MOVIMENTO_CODIGO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_TIPO_MOVIMENTO_DESCRICAO" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="TB_TIPO_MOVIMENTO_AUX_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_TIPO_MOVIMENTO_AGRUPAMENTO_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="TB_TIPO_MOVIMENTO_TB_MOVIMENTO" Member="TB_MOVIMENTOs" ThisKey="TB_TIPO_MOVIMENTO_ID" OtherKey="TB_TIPO_MOVIMENTO_ID" Type="TB_MOVIMENTO" />
+      <Association Name="TB_TIPO_MOVIMENTO_AGRUPAMENTO_TB_TIPO_MOVIMENTO" Member="TB_TIPO_MOVIMENTO_AGRUPAMENTO" ThisKey="TB_TIPO_MOVIMENTO_AGRUPAMENTO_ID" OtherKey="TB_TIPO_MOVIMENTO_AGRUPAMENTO_ID" Type="TB_TIPO_MOVIMENTO_AGRUPAMENTO" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_TIPO_MOVIMENTO_AGRUPAMENTO" Member="TB_TIPO_MOVIMENTO_AGRUPAMENTOs">
+    <Type Name="TB_TIPO_MOVIMENTO_AGRUPAMENTO">
+      <Column Name="TB_TIPO_MOVIMENTO_AGRUPAMENTO_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TB_TIPO_MOVIMENTO_AGRUPAMENTO_CODIGO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_TIPO_MOVIMENTO_AGRUPAMENTO_DESCRICAO" Type="System.String" DbType="VarChar(120)" CanBeNull="true" />
+      <Association Name="TB_TIPO_MOVIMENTO_AGRUPAMENTO_TB_TIPO_MOVIMENTO" Member="TB_TIPO_MOVIMENTOs" ThisKey="TB_TIPO_MOVIMENTO_AGRUPAMENTO_ID" OtherKey="TB_TIPO_MOVIMENTO_AGRUPAMENTO_ID" Type="TB_TIPO_MOVIMENTO" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_TIPO_MOVIMENTO_AUX" Member="TB_TIPO_MOVIMENTO_AUXes">
+    <Type Name="TB_TIPO_MOVIMENTO_AUX">
+      <Column Name="TB_TIPO_MOVIMENTO_AUX_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_TIPO_MOVIMENTO_AUX_CODIGO" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
+      <Column Name="TB_TIPO_MOVIMENTO_AUX_DESCRICAO" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TB_TIPO_MOVIMENTO_AUX_GERADOR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_UA" Member="TB_UAs">
+    <Type Name="TB_UA">
+      <Column Name="TB_UA_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_UGE_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_UA_CODIGO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_UA_DESCRICAO" Type="System.String" DbType="VarChar(120) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_UA_VINCULADA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_UA_INDICADOR_ATIVIDADE" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="TB_UNIDADE_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_CENTRO_CUSTO_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_GESTOR_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="TB_UA_TB_DIVISAO" Member="TB_DIVISAOs" ThisKey="TB_UA_ID" OtherKey="TB_UA_ID" Type="TB_DIVISAO" />
+      <Association Name="TB_CENTRO_CUSTO_TB_UA" Member="TB_CENTRO_CUSTO" ThisKey="TB_CENTRO_CUSTO_ID" OtherKey="TB_CENTRO_CUSTO_ID" Type="TB_CENTRO_CUSTO" IsForeignKey="true" />
+      <Association Name="TB_GESTOR_TB_UA" Member="TB_GESTOR" ThisKey="TB_GESTOR_ID" OtherKey="TB_GESTOR_ID" Type="TB_GESTOR" IsForeignKey="true" />
+      <Association Name="TB_UGE_TB_UA" Member="TB_UGE" ThisKey="TB_UGE_ID" OtherKey="TB_UGE_ID" Type="TB_UGE" IsForeignKey="true" />
+      <Association Name="TB_UNIDADE_TB_UA" Member="TB_UNIDADE" ThisKey="TB_UNIDADE_ID" OtherKey="TB_UNIDADE_ID" Type="TB_UNIDADE" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_UF" Member="TB_UFs">
+    <Type Name="TB_UF">
+      <Column Name="TB_UF_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_UF_SIGLA" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_UF_DESCRICAO" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="TB_UF_TB_DIVISAO" Member="TB_DIVISAOs" ThisKey="TB_UF_ID" OtherKey="TB_UF_ID" Type="TB_DIVISAO" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_UGE" Member="TB_UGEs">
+    <Type Name="TB_UGE">
+      <Column Name="TB_UGE_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_UO_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_UGE_CODIGO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_UGE_DESCRICAO" Type="System.String" DbType="VarChar(120) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_UGE_TIPO" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Association Name="TB_UGE_TB_ALMOXARIFADO" Member="TB_ALMOXARIFADOs" ThisKey="TB_UGE_ID" OtherKey="TB_UGE_ID" Type="TB_ALMOXARIFADO" />
+      <Association Name="TB_UGE_TB_ALMOXARIFADO1" Member="TB_ALMOXARIFADOs1" ThisKey="TB_UGE_ID" OtherKey="TB_UGE_ID" Type="TB_ALMOXARIFADO" />
+      <Association Name="TB_UGE_TB_FECHAMENTO" Member="TB_FECHAMENTOs" ThisKey="TB_UGE_ID" OtherKey="TB_UGE_ID" Type="TB_FECHAMENTO" />
+      <Association Name="TB_UGE_TB_GESTOR" Member="TB_GESTORs" ThisKey="TB_UGE_ID" OtherKey="TB_UGE_ID" Type="TB_GESTOR" />
+      <Association Name="TB_UGE_TB_MOVIMENTO_EST" Member="TB_MOVIMENTO_ESTs" ThisKey="TB_UGE_ID" OtherKey="TB_UGE_ID" Type="TB_MOVIMENTO_EST" />
+      <Association Name="TB_UGE_TB_MOVIMENTO_ITEM" Member="TB_MOVIMENTO_ITEMs" ThisKey="TB_UGE_ID" OtherKey="TB_UGE_ID" Type="TB_MOVIMENTO_ITEM" />
+      <Association Name="TB_UGE_TB_SALDO_SUBITEM" Member="TB_SALDO_SUBITEMs" ThisKey="TB_UGE_ID" OtherKey="TB_UGE_ID" Type="TB_SALDO_SUBITEM" />
+      <Association Name="TB_UGE_TB_UA" Member="TB_UAs" ThisKey="TB_UGE_ID" OtherKey="TB_UGE_ID" Type="TB_UA" />
+      <Association Name="TB_UGE_TB_MOVIMENTO" Member="TB_MOVIMENTOs" ThisKey="TB_UGE_ID" OtherKey="TB_UGE_ID" Type="TB_MOVIMENTO" />
+      <Association Name="TB_UO_TB_UGE" Member="TB_UO" ThisKey="TB_UO_ID" OtherKey="TB_UO_ID" Type="TB_UO" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_UNIDADE" Member="TB_UNIDADEs">
+    <Type Name="TB_UNIDADE">
+      <Column Name="TB_UNIDADE_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_UNIDADE_CODIGO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_UNIDADE_DESCRICAO" Type="System.String" DbType="VarChar(120) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_GESTOR_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="TB_UNIDADE_TB_UA" Member="TB_UAs" ThisKey="TB_UNIDADE_ID" OtherKey="TB_UNIDADE_ID" Type="TB_UA" />
+      <Association Name="TB_GESTOR_TB_UNIDADE" Member="TB_GESTOR" ThisKey="TB_GESTOR_ID" OtherKey="TB_GESTOR_ID" Type="TB_GESTOR" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_UNIDADE_FORNECIMENTO" Member="TB_UNIDADE_FORNECIMENTOs">
+    <Type Name="TB_UNIDADE_FORNECIMENTO">
+      <Column Name="TB_UNIDADE_FORNECIMENTO_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_UNIDADE_FORNECIMENTO_CODIGO" Type="System.String" DbType="VarChar(12) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_UNIDADE_FORNECIMENTO_DESCRICAO" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_GESTOR_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="TB_UNIDADE_FORNECIMENTO_TB_SUBITEM_MATERIAL" Member="TB_SUBITEM_MATERIALs" ThisKey="TB_UNIDADE_FORNECIMENTO_ID" OtherKey="TB_UNIDADE_FORNECIMENTO_ID" Type="TB_SUBITEM_MATERIAL" />
+      <Association Name="TB_UNIDADE_FORNECIMENTO_TB_UNIDADE_FORNECIMENTO_CONVERSAO" Member="TB_UNIDADE_FORNECIMENTO_CONVERSAOs" ThisKey="TB_UNIDADE_FORNECIMENTO_ID" OtherKey="TB_UNIDADE_FORNECIMENTO_SISTEMA_SAM_ID" Type="TB_UNIDADE_FORNECIMENTO_CONVERSAO" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_UNIDADE_FORNECIMENTO_CONVERSAO" Member="TB_UNIDADE_FORNECIMENTO_CONVERSAOs">
+    <Type Name="TB_UNIDADE_FORNECIMENTO_CONVERSAO">
+      <Column Name="TB_UNIDADE_FORNECIMENTO_CONVERSAO_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_UNIDADE_FORNECIMENTO_CONVERSAO_CODIGO" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_UNIDADE_FORNECIMENTO_CONVERSAO_DESCRICAO" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_UNIDADE_FORNECIMENTO_CONVERSAO_FATOR_UNITARIO" Type="System.Decimal" DbType="Decimal(18,7) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_UNIDADE_FORNECIMENTO_SISTEMA_SAM_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_UNIDADE_FORNECIMENTO_SIAFISICO_CODIGO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="TB_UNIDADE_FORNECIMENTO_TB_UNIDADE_FORNECIMENTO_CONVERSAO" Member="TB_UNIDADE_FORNECIMENTO" ThisKey="TB_UNIDADE_FORNECIMENTO_SISTEMA_SAM_ID" OtherKey="TB_UNIDADE_FORNECIMENTO_ID" Type="TB_UNIDADE_FORNECIMENTO" IsForeignKey="true" />
+      <Association Name="TB_UNIDADE_FORNECIMENTO_SIAF_TB_UNIDADE_FORNECIMENTO_CONVERSAO" Member="TB_UNIDADE_FORNECIMENTO_SIAF" ThisKey="TB_UNIDADE_FORNECIMENTO_SIAFISICO_CODIGO" OtherKey="TB_UNIDADE_FORNECIMENTO_CODIGO" Type="TB_UNIDADE_FORNECIMENTO_SIAF" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_UNIDADE_FORNECIMENTO_SIAF" Member="TB_UNIDADE_FORNECIMENTO_SIAFs">
+    <Type Name="TB_UNIDADE_FORNECIMENTO_SIAF">
+      <Column Name="TB_UNIDADE_FORNECIMENTO_CODIGO" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TB_UNIDADE_FORNECIMENTO_DESCRICAO" Type="System.String" DbType="VarChar(120) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_UNIDADE_FORNECIMENTO_QTDE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="TB_UNIDADE_FORNECIMENTO_SIAF_TB_UNIDADE_FORNECIMENTO_CONVERSAO" Member="TB_UNIDADE_FORNECIMENTO_CONVERSAOs" ThisKey="TB_UNIDADE_FORNECIMENTO_CODIGO" OtherKey="TB_UNIDADE_FORNECIMENTO_SIAFISICO_CODIGO" Type="TB_UNIDADE_FORNECIMENTO_CONVERSAO" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_UO" Member="TB_UOs">
+    <Type Name="TB_UO">
+      <Column Name="TB_UO_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_ORGAO_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_UO_CODIGO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_UO_DESCRICAO" Type="System.String" DbType="VarChar(120) NOT NULL" CanBeNull="false" />
+      <Association Name="TB_UO_TB_GESTOR" Member="TB_GESTORs" ThisKey="TB_UO_ID" OtherKey="TB_UO_ID" Type="TB_GESTOR" />
+      <Association Name="TB_UO_TB_UGE" Member="TB_UGEs" ThisKey="TB_UO_ID" OtherKey="TB_UO_ID" Type="TB_UGE" />
+      <Association Name="TB_ORGAO_TB_UO" Member="TB_ORGAO" ThisKey="TB_ORGAO_ID" OtherKey="TB_ORGAO_ID" Type="TB_ORGAO" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_MOVIMENTO" Member="TB_MOVIMENTOs">
+    <Type Name="TB_MOVIMENTO">
+      <Column Name="TB_MOVIMENTO_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_ALMOXARIFADO_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_TIPO_MOVIMENTO_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_MOVIMENTO_GERADOR_DESCRICAO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_NUMERO_DOCUMENTO" Type="System.String" DbType="VarChar(12) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_MOVIMENTO_ANO_MES_REFERENCIA" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_MOVIMENTO_DATA_DOCUMENTO" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TB_MOVIMENTO_DATA_MOVIMENTO" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TB_MOVIMENTO_FONTE_RECURSO" Type="System.String" DbType="VarChar(9) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_MOVIMENTO_VALOR_DOCUMENTO" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="TB_MOVIMENTO_OBSERVACOES" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_INSTRUCOES" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_EMPENHO" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ALMOX_ID_ORIGEM_DESTINO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_DATA_APROVACAO" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TB_FORNECEDOR_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_DIVISAO_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_UGE_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_ATIVO" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TB_EMPENHO_EVENTO_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_DATA_OPERACAO" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TB_LOGIN_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_EMPENHO_LICITACAO_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_LOGIN_ID_ESTORNO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_DATA_ESTORNO" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TB_MOVIMENTO_TRANSFERENCIA_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="TB_MOVIMENTO_TB_MOVIMENTO_EST" Member="TB_MOVIMENTO_ESTs" ThisKey="TB_MOVIMENTO_ID" OtherKey="TB_MOVIMENTO_ID" Type="TB_MOVIMENTO_EST" />
+      <Association Name="TB_MOVIMENTO_TB_MOVIMENTO_ITEM" Member="TB_MOVIMENTO_ITEMs" ThisKey="TB_MOVIMENTO_ID" OtherKey="TB_MOVIMENTO_ID" Type="TB_MOVIMENTO_ITEM" />
+      <Association Name="TB_MOVIMENTO_TB_TRANSFERENCIA_PENDENTE" Member="TB_TRANSFERENCIA_PENDENTEs" ThisKey="TB_MOVIMENTO_ID" OtherKey="TB_MOVIMENTO_ID" Type="TB_TRANSFERENCIA_PENDENTE" />
+      <Association Name="TB_EMPENHO_EVENTO_TB_MOVIMENTO" Member="TB_EMPENHO_EVENTO" ThisKey="TB_EMPENHO_EVENTO_ID" OtherKey="TB_EMPENHO_EVENTO_ID" Type="TB_EMPENHO_EVENTO" IsForeignKey="true" />
+      <Association Name="TB_EMPENHO_LICITACAO_TB_MOVIMENTO" Member="TB_EMPENHO_LICITACAO" ThisKey="TB_EMPENHO_LICITACAO_ID" OtherKey="TB_EMPENHO_LICITACAO_ID" Type="TB_EMPENHO_LICITACAO" IsForeignKey="true" />
+      <Association Name="TB_DIVISAO_TB_MOVIMENTO" Member="TB_DIVISAO" ThisKey="TB_DIVISAO_ID" OtherKey="TB_DIVISAO_ID" Type="TB_DIVISAO" IsForeignKey="true" />
+      <Association Name="TB_FORNECEDOR_TB_MOVIMENTO" Member="TB_FORNECEDOR" ThisKey="TB_FORNECEDOR_ID" OtherKey="TB_FORNECEDOR_ID" Type="TB_FORNECEDOR" IsForeignKey="true" />
+      <Association Name="TB_UGE_TB_MOVIMENTO" Member="TB_UGE" ThisKey="TB_UGE_ID" OtherKey="TB_UGE_ID" Type="TB_UGE" IsForeignKey="true" />
+      <Association Name="TB_ALMOXARIFADO_TB_MOVIMENTO" Member="TB_ALMOXARIFADO" ThisKey="TB_ALMOXARIFADO_ID" OtherKey="TB_ALMOXARIFADO_ID" Type="TB_ALMOXARIFADO" IsForeignKey="true" />
+      <Association Name="TB_TIPO_MOVIMENTO_TB_MOVIMENTO" Member="TB_TIPO_MOVIMENTO" ThisKey="TB_TIPO_MOVIMENTO_ID" OtherKey="TB_TIPO_MOVIMENTO_ID" Type="TB_TIPO_MOVIMENTO" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_TRANSFERENCIA_PENDENTE" Member="TB_TRANSFERENCIA_PENDENTEs">
+    <Type Name="TB_TRANSFERENCIA_PENDENTE">
+      <Column Name="TB_TRANSFERENCIA_PENDENTE_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_MOVIMENTO_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_TRANSFERENCIA_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_TRANSFERENCIA_PENDENTE_OBSERVACOES" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="TB_TRANSFERENCIA_PENDENTE_ATIVO" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TB_LOGIN_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_LOGIN_ID_ALTER" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TB_TRANSFERENCIA_PENDENTE_DATA_OPERACAO" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TB_TRANSFERENCIA_PENDENTE_DATA_ALTER" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="TB_MOVIMENTO_TB_TRANSFERENCIA_PENDENTE" Member="TB_MOVIMENTO" ThisKey="TB_MOVIMENTO_ID" OtherKey="TB_MOVIMENTO_ID" Type="TB_MOVIMENTO" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_SALDO_SUBITEM_LOTE" Member="TB_SALDO_SUBITEM_LOTEs">
+    <Type Name="TB_SALDO_SUBITEM_LOTE">
+      <Column Name="TB_SALDO_SUBITEM_LOTE_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_SALDO_SUBITEM_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_SALDO_SUBITEM_LOTE_DT_VENC" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TB_SALDO_SUBITEM_LOTE_IDENT" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_SALDO_SUBITEM_LOTE_SALDO_QTDE" Type="System.Decimal" DbType="Decimal(18,4) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_SALDO_SUBITEM_LOTE_DATA_MOVIMENTO" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="TB_SALDO_SUBITEM_TB_SALDO_SUBITEM_LOTE" Member="TB_SALDO_SUBITEM" ThisKey="TB_SALDO_SUBITEM_ID" OtherKey="TB_SALDO_SUBITEM_ID" Type="TB_SALDO_SUBITEM" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_CHAMADO_SUPORTE_FUNCIONALIDADE_SISTEMA" Member="TB_CHAMADO_SUPORTE_FUNCIONALIDADE_SISTEMAs">
+    <Type Name="TB_CHAMADO_SUPORTE_FUNCIONALIDADE_SISTEMA">
+      <Column Name="TB_CHAMADO_SUPORTE_FUNCIONALIDADE_SISTEMA_ID" Type="System.Byte" DbType="TinyInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_CHAMADO_SUPORTE_FUNCIONALIDADE_SISTEMA_DESCRICAO" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_CHAMADO_SUPORTE" Member="TB_CHAMADO_SUPORTEs">
+    <Type Name="TB_CHAMADO_SUPORTE">
+      <Column Name="TB_CHAMADO_SUPORTE_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_CHAMADO_SUPORTE_ALMOXARIFADO_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_CHAMADO_SUPORTE_DATA_ABERTURA" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TB_CHAMADO_SUPORTE_USUARIO_SISTEMA" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="TB_CHAMADO_SUPORTE_MODULO_SISTEMA" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="TB_CHAMADO_SUPORTE_FUNCIONALIDADE_SISTEMA_ID" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="TB_CHAMADO_SUPORTE_STATUS_ATENDIMENTO" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="TB_CHAMADO_SUPORTE_RESPONSAVEL_ATENDIMENTO" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="TB_CHAMADO_SUPORTE_TIPO_CHAMADO" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="TB_CHAMADO_SUPORTE_OBSERVACOES" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_CHAMADO_SUPORTE_ARQUIVO_ANEXO_001" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="TB_CHAMADO_SUPORTE_ARQUIVO_ANEXO_002" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="TB_CHAMADO_SUPORTE_ARQUIVO_ANEXO_003" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="TB_CHAMADO_SUPORTE_HISTORICO_ATENDIMENTO" Type="System.String" DbType="NText NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="TB_CHAMADO_SUPORTE_ATIVO" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TB_CHAMADO_SUPORTE_USUARIO_SISTEMA_CANCELADOR" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Association Name="TB_CHAMADO_SUPORTE_FUNCIONALIDADE_SISTEMA_TB_CHAMADO_SUPORTE" Member="TB_CHAMADO_SUPORTE_FUNCIONALIDADE_SISTEMA" ThisKey="TB_CHAMADO_SUPORTE_FUNCIONALIDADE_SISTEMA_ID" OtherKey="TB_CHAMADO_SUPORTE_FUNCIONALIDADE_SISTEMA_ID" Type="TB_CHAMADO_SUPORTE_FUNCIONALIDADE_SISTEMA" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_SUBTIPO_MOVIMENTO" Member="TB_SUBTIPO_MOVIMENTOs">
+    <Type Name="TB_SUBTIPO_MOVIMENTO">
+      <Column Name="TB_SUBTIPO_MOVIMENTO_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_TIPO_MOVIMENTO_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_SUBTIPO_MOVIMENTO_DESCRICAO" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_SUBTIPO_MOVIMENTO_ATIVO" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="TB_TIPO_MOVIMENTO_TB_SUBTIPO_MOVIMENTO" Member="TB_TIPO_MOVIMENTO" ThisKey="TB_TIPO_MOVIMENTO_ID" OtherKey="TB_TIPO_MOVIMENTO_ID" Type="TB_TIPO_MOVIMENTO" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TB_EVENTO_SIAFEM" Member="TB_EVENTO_SIAFEMs">
+    <Type Name="TB_EVENTO_SIAFEM">
+      <Column Name="TB_EVENTO_SIAFEM_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TB_SUBTIPO_MOVIMENTO_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TB_EVENTO_TIPO_MATERIAL" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_EVENTO_TIPO_ENTRADA_SAIDA_RECLASSIFICACAO_DEPRECIACAO" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_EVENTO_TIPO_ESTOQUE" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_EVENTO_ESTOQUE" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_EVENTO_TIPO_MOVIMENTACAO" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_EVENTO_TIPO_MOVIMENTO" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="TB_EVENTO_SIAFEM_ATIVO" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DATA_INCLUSAO" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DATA_ALTERACAO" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Function Name="dbo.SELECIONA_MOVIMENTOS_ENTRADAS_PENDENTES" Method="SELECIONA_MOVIMENTOS_ENTRADAS_PENDENTES">
+    <Parameter Name="P_ID_ALMOX" Parameter="p_ID_ALMOX" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_PERIODO_INI" Parameter="p_PERIODO_INI" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="P_PERIODO_FIM" Parameter="p_PERIODO_FIM" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="SELECIONA_MOVIMENTOS_ENTRADAS_PENDENTESResult">
+      <Column Name="DESTINO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="teste" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="DOCUMENTO" Type="System.String" DbType="VarChar(12) NOT NULL" CanBeNull="false" />
+      <Column Name="DOCUMENTO_ORIGEM" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="DOCUMENTO_DESTINO" Type="System.String" DbType="VarChar(21)" CanBeNull="true" />
+      <Column Name="DATA_SAIDA" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="OPERAÇÃO_SAIDA" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ESTORNO_SAIDA" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="VALOR_TOTAL_DOC_SAIDA" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="SOMATORIA_SAIDA" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="DATA_ENTRADA" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="OPERACAO_ENTRADA" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ESTORNO_ENTRADA" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="VALOR_TOTAL_DOC_ENTRADA" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="SOMATORIA_ENTRADA" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SELECIONA_MOVIMENTOS_PENDENTES" Method="SELECIONA_MOVIMENTOS_PENDENTES">
+    <Parameter Name="P_ID_ALMOX" Parameter="p_ID_ALMOX" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_PERIODO_INI" Parameter="p_PERIODO_INI" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="P_PERIODO_FIM" Parameter="p_PERIODO_FIM" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="SELECIONA_MOVIMENTOS_PENDENTESResult">
+      <Column Name="DESTINO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="teste" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="DOCUMENTO" Type="System.String" DbType="VarChar(12) NOT NULL" CanBeNull="false" />
+      <Column Name="DOCUMENTO_ORIGEM" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="DOCUMENTO_DESTINO" Type="System.String" DbType="VarChar(21)" CanBeNull="true" />
+      <Column Name="DATA_SAIDA" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="OPERAÇÃO_SAIDA" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ESTORNO_SAIDA" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="VALOR_TOTAL_DOC_SAIDA" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="SOMATORIA_SAIDA" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="DATA_ENTRADA" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="OPERACAO_ENTRADA" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ESTORNO_ENTRADA" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="VALOR_TOTAL_DOC_ENTRADA" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="SOMATORIA_ENTRADA" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SELECIONA_MOVIMENTOS_SAIDA_PENDENTES" Method="SELECIONA_MOVIMENTOS_SAIDA_PENDENTES">
+    <Parameter Name="P_ID_ALMOX" Parameter="p_ID_ALMOX" Type="System.Int32" DbType="Int" />
+    <Parameter Name="P_PERIODO_INI" Parameter="p_PERIODO_INI" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="P_PERIODO_FIM" Parameter="p_PERIODO_FIM" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="SELECIONA_MOVIMENTOS_SAIDA_PENDENTESResult">
+      <Column Name="DESTINO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="teste" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="DOCUMENTO" Type="System.String" DbType="VarChar(12) NOT NULL" CanBeNull="false" />
+      <Column Name="DOCUMENTO_ORIGEM" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="DOCUMENTO_DESTINO" Type="System.String" DbType="VarChar(21)" CanBeNull="true" />
+      <Column Name="DATA_SAIDA" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="OPERAÇÃO_SAIDA" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ESTORNO_SAIDA" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="VALOR_TOTAL_DOC_SAIDA" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="SOMATORIA_SAIDA" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="DATA_ENTRADA" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="OPERACAO_ENTRADA" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ESTORNO_ENTRADA" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="VALOR_TOTAL_DOC_ENTRADA" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="SOMATORIA_ENTRADA" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

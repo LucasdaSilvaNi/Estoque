@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode>
+    <siteMapNode title="Início" url="~/WebForm2.aspx" description=""></siteMapNode>
+    <siteMapNode title="Sobre o SAM" url="~/Sobre.aspx" description=""></siteMapNode>
+    <siteMapNode title="Acessar">
+      <siteMapNode title="Tabelas" url="~/Tabelas/TABMenu.aspx" description=""/>
+      <siteMapNode title="Almoxarifado" url="~/Tabelas/TABMenuOperacoes.aspx" description=""/>
+      <siteMapNode title="Patrimônio" url="~/Erros/EmConstrucao.aspx?005" description=""/>
+    </siteMapNode>
+    <siteMapNode title="Sites relacionados" url="~/Links.aspx" description=""></siteMapNode>
+    <siteMapNode title="Contatos" url="~/Contato.aspx" description=""></siteMapNode>
+    <siteMapNode title="Sair" url="~/Seguranca/Logout.aspx" description=""></siteMapNode>
+  </siteMapNode>
+</siteMap>

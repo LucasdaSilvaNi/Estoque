@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
+
+<head>
+	<title>SAM - Sistema de Administração de Materiais</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<meta name="classification" content="Governo" />
+	<meta name="author" content="Prodesp" />
+	
+	<link type="text/css" media="all"   href="css/estilo.css"    rel="stylesheet" title="pattern"  />
+	<link type="text/css" media="all"   href="css/contraste.css" rel="alternate stylesheet" title="modify"   />
+	<link type="text/css" media="print" href="css/print.css"     rel="stylesheet" />
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/generic.js"></script> 
+	
+	<script type="text/javascript">	
+		function include(action){
+			if(action == true){
+				document.getElementById("alterar").style.display='none';
+				document.getElementById("btn_alterar").style.display='none';
+				document.getElementById("novo").style.display='block';
+				document.getElementById("btn_novo").style.display='block';
+			}else{
+				document.getElementById("alterar").style.display='block';
+				document.getElementById("btn_alterar").style.display='block';
+				document.getElementById("novo").style.display='none';				
+				document.getElementById("btn_novo").style.display='none';				
+			}
+		}			
+				
+		function getURLParam(strParamName){
+			var strReturn = "";
+			var strHref = window.location.href;
+			if ( strHref.indexOf("?") > -1 ){
+				var strQueryString = strHref.substr(strHref.indexOf("?"));
+				var aQueryString = strQueryString.split("&");
+				for ( var iParam = 0; iParam < aQueryString.length; iParam++ ){
+					if ( aQueryString[iParam].indexOf(strParamName.toLowerCase() + "=") > -1 ){
+				        	var aParam = aQueryString[iParam].split("=");
+					        strReturn = aParam[1];
+					        break;
+				      	}
+				}
+			}
+			return unescape(strReturn);
+		}	
+	</script>
+</head>
+
+<body>
+
+<!-- Habilitar JavaScript -->
+<noscript>
+	<p>O javascript de seu navegador está desabilitado. Favor habilitá-lo para acessar as funcionalidades deste site.</p>
+</noscript>
+	
+<!-- Acessibilidade -->
+<a class="esconder" href="#content">Ir para o conteúdo</a>
+
+<!-- Barra do Governo Obrigatória -->
+<div id="barragoverno" hidden="hidden">
+	<script type="text/javascript" src="http://www.saopaulo.sp.gov.br/barrasp/js/include_centralizada.js.php"></script>
+</div>
+
+<div id="global">
+
+		<!-- Cabeçalho -->
+		<div id="header">
+
+			<!-- Link para o Cliente -->
+			<div id="barraCliente">
+				<a href="http://www.fazenda.sp.gov.br/" target="_blank" title="Secretaria da Fazenda">Secretaria da Fazenda</a>
+			</div>
+			
+			<!-- Logo e Icones -->
+			<h1 id="logo"><a href="index.html" title="SAM - Sistema de Administração de Materiais - Tecla de atalho (1)" accesskey="1">SAM - Sistema de Administração de Materiais</a></h1>    
+			<ul id="toolbox">
+				<li class="tamanho">
+					<a href="#" class="decrease" style="padding-left:0"><img src="imagens/fontsize_decrease.gif" align="top" title="Diminuir tamanho do texto" alt="Diminuir tamanho do texto" /></a> 
+					<a href="#" class="increase" style="padding-left:0"><img src="imagens/fontsize_increase.gif" align="top" title="Aumentar tamanho do texto" alt="Aumentar tamanho do texto" /></a> 
+					<span>Tamanho do Texto</span>
+				</li>
+				<li class="contrasteLink"><a href="#" class="contraste" title="Contraste"><span>Contraste</span></a></li>
+				<li class="fale"><a href="#" title="Contatos"><span>Contatos</span></a></li>
+			</ul>
+		        
+			<!-- Dados do usuário -->
+			<ul id="usuario">
+				<li><strong>Usuário:</strong> 234567890-12</li>
+				<li>01/09/2011  09:20</li>
+				<li class="last"><a href="index.html" title="Fazer Logoff">Sair</a></li>		
+			</ul>
+				  
+			<!-- Navegação Principal Superior -->	
+			<div id="nav_main">
+				<ul id="jqueryAnimated">
+					<li><a href="home.html" class="firstNavMain">Início</a></li>
+					<li><a href="seguranca.html">Segurança</a></li>
+					<li><a href="tabelas.html" class="selected">Tabelas</a></li>
+					<li><a href="almoxarifado.html">Almoxarifado</a></li>
+					<li><a href="patrimonio.html">Patrimônio</a></li>
+				</ul>		
+			</div>	
+			
+		</div> 
+		<!-- fim id header-->	
+		
+		<!-- Conteúdo -->
+		<div id="content">	
+		
+			<div id="interno">
+		
+				<h1>Módulo Tabelas - Estrutura Organizacional - UO</h1>
+				
+				<form name="uo" action=" " class="formulario">
+	            
+					<fieldset>
+					<!-- simula clique botão Novo -->
+					<div id="novo" style="display:none;">
+		            <p>
+				        <label for="orgao">Órgão*:</label> Secretaria da Fazenda
+		            </p>					
+	
+		            <p>
+				        <label for="codigo">Código*:</label>
+				        <input id="codigo" type="text" size="20" value="" />
+		            </p>					
+	
+		            <p>
+				        <label for="descricao">Descrição*:</label>
+				        <input id="descricao" type="text" size="90" value="" />
+		            </p>
+					</div>	
+
+					<!-- simula clique link editar/excluir -->
+					<div id="alterar" style="display:none;">
+		            <p>
+				        <label for="orgao">Órgão*:</label> Secretaria da Fazenda
+		            </p>					
+	
+		            <p>
+				        <label for="codigo1">Código*:</label>
+				        <input id="codigo1" type="text" size="20" value="20005" />
+		            </p>					
+	
+		            <p>
+				        <label for="descricao1">Descrição*:</label>
+				        <input id="descricao1" type="text" size="90" value="COORD.ENTID.DESCENT.CONTR.ELETRONICAS-CEDC" />
+		            </p>
+					</div>	
+					</fieldset>				
+	
+				</form>		
+				
+				<p><small>Os campos marcados com (*) são obrigatórios. </small></p>			
+			
+			</div>  
+			<!-- fim id interno -->
+			
+			<div class="botao">
+				
+				<!-- simula clique botão Novo -->
+				<div id="btn_novo" style="display:none;">
+				<p class="botaoLeft">
+					<a class="button" href="cadastroUO.html" accesskey="S"><span><u>S</u>alvar</span></a>
+					<a class="button" href="cadastroUO.html" accesskey="C"><span><u>C</u>ancelar</span></a>
+				</p>
+				</div>
+
+				<!-- simula clique link editar/excluir -->
+				<div id="btn_alterar" style="display:none;">
+				<p class="botaoLeft">
+					<a class="button" href="cadastroUO.html" accesskey="S"><span><u>S</u>alvar</span></a>
+					<a class="button" href="cadastroUO.html" accesskey="E"><span><u>E</u>xcluir</span></a>
+					<a class="button" href="cadastroUO.html" accesskey="C"><span><u>C</u>ancelar</span></a>
+				</p>
+				</div>
+
+				<p class="botaoRight">
+					<a class="button" href="#" accesskey="R"><span><u>R</u>elatório</span></a> 
+					<a class="button" href="#" accesskey="A"><span><u>A</u>juda</span></a>
+					<a class="button" href="tabelas.html" accesskey="V"><span><u>V</u>oltar</span></a> 
+				</p>
+			</div>
+		
+		</div> 
+		<!-- fim id content -->
+		
+		<!-- Rodapé -->
+		<div id="footer">
+			<address class="vcard">
+				<span class="adr">
+					<span class="org fn">
+						<span class="organization-name"><strong>Prodesp - Companhia de Processamento de Dados do Estado de São Paulo </strong></span>
+					</span>
+					<br />
+					<span class="street-address">Rua Agueda Gonçalves, 240</span> -
+					CEP <span class="postal-code">06760-900</span> - 
+					<span class="locality">Taboão da Serra</span> -
+					<abbr class="region">SP</abbr> -
+					PABX <span class="tel">(11) 2845-6000</span> -
+					Fax <span class="fax">(11) 4787-0058</span>
+				</span>
+			</address>        
+		</div>		
+		  
+</div> 
+<!-- fim id global-->		
+
+<script type="text/javascript">
+	var action = getURLParam('include');
+	if(action==null || action ==''){			
+		include(false);
+	}else{
+		include(true);	
+	}		
+</script>  
+
+</body>
+
+</html>

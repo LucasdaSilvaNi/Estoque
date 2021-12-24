@@ -1,0 +1,380 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<paginas>  
+  <!-- Ajuda Orgão  -->
+  <pagina>
+  <nomePagina>CadastroOrgao.aspx</nomePagina>
+  <tituloAjuda>Ajuda Cadastrar Orgão</tituloAjuda>
+  <corpo>
+  <ol type="I">
+    <li>Cadastrar Orgão</li>
+    <ol type="1">
+      <li>Pressione o botão "Novo".</li>
+      <li>O Sistema apresentará o formulário de cadastramento.</li>
+      <li>Digite o códico numérico. O Código não pode estar cadastrado e deve conter 2 caracteres.</li>
+      <li>Digite a Descrição.</li>
+      <li>Pressione o botão "Salvar".</li>
+      <li>Confirmar a gravação.</li>
+    </ol>
+    <li>Editar Orgão</li>
+    <ol type="1">
+      <li>Clique no ícone de Edição.</li>
+      <li>Altere as informações de Código e Descrição.</li>
+      <li>Pressione o botão "Salvar".</li>
+      <li>Confirmar a alteração.</li>
+    </ol>
+    <li>Excluir Orgão</li>
+    <ol type="1">
+      <li>Clique no ícone de Edição.</li>
+      <li>Pressione o botão "Excluir".</li>
+      <li>Confirmar a Exclusão.</li>
+    </ol>
+  </ol>
+  </corpo>
+</pagina>
+  <!-- Ajuda UO  -->
+  <pagina>
+    <nomePagina>CadastroUO.aspx</nomePagina>
+    <tituloAjuda>Ajuda Cadastrar UO</tituloAjuda>
+    <corpo>
+      <ol type="I">
+        <li>Cadastrar UO</li>
+        <ol type="1">
+          <li>Selecione o Orgão.</li>
+          <li>Pressione o botão "Novo".</li>
+          <li>O Sistema apresentará o formulário de cadastramento.</li>
+          <li>Digite o códico numérico. O Código não pode estar cadastrado e deve conter 4 caracteres.</li>
+          <li>Digite a Descrição.</li>
+          <li>Pressione o botão "Salvar".</li>
+          <li>Confirmar a gravação.</li>
+        </ol>
+        <li>Editar UO</li>
+        <ol type="1">
+          <li>Clique no ícone de Edição.</li>
+          <li>Altere as informações de Código e Descrição.</li>
+          <li>Pressione o botão "Salvar".</li>
+          <li>Confirmar a alteração.</li>
+        </ol>
+        <li>Excluir UO</li>
+        <ol type="1">
+          <li>Clique no ícone de Edição.</li>
+          <li>Pressione o botão "Excluir".</li>
+          <li>Confirmar a Exclusão.</li>
+        </ol>
+      </ol>
+    </corpo>
+  </pagina>
+  <!-- Ajuda UGE  -->
+  <pagina>
+    <nomePagina>CadastroUGE.aspx</nomePagina>
+    <tituloAjuda>Ajuda Manter UGE</tituloAjuda>
+    <corpo>
+      <ol type="I">
+        <li>Cadastrar UGE</li>
+        <ol type="1">
+          <li>Selecione o Orgão.</li>
+          <li>Selecione o UO.</li>
+          <li>Pressione o botão "Novo".</li>
+          <li>O Sistema apresentará o formulário de cadastramento.</li>
+          <li>Digite o códico numérico. O Código não pode estar cadastrado e deve conter 6 caracteres.</li>
+          <li>Digite a Descrição.</li>
+          <li>Selecione o Tipo: Normal ou Contábil.</li>
+          <li>Pressione o botão "Salvar".</li>
+          <li>Confirmar a gravação.</li>
+        </ol>
+        <li>Editar UGE</li>
+        <ol type="1">
+          <li>Clique no ícone de Edição.</li>
+          <li>Altere as informações de Código, Descrição e Tipo.</li>
+          <li>Pressione o botão "Salvar".</li>
+          <li>Confirmar a alteração.</li>
+        </ol>
+        <li>Excluir UGE</li>
+        <ol type="1">
+          <li>Clique no ícone de Edição.</li>
+          <li>Pressione o botão "Excluir".</li>
+          <li>Confirmar a Exclusão.</li>
+        </ol>
+      </ol>
+    </corpo>
+  </pagina>
+  <!-- Ajuda UA  -->
+  <pagina>
+    <nomePagina>CadastroUA.aspx</nomePagina>
+    <tituloAjuda>Ajuda Manter UA</tituloAjuda>
+    <corpo>
+      <ol type="I">
+        <li>Cadastrar UA</li>
+        <ol type="1">
+          <li>Selecione o Orgão.</li>
+          <li>Selecione a UO.</li>
+          <li>Selecione a UGE.</li>
+          <li>Pressione o botão "Novo".</li>
+          <li>O Sistema apresentará o formulário de cadastramento.</li>
+          <li>Digite o códico numérico. O Código não pode estar cadastrado e deve conter 7 caracteres.</li>
+          <li>Selecione a Unidade Administrativa.</li>
+          <li>Digite a Descrição.</li>
+          <li>Digite ou não o código da UA vinculada.</li>
+          <li>Selecione o Centro de Custo.</li>
+          <li>Selecione o Indicador de Atividade: Ativo ou Inativo.</li>
+          <li>Pressione o botão "Salvar".</li>
+          <li>Confirmar a gravação.</li>
+        </ol>
+        <li>Editar UA</li>
+        <ol type="1">
+          <li>Clique no ícone de Edição.</li>
+          <li>Altere as informações de Código, Unidade, Descrição, UA Viculada, Centro de Custo e Indicador de Atividade.</li>
+          <li>Pressione o botão "Salvar".</li>
+          <li>Confirmar a alteração.</li>
+        </ol>
+        <li>Excluir UA</li>
+        <ol type="1">
+          <li>Clique no ícone de Edição.</li>
+          <li>Pressione o botão "Excluir".</li>
+          <li>Confirmar a Exclusão.</li>
+        </ol>
+      </ol>
+    </corpo>
+  </pagina>
+  <!-- Ajuda Divisão  -->
+  <pagina>
+    <nomePagina>CadastroDivisao.aspx</nomePagina>
+    <tituloAjuda>Ajuda Manter Divisão</tituloAjuda>
+    <corpo>
+      <ol type="I">
+        <li>Cadastrar Divisão</li>
+        <ol type="1">
+          <li>Selecione o Orgão.</li>
+          <li>Selecione a UO.</li>
+          <li>Selecione a UGE.</li>
+          <li>Selecione a UA.</li>
+          <li>Pressione o botão "Novo".</li>
+          <li>O Sistema apresentará o formulário de cadastramento.</li>
+          <li>Digite o códico numérico. O Código não pode estar cadastrado e deve conter 3 caracteres.</li>          
+          <li>Digite a Descrição.</li>
+          <li>Selecione o Responsável.</li>
+          <li>Selecione o Almoxarifado.</li>
+          <li>Digite o Endereço.</li>
+          <li>Digite o Número.</li>
+          <li>Digite ou não o Complemento.</li>
+          <li>Digite o Bairro.</li>
+          <li>Digite o Município.</li>
+          <li>Selecione A UF.</li>
+          <li>Digite o CEP.</li>
+          <li>Digite ou não o Telefone.</li>
+          <li>Digite ou não o Fax.</li>
+          <li>Digite ou não a Área.</li>
+          <li>Digite ou não o número de Funcionários.</li>
+          <li>Selecione o Indicador de Atividade: Ativo ou Inativo.</li>
+          <li>Pressione o botão "Salvar".</li>
+          <li>Confirmar a gravação.</li>
+        </ol>
+        <li>Editar Divisão</li>
+        <ol type="1">
+          <li>Clique no ícone de Edição.</li>
+          <li>Altere as informações desejadas.</li>
+          <li>Pressione o botão "Salvar".</li>
+          <li>Confirmar a alteração.</li>
+        </ol>
+        <li>Excluir Divisão</li>
+        <ol type="1">
+          <li>Clique no ícone de Edição.</li>
+          <li>Pressione o botão "Excluir".</li>
+          <li>Confirmar a Exclusão.</li>
+        </ol>
+      </ol>
+    </corpo>
+  </pagina>
+  <!-- Ajuda Gestor  -->
+  <pagina>
+    <nomePagina>cadastroGestor.aspx</nomePagina>
+    <tituloAjuda>Ajuda Manter Gestor</tituloAjuda>
+    <corpo>
+      <ol type="I">
+        <li>Cadastrar Gestor</li>
+        <ol type="1">
+          <li>Selecione o Orgão.</li>          
+          <li>Pressione o botão "Novo".</li>
+          <li>O Sistema apresentará o formulário de cadastramento.</li>
+          <li>Digite o Digite o nome.</li>
+          <li>Nome Reduzido.</li>
+          <li>Digite o Logradouro.</li>
+          <li>Digite o Número.</li>
+          <li>Digite ou não o Complemento.</li>
+          <li>Digite o Telefone.</li>
+          <li>Digite o Código do Gestor.</li>
+          <li>Selecione o Tipo:
+          <ul  type="disc">
+            <li>Orgão: Descrição</li>
+            <li>UO: Descrição</li>
+            <li>UGE: Descrição</li>
+          </ul>
+          </li>
+          <li>Insira o logotipo. A imágem deve ser do tipo .JPG ou .GIF.</li>
+          <li>Pressione o botão "Salvar".</li>
+          <li>Confirmar a gravação.</li>
+        </ol>
+        <li>Editar Gestor</li>
+        <ol type="1">
+          <li>Clique no ícone de Edição.</li>
+          <li>Altere as informações desejadas.</li>
+          <li>Pressione o botão "Salvar".</li>
+          <li>Confirmar a alteração.</li>
+        </ol>
+        <li>Excluir Gestor</li>
+        <ol type="1">
+          <li>Clique no ícone de Edição.</li>
+          <li>Pressione o botão "Excluir".</li>
+          <li>Confirmar a Exclusão.</li>
+        </ol>
+      </ol>
+    </corpo>
+  </pagina>
+  <!-- Ajuda Almoxarifado  -->
+  <pagina>
+    <nomePagina>cadastroAlmoxarifado.aspx</nomePagina>
+    <tituloAjuda>Ajuda Manter Almoxarifado</tituloAjuda>
+    <corpo>
+      <ol type="I">
+        <li>Cadastrar Almoxarifado</li>
+        <ol type="1">
+          <li>Selecione o Orgão.</li>
+          <li>Selecione o Gestor.</li>
+          <li>Pressione o botão "Novo".</li>          
+          <li>O Sistema apresentará o formulário de cadastramento.</li>
+          <li>Digite o códico numérico. O Código não pode estar cadastrado e deve conter 3 caracteres.</li>
+          <li>Digite a Descrição.</li>
+          <li>Digite o Endereço.</li>
+          <li>Digite o Número.</li>
+          <li>Digite ou não o Complemento.</li>
+          <li>Digite o Bairro.</li>
+          <li>Digite o Município.</li>          
+          <li>Digite o Código do Gestor.</li>
+          <li>Selecione a UF.</li>
+          <li>Digite o CEP.</li>
+          <li>Digite ou não o Telefone.</li>
+          <li>Digite ou não o Fax.</li>
+          <li>Digite o Responsável.</li>
+          <li>Selecione a UGE.</li>
+          <li>Digite o Mês referência. No Padrão (AAAA/MM).</li>
+          <li>Selecione o Indicador de Atividade: Ativo ou Inativo.</li>          
+          <li>Pressione o botão "Salvar".</li>
+          <li>Confirmar a gravação.</li>
+        </ol>
+        <li>Editar Almoxarifado</li>
+        <ol type="1">
+          <li>Clique no ícone de Edição.</li>
+          <li>Altere as informações desejadas.</li>
+          <li>Pressione o botão "Salvar".</li>
+          <li>Confirmar a alteração.</li>
+        </ol>
+        <li>Excluir Almoxarifado</li>
+        <ol type="1">
+          <li>Clique no ícone de Edição.</li>
+          <li>Pressione o botão "Excluir".</li>
+          <li>Confirmar a Exclusão.</li>
+        </ol>
+      </ol>
+    </corpo>
+  </pagina>
+  <!-- Ajuda Unidade  -->
+  <pagina>
+    <nomePagina>cadastroUnidade.aspx</nomePagina>
+    <tituloAjuda>Ajuda Manter Unidade</tituloAjuda>
+    <corpo>      
+      <ol type="I">
+        <li>Cadastrar Unidade</li>
+        <ol type="1">
+          <li>Selecione o Orgão.</li>
+          <li>Selecione o Gestor.</li>
+          <li>Pressione o botão "Novo".</li>
+          <li>O Sistema apresentará o formulário de cadastramento.</li>
+          <li>Digite o códico numérico. O Código não pode estar cadastrado e deve conter 3 caracteres.</li>
+          <li>Digite a Descrição.</li>          
+          <li>Pressione o botão "Salvar".</li>
+          <li>Confirmar a gravação.</li>
+        </ol>
+        <li>Editar Unidade</li>
+        <ol type="1">
+          <li>Clique no ícone de Edição.</li>
+          <li>Altere as informações desejadas.</li>
+          <li>Pressione o botão "Salvar".</li>
+          <li>Confirmar a alteração.</li>
+        </ol>
+        <li>Excluir Unidade</li>
+        <ol type="1">
+          <li>Clique no ícone de Edição.</li>
+          <li>Pressione o botão "Excluir".</li>
+          <li>Confirmar a Exclusão.</li>
+        </ol>
+      </ol>
+    </corpo>
+  </pagina>
+  <!-- Ajuda Centro de Custo  -->
+  <pagina>
+    <nomePagina>cadastroCentroCusto.aspx</nomePagina>
+    <tituloAjuda>Ajuda Manter Centro de Custo</tituloAjuda>
+    <corpo>
+      <ol type="I">
+        <li>Cadastrar Centro de Custo</li>
+        <ol type="1">
+          <li>Selecione o Orgão.</li>
+          <li>Selecione o Gestor.</li>
+          <li>Pressione o botão "Novo".</li>
+          <li>O Sistema apresentará o formulário de cadastramento.</li>
+          <li>Digite o códico numérico. O Código não pode estar cadastrado e deve conter 22 caracteres.</li>
+          <li>Digite a Descrição.</li>
+          <li>Pressione o botão "Salvar".</li>
+          <li>Confirmar a gravação.</li>
+        </ol>
+        <li>Editar Centro de Custo</li>
+        <ol type="1">
+          <li>Clique no ícone de Edição.</li>
+          <li>Altere as informações desejadas.</li>
+          <li>Pressione o botão "Salvar".</li>
+          <li>Confirmar a alteração.</li>
+        </ol>
+        <li>Excluir Centro de Custo</li>
+        <ol type="1">
+          <li>Clique no ícone de Edição.</li>
+          <li>Pressione o botão "Excluir".</li>
+          <li>Confirmar a Exclusão.</li>
+        </ol>
+      </ol>
+    </corpo>
+  </pagina>
+  <!-- Ajuda Responsável  -->
+  <pagina>
+    <nomePagina>cadastroResponsavel.aspx</nomePagina>
+    <tituloAjuda>Ajuda Manter Responsável</tituloAjuda>
+    <corpo>
+      <ol type="I">
+        <li>Cadastrar Responsável</li>
+        <ol type="1">
+          <li>Selecione o Orgão.</li>
+          <li>Selecione o Gestor.</li>
+          <li>Pressione o botão "Novo".</li>
+          <li>O Sistema apresentará o formulário de cadastramento.</li>
+          <li>Digite o códico numérico. O Código não pode estar cadastrado e deve conter 11 caracteres.</li>
+          <li>Digite a Descrição.</li>
+          <li>Digite o Cargo.</li>
+          <li>Digite o Endereço.</li>
+          <li>Pressione o botão "Salvar".</li>
+          <li>Confirmar a gravação.</li>
+        </ol>
+        <li>Editar Responsável</li>
+        <ol type="1">
+          <li>Clique no ícone de Edição.</li>
+          <li>Altere as informações desejadas.</li>
+          <li>Pressione o botão "Salvar".</li>
+          <li>Confirmar a alteração.</li>
+        </ol>
+        <li>Excluir Responsável</li>
+        <ol type="1">
+          <li>Clique no ícone de Edição.</li>
+          <li>Pressione o botão "Excluir".</li>
+          <li>Confirmar a Exclusão.</li>
+        </ol>
+      </ol>
+    </corpo>
+  </pagina>
+</paginas>

@@ -1,0 +1,40 @@
+/*********************************************
+Sistema: SAM - Sistema de Administração de Materiais
+Autor: Prodesp
+Versão: 09/2011
+
+FOLHA DE ESTILO DE IMPRESSÃO
+*********************************************/
+
+body {
+	color: #000;
+	font: 11px Verdana, Arial, Helvetica, sans-serif;
+	background-color: #FFF;
+	width: 100%;
+}
+
+/* cabeçalho */
+#header { height: 30px; }
+#barraCliente, #toolbox, #nav_main, #barragoverno { display:none; }
+#logo a {
+	color: #000;
+	text-indent: 0;
+	width: 100%; 
+	height: 15px;
+	text-decoration: none;
+	font-size: 16px;
+}
+
+ul#usuario { color:#000; width: 700px; margin-bottom: 10px; margin-right:0;}
+ul#usuario li.last { display:none; }
+ul#usuario li	{border:none;}
+
+/* conteudo */
+#content { float: none; width: 100%; }
+#content h1, #content_popup h1 { color:#000; font-size: 14px; }
+
+/* borda layout */
+#header, #content { border: none; }
+
+/* rodapé */
+#footer { display: none; }

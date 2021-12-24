@@ -1,0 +1,383 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CEE7DB4B-AF76-4D32-A630-5268A6DABF1C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sam.Infrastructure</RootNamespace>
+    <AssemblyName>Sam.Infrastructure</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Sam.Web\bin\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;COMPILAR_PADRAO_SIAFEM</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Sam.Web\bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Itanium'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\Sam.Web\bin\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;COMPILAR_PADRAO_SIAFEM</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\Sam.Infraestructure.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Arquivos de programas\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Arquivos de programas\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Itanium'">
+    <OutputPath>..\Sam.Web\bin\</OutputPath>
+    <DefineConstants>TRACE;COMPILAR_PADRAO_SIAFEM</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\Sam.Infraestructure.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Arquivos de programas\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Arquivos de programas\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\Sam.Web\bin\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;COMPILAR_PADRAO_SIAFEM</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\Sam.Infraestructure.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Arquivos de programas\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Arquivos de programas\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>..\Sam.Web\bin\</OutputPath>
+    <DefineConstants>TRACE;COMPILAR_PADRAO_SIAFEM</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\Sam.Infraestructure.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Arquivos de programas\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Arquivos de programas\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\Sam.Web\bin\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;COMPILAR_PADRAO_SIAFEM</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\Sam.Infraestructure.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Arquivos de programas\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Arquivos de programas\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>..\Sam.Web\bin\</OutputPath>
+    <DefineConstants>TRACE;COMPILAR_PADRAO_SIAFEM</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\Sam.Infraestructure.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Arquivos de programas\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Arquivos de programas\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'COMPILAR_PADRAO_SIAFEM|AnyCPU'">
+    <OutputPath>..\Sam.Web\bin\</OutputPath>
+    <DefineConstants>TRACE;COMPILAR_PADRAO_SIAFEM</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>..\Sam.Web\bin\Sam.Infrastructure.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'COMPILAR_PADRAO_SIAFEM|Itanium'">
+    <OutputPath>..\Sam.Web\bin\</OutputPath>
+    <DefineConstants>TRACE;COMPILAR_PADRAO_SIAFEM</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\Sam.Infraestructure.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Arquivos de programas\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Arquivos de programas\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'COMPILAR_PADRAO_SIAFEM|x64'">
+    <OutputPath>..\Sam.Web\bin\</OutputPath>
+    <DefineConstants>TRACE;COMPILAR_PADRAO_SIAFEM</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\Sam.Infraestructure.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Arquivos de programas\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Arquivos de programas\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'COMPILAR_PADRAO_SIAFEM|x86'">
+    <OutputPath>..\Sam.Web\bin\</OutputPath>
+    <DefineConstants>TRACE;COMPILAR_PADRAO_SIAFEM</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\Sam.Infraestructure.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Arquivos de programas\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Arquivos de programas\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Doddle.Linq.Audit, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Sam.Web\bin\Doddle.Linq.Audit.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="EntityFramework.Extended">
+      <HintPath>..\packages\EntityFramework.Extended.5.0.0.73\lib\net40\EntityFramework.Extended.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Sam.Entity, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Entity.Design" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AbstractCrud.cs" />
+    <Compile Include="Constantes.cs" />
+    <Compile Include="ContexManager.cs" />
+    <Compile Include="Infrastructure.Carga\CargaInfrastructure.cs" />
+    <Compile Include="Infrastructure.Carga\ControleInfrastructure.cs" />
+    <Compile Include="Infrastructure.Carga\CargaErroInfrastructure.cs" />
+    <Compile Include="Infrastructure.CorrecaoBase\CorrecaoSaldolInfrastructure.cs" />
+    <Compile Include="Infrastructure.Customizados\TB_NOTIFICACAO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure.Customizados\TB_SUBITEM_MATERIAL.cs" />
+    <Compile Include="Infrastructure.Customizados\TB_MOVIMENTO.cs" />
+    <Compile Include="Infrastructure.Customizados\TB_MOVIMENTO_ITEM.cs" />
+    <Compile Include="Infrastructure.Interface\IMovimentoPendente.cs" />
+    <Compile Include="Infrastructure.Materiais\AlmoxarifadoInfrastructure.cs" />
+    <Compile Include="Infrastructure.Materiais\ClasseInfrastructure.cs" />
+    <Compile Include="Infrastructure.Materiais\ContaAuxiliarInfrastructure.cs" />
+    <Compile Include="Infrastructure.Materiais\CentroCustoInfrastructure.cs" />
+    <Compile Include="Infrastructure.Materiais\ItemNaturezaDespesaInfrastructure.cs" />
+    <Compile Include="Infrastructure.Materiais\FechamentoInfrastructure.cs" />
+    <Compile Include="Infrastructure.Materiais\MovimentoRecalcularInfrastructure.cs" />
+    <Compile Include="Infrastructure.Materiais\SerializacaoInfrastructure.cs" />
+    <Compile Include="Infrastructure.Materiais\UnidadeFornecimentoConversaoInfrastructure.cs" />
+    <Compile Include="Infrastructure.Materiais\UnidadeFornecimentoSiafInfrastructure.cs" />
+    <Compile Include="Infrastructure.Materiais\UoInfrastructure.cs" />
+    <Compile Include="Infrastructure.Materiais\UfInfrastructure.cs" />
+    <Compile Include="Infrastructure.Materiais\UgeInfrastructure.cs" />
+    <Compile Include="Infrastructure.Materiais\ResponsavelInfrastructure.cs" />
+    <Compile Include="Infrastructure.Materiais\UaInfrastructure.cs" />
+    <Compile Include="Infrastructure.Materiais\SaldoSubItemInfrastructure.cs" />
+    <Compile Include="Infrastructure.Materiais\MovimentoItemInfrastructure.cs" />
+    <Compile Include="Infrastructure.Materiais\FornecedorInfrastructure.cs" />
+    <Compile Include="Infrastructure.Materiais\GestorInfrastructure.cs" />
+    <Compile Include="Infrastructure.Materiais\UnidadeFornecimentoInfrastructure.cs" />
+    <Compile Include="Infrastructure.Materiais\NaturezaDespesaInfrastructure.cs" />
+    <Compile Include="Infrastructure.Materiais\SubItemMaterialInfrastructure.cs" />
+    <Compile Include="Infrastructure.Materiais\MaterialInfrastructure.cs" />
+    <Compile Include="Infrastructure.Materiais\GrupoInfrastructure.cs" />
+    <Compile Include="Infrastructure.Materiais\ItemMaterialInfrastructure.cs" />
+    <Compile Include="Infrastructure.Materiais\OrgaoInfrastructure.cs" />
+    <Compile Include="Infrastructure.Materiais\DivisaoInfrastructure.cs" />
+    <Compile Include="BaseInfraStructure.cs" />
+    <Compile Include="Infrastructure.Segurança\ESPInfrastructure.cs" />
+    <Compile Include="Infrastructure.Segurança\NivelInfrastructure.cs" />
+    <Compile Include="Infrastructure.Segurança\NotificacaoInfrastructure.cs" />
+    <Compile Include="Infrastructure.Materiais\SubItemMaterialAlmoxInfrastructure.cs" />
+    <Compile Include="Infrastructure.Materiais\LogErroInfrastructure.cs" />
+    <Compile Include="Infrastructure.Segurança\ConvenioInfrastructure.cs" />
+    <Compile Include="Infrastructure.Segurança\EstruturasInfrastructure.cs" />
+    <Compile Include="Infrastructure.Segurança\ICrudBase.cs" />
+    <Compile Include="Infrastructure.Segurança\LoginInfraStructure.cs" />
+    <Compile Include="Infrastructure.Segurança\LoginNovoInfraStructure.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure.Segurança\MaterialApoioInfrastructure.cs" />
+    <Compile Include="Infrastructure.Segurança\PerfilInfrastructureAntigo.cs" />
+    <Compile Include="Infrastructure.Segurança\PerfilLoginInfrastructure.cs" />
+    <Compile Include="Infrastructure.Segurança\PerfilLoginNivelAcessoInfrastructure.cs" />
+    <Compile Include="Infrastructure.Segurança\PerfilNivelInfrastructure.cs" />
+    <Compile Include="Infrastructure.Segurança\PerfilNivelInfrastructureAntigo.cs" />
+    <Compile Include="Infrastructure.Segurança\SegurancaAbstractContext.cs" />
+    <Compile Include="Infrastructure.Segurança\SistemaInfrastructureAntigo.cs" />
+    <Compile Include="Infrastructure.Segurança\TransacaoPerfilInfrastructure.cs" />
+    <Compile Include="Infrastructure.Segurança\SistemaInfrastructure.cs" />
+    <Compile Include="ICrudBase.cs" />
+    <Compile Include="Infrastructure.Materiais\MovimentoInfrastructure.cs" />
+    <Compile Include="Infrastructure.Segurança\UsuarioInfraStructure.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SamModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SamModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure.Segurança\PerfilInfrastructure.cs" />
+    <Compile Include="Infrastructure.Segurança\TransacaoInfrastructure.cs" />
+    <Compile Include="Infrastructure.Segurança\ModuloInfrastructure.cs" />
+    <Compile Include="SegModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SegModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="TraceEntity.cs" />
+    <Compile Include="Infrastructure.Segurança\UsuarioLogadoInfrastructue.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="SamModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SamModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\DataSources\DbImportacaoTesteEntities.datasource" />
+    <None Include="Properties\DataSources\SAMwebEntities.datasource" />
+    <None Include="Properties\DataSources\SAMwebEntitiesNovo.datasource" />
+    <None Include="Properties\DataSources\SEGwebEntities.datasource" />
+    <None Include="Properties\DataSources\SEGwebEntitiesNovo.datasource" />
+    <EntityDeploy Include="SegModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SegModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="SamModel.Designer.cs_BUILD_OK" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sam.Common\Sam.Common.csproj">
+      <Project>{D02BD38A-9FD0-4582-93C4-06DE59DCEB22}</Project>
+      <Name>Sam.Common</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Sam.Domain.Business\Sam.Domain.Business.csproj">
+      <Project>{5C00ED14-B93F-4937-8285-1D61958102D8}</Project>
+      <Name>Sam.Domain.Business</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Sam.Domain.Entity\Sam.Domain.Entity.csproj">
+      <Project>{4ED2F2CC-F96D-4FB0-A662-A591A1C0F50B}</Project>
+      <Name>Sam.Domain.Entity</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Sam.Domain.Infrastructure\Sam.Domain.Infrastructure.csproj">
+      <Project>{21CE02F8-90D6-49E2-8FD0-C01F60CB0BD6}</Project>
+      <Name>Sam.Domain.Infrastructure</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

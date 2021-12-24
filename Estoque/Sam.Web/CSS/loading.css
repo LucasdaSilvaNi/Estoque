@@ -1,0 +1,36 @@
+﻿body{
+    height:100%;
+}
+.updateModal { 
+    position: absolute; 
+    top: -22px; 
+    left: -142px; 
+    right: 0px;/* IE não le isso */ 
+    bottom: -22px;/* IE não le isso */
+    padding:0px; 
+    background-color:Gray;
+    filter:alpha(opacity=80);
+    opacity:0.8;
+    overflow: auto; 
+    /* Para o IE */
+    height: expression(document.body.clientHeight + "px"); 
+    width: expression(document.body.clientWidth + "px"); 
+} 
+
+.updateModalBox
+{
+    padding: 4px;
+    border: 0;
+    position: absolute;
+    display: block;
+    background-color: White;
+    left: 50%;
+    top: 50%;
+    filter:alpha(Opacity=100, FinishOpacity=0);
+    opacity:1.0;
+    margin-top: -35px;
+    margin-left: -100px;
+    height: 70px;
+    padding-top: 20px;
+    width: 200px;
+}

@@ -1,0 +1,1068 @@
+/*********************************************
+Sistema: SAM - Sistema de Administração de Materiais
+Autor: Prodesp
+Versão: 08/2011
+*********************************************/
+
+/***********************
+Geral
+***********************/
+
+
+* {margin: 0; padding: 0;}
+
+html {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 100.01%;
+}
+
+#progressBackgroundFilter {
+    position:fixed;
+    top:0px;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    overflow:hidden;
+    padding:0;
+    margin:0;
+    background-color:#000;
+    filter:alpha(opacity=10);
+    opacity:0.5;
+    z-index:1000;
+}
+#processMessage {
+    position:fixed;
+    top:48%;
+    left:48%;
+    padding:10px;
+    width:auto;
+    z-index:1001;
+    background-color:#fff;
+    border:solid 1px #000;
+}
+
+#simplemodal-container a.modalCloseImg {
+	background:url(/img/x.png) no-repeat; /* adjust url as required */
+	width:25px;
+	height:29px;
+	display:inline;
+	z-index:3200;
+	position:absolute;
+	top:-15px;
+	right:-18px;
+	cursor:pointer;
+}
+
+.esconderControle
+{
+    display: none;
+}
+
+.mostrarControle
+{
+    display: block;
+}
+
+body {
+	color: #193B57;
+	font-size: 62.5%; 
+	margin: 0 auto !important;	
+	width: 802px;	
+}
+
+.thCongelar
+{
+    position: relative; 
+}
+
+.basic
+{
+    
+    margin-bottom: -3px;
+    width: 22px;
+}
+
+img {border: none}
+hr	 {margin: 1px 0, 5px, 0; color:#193B57; border-width:thin}
+pre {font-size: 12px;}
+small {font-size: 0.9em; padding-top: 6px; float: left;}
+
+/* Utilizado no texto de campos obrigatório*/
+p small
+{
+    color: #BF0000;
+    font-weight:bold;
+}
+
+.TextValorRed
+{
+    color: #BF0000;
+    font-weight:bold;
+}
+
+#global {background-color:#FFF; margin:0 auto; width:742px;}
+
+/* Esconde texto de Acessibilidade */
+.esconder {
+	display: block;
+	height: 1px;
+	width: 1px;
+	left: -999em;
+	overflow: hidden;
+	position: absolute;
+}
+
+/***********************
+Header
+***********************/
+#header {
+	height: 97px;
+	border-left: 1px solid #CCC;
+	border-right: 1px solid #CCC;
+    min-height: 138px;
+}
+
+/* Barra do cliente */
+#barraCliente{
+	background-color:#E4E4E4;
+	height:18px;	
+	padding:1px 0 0 10px;
+}
+/* Barra Azul para utilizar quanto não há menu */
+.barraAzul{
+	background-color:#193B57;
+	height:1px;
+	width:100%;
+}
+
+#barraCliente a, #barraCliente a:hover{
+	color:#333;
+	text-decoration:none;
+	font-weight:normal;
+}
+
+/* Logo */
+#logo a {
+	/*background: url(../imagens/logo.gif) no-repeat left top;*/
+    background: url(../imagens/logo__periodo_eleitoral.png) no-repeat left top;
+	display: block;
+	float:left;
+	margin: 6px 0 6px 5px;
+	height: 35px;
+	width: 400px; 
+	text-indent: -9000px;
+    min-height: 75px;
+}
+
+/***********************
+Acessibilidade
+***********************/
+
+/* Utilizado para Aumentar/Diminuir tamanho da fonte */
+.maior1   	{ font-size: 1.30em; }
+.maior2  	{ font-size: 1.35em; }
+.maior3   	{ font-size: 1.45em; }
+.maior4   	{ font-size: 1.55em; }
+
+.menor1   	{ font-size: 0.90em; }
+.menor2   	{ font-size: 0.85em; }
+.menor3  	{ font-size: 0.80em; }
+.menor4  	{ font-size: 0.75em; }
+
+/* Ícones */
+ul#toolbox {
+	float:right; 
+	font-size: 14px;
+	margin-top: -19px;
+	height:16px;
+	width: 330px;
+	text-align:right;
+}
+
+ul#toolbox span {font-size:11px;}
+ul#toolbox li   {display:inline; padding-left:16px;}
+
+ul#toolbox li a {
+	color:#666;
+	font-weight: normal;
+	padding-left: 20px;
+	text-decoration:none;
+}
+
+ul#toolbox li.contrasteLink a {background:url(../imagens/contraste.gif) no-repeat left center;}
+ul#toolbox li.fale a {background:url(../imagens/fale.gif) no-repeat left center; margin-right: 10px;}
+
+/* Dados do Usuário */
+ul#usuario{
+	width: 330px;
+	float:right; 
+	text-align:right;
+	/*margin-top: 15px;*/
+    margin-top: 62px;
+	margin-right:4px;
+	font-size:11p;
+	color:#666;
+}
+
+ul#usuario li		{display:inline;padding:0 5px;border-right:1px solid #666;}
+ul#usuario li a	{text-decoration:none; color: #666;}
+ul#usuario li.last{border:none;padding-right:0;}
+
+
+/***********************
+Ajuda
+***********************/
+
+#divAjuda
+{
+}
+div li
+{
+    margin-left: 30px;
+    margin-bottom: 5px;
+    margin-top: 3px;
+}
+div ol
+{
+    font-weight:bold;
+}
+div ol ol
+{
+    font-weight:normal;
+}
+
+/***********************
+Navegação Principal
+***********************/
+#nav_main {height:31px;	clear:both; background: url(../imagens/bg_nav_main.jpg) repeat; width: 100%;}
+
+#nav_main ul li{
+	display:inline;
+	float:left;
+	margin:0;
+	padding:0;
+	text-align:center;
+}
+
+#nav_main ul li a {
+	color:#FFF;
+	text-decoration:none;
+	font-size:12px;
+	font-weight:bold;
+	height:15px;
+	display:block;
+	padding:8px 32px;
+	/*width: 108px;*/
+	background:url(../imagens/bg_nav_main_over.jpg) repeat;
+}
+
+#nav_main ul li a.firstNavMain {background:url(../imagens/bg_nav_main_over_first.jpg) repeat;}
+
+#topbar {
+	height:30px;
+	clear:both;
+	background:url(../imagens/bg_nav_main.jpg) repeat;
+}
+
+/***********************
+Barra do Gestor
+***********************/
+#barraGestor {
+	background-color: #E4E4E4;
+	border: 1px solid #CCC;
+	font-size: 1.1em;
+	padding: 3px;
+	height: 30px;
+	/*overflow: hidden;*/
+	text-align :left;
+	font-size:9;
+    min-height: 45px;
+}
+
+.gestor {width: 65%; float: left; text-align:left; font-size:9}
+.mesref {width: 35%;text-align: right;font-size:9}
+
+/***********************
+Conteúdo
+***********************/
+#content{
+	width:720px;
+	border-left: 1px solid #CCC;
+	border-right: 1px solid #CCC;
+	float:left;
+	font-size:1.1em;
+	padding:0 10px;
+}
+
+#content_popup{
+	width:720px;
+	min-height: 280px;
+	height: auto !important;
+	height: 280px;
+	float:left;
+	font-size:1.1em;
+	padding:0 10px;
+}
+
+
+/* necessário para poder alinhar os botões perto do rodapé */
+#interno{	
+	text-align:left;
+}
+
+#internoAba{
+	min-height: 180px;
+	height: auto !important;
+	height: 180px;
+}
+
+#content h1, #content_popup h1{
+	color:#193B57;
+	font-size:1.6em;
+	font-weight:bold;
+	margin-top: 10px;
+	margin-bottom:10px;
+	text-align: center;
+}
+
+#content h3, #content_popup h1{
+	color:#193B57;
+	font-size:1.4em;
+	font-weight:bold;
+	margin-top: 5px;	
+	text-align: left;
+}
+
+#content p, #content_popup p{
+	color: #193B57;
+	margin: 5px 0;
+	line-height:20px;
+	font-size: 1.2em;
+}
+
+/***********************
+Tabela
+***********************/
+table.tabela{
+	border-collapse: collapse;
+	background: #FFF;
+	color: #193B57;
+	border-bottom-color:#193B57; 
+	border-top:#193B57; 
+	border-left:#193B57; 
+	border-right:#193B57; 
+	width: 100%;
+	clear:both;
+}
+table.tabela td{
+	border: 1px solid #193B57;
+	font-size:1.1em;
+	padding: 2px;
+}
+table.tabela th {
+	border: 1px solid #FFFFFF;
+	font-size:1.2em;
+	color: #FFFFFF;
+	font-weight:bold;
+	background: #193B57;
+	font-weight: bold;
+	text-align: center;	
+}
+table .alt { background: #fcfcfc url(grd_alt.png) repeat-x top; }
+/*table .pgr { background: #FFFFFF url(grd_pgr.png) repeat-x top; }*/
+table .pgr table { margin: 5px 0;}   
+table .pgr td {    
+border: 1px solid #193B57;
+border-top:1px solid #369;
+border-bottom:1px solid #369;
+border-left:1px solid #369;
+border-right:1px solid #369;    
+padding-left: 8px;
+padding-right: 8px;	
+margin: 0 0 0 2px;
+line-height: 20px;	
+color: red;
+font-weight: bold;
+}
+table .pgr a { color: #193B57; text-decoration: none; }   
+table .pgr a:hover { color: red; text-decoration: none; } 
+
+table.tabela tr.odd {background:#E4E4E4;}
+table.tabela td.center, table.tabela th.center {text-align: center;}
+
+table.almoxarifado th, table.almoxarifado td {text-align: center;}
+
+/***********************
+Rodapé
+***********************/
+#footer{
+	background-color:#193B57;
+	border-top:3px solid #369;
+	clear:both;
+	color: #FFF;
+	display:block;
+	font-size: 1.1em;
+	height:35px;
+	padding-top: 5px;
+	text-align:center;
+}
+
+/* Vcard */
+.adr {font-style: normal; font-size:1.1em;}
+.org {font-style: italic;}
+
+
+/***********************
+Página de Consulta
+***********************/
+
+.tab {
+      margin-left : 0px;
+      font-family: Arial;
+      font-size: 14px;
+      color: Black;
+}
+ 
+.item
+{
+      background: #101010;
+      color: white;
+      text-transform: capitalize;
+      padding-left:5px;
+      padding-right:5px;
+      padding-bottom: 5px;
+      padding-top: 5px;
+}
+ 
+.selectedTab
+{
+      font-style: italic;
+      font-weight: bold;
+      color: Black;
+      background: #f1f1f1;
+}
+ 
+/*.tab a:hover*/
+.hov
+{
+      text-decoration: none; 
+}
+ 
+ 
+.conteudo
+{
+      border-top : 1px solid;
+      border-bottom : 1px solid;
+      border-left : 1px solid;
+      border-right : 1px solid;
+}
+/***********************
+Formatação Botão
+***********************/
+.button {
+	border:#193B57 1px solid;
+    border-left:#193B57 1px solid;     
+    margin:0px 0px;    
+    background:#F1F1F1; 
+    font-weight:bold; 
+    color:#193B57; 
+    font-size: 12px;
+    font-family: Arial, Verdana, Helvetica, sans-serif; 
+    border-top:#193B57 2px solid; 
+    border-top:#193B57 1px solid; 
+    border-right:#193B57 1px solid;     
+    padding-bottom:1px;
+    padding-left:1px;
+    padding-right:1px;
+    padding-top:1px;
+    
+}
+.button2 {
+	border:#ffffff 1px solid;
+    border-left:#ffffff 1px solid;     
+    margin:0px 0px;
+    background:#193B57; 
+    font-weight:bold; 
+    color:#ffffff; 
+    font-size: 0.9em;
+    font-family: Arial, Verdana, Helvetica, sans-serif; 
+    border-top:#ffffff 2px solid; 
+    border-top:#ffffff 1px solid; 
+    border-right:#ffffff 1px solid; 
+    
+    padding-bottom:1px;
+    padding-left:1px;
+    padding-right:1px;
+    padding-top:1px;
+    
+}
+.button span {
+	background: transparent url('../imagens/button_left.png') no-repeat; 
+	display: block;
+	line-height: 12px;
+	padding: 8px 0 7px 18px;
+}
+
+/* Botão Desabilitado */ 
+a.button span.desabil {color: #BBB;}
+
+/***********************
+Alinhamento Botões
+***********************/
+.botao{
+	clear: both; 
+	overflow: hidden;
+}
+
+/* Botao direita */
+p.botaoRight {float: right; overflow: hidden;}
+
+/* Botao esquerda */
+p.botaoLeft {float: left; overflow: hidden;}
+
+/***********************
+Paginação
+***********************/
+.paginacao{
+	clear: both;
+	width: 100%;
+	font-size: 11px;
+	margin-top: 5px;
+	overflow: hidden;	
+}
+
+.navwrap {float:left; position:relative; left:50%;}
+.paginacao ul.nav {text-align:center; position:relative; left:-50%;} /* ver hack pro ie 7 */
+
+.paginacao ul.nav li {
+	border: 1px solid #193B57;
+	float: left;
+	display: block;
+	margin: 0 0 0 2px;
+	line-height: 20px;
+	color: #CCC;
+	width: 20px;
+	font-weight: bold;
+}
+
+#content div.paginacao ul.nav li a, #content_popup div.paginacao ul.nav li a {
+	text-decoration: none;
+	display: block;
+	margin: 0;
+	color: #666;
+	font-weight: bold;		
+}
+
+.paginacao ul.nav li.active {background-color: #369; color: #FFF;}
+
+/***********************
+Formulários
+***********************/
+
+.labelFormulario
+{
+    display: block;
+    float: left;
+    font-size: 0.9em;
+    font-weight: bold;
+    margin-right: 5px;
+    text-align: right;
+    }
+    
+.fieldset {
+    background-color: #E4E4E4;
+    border: 1px solid #193B57;
+    margin-bottom: 10px;
+    padding: 4px;
+    font-size: 12px;
+    font-family: Arial, Verdana, Helvetica, sans-serif;    
+}
+
+.radio
+{
+    font-size: 18px;
+    font-family: Arial;
+}
+
+
+
+div.formulario {margin-top: 10px;}
+
+div.formulario fieldset{
+	background-color: #E4E4E4;
+    border: 1px solid #193B57;
+    margin-bottom: 10px;
+    padding: 4px;
+    font-size: 12px;
+    font-family: Arial, Verdana, Helvetica, sans-serif;    
+}
+
+div.formulario legend{
+	color:#666;
+	font-weight: bold;
+	font-size: 12px;
+	margin-bottom: 10px;
+}
+
+div.formulario p {
+	clear: both;
+	font-size: 1.0em;
+	text-align: left;
+	overflow: hidden;
+	margin: 0 !important;
+	margin-bottom: 5px !important;
+}
+
+div.formulario p.logo {
+	/*padding-left: 140px;*/
+}
+
+div.formulario label {
+	display: inline;
+	font-size: 10pt;
+	font-weight: normal;
+	width: 200px;
+	text-align: right;
+	margin-right: 0px;
+	height: 16px;
+}
+div.formulario textarea,
+
+div.formulario textarea, input, select {
+  font-size: 13px;
+  color: #193B57;
+  font-family: Arial, Verdana, Helvetica, sans-serif;
+  border-left:#536C81 1px solid;
+  padding-bottom:0px;
+  margin:0px 0px 0px 0px;
+  padding-left:5px;
+  padding-right:5px;
+  border-top:#536C81 1px solid;
+  border-bottom:#536C81 1px solid;
+  border-right:#536C81 1px solid;
+  padding-top:0px;  
+}
+
+textarea {
+  font-size: 13px;
+  color: #193B57;
+  font-family: Arial, Verdana, Helvetica, sans-serif;
+  border-left:#536C81 1px solid;
+  padding-bottom:0px;
+  margin:0px 0px 0px 0px;
+  padding-left:5px;
+  padding-right:5px;
+  border-top:#536C81 1px solid;
+  border-bottom:#536C81 1px solid;
+  border-right:#536C81 1px solid;
+  padding-top:0px;
+  
+}
+
+input[type="radio"], input[type="checkbox"]
+{
+    border-top:0px;
+    border-bottom:0px;
+    border-left:0px;
+    border-right:0px;
+}
+ 
+
+
+div.formulario p.sideduplo{
+	float: left;
+	clear: none;
+	width: 50%;
+}
+
+div.formulario select.selecioneMaior{	width: 400px;}
+div.formulario select.selecioneMedio{	width: 280px;}
+div.formulario select.selecioneMenor{	width: 100px;}
+
+div.formulario label.alt70 { height: 70px;}
+
+div.formulario div.fechamento{ 
+	width: 600px;
+	height:280px;
+	overflow:scroll;
+}
+
+/* Formulários Especiais */
+
+/* Dividir a tela em 2 fieldsets lado a lado - exemplo: Saida Materiais */
+
+div.formulario fieldset.sideLeftSaida1{
+	width: 200px;
+	font-size: 12px;
+	float: left;
+	margin-right: 10px;
+	height:100px;
+	border:#193B57 1px solid;
+	
+}
+
+div.formulario fieldset.sideLeftSaida2{
+	width: 200px;
+	font-size: 12px;
+	float: left;
+	margin-right: 10px;
+	margin-left: -220px;
+	margin-top: 120px;
+	height:65px;
+	border:#193B57 1px solid;
+}
+div.formulario fieldset.sideRightSaida  label{
+	width: 130px;
+	border:#193B57 1px solid;
+}
+
+div.formulario fieldset.sideRightSaida 
+{
+    height:185px;
+    width: 490px;
+    border:#193B57 1px solid;
+}
+
+/* Dividir a tela em 2 fieldsets lado a lado - exemplo: Entrada de Materiais */
+div.formulario fieldset.sideLeft{
+	width: 200px;
+	font-size: 12px;
+	float: left;
+	margin-right: 10px;	
+	border:#193B57 1px solid;
+}
+
+div.formulario fieldset.sideLeftEntrada1{
+	width: 200px;
+	font-size: 12px;
+	float: left;
+	margin-right: 10px;
+	height:180px;
+	border:#193B57 1px solid;
+}
+
+div.formulario fieldset.sideLeftEntrada2{
+	width: 200px;
+	font-size: 12px;
+	float: left;
+	margin-top: 200px;
+	margin-right: 10px;
+	margin-left: -220px;
+	height:90px;
+	border:#193B57 1px solid;
+}
+
+div.formulario fieldset.sideRightEntrada  label{
+	width: 130px;
+	border:#193B57 1px solid;
+}
+
+div.formulario fieldset.sideRightEntrada
+{
+    height:310px;
+    width: 490px;
+    border:#193B57 1px solid;
+}
+
+div.formulario fieldset.sideRight  label{
+	width: 130px;
+	height:245px;
+	border:#193B57 1px solid;	
+}
+
+div.formulario fieldset.sideRight 
+{
+    
+}
+
+/***********************
+Login
+***********************/
+form#login{
+	margin:0 auto;
+	padding:2px;
+	width:370px;
+	margin-bottom:30px;
+}
+form#login fieldset{background-color: transparent;}
+form#login legend{color:#666; font-size:12px; font-weight:bold;}
+form#login label{width:100px; font-size: 11px; font-weight: bold; text-align: right; margin-right: 4px;}
+form#login p{margin:5px 0;}
+#login a{font-size:0.9em;color:#369}
+#login a.button{font-size:11px;color:#333}
+
+#login ul{
+	width:250px;
+	margin-top:10px;
+	margin-left: 70px;
+}
+
+#login ul li{	
+	display:block;
+	float:left;
+	padding-left:14px;
+}
+
+#login #botaoLogin {
+	margin: 0 auto !important;
+	width: 66px;
+}
+
+/***********************
+Boxes Home
+***********************/
+#tabelas, #almoxarifado, #patrimonio{
+	width: 100%;
+	float: left;
+	margin-top: 15px;
+	border: 1px solid #193B57;
+}
+
+#patrimonio{margin-bottom: 20px;}
+
+#tabelas h2, #almoxarifado h2, #patrimonio h2{
+	background-color: #193B57;
+	border-bottom: 1px dotted #193B57;
+	color: #FFF;
+	font-size: 1.4em;
+	padding: 5px;
+}
+
+#tabelas p, #almoxarifado p, #patrimonio p{
+	color: #193B57;
+	margin-left: 115px;
+	font-size: 1.1em;
+	padding: 5px;
+	margin: 0;
+	line-height:14px;
+}
+
+#minha_area {
+	width: 200px;
+	margin-left: 20px;
+	margin-top: 15px;
+	float: right;
+	border: 1px solid #333;
+}
+
+#minha_area h2{
+	background-color: #CCC;
+	border-bottom: 1px dotted #333;
+	font-size: 1.4em;
+	padding: 5px;
+}
+
+#minha_area ul{margin-top: 15px; font-size: 1.1em;}
+
+#minha_area ul li{margin-bottom: 15px;list-style: none;}
+
+#minha_area ul li a{
+	color: #333;
+	margin-bottom: 8px;
+	margin-left: 10px;
+	padding: 0 13px;
+	background: url(../imagens/seta.gif) no-repeat 0 2px;	
+}
+
+/***********************
+Menus Internos (fluxogramas)
+***********************/
+#container_abas_tabelas, #conteudoAlmoxarifado {text-align: center;}
+
+/***********************
+ABAS 
+***********************/
+/* formata a aparência do div externo */
+div.aba {
+	  border: 1px solid #DDD;
+	  padding: 10px;
+	  padding-top: 10px;
+	  margin-bottom: 10px;
+	  clear: left;   
+	  height: auto !important;
+}
+
+/* formata as abas, estas estão dentro do jquery.aba.js */
+#nav {
+	font-size: 12px;
+	margin-top: 10px;
+	padding:3px 0;
+	border-bottom:1px solid #DDD;
+	font-weight:bold; 
+}
+#nav li {
+	list-style:none;
+	margin-right:6px;
+	display:inline;
+}
+#nav li a {
+	padding:3px 30px;
+	border:1px solid #DDD;
+	border-bottom:none;
+	background:#C0D6DF;
+	color:#333;
+	text-decoration:none;
+}
+#nav li a:hover {
+	color:#FFF;
+	background:#369;
+	border-color:#DDD;
+}
+#nav li a.corrente {
+	background:#fff;
+	border-bottom:1px solid #fff;
+	color: #333;	
+}
+
+/***********************
+Mensagens
+***********************/
+.msg_erro {
+	text-align: center;
+	font-size: 1.1em;
+	color: #C00;
+}
+
+form textarea.preencher, input.preencher, select.preencher {
+  border: 1px solid #C00;
+}
+
+
+/*-----------------------------------------------------------------------------*/
+
+/***********************
+Menu Vertical - TESTE
+***********************/
+#menu {
+	width: 150px;
+	float: left;
+	text-align:right;
+	font-size: 11px;
+	margin: 20px 0;
+}
+
+ul#menu {list-style-type: none;font-size:12px;}
+
+ul#menu  li a {
+	display: block;	
+	border-bottom: 1px dotted #CCC;	
+	color: #333;
+	font-weight: normal;
+	text-decoration: none;
+	margin:0 auto;
+	padding:5px 3px 5px 0;
+}
+
+ul#menu  li a:hover {
+	background-color:#DDD !important;
+	border-left:5px solid #666;
+	width:142px;
+	background-image:none !important;
+}
+
+/* Para incluir conteúdo quando a tele tiver menu lateral */
+#content #content_reduz {
+	width: 550px;
+	margin-left: 20px;
+	float: left;
+}
+
+/***********************
+Mensagens
+***********************/
+.listInconsistencias
+{
+    font-weight:bolder;
+    color: Red;
+	font-size: 1.20em;	
+	width: 800px;
+	margin-left: 15px;
+}
+
+/***********************
+Modal Jquery
+***********************/
+    .demoHeaders
+    {
+        margin-top: 2em;
+    }
+    #dialog_link
+    {
+        padding: .4em 1em .4em 1px;
+        text-decoration: none;
+        position: relative;
+    }
+        #dialog_link2
+    {
+        padding: .4em 1em .4em 1px;
+        text-decoration: none;
+        position: relative;
+    }
+    #dialog_link span.ui-icon
+    {
+        margin: 0 5px 0 0;
+        position: absolute;
+        left: .2em;
+        top: 50%;
+        margin-top: -8px;
+    }
+    ul#icons
+    {
+        margin: 0;
+        padding: 0;
+    }
+    ul#icons li
+    {
+        margin: 2px;
+        position: relative;
+        padding: 4px 0;
+        cursor: pointer;
+        float: left;
+        list-style: none;
+    }
+    ul#icons span.ui-icon
+    {
+        float: left;
+        margin: 0 4px;
+    }
+/* Div de Erro */
+
+.ListErro
+{
+    border:#ac6262 1px solid;
+    border-left:#ac6262 1px solid; 
+    padding-bottom:10px;
+    margin:0px 0px 1.2em;
+    padding-left:20px;
+    padding-right:10px;
+    background:#fbeded; 
+    font-weight:bold; 
+    color:#BF0000; 
+    font-size: 1.2em; 
+    font-family: Arial, Verdana, Helvetica, sans-serif;     
+    border-top:#ac6262 1px solid; 
+    border-right:#ac6262 1px solid; 
+    padding-top:10px;
+}
+
+.DivButton
+{
+    width:709px;
+    border:#193B57 1px solid;
+    float:left;    
+    border-left:#193B57 1px solid; 
+    padding-bottom:5px;
+    margin:5px 0px 10px 0px;
+    padding-left:5px;
+    padding-right:5px;
+    background:#536C81;             
+    border-top:#193B57 1px solid; 
+    border-right:#193B57 1px solid; 
+    padding-top:5px;
+    
+}
+
+.textBox
+{
+    line-height: 22px;    
+}

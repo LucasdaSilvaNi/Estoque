@@ -1,0 +1,403 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
+
+<head>
+	<title>SAM - Sistema de Administração de Materiais</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<meta name="classification" content="Governo" />
+	<meta name="author" content="Prodesp" />
+	
+	<link type="text/css" media="all"   href="css/estilo.css"    rel="stylesheet" title="pattern"  />
+	<link type="text/css" media="all"   href="css/contraste.css" rel="alternate stylesheet" title="modify"   />
+	<link type="text/css" media="print" href="css/print.css"     rel="stylesheet" />
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/generic.js"></script> 
+	<script type="text/javascript">		
+		function mostraListagem(){
+			opcao = document.requisicao.div.options[document.requisicao.div.selectedIndex].value;
+		            
+		        if (opcao == "gab"){
+						document.getElementById("listagem").style.display='block';
+		        }
+		        else{
+		        		document.getElementById("listagem").style.display='none';
+		        }
+		}	
+
+		function pesquisaSubitem() {
+			window.open('pesquisaSubitem.html', '', 'height=400, width=800, top=20, left=20, scrollbars=no, resizable=no');
+		}		
+	</script>
+</head>
+
+<body>
+
+<!-- Habilitar JavaScript -->
+<noscript>
+	<p>O javascript de seu navegador está desabilitado. Favor habilitá-lo para acessar as funcionalidades deste site.</p>
+</noscript>
+	
+<!-- Acessibilidade -->
+<a class="esconder" href="#content">Ir para o conteúdo</a>
+
+<!-- Barra do Governo Obrigatória -->
+<div id="barragoverno" hidden="hidden">
+	<script type="text/javascript" src="http://www.saopaulo.sp.gov.br/barrasp/js/include_centralizada.js.php"></script>
+</div>
+
+<div id="global">
+
+		<!-- Cabeçalho -->
+		<div id="header">
+
+			<!-- Link para o Cliente -->
+			<div id="barraCliente">
+				<a href="http://www.fazenda.sp.gov.br/" target="_blank" title="Secretaria da Fazenda">Secretaria da Fazenda</a>
+			</div>
+			
+			<!-- Logo e Icones -->
+			<h1 id="logo"><a href="index.html" title="SAM - Sistema de Administração de Materiais - Tecla de atalho (1)" accesskey="1">SAM - Sistema de Administração de Materiais</a></h1>    
+			<ul id="toolbox">
+				<li class="tamanho">
+					<a href="#" class="decrease" style="padding-left:0"><img src="imagens/fontsize_decrease.gif" align="top" title="Diminuir tamanho do texto" alt="Diminuir tamanho do texto" /></a> 
+					<a href="#" class="increase" style="padding-left:0"><img src="imagens/fontsize_increase.gif" align="top" title="Aumentar tamanho do texto" alt="Aumentar tamanho do texto" /></a> 
+					<span>Tamanho do Texto</span>
+				</li>
+				<li class="contrasteLink"><a href="#" class="contraste" title="Contraste"><span>Contraste</span></a></li>
+				<li class="fale"><a href="#" title="Contatos"><span>Contatos</span></a></li>
+			</ul>
+		        
+			<!-- Dados do usuário -->
+			<ul id="usuario">
+				<li><strong>Usuário:</strong> 234567890-12</li>
+				<li>01/09/2011  09:20</li>
+				<li class="last"><a href="index.html" title="Fazer Logoff">Sair</a></li>		
+			</ul>
+				  
+			<!-- Navegação Principal Superior -->	
+			<div id="nav_main">
+				<ul id="jqueryAnimated">
+					<li><a href="home.html" class="firstNavMain">Início</a></li>
+					<li><a href="seguranca.html">Segurança</a></li>
+					<li><a href="tabelas.html">Tabelas</a></li>
+					<li><a href="almoxarifado.html" class="selected">Almoxarifado</a></li>
+					<li><a href="patrimonio.html">Patrimônio</a></li>
+				</ul>		
+			</div>	
+			
+		</div> 
+		<!-- fim id header-->	
+		
+		<!-- Barra com informações do Gestor -->	
+		<div id="barraGestor">
+			<div class="gestor">
+				<p><strong>Gestor:</strong> 20001 - Secretaria da Fazenda</p>
+				<p><strong>Almoxarifado:</strong> 1 - Sede</p>			
+			</div>
+			<div class="mesref">
+				<p><strong>Mês/ano referência:</strong> 09/2011</p>
+			</div>
+		</div>	
+		
+		<!-- Conteúdo -->
+		<div id="content">	  
+		
+			<div id="interno">
+		
+				<h1>Módulo Almoxarifado - Requisição de Material</h1>
+
+				<form name="requisicao" action=" " class="formulario">
+	            
+					<fieldset>
+					
+		            <p>
+			        		<label for="ua">UA:</label>
+							<select id="ua" name="ua" class="selecioneMaior">
+								<option selected="selected" value="0"> </option>
+								<option value="fazenda">012069 - GABINETE DO SECRETARIO</option>
+							</select>
+		            </p>					
+								
+		            <p>
+			        		<label for="div">Divisão:</label>
+							<select id="div" name="div" onchange="javascript:mostraListagem();" class="selecioneMaior">
+								<option selected="selected" value="0"> </option>
+								<option value="gab">12069-1 - GABINETE DO SECRETARIO</option>
+							</select>
+		            </p>					
+								
+					</fieldset>
+				
+				<div id="listagem" style="display: none;">
+				<table class="tabela" summary="">
+					<tr>
+						<th>&nbsp;</th>
+						<th>#</th>
+						<th>Subitem</th>
+						<th>Descrição</th>
+						<th>Unid.</th>
+						<th>Qtde.</th>
+					</tr>
+					<tr>
+						<td><a class="button" href="#"><span>del</span></a></td>
+						<td><a href="#">01</a></td>
+						<td><input id="" type="text" size="8" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaSubitem();" /></td>
+						<td><input id="" type="text" size="70" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+					</tr>
+					<tr class="odd">
+						<td><a class="button" href="#"><span>del</span></a></td>
+						<td><a href="#">02</a></td>
+						<td><input id="" type="text" size="8" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaSubitem();" /></td>
+						<td><input id="" type="text" size="70" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+					</tr>
+					<tr>
+						<td><a class="button" href="#"><span>del</span></a></td>
+						<td><a href="#">03</a></td>
+						<td><input id="" type="text" size="8" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaSubitem();" /></td>
+						<td><input id="" type="text" size="70" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+					</tr>
+					<tr class="odd">
+						<td><a class="button" href="#"><span>del</span></a></td>
+						<td><a href="#">04</a></td>
+						<td><input id="" type="text" size="8" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaSubitem();" /></td>
+						<td><input id="" type="text" size="70" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+					</tr>
+					<tr>
+						<td><a class="button" href="#"><span>del</span></a></td>
+						<td><a href="#">05</a></td>
+						<td><input id="" type="text" size="8" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaSubitem();" /></td>
+						<td><input id="" type="text" size="70" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+					</tr>
+					<tr class="odd">
+						<td><a class="button" href="#"><span>del</span></a></td>
+						<td><a href="#">06</a></td>
+						<td><input id="" type="text" size="8" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaSubitem();" /></td>
+						<td><input id="" type="text" size="70" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+					</tr>
+					<tr>
+						<td><a class="button" href="#"><span>del</span></a></td>
+						<td><a href="#">07</a></td>
+						<td><input id="" type="text" size="8" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaSubitem();" /></td>
+						<td><input id="" type="text" size="70" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+					</tr>
+					<tr class="odd">
+						<td><a class="button" href="#"><span>del</span></a></td>
+						<td><a href="#">08</a></td>
+						<td><input id="" type="text" size="8" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaSubitem();" /></td>
+						<td><input id="" type="text" size="70" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+					</tr>
+					<tr>
+						<td><a class="button" href="#"><span>del</span></a></td>
+						<td><a href="#">09</a></td>
+						<td><input id="" type="text" size="8" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaSubitem();" /></td>
+						<td><input id="" type="text" size="70" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+					</tr>
+					<tr class="odd">
+						<td><a class="button" href="#"><span>del</span></a></td>
+						<td><a href="#">10</a></td>
+						<td><input id="" type="text" size="8" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaSubitem();" /></td>
+						<td><input id="" type="text" size="70" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+					</tr>
+					<tr>
+						<td><a class="button" href="#"><span>del</span></a></td>
+						<td><a href="#">11</a></td>
+						<td><input id="" type="text" size="8" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaSubitem();" /></td>
+						<td><input id="" type="text" size="70" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+					</tr>
+					<tr class="odd">
+						<td><a class="button" href="#"><span>del</span></a></td>
+						<td><a href="#">12</a></td>
+						<td><input id="" type="text" size="8" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaSubitem();" /></td>
+						<td><input id="" type="text" size="70" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+					</tr>
+					<tr>
+						<td><a class="button" href="#"><span>del</span></a></td>
+						<td><a href="#">13</a></td>
+						<td><input id="" type="text" size="8" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaSubitem();" /></td>
+						<td><input id="" type="text" size="70" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+					</tr>
+					<tr class="odd">
+						<td><a class="button" href="#"><span>del</span></a></td>
+						<td><a href="#">14</a></td>
+						<td><input id="" type="text" size="8" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaSubitem();" /></td>
+						<td><input id="" type="text" size="70" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+					</tr>
+					<tr>
+						<td><a class="button" href="#"><span>del</span></a></td>
+						<td><a href="#">15</a></td>
+						<td><input id="" type="text" size="8" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaSubitem();" /></td>
+						<td><input id="" type="text" size="70" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+					</tr>
+					<tr class="odd">
+						<td><a class="button" href="#"><span>del</span></a></td>
+						<td><a href="#">16</a></td>
+						<td><input id="" type="text" size="8" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaSubitem();" /></td>
+						<td><input id="" type="text" size="70" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+					</tr>
+					<tr>
+						<td><a class="button" href="#"><span>del</span></a></td>
+						<td><a href="#">17</a></td>
+						<td><input id="" type="text" size="8" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaSubitem();" /></td>
+						<td><input id="" type="text" size="70" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+					</tr>
+					<tr class="odd">
+						<td><a class="button" href="#"><span>del</span></a></td>
+						<td><a href="#">18</a></td>
+						<td><input id="" type="text" size="8" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaSubitem();" /></td>
+						<td><input id="" type="text" size="70" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+					</tr>
+					<tr>
+						<td><a class="button" href="#"><span>del</span></a></td>
+						<td><a href="#">19</a></td>
+						<td><input id="" type="text" size="8" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaSubitem();" /></td>
+						<td><input id="" type="text" size="70" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+					</tr>
+					<tr class="odd">
+						<td><a class="button" href="#"><span>del</span></a></td>
+						<td><a href="#">20</a></td>
+						<td><input id="" type="text" size="8" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaSubitem();" /></td>
+						<td><input id="" type="text" size="70" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+					</tr>
+					<tr>
+						<td><a class="button" href="#"><span>del</span></a></td>
+						<td><a href="#">21</a></td>
+						<td><input id="" type="text" size="8" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaSubitem();" /></td>
+						<td><input id="" type="text" size="70" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+					</tr>
+					<tr class="odd">
+						<td><a class="button" href="#"><span>del</span></a></td>
+						<td><a href="#">22</a></td>
+						<td><input id="" type="text" size="8" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaSubitem();" /></td>
+						<td><input id="" type="text" size="70" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+					</tr>
+					<tr>
+						<td><a class="button" href="#"><span>del</span></a></td>
+						<td><a href="#">23</a></td>
+						<td><input id="" type="text" size="8" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaSubitem();" /></td>
+						<td><input id="" type="text" size="70" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+					</tr>
+					<tr class="odd">
+						<td><a class="button" href="#"><span>del</span></a></td>
+						<td><a href="#">24</a></td>
+						<td><input id="" type="text" size="8" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaSubitem();" /></td>
+						<td><input id="" type="text" size="70" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+					</tr>
+					<tr>
+						<td><a class="button" href="#"><span>del</span></a></td>
+						<td><a href="#">25</a></td>
+						<td><input id="" type="text" size="8" value="" /> <img src="imagens/lupa.png" alt="Pesquisar" onclick="pesquisaSubitem();" /></td>
+						<td><input id="" type="text" size="70" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+						<td><input id="" type="text" size="8" value="" /></td>
+					</tr>
+				</table>
+
+				<fieldset>				
+					<p>
+			        <label for="obs">Observações:</label>
+			        <textarea id="obs" cols="100" rows="4"></textarea>
+	            </p>								
+					
+					<p>
+			        <label for="inst">Instruções para Entrega:</label>
+			        <textarea id="inst" cols="100" rows="4"></textarea>
+	            </p>								
+				</fieldset>
+
+				</div>
+				<!-- fim id listagem -->
+
+				</form>			
+			
+			</div>  
+			<!-- fim id interno -->
+
+			<div class="botao">
+				<p class="botaoLeft">
+					<a class="button" href="#" accesskey="N"><span><u>N</u>ovo</span></a>
+					<a class="button" href="#" accesskey="S"><span><u>S</u>alvar</span></a>
+					<a class="button" href="#" accesskey="C"><span><u>C</u>ancelar</span></a>
+				</p>
+
+				<p class="botaoRight">
+					<a class="button" href="#" accesskey="A"><span><u>A</u>juda</span></a>
+					<a class="button" href="almoxarifado.html" accesskey="V"><span><u>V</u>oltar</span></a> 
+				</p>
+			</div>
+		
+		</div> 
+		<!-- fim id content -->
+		
+		<!-- Rodapé -->
+		<div id="footer">
+			<address class="vcard">
+				<span class="adr">
+					<span class="org fn">
+						<span class="organization-name"><strong>Prodesp - Companhia de Processamento de Dados do Estado de São Paulo </strong></span>
+					</span>
+					<br />
+					<span class="street-address">Rua Agueda Gonçalves, 240</span> -
+					CEP <span class="postal-code">06760-900</span> - 
+					<span class="locality">Taboão da Serra</span> -
+					<abbr class="region">SP</abbr> -
+					PABX <span class="tel">(11) 2845-6000</span> -
+					Fax <span class="fax">(11) 4787-0058</span>
+				</span>
+			</address>        
+		</div>		
+		  
+</div> 
+<!-- fim id global-->		  
+
+</body>
+
+</html>

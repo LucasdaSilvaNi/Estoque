@@ -1,0 +1,261 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="PrincipalFull.Master.cs" Inherits="Sam.Web.MasterPage.PrincipalFull" %>
+
+<%@ Register Src="../Controles/Menu.ascx" TagName="Menu" TagPrefix="uc1" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" />
+
+<%@ Register Src="../Controles/Ajuda.ascx" TagName="Ajuda" TagPrefix="uc2" %>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
+
+<head id="Head1" runat="server">
+
+<title>SAM - Sistema de Administrao de Materiais</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <meta name="classification" content="Governo" />
+    <meta name="author" content="Prodesp" /> 
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="Content-Type" content="text/xhtml; charset=iso-8859-1" />
+    <script type="text/javascript" src="<%=ResolveClientUrl("~/JScript/jquery-1.4.2.js")%>"></script>
+    <script type="text/javascript" src="<%=ResolveClientUrl("~/JScript/jquery.maskedinput-1.2.2.js")%>"></script>
+    <script type="text/javascript" src="<%=ResolveClientUrl("~/JScript/jquery.price_format.1.3.js")%>"></script>
+    <script type="text/javascript" src="<%=ResolveClientUrl("~/JScript/jquery.alphanumeric.pack.js")%>"></script>
+
+    <script language="javascript" type="text/javascript">
+        var tempoTimeout                = new Number();
+        var _duplicated                 = "duplicada";
+        var _sessaoAtiva                = "<%:Session["RESET_TABCOUNTER"]%>";
+        var _tabCounter                 = "tabCounter_<%:Session["IdLoginLogado"]%>";
+        var _tabController              = "tabController_<%:Session["IdLoginLogado"]%>";
+        var _redirecionaSemFecharSessao = '<%=string.Concat(ResolveClientUrl("~/LogoffAutomatico.aspx"), "?lf=2&si=", Session["usuarioCahe"], "&li=", Session["IdLoginLogado"])%>';
+        var _redirecionaFechaSessao     = '<%=string.Concat(ResolveClientUrl("~/LogoffAutomatico.aspx"), "?lf=0&si=", Session["usuarioCahe"], "&li=", Session["IdLoginLogado"])%>';
+    </script>
+
+    <script type="text/javascript" src="<%=ResolveClientUrl("~/JScript/Utilitarios.js")%>"></script>
+    <script type="text/javascript" src="<%=ResolveClientUrl("~/JScript/Modal.js")%>"></script>
+    <script type="text/javascript" src="<%=ResolveClientUrl("~/JScript/jquery-ui-1.7.3.custom.min.js")%>"></script>
+    <script type="text/javascript" src="<%=ResolveClientUrl("~/JScript/usuario/usuario-logado.js")%>"></script>
+    
+    <!-- https://github.com/marcuswestin/store.js -->
+    <script type="text/javascript" src="<%=ResolveClientUrl("~/JScript/store.min.js")%>"></script>
+
+    <link href="../CSS/cupertino/jquery-ui-1.7.3.custom.css" rel="stylesheet" type="text/css" />
+    <link href="../Css/estiloFull.css" rel="stylesheet" type="text/css" />
+
+    <script language="javascript" type="text/javascript">
+
+        // Tempo em segundos
+        tempoTimeout = <%:timeoutSistema%>;
+
+        function startCountdown()
+        {
+            if((tempoTimeout - 1) >= 0){
+                var min = parseInt(tempoTimeout/60);
+                var seg = tempoTimeout%60;
+
+                // Formata o nmero menor que dez, ex: 08, 07, ...
+                if(min < 10) {
+                    min = "0"+min;
+                    min = min.substr(0, 2);
+                }
+                if(seg <=9) {
+                    seg = "0"+seg;
+                }
+
+                horaImprimivel = '00:' + min + ':' + seg;
+                $("#<%:lblCronometro.ClientID%>").html(horaImprimivel);
+
+                setTimeout('startCountdown()',1000);
+                tempoTimeout--;
+            }
+        }
+
+        //adicona evento click ao itens do menu, para quando efetuado o click flag como falso a variavel responsavel em fazer o logoff do usuario ao fechar o browser!
+        $(".ctl00_mnSam_1").click(function () {
+            setLogoff(false);
+        });
+            
+        function updateContentFieldTabController(newValue)
+        {
+            updateStorageValue(_tabController, newValue);
+            $("#<%: tabController.ClientID %>").val(newValue);
+        }
+
+        addToPostBack = function(func) {
+            var old__doPostBack = __doPostBack;
+            if (typeof __doPostBack == 'function') {
+                __doPostBack = function(t, a) {
+                    if (func(t, a)) old__doPostBack(t, a);
+                }
+            }
+        };
+
+        $(document).ready(function() {
+            addToPostBack(function(t,a) {
+                limparCampoControleAba();
+                //decrementTabCounter();
+                return true;
+            });
+
+            initilize();
+        });
+
+        // Logoff por fechar a pgina ou aba do browser
+        setPathLogoffAutomatico(_redirecionaFechaSessao);
+
+        $(window).bind("beforeunload", function() {
+            limparCampoControleAba();
+            decrementTabCounter();
+        });
+    </script>
+</head>
+<body onclick="javascript:setLogoff(false);">
+    <!-- Habilitar JavaScript -->   
+    <noscript>
+        <p>
+            O javascript de seu navegador est desabilitado. Favor habilit-lo \para acessar
+            as funcionalidades deste site.</p>
+    </noscript>
+    <!-- Barra do Governo Obrigatria -->
+    <div id="barragoverno">
+
+    <%-- <iframe src='<%=ResolveClientUrl("~/BarraGovernoFull.htm")%>' scrolling="no" marginheight="0" width="100%" height="50px" frameborder="0">
+    <p>Your browser does not support iframes.</p>
+    </iframe>--%>
+    </div>
+    <form id="frmPrincipal" runat="server">
+        <asp:HiddenField ID="tabController" runat="server" />
+
+    <!-- Acessibilidade -->
+    <div id="global">
+    <asp:ScriptManager ID="scriptManager1" AsyncPostBackTimeout="3000" runat="server">
+    </asp:ScriptManager>
+
+        <asp:UpdateProgress ID="updateProgress" runat="server" DisplayAfter="1">
+            <ProgressTemplate>
+                <div id="progressBackgroundFilter"></div>
+                <div id="processMessage"><center>Carregando...</center><br />
+                     <center><img src='<%=ResolveClientUrl("../Imagens/loading.gif")%>' /></center>
+                </div>
+            </ProgressTemplate>
+        </asp:UpdateProgress>
+
+        <!-- Cabealho -->
+        <div id="header">
+            <!-- Link para o Cliente -->
+            <div id="barraCliente">
+                <a href="http://www.fazenda.sp.gov.br/" target="_blank" title="Secretaria da Fazenda">
+                    Secretaria da Fazenda</a>
+            </div>
+            <!-- Logo e Icones -->
+            <h1 id="logo">
+                <a href="../default.aspx" title="SAM - Sistema de Administrao de Materiais" accesskey="1">
+                     <asp:Button ID="botaoCapturaEnter" runat="server" Text="Button" Visible="False" />
+                </a>
+            </h1>
+            <!-- Dados do usurio -->
+            <asp:Panel ID="pnlUsuario" runat="server">
+            <ul id="usuario">
+                <li runat="server" id="liUsuario"><strong>Usuário: </strong><asp:Label runat="server" Text="" id="lblUserLogado"></asp:Label></li>
+                <li runat="server" id="liUData"><asp:Label runat="server" Text="" id="lblData"></asp:Label></li>
+                <li runat="server" id="liExpira">Expira Em: <strong><asp:Label runat="server" Text="" id="lblCronometro"></asp:Label></strong></li>
+                <li class="sair"  runat="server" id="lisair"><asp:LinkButton class="sair" runat="server" ID="linksair"
+                        onclick="linksair_Click">Sair</asp:LinkButton> </li>
+            </ul>
+            </asp:Panel>
+            <!-- Navegao Principal Superior -->            
+            <div onselectstart="return false" oncontextmenu="return false" ondragstart="return false" onMouseOver="window.status=''; return true;">
+                <asp:Menu ID="mnSam"  StaticMenuItemStyle-CssClass="menuItem" DynamicMenuItemStyle-CssClass="menuItem" Orientation="Horizontal" Height="32px" Width="100%" runat="server" BackColor="#193B57"
+                    DynamicHorizontalOffset="2" Font-Names="Verdana" Font-Size="1.2em" Font-Bold="true"
+                    ForeColor="White" StaticSubMenuIndent="10px">                    
+                    <DynamicMenuItemStyle  BackColor="#193B57" Height="25px" Width="200" Font-Size="10" BorderWidth="1"
+                    BorderStyle="Solid" VerticalPadding="4" BorderColor="#FFFFFF" HorizontalPadding="20px" />
+                    <DynamicHoverStyle BackColor="#778899" />
+                    <StaticMenuItemStyle HorizontalPadding="1px"/> 
+                </asp:Menu>
+            </div>            
+        </div>
+        
+        <!-- fim id header-->
+        <asp:Panel runat="server" ID="pnlBarraGestor">        
+        <!-- Barra com informaes do Gestor -->
+        <div id="barraGestor">
+           
+            <div class="gestor">
+                <p>
+                    <strong>Gestor : </strong><asp:Label runat="server" Text="" ID="lblGestor"></asp:Label></p>
+                <p>
+                    <strong>Almoxarifado : </strong><asp:Label runat="server" Text=""  ID="lblAmoxarifado"></asp:Label>
+                </p>
+                <p>
+                    <strong>UGE :  </strong><asp:Label runat="server" Text=""  ID="lblUge"></asp:Label>
+                </p>
+            </div>
+            <asp:UpdatePanel runat="server" ID="pnlMesRef">
+            <ContentTemplate>
+
+            <div class="dados">
+                <p>
+                    <asp:Label runat="server"  Text="" ID="lblMesAnoRef"></asp:Label>
+                </p>
+
+                <p runat="server" id="p1" visible="false">
+                    <asp:Label runat="server" Text=""   ID="lblSaldo33"></asp:Label>
+                </p>
+
+                 <p runat="server" id="p2" visible="false">                    
+                    <asp:Label runat="server" Text=""   ID="lblSaldo44"></asp:Label>
+                 </p>
+
+                 <p runat="server" id="p3" visible="false">
+                    <asp:Label runat="server"  Text=""   ID="lblSaldo"></asp:Label>                
+               </p>
+            </div>
+
+            <div class="mesref">
+                <p>
+                    <strong>Mês/ano referência &nbsp : &nbsp</strong>
+                </p>
+
+                <p runat="server" id="pSaldo" visible="false">
+                    <strong>Estimativa Saldo (R$) - 115610102 &nbsp&nbsp : &nbsp</strong>
+                </p>
+
+                 <p runat="server" id="pSaldo1" visible="false">                    
+                    <strong>123110812 &nbsp&nbsp : &nbsp</strong>
+                 </p>
+
+                 <p runat="server" id="pSaldo2" visible="false">
+                    <strong>TOTAL &nbsp&nbsp : &nbsp</strong>  
+               </p>
+            </div>
+
+                 
+
+                    
+            </ContentTemplate>
+            </asp:UpdatePanel>
+        </div>
+        <asp:Label ID="lblMsg" ForeColor="Red" Text="" CssClass="listInconsistencias" runat="server" />
+        </asp:Panel>
+        <asp:ContentPlaceHolder ID="cphBody" runat="server">
+        </asp:ContentPlaceHolder>
+        <!-- Rodap -->
+         <div id="footer">
+            <address class="vcard">
+                <span class="adr"><span class="org fn"><span class="organization-name"><strong>Prodesp - Companhia de Processamento de Dados do Estado de São Paulo - 1.4.159.155</strong></span></span>
+                    <br /> 
+                    <span class="street-address">Rua Agueda Gonçalves, 240</span> - CEP <span class="postal-code"> 06760-900</span> - <span class="locality">Taboão da Serra</span> - <abbr class="region">SP</abbr>
+                </span>
+            </address>
+        </div>
+    </div>
+    <div id="dialog" title="Ajuda">
+            <uc2:Ajuda runat="server" ID="uc2Ajuda"/>
+        </div>
+    </form>
+</body>
+     <script language="javascript" type="text/javascript">
+         initilize();
+         $(document).bind("keydown", setLogoffFalseTeclaF5);
+    </script>
+</html>

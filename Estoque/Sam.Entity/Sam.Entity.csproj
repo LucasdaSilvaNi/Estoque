@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5FCAC239-0997-41F8-8DD8-9FC1B1630138}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sam.Entity</RootNamespace>
+    <AssemblyName>Sam.Entity</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Sam.Web\bin\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Sam.Web\bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data.Entity" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Acesso.cs" />
+    <Compile Include="Almoxarifado.cs" />
+    <Compile Include="BaseLogin.cs" />
+    <Compile Include="BaseSeguranca.cs" />
+    <Compile Include="ESPEntity.cs" />
+    <Compile Include="UnidadeFornecimentoConversao.cs" />
+    <Compile Include="Divisao.cs" />
+    <Compile Include="Estrutura.cs" />
+    <Compile Include="Gestor.cs" />
+    <Compile Include="LoginEntity.cs" />
+    <Compile Include="LogUsuario.cs" />
+    <Compile Include="MaterialApoio.cs" />
+    <Compile Include="Modulo.cs" />
+    <Compile Include="NivelAcesso.cs" />
+    <Compile Include="Orgao.cs" />
+    <Compile Include="Perfil.cs" />
+    <Compile Include="PerfilLogin.cs" />
+    <Compile Include="PerfilLoginNivelAcesso.cs" />
+    <Compile Include="PerfilNivel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sistema.cs" />
+    <Compile Include="Transacoes.cs" />
+    <Compile Include="Ua.cs" />
+    <Compile Include="Uge.cs" />
+    <Compile Include="Uo.cs" />
+    <Compile Include="Usuario.cs" />
+    <Compile Include="UsuarioLogado.cs" />
+    <Compile Include="UsuarioLogadoEntity.cs" />
+    <Compile Include="UsuarioRelatorio.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sam.Common\Sam.Common.csproj">
+      <Project>{D02BD38A-9FD0-4582-93C4-06DE59DCEB22}</Project>
+      <Name>Sam.Common</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Sam.Domain.Entity\Sam.Domain.Entity.csproj">
+      <Project>{4ED2F2CC-F96D-4FB0-A662-A591A1C0F50B}</Project>
+      <Name>Sam.Domain.Entity</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

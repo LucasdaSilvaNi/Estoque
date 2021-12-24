@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<VSPerformanceSession Version="1.00">
+  <Options>
+    <Solution>C:\Projetos\SAM\Fontes\Desenvolvimento\main\Release_1.1\EstoquePatrimonio.sln</Solution>
+    <CollectionMethod>Sampling</CollectionMethod>
+    <AllocationMethod>None</AllocationMethod>
+    <LaunchRuntimeControl>true</LaunchRuntimeControl>
+    <AddReport>true</AddReport>
+    <ResourceBasedAnalysisSelected>false</ResourceBasedAnalysisSelected>
+    <ThreadBasedAnalysisSelected>false</ThreadBasedAnalysisSelected>
+    <UniqueReport>Timestamp</UniqueReport>
+    <SamplingMethod>Cycles</SamplingMethod>
+    <CycleCount>10000000</CycleCount>
+    <PageFaultCount>10</PageFaultCount>
+    <SysCallCount>10</SysCallCount>
+    <SamplingCounter Name="" ReloadValue="00000000000f4240" DisplayName="" />
+    <RelocateBinaries>false</RelocateBinaries>
+    <CollectOnHpcCluster>false</CollectOnHpcCluster>
+    <HPCSettings>
+      <NumberOfProcesses>0</NumberOfProcesses>
+      <TargetSelection>UnknownDisabled</TargetSelection>
+      <ProfileOnRank>0</ProfileOnRank>
+      <AdvancedProperties>
+        <Project>TestarAgrupamento</Project>
+        <CleanUp>true</CleanUp>
+        <MpiexecCommand>mpiexec.exe</MpiexecCommand>
+        <DeployCRT>true</DeployCRT>
+      </AdvancedProperties>
+    </HPCSettings>
+    <HardwareCounters EnableHWCounters="false" />
+    <EtwSettings />
+    <PdhSettings>
+      <PdhCountersEnabled>false</PdhCountersEnabled>
+      <PdhCountersRate>500</PdhCountersRate>
+      <PdhCounters>
+        <PdhCounter>\Memória\Páginas/s</PdhCounter>
+        <PdhCounter>\PhysicalDisk(_Total)\Comprimento médio da fila de disco</PdhCounter>
+        <PdhCounter>\Processador(_Total)\% tempo de processador</PdhCounter>
+      </PdhCounters>
+    </PdhSettings>
+  </Options>
+  <ExcludeSmallFuncs>true</ExcludeSmallFuncs>
+  <JScriptProfilingEnabled>false</JScriptProfilingEnabled>
+  <PreinstrumentEvent>
+    <InstrEventExclude>false</InstrEventExclude>
+  </PreinstrumentEvent>
+  <PostinstrumentEvent>
+    <InstrEventExclude>false</InstrEventExclude>
+  </PostinstrumentEvent>
+  <Binaries>
+    <TestBinary>
+      <Path>C:\Projetos\SAM\Fontes\Desenvolvimento\main\Release_1.1\Test\obj\Debug\Test.dll</Path>
+      <ArgumentTimestamp>01/01/0001 00:00:00</ArgumentTimestamp>
+      <Instrument>false</Instrument>
+      <Sample>true</Sample>
+      <ExternalWebsite>false</ExternalWebsite>
+      <InteractionProfilingEnabled>false</InteractionProfilingEnabled>
+      <IsLocalJavascript>false</IsLocalJavascript>
+      <LaunchProject>true</LaunchProject>
+      <OverrideProjectSettings>false</OverrideProjectSettings>
+      <LaunchMethod>Test</LaunchMethod>
+      <StartupDirectory>C:\Projetos\SAM\Fontes\Desenvolvimento\main\Release_1.1\Test\bin\Debug\</StartupDirectory>
+      <Arguments />
+      <NetAppHost>IIS</NetAppHost>
+      <NetBrowser>InternetExplorer</NetBrowser>
+      <ExcludeSmallFuncs>true</ExcludeSmallFuncs>
+      <JScriptProfilingEnabled>false</JScriptProfilingEnabled>
+      <PreinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PreinstrumentEvent>
+      <PostinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PostinstrumentEvent>
+      <ProjRef>{74171CF5-ED00-4471-88FB-82F15CCC88C8}|Test\Test.csproj</ProjRef>
+      <ProjPath>C:\Projetos\SAM\Fontes\Desenvolvimento\main\Release_1.1\Test\Test.csproj</ProjPath>
+      <ProjName>TestarAgrupamento</ProjName>
+      <TestId>{2aae6d11-8e60-7a0a-487c-2b3059b94f1e}</TestId>
+      <TestName>TestarAgrupamento</TestName>
+    </TestBinary>
+    <ProjBinary>
+      <Path>C:\Projetos\SAM\Fontes\Desenvolvimento\main\Release_1.1\Sam.Business\obj\Debug\Sam.Business.dll</Path>
+      <ArgumentTimestamp>01/01/0001 00:00:00</ArgumentTimestamp>
+      <Instrument>true</Instrument>
+      <Sample>true</Sample>
+      <ExternalWebsite>false</ExternalWebsite>
+      <InteractionProfilingEnabled>false</InteractionProfilingEnabled>
+      <IsLocalJavascript>false</IsLocalJavascript>
+      <LaunchProject>true</LaunchProject>
+      <OverrideProjectSettings>false</OverrideProjectSettings>
+      <LaunchMethod>Executable</LaunchMethod>
+      <StartupDirectory>C:\Projetos\SAM\Fontes\Desenvolvimento\main\Release_1.1\Sam.Business\bin\Debug\</StartupDirectory>
+      <Arguments />
+      <NetAppHost>IIS</NetAppHost>
+      <NetBrowser>InternetExplorer</NetBrowser>
+      <ExcludeSmallFuncs>true</ExcludeSmallFuncs>
+      <JScriptProfilingEnabled>false</JScriptProfilingEnabled>
+      <PreinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PreinstrumentEvent>
+      <PostinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PostinstrumentEvent>
+      <ProjRef>{6A535331-9FB5-4E31-9319-CDDC5042B075}|Sam.Business\Sam.Business.csproj</ProjRef>
+      <ProjPath>C:\Projetos\SAM\Fontes\Desenvolvimento\main\Release_1.1\Sam.Business\Sam.Business.csproj</ProjPath>
+      <ProjName>Sam.Business</ProjName>
+    </ProjBinary>
+    <ProjBinary>
+      <Path>C:\Projetos\SAM\Fontes\Desenvolvimento\main\Release_1.1\Sam.Common\obj\Debug\Sam.Common.dll</Path>
+      <ArgumentTimestamp>01/01/0001 00:00:00</ArgumentTimestamp>
+      <Instrument>true</Instrument>
+      <Sample>true</Sample>
+      <ExternalWebsite>false</ExternalWebsite>
+      <InteractionProfilingEnabled>false</InteractionProfilingEnabled>
+      <IsLocalJavascript>false</IsLocalJavascript>
+      <LaunchProject>true</LaunchProject>
+      <OverrideProjectSettings>false</OverrideProjectSettings>
+      <LaunchMethod>Executable</LaunchMethod>
+      <StartupDirectory>C:\Projetos\SAM\Fontes\Desenvolvimento\main\Release_1.1\Sam.Common\bin\Debug\</StartupDirectory>
+      <Arguments />
+      <NetAppHost>IIS</NetAppHost>
+      <NetBrowser>InternetExplorer</NetBrowser>
+      <ExcludeSmallFuncs>true</ExcludeSmallFuncs>
+      <JScriptProfilingEnabled>false</JScriptProfilingEnabled>
+      <PreinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PreinstrumentEvent>
+      <PostinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PostinstrumentEvent>
+      <ProjRef>{D02BD38A-9FD0-4582-93C4-06DE59DCEB22}|Sam.Common\Sam.Common.csproj</ProjRef>
+      <ProjPath>C:\Projetos\SAM\Fontes\Desenvolvimento\main\Release_1.1\Sam.Common\Sam.Common.csproj</ProjPath>
+      <ProjName>Sam.Common</ProjName>
+    </ProjBinary>
+    <ProjBinary>
+      <Path>C:\Projetos\SAM\Fontes\Desenvolvimento\main\Release_1.1\Sam.Domain.Business\obj\Debug\Sam.Domain.Business.dll</Path>
+      <ArgumentTimestamp>01/01/0001 00:00:00</ArgumentTimestamp>
+      <Instrument>true</Instrument>
+      <Sample>true</Sample>
+      <ExternalWebsite>false</ExternalWebsite>
+      <InteractionProfilingEnabled>false</InteractionProfilingEnabled>
+      <IsLocalJavascript>false</IsLocalJavascript>
+      <LaunchProject>true</LaunchProject>
+      <OverrideProjectSettings>false</OverrideProjectSettings>
+      <LaunchMethod>Executable</LaunchMethod>
+      <StartupDirectory>C:\Projetos\SAM\Fontes\Desenvolvimento\main\Release_1.1\Sam.Domain.Business\bin\Debug\</StartupDirectory>
+      <Arguments />
+      <NetAppHost>IIS</NetAppHost>
+      <NetBrowser>InternetExplorer</NetBrowser>
+      <ExcludeSmallFuncs>true</ExcludeSmallFuncs>
+      <JScriptProfilingEnabled>false</JScriptProfilingEnabled>
+      <PreinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PreinstrumentEvent>
+      <PostinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PostinstrumentEvent>
+      <ProjRef>{5C00ED14-B93F-4937-8285-1D61958102D8}|Sam.Domain.Business\Sam.Domain.Business.csproj</ProjRef>
+      <ProjPath>C:\Projetos\SAM\Fontes\Desenvolvimento\main\Release_1.1\Sam.Domain.Business\Sam.Domain.Business.csproj</ProjPath>
+      <ProjName>Sam.Domain.Business</ProjName>
+    </ProjBinary>
+    <ProjBinary>
+      <Path>C:\Projetos\SAM\Fontes\Desenvolvimento\main\Release_1.1\Sam.Domain.Entity\obj\Debug\Sam.Domain.Entity.dll</Path>
+      <ArgumentTimestamp>01/01/0001 00:00:00</ArgumentTimestamp>
+      <Instrument>true</Instrument>
+      <Sample>true</Sample>
+      <ExternalWebsite>false</ExternalWebsite>
+      <InteractionProfilingEnabled>false</InteractionProfilingEnabled>
+      <IsLocalJavascript>false</IsLocalJavascript>
+      <LaunchProject>true</LaunchProject>
+      <OverrideProjectSettings>false</OverrideProjectSettings>
+      <LaunchMethod>Executable</LaunchMethod>
+      <StartupDirectory>C:\Projetos\SAM\Fontes\Desenvolvimento\main\Release_1.1\Sam.Domain.Entity\bin\Debug\</StartupDirectory>
+      <Arguments />
+      <NetAppHost>IIS</NetAppHost>
+      <NetBrowser>InternetExplorer</NetBrowser>
+      <ExcludeSmallFuncs>true</ExcludeSmallFuncs>
+      <JScriptProfilingEnabled>false</JScriptProfilingEnabled>
+      <PreinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PreinstrumentEvent>
+      <PostinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PostinstrumentEvent>
+      <ProjRef>{4ED2F2CC-F96D-4FB0-A662-A591A1C0F50B}|Sam.Domain.Entity\Sam.Domain.Entity.csproj</ProjRef>
+      <ProjPath>C:\Projetos\SAM\Fontes\Desenvolvimento\main\Release_1.1\Sam.Domain.Entity\Sam.Domain.Entity.csproj</ProjPath>
+      <ProjName>Sam.Domain.Entity</ProjName>
+    </ProjBinary>
+    <ProjBinary>
+      <Path>C:\Projetos\SAM\Fontes\Desenvolvimento\main\Release_1.1\Sam.Entity\obj\Debug\Sam.Entity.dll</Path>
+      <ArgumentTimestamp>01/01/0001 00:00:00</ArgumentTimestamp>
+      <Instrument>true</Instrument>
+      <Sample>true</Sample>
+      <ExternalWebsite>false</ExternalWebsite>
+      <InteractionProfilingEnabled>false</InteractionProfilingEnabled>
+      <IsLocalJavascript>false</IsLocalJavascript>
+      <LaunchProject>true</LaunchProject>
+      <OverrideProjectSettings>false</OverrideProjectSettings>
+      <LaunchMethod>Executable</LaunchMethod>
+      <StartupDirectory>C:\Projetos\SAM\Fontes\Desenvolvimento\main\Release_1.1\Sam.Entity\bin\Debug\</StartupDirectory>
+      <Arguments />
+      <NetAppHost>IIS</NetAppHost>
+      <NetBrowser>InternetExplorer</NetBrowser>
+      <ExcludeSmallFuncs>true</ExcludeSmallFuncs>
+      <JScriptProfilingEnabled>false</JScriptProfilingEnabled>
+      <PreinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PreinstrumentEvent>
+      <PostinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PostinstrumentEvent>
+      <ProjRef>{5FCAC239-0997-41F8-8DD8-9FC1B1630138}|Sam.Entity\Sam.Entity.csproj</ProjRef>
+      <ProjPath>C:\Projetos\SAM\Fontes\Desenvolvimento\main\Release_1.1\Sam.Entity\Sam.Entity.csproj</ProjPath>
+      <ProjName>Sam.Entity</ProjName>
+    </ProjBinary>
+    <ProjBinary>
+      <Path>C:\Projetos\SAM\Fontes\Desenvolvimento\main\Release_1.1\Sam.Facede\obj\Debug\Sam.Facede.dll</Path>
+      <ArgumentTimestamp>01/01/0001 00:00:00</ArgumentTimestamp>
+      <Instrument>true</Instrument>
+      <Sample>true</Sample>
+      <ExternalWebsite>false</ExternalWebsite>
+      <InteractionProfilingEnabled>false</InteractionProfilingEnabled>
+      <IsLocalJavascript>false</IsLocalJavascript>
+      <LaunchProject>true</LaunchProject>
+      <OverrideProjectSettings>false</OverrideProjectSettings>
+      <LaunchMethod>Executable</LaunchMethod>
+      <StartupDirectory>C:\Projetos\SAM\Fontes\Desenvolvimento\main\Release_1.1\Sam.Facede\bin\Debug\</StartupDirectory>
+      <Arguments />
+      <NetAppHost>IIS</NetAppHost>
+      <NetBrowser>InternetExplorer</NetBrowser>
+      <ExcludeSmallFuncs>true</ExcludeSmallFuncs>
+      <JScriptProfilingEnabled>false</JScriptProfilingEnabled>
+      <PreinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PreinstrumentEvent>
+      <PostinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PostinstrumentEvent>
+      <ProjRef>{C971247A-6DDA-451A-A396-CB5E275A85B3}|Sam.Facede\Sam.Facede.csproj</ProjRef>
+      <ProjPath>C:\Projetos\SAM\Fontes\Desenvolvimento\main\Release_1.1\Sam.Facede\Sam.Facede.csproj</ProjPath>
+      <ProjName>Sam.Facede</ProjName>
+    </ProjBinary>
+    <ProjBinary>
+      <Path>C:\Projetos\SAM\Fontes\Desenvolvimento\main\Release_1.1\Sam.Infraestructure\obj\Debug\Sam.Infrastructure.dll</Path>
+      <ArgumentTimestamp>01/01/0001 00:00:00</ArgumentTimestamp>
+      <Instrument>true</Instrument>
+      <Sample>true</Sample>
+      <ExternalWebsite>false</ExternalWebsite>
+      <InteractionProfilingEnabled>false</InteractionProfilingEnabled>
+      <IsLocalJavascript>false</IsLocalJavascript>
+      <LaunchProject>true</LaunchProject>
+      <OverrideProjectSettings>false</OverrideProjectSettings>
+      <LaunchMethod>Executable</LaunchMethod>
+      <StartupDirectory>C:\Projetos\SAM\Fontes\Desenvolvimento\main\Release_1.1\Sam.Infraestructure\bin\Debug\</StartupDirectory>
+      <Arguments />
+      <NetAppHost>IIS</NetAppHost>
+      <NetBrowser>InternetExplorer</NetBrowser>
+      <ExcludeSmallFuncs>true</ExcludeSmallFuncs>
+      <JScriptProfilingEnabled>false</JScriptProfilingEnabled>
+      <PreinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PreinstrumentEvent>
+      <PostinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PostinstrumentEvent>
+      <ProjRef>{CEE7DB4B-AF76-4D32-A630-5268A6DABF1C}|Sam.Infraestructure\Sam.Infrastructure.csproj</ProjRef>
+      <ProjPath>C:\Projetos\SAM\Fontes\Desenvolvimento\main\Release_1.1\Sam.Infraestructure\Sam.Infrastructure.csproj</ProjPath>
+      <ProjName>Sam.Infrastructure</ProjName>
+    </ProjBinary>
+    <ProjBinary>
+      <Path>C:\Projetos\SAM\Fontes\Desenvolvimento\main\Release_1.1\Sam.Presenter\obj\Debug\Sam.Presenter.dll</Path>
+      <ArgumentTimestamp>01/01/0001 00:00:00</ArgumentTimestamp>
+      <Instrument>true</Instrument>
+      <Sample>true</Sample>
+      <ExternalWebsite>false</ExternalWebsite>
+      <InteractionProfilingEnabled>false</InteractionProfilingEnabled>
+      <IsLocalJavascript>false</IsLocalJavascript>
+      <LaunchProject>true</LaunchProject>
+      <OverrideProjectSettings>false</OverrideProjectSettings>
+      <LaunchMethod>Executable</LaunchMethod>
+      <StartupDirectory>C:\Projetos\SAM\Fontes\Desenvolvimento\main\Release_1.1\Sam.Presenter\bin\Debug\</StartupDirectory>
+      <Arguments />
+      <NetAppHost>IIS</NetAppHost>
+      <NetBrowser>InternetExplorer</NetBrowser>
+      <ExcludeSmallFuncs>true</ExcludeSmallFuncs>
+      <JScriptProfilingEnabled>false</JScriptProfilingEnabled>
+      <PreinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PreinstrumentEvent>
+      <PostinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PostinstrumentEvent>
+      <ProjRef>{5DE98F71-B865-46D6-9781-B23BC982FB24}|Sam.Presenter\Sam.Presenter.csproj</ProjRef>
+      <ProjPath>C:\Projetos\SAM\Fontes\Desenvolvimento\main\Release_1.1\Sam.Presenter\Sam.Presenter.csproj</ProjPath>
+      <ProjName>Sam.Presenter</ProjName>
+    </ProjBinary>
+    <ProjBinary>
+      <Path>C:\Projetos\SAM\Fontes\Desenvolvimento\main\Release_1.1\Sam.View\obj\Debug\Sam.View.dll</Path>
+      <ArgumentTimestamp>01/01/0001 00:00:00</ArgumentTimestamp>
+      <Instrument>true</Instrument>
+      <Sample>true</Sample>
+      <ExternalWebsite>false</ExternalWebsite>
+      <InteractionProfilingEnabled>false</InteractionProfilingEnabled>
+      <IsLocalJavascript>false</IsLocalJavascript>
+      <LaunchProject>true</LaunchProject>
+      <OverrideProjectSettings>false</OverrideProjectSettings>
+      <LaunchMethod>Executable</LaunchMethod>
+      <StartupDirectory>C:\Projetos\SAM\Fontes\Desenvolvimento\main\Release_1.1\Sam.View\bin\Debug\</StartupDirectory>
+      <Arguments />
+      <NetAppHost>IIS</NetAppHost>
+      <NetBrowser>InternetExplorer</NetBrowser>
+      <ExcludeSmallFuncs>true</ExcludeSmallFuncs>
+      <JScriptProfilingEnabled>false</JScriptProfilingEnabled>
+      <PreinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PreinstrumentEvent>
+      <PostinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PostinstrumentEvent>
+      <ProjRef>{A0C256DD-1011-4E63-AB74-5449CA09C0B5}|Sam.View\Sam.View.csproj</ProjRef>
+      <ProjPath>C:\Projetos\SAM\Fontes\Desenvolvimento\main\Release_1.1\Sam.View\Sam.View.csproj</ProjPath>
+      <ProjName>Sam.View</ProjName>
+    </ProjBinary>
+  </Binaries>
+  <Launches>
+    <TestBinary>
+      <Path>:TB:{2aae6d11-8e60-7a0a-487c-2b3059b94f1e}:TestarAgrupamento:{74171CF5-ED00-4471-88FB-82F15CCC88C8}|Test\Test.csproj</Path>
+    </TestBinary>
+  </Launches>
+  <RuntimeMarks>
+    <MarkName>Mark One</MarkName>
+    <MarkName>Mark Two</MarkName>
+    <MarkName>Mark Three</MarkName>
+    <MarkName>Mark Four</MarkName>
+    <MarkName>Mark Five</MarkName>
+    <MarkName>Mark Six</MarkName>
+    <MarkName>Mark Seven</MarkName>
+    <MarkName>Mark Eight</MarkName>
+    <MarkName>Mark Nine</MarkName>
+    <MarkName>Mark Ten</MarkName>
+  </RuntimeMarks>
+</VSPerformanceSession>

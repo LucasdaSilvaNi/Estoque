@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="https://www.bec.sp.gov.br/SIAFISICO/RecebeMSG/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="https://www.bec.sp.gov.br/SIAFISICO/RecebeMSG/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">PRODESP - Cia de Processamento de Dados do Estado de São Paulo  &lt;br&gt;--------------------------------------&lt;br&gt;Recebe mensagens para integração com base de dados MF&lt;br&gt;&lt;br&gt;29/10/2009 V2.53E Passou a executar O MudaPah&lt;br&gt;13/11/2009 V2.55b MWAS - SIAFCGEDESPESSPROD&lt;br&gt;27/11/2009 V2.56  MWAS - SIAFDETALHACC&lt;br&gt;09/12/2009 V2.57  MWAS - SFCOSobeOcC&lt;br&gt;20/01/2010 V2.50b MWAS - SFCOLOGIN001 e SIAFLOGIN001 - DetalhaCC&lt;br&gt;01/03/2010 V2.51  MWAS - SIAFCONCREDOR&lt;br&gt;18/03/2010 V2.53  MWAS - SFCONLOBRAS, SFCONLPGOBRAS&lt;br&gt;07/04/2010 V2.54  MWAS - SIAFREACREDOR, SIAFEXCCREDOR&lt;br&gt;</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="https://www.bec.sp.gov.br/SIAFISICO/RecebeMSG/">
+      <s:element name="Mensagem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Senha" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AnoBase" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UnidadeGestora" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DocumentoXML" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MensagemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MensagemResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="MensagemSoapIn">
+    <wsdl:part name="parameters" element="tns:Mensagem" />
+  </wsdl:message>
+  <wsdl:message name="MensagemSoapOut">
+    <wsdl:part name="parameters" element="tns:MensagemResponse" />
+  </wsdl:message>
+  <wsdl:portType name="RecebeMSGSoap">
+    <wsdl:operation name="Mensagem">
+      <wsdl:input message="tns:MensagemSoapIn" />
+      <wsdl:output message="tns:MensagemSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RecebeMSGSoap" type="tns:RecebeMSGSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Mensagem">
+      <soap:operation soapAction="https://www.bec.sp.gov.br/SIAFISICO/RecebeMSG/Mensagem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="RecebeMSGSoap12" type="tns:RecebeMSGSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Mensagem">
+      <soap12:operation soapAction="https://www.bec.sp.gov.br/SIAFISICO/RecebeMSG/Mensagem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RecebeMSG">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">PRODESP - Cia de Processamento de Dados do Estado de São Paulo  &lt;br&gt;--------------------------------------&lt;br&gt;Recebe mensagens para integração com base de dados MF&lt;br&gt;&lt;br&gt;29/10/2009 V2.53E Passou a executar O MudaPah&lt;br&gt;13/11/2009 V2.55b MWAS - SIAFCGEDESPESSPROD&lt;br&gt;27/11/2009 V2.56  MWAS - SIAFDETALHACC&lt;br&gt;09/12/2009 V2.57  MWAS - SFCOSobeOcC&lt;br&gt;20/01/2010 V2.50b MWAS - SFCOLOGIN001 e SIAFLOGIN001 - DetalhaCC&lt;br&gt;01/03/2010 V2.51  MWAS - SIAFCONCREDOR&lt;br&gt;18/03/2010 V2.53  MWAS - SFCONLOBRAS, SFCONLPGOBRAS&lt;br&gt;07/04/2010 V2.54  MWAS - SIAFREACREDOR, SIAFEXCCREDOR&lt;br&gt;</wsdl:documentation>
+    <wsdl:port name="RecebeMSGSoap" binding="tns:RecebeMSGSoap">
+      <soap:address location="http://www6.fazenda.sp.gov.br/SIAFISICO/RecebeMSG.asmx" />
+    </wsdl:port>
+    <wsdl:port name="RecebeMSGSoap12" binding="tns:RecebeMSGSoap12">
+      <soap12:address location="http://www6.fazenda.sp.gov.br/SIAFISICO/RecebeMSG.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

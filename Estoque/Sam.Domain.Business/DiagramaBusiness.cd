@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Sam.Domain.Business.BaseBusiness" Collapsed="true">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>hAAAAAAAQAAAAkAAAAAAAAAAAAABQEAAAEAAAAAAAAA=</HashCode>
+      <FileName>BaseBusiness.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Business.Factory&lt;T&gt;">
+    <Position X="4.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAQEAAAEAAAAAAAAA=</HashCode>
+      <FileName>Factory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Business.EstruturaOrganizacionalBusiness">
+    <Position X="7.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>FUat5xvwQsY2aAS1IJKvsk0j9MwOYiRMQODbvVpiKks=</HashCode>
+      <FileName>EstruturaOrganizacional\AlmoxarifadoBusiness.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Business.CatalogoBusiness">
+    <Position X="2" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>YVKDBACTggKAS9ZhHUdICAwaBAbjgiEEaEuGKYhSrQE=</HashCode>
+      <FileName>CatalogoBusiness\AtividadeMaterialBusiness.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sam.Domain.Business.UsuarioBusiness">
+    <Position X="9.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAEAAABAAg=</HashCode>
+      <FileName>CatalogoBusiness\UsuarioBusiness.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

@@ -1,0 +1,2349 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DBSEGModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityType Name="TB_CONVENIO">
+          <Key>
+            <PropertyRef Name="TB_CONVENIO_ID" />
+          </Key>
+          <Property Name="TB_CONVENIO_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TB_GESTOR_ID" Type="int" Nullable="false" />
+          <Property Name="TB_MODULO_ID" Type="int" Nullable="false" />
+          <Property Name="TB_CONVENIO_IND_ATIVO" Type="bit" Nullable="false" />
+          <Property Name="TB_CONVENIO_DESCRICAO" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="TB_HISTORICO_OPERACAO">
+          <Key>
+            <PropertyRef Name="TB_HISTORICO_OPERACAO_ID" />
+          </Key>
+          <Property Name="TB_HISTORICO_OPERACAO_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TB_HISTORICO_OPERACAO_ID_ORIGEM" Type="bigint" />
+          <Property Name="TB_HISTORICO_OPERACAO_MODULO_ID" Type="int" />
+          <Property Name="TB_HISTORICO_OPERACAO_DATA" Type="datetime" />
+          <Property Name="TB_HISTORICO_OPERACAO_IP" Type="varchar" MaxLength="20" />
+          <Property Name="TB_PERFIL_TRANSACAO_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="TB_LOGIN">
+          <Key>
+            <PropertyRef Name="TB_LOGIN_ID" />
+          </Key>
+          <Property Name="TB_LOGIN_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TB_USUARIO_ID" Type="int" Nullable="false" />
+          <Property Name="TB_LOGIN_ATIVO" Type="bit" Nullable="false" />
+          <Property Name="TB_LOGIN_SENHA" Type="varchar" MaxLength="255" />
+          <Property Name="TB_LOGIN_DATA_CADASTRO" Type="datetime" />
+          <Property Name="TB_LOGIN_TENTATIVAS_INVALIDAS" Type="int" />
+          <Property Name="TB_LOGIN_BLOQUEADO" Type="bit" />
+          <Property Name="TB_LOGIN_TROCAR_SENHA" Type="bit" />
+        </EntityType>
+        <EntityType Name="TB_LOGIN_NIVEL_ACESSO">
+          <Key>
+            <PropertyRef Name="TB_LOGIN_NIVEL_ACESSO_ID" />
+          </Key>
+          <Property Name="TB_LOGIN_NIVEL_ACESSO_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TB_NIVEL_ID" Type="tinyint" Nullable="false" />
+          <Property Name="TB_PERFIL_LOGIN_ID" Type="int" Nullable="false" />
+          <Property Name="TB_LOGIN_NIVEL_ACESSO_VALOR" Type="int" Nullable="false" />
+          <Property Name="TB_LOGIN_NIVEL_ACESSO_ID_PAI" Type="int" />
+          <Property Name="TB_LOGIN_NIVEL_ACESSO_DEFAULT" Type="bit" />
+          <Property Name="TB_LOGIN_NIVEL_ACESSO_PADRAO" Type="bit" />
+          <Property Name="TB_LOGIN_NIVEL_ACESSO_ATIVO" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_MATERIAL_APOIO">
+          <Key>
+            <PropertyRef Name="TB_MATERIAL_APOIO_ID" />
+          </Key>
+          <Property Name="TB_MATERIAL_APOIO_ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TB_MATERIAL_APOIO_PATH_ARQUIVO" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="TB_MATERIAL_APOIO_NOME_ARQUIVO" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="TB_MATERIAL_APOIO_CODIGO" Type="int" />
+          <Property Name="TB_MATERIAL_APOIO_TIPO_RECURSO" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="TB_MATERIAL_APOIO_DESCRICAO" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="TB_MATERIAL_APOIO_DESCRICAO_DETALHADA" Type="varchar" MaxLength="1024" Nullable="false" />
+          <Property Name="TB_PERFIL_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="TB_MODULO">
+          <Key>
+            <PropertyRef Name="TB_MODULO_ID" />
+          </Key>
+          <Property Name="TB_MODULO_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TB_SISTEMA_ID" Type="int" Nullable="false" />
+          <Property Name="TB_MODULO_IND_ATIVO" Type="bit" Nullable="false" />
+          <Property Name="TB_MODULO_SIGLA" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TB_MODULO_DESCRICAO" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TB_MODULO_ORDEM" Type="smallint" />
+          <Property Name="TB_MODULO_CAMINHO" Type="varchar" MaxLength="255" />
+          <Property Name="TB_MODULO_ID_PAI" Type="int" />
+        </EntityType>
+        <EntityType Name="TB_NIVEL">
+          <Key>
+            <PropertyRef Name="TB_NIVEL_ID" />
+          </Key>
+          <Property Name="TB_NIVEL_ID" Type="tinyint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TB_NIVEL_DESCRICAO" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="TB_NIVEL_ID_PAI" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="TB_NOTIFICACAO">
+          <Key>
+            <PropertyRef Name="TB_NOTIFICACAO_ID" />
+          </Key>
+          <Property Name="TB_NOTIFICACAO_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TB_PERFIL_ID" Type="smallint" />
+          <Property Name="TB_NOTIFICACAO_TITULO" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="TB_NOTIFICACAO_MENSAGEM" Type="varchar(max)" Nullable="false" />
+          <Property Name="TB_NOTIFICACAO_DATA" Type="datetime" Nullable="false" />
+          <Property Name="TB_NOTIFICACAO_IND_ATIVO" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_PERFIL">
+          <Key>
+            <PropertyRef Name="TB_PERFIL_ID" />
+          </Key>
+          <Property Name="TB_PERFIL_ID" Type="smallint" Nullable="false" />
+          <Property Name="TB_PERFIL_ATIVO" Type="bit" Nullable="false" />
+          <Property Name="TB_PERFIL_DESCRICAO" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TB_PERFIL_PESO" Type="int" />
+        </EntityType>
+        <EntityType Name="TB_PERFIL_LOGIN">
+          <Key>
+            <PropertyRef Name="TB_PERFIL_LOGIN_ID" />
+          </Key>
+          <Property Name="TB_PERFIL_LOGIN_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TB_PERFIL_ID" Type="smallint" Nullable="false" />
+          <Property Name="TB_LOGIN_ID" Type="int" Nullable="false" />
+          <Property Name="TB_ORGAO_ID_PADRAO" Type="int" />
+          <Property Name="TB_GESTOR_ID_PADRAO" Type="int" />
+          <Property Name="TB_ALMOXARIFADO_ID_PADRAO" Type="int" />
+          <Property Name="TB_UO_ID_PADRAO" Type="int" />
+          <Property Name="TB_UGE_ID_PADRAO" Type="int" />
+          <Property Name="TB_UA_ID_PADRAO" Type="int" />
+          <Property Name="TB_DIVISAO_ID_PADRAO" Type="int" />
+          <Property Name="TB_PERFIL_LOGIN_ATIVO" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_PERFIL_NIVEL">
+          <Key>
+            <PropertyRef Name="TB_PERFIL_NIVEL_ID" />
+          </Key>
+          <Property Name="TB_PERFIL_NIVEL_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TB_PERFIL_ID" Type="smallint" Nullable="false" />
+          <Property Name="TB_NIVEL_ID" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_SISTEMA">
+          <Key>
+            <PropertyRef Name="TB_SISTEMA_ID" />
+          </Key>
+          <Property Name="TB_SISTEMA_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TB_SISTEMA_ATIVO" Type="bit" Nullable="false" />
+          <Property Name="TB_SISTEMA_SIGLA" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TB_SISTEMA_DESCRICAO" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_TRANSACAO">
+          <Key>
+            <PropertyRef Name="TB_TRANSACAO_ID" />
+          </Key>
+          <Property Name="TB_TRANSACAO_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TB_MODULO_ID" Type="int" Nullable="false" />
+          <Property Name="TB_TRANSACAO_ATIVO" Type="bit" Nullable="false" />
+          <Property Name="TB_TRANSACAO_SIGLA" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="TB_TRANSACAO_DESCRICAO" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TB_TRANSACAO_CAMINHO" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="TB_TRANSACAO_ORDEM" Type="int" />
+        </EntityType>
+        <EntityType Name="TB_TRANSACAO_PERFIL">
+          <Key>
+            <PropertyRef Name="TB_TRANSACAO_PERFIL_ID" />
+          </Key>
+          <Property Name="TB_TRANSACAO_PERFIL_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TB_TRANSACAO_ID" Type="int" Nullable="false" />
+          <Property Name="TB_PERFIL_ID" Type="smallint" Nullable="false" />
+          <Property Name="TB_TRANSACAO_ATIVO" Type="bit" Nullable="false" />
+          <Property Name="TB_TRANSACAO_PERFIL_EDITA" Type="bit" Nullable="false" />
+          <Property Name="TB_TRANSACAO_FILTRA_COMBO" Type="bit" />
+        </EntityType>
+        <EntityType Name="TB_USUARIO">
+          <Key>
+            <PropertyRef Name="TB_USUARIO_ID" />
+          </Key>
+          <Property Name="TB_USUARIO_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TB_USUARIO_CPF" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="TB_USUARIO_IND_ATIVO" Type="bit" Nullable="false" />
+          <Property Name="TB_USUARIO_NOME_USUARIO" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="TB_USUARIO_END_FONE" Type="varchar" MaxLength="10" />
+          <Property Name="TB_USUARIO_RESPONSAVEL_ID_USUARIO_PAI" Type="int" Nullable="false" />
+          <Property Name="TB_USUARIO_EMAIL" Type="varchar" MaxLength="100" />
+          <Property Name="TB_ORGAO_ID" Type="int" />
+          <Property Name="TB_GESTOR_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="TB_USUARIO_LOGADO">
+          <Key>
+            <PropertyRef Name="TB_USUARIO_LOGADO_ID" />
+          </Key>
+          <Property Name="TB_USUARIO_LOGADO_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TB_LOGIN_ID" Type="int" />
+          <Property Name="TB_DATA_HORA_LOGADO" Type="datetime" Nullable="false" />
+          <Property Name="TB_IP_LOGADO" Type="varchar" MaxLength="20" />
+          <Property Name="TB_SESSION_ID" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'dbSEG_Desenv.dbo.VW_DADOS_USUARIO_PERFIS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_DADOS_USUARIO_PERFIS">
+          <Key>
+            <PropertyRef Name="TB_LOGIN_ID" />
+            <PropertyRef Name="TB_USUARIO_ID" />
+            <PropertyRef Name="TB_USUARIO_CPF" />
+            <PropertyRef Name="TB_USUARIO_IND_ATIVO" />
+            <PropertyRef Name="TB_USUARIO_RESPONSAVEL_ID_USUARIO_PAI" />
+            <PropertyRef Name="TB_PERFIL_LOGIN_ID" />
+            <PropertyRef Name="TB_PERFIL_ID" />
+            <PropertyRef Name="TB_PERFIL_DESCRICAO" />
+            <PropertyRef Name="DESCRICAO_PERFIL" />
+          </Key>
+          <Property Name="TB_LOGIN_ID" Type="int" Nullable="false" />
+          <Property Name="TB_USUARIO_ID" Type="int" Nullable="false" />
+          <Property Name="TB_USUARIO_CPF" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="TB_USUARIO_IND_ATIVO" Type="bit" Nullable="false" />
+          <Property Name="TB_USUARIO_NOME_USUARIO" Type="varchar" MaxLength="200" />
+          <Property Name="TB_USUARIO_END_FONE" Type="varchar" MaxLength="10" />
+          <Property Name="TB_USUARIO_RESPONSAVEL_ID_USUARIO_PAI" Type="int" Nullable="false" />
+          <Property Name="TB_USUARIO_EMAIL" Type="varchar" MaxLength="100" />
+          <Property Name="TB_PERFIL_LOGIN_ID" Type="int" Nullable="false" />
+          <Property Name="TB_PERFIL_ID" Type="smallint" Nullable="false" />
+          <Property Name="TB_PERFIL_DESCRICAO" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TB_PERFIL_PESO" Type="int" />
+          <Property Name="TB_ORGAO_ID" Type="int" />
+          <Property Name="TB_GESTOR_ID" Type="int" />
+          <Property Name="TB_GESTOR_ID_PADRAO" Type="int" />
+          <Property Name="TB_ORGAO_ID_PADRAO" Type="int" />
+          <Property Name="TB_UO_ID" Type="int" />
+          <Property Name="TB_UGE_ID" Type="int" />
+          <Property Name="TB_UA_ID" Type="int" />
+          <Property Name="TB_DIVISAO_ID" Type="int" />
+          <Property Name="TB_ALMOXARIFADO_ID" Type="int" />
+          <Property Name="DESCRICAO_PERFIL" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CODIGOS_PERFIL" Type="varchar" MaxLength="8000" />
+          <Property Name="PERFIL_RELATORIO" Type="varchar" MaxLength="8000" />
+          <Property Name="ULTIMO_ACESSO" Type="datetime" />
+          <Property Name="QTD_TOTAL_ACESSOS" Type="int" />
+          <Property Name="QTD_ACESSOS_30DIAS" Type="int" />
+          <Property Name="QTD_ACESSOS_90DIAS" Type="int" />
+          <Property Name="QTD_ACESSOS_180DIAS" Type="int" />
+          <Property Name="RowId" Type="bigint" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'dbSEG_Desenv.dbo.VW_DADOS_USUARIO_SEMPERFIS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_DADOS_USUARIO_SEMPERFIS">
+          <Key>
+            <PropertyRef Name="TB_USUARIO_ID" />
+            <PropertyRef Name="TB_USUARIO_CPF" />
+            <PropertyRef Name="TB_USUARIO_IND_ATIVO" />
+            <PropertyRef Name="TB_USUARIO_NOME_USUARIO" />
+            <PropertyRef Name="TB_USUARIO_RESPONSAVEL_ID_USUARIO_PAI" />
+            <PropertyRef Name="TB_LOGIN_ID" />
+            <PropertyRef Name="TB_LOGIN_ATIVO" />
+            <PropertyRef Name="QTD_TOTAL_ACESSOS" />
+            <PropertyRef Name="QTD_ACESSOS_30DIAS" />
+            <PropertyRef Name="QTD_ACESSOS_90DIAS" />
+            <PropertyRef Name="QTD_ACESSOS_180DIAS" />
+            <PropertyRef Name="DESCRICAO_PERFIL" />
+            <PropertyRef Name="CODIGOS_PERFIL" />
+            <PropertyRef Name="TB_PERFIL_ID" />
+            <PropertyRef Name="TB_PERFIL_DESCRICAO_PADRAO" />
+          </Key>
+          <Property Name="TB_USUARIO_ID" Type="int" Nullable="false" />
+          <Property Name="TB_USUARIO_CPF" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="TB_USUARIO_IND_ATIVO" Type="bit" Nullable="false" />
+          <Property Name="TB_USUARIO_NOME_USUARIO" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="TB_USUARIO_END_FONE" Type="varchar" MaxLength="10" />
+          <Property Name="TB_USUARIO_RESPONSAVEL_ID_USUARIO_PAI" Type="int" Nullable="false" />
+          <Property Name="TB_USUARIO_EMAIL" Type="varchar" MaxLength="100" />
+          <Property Name="TB_ORGAO_ID" Type="int" />
+          <Property Name="TB_GESTOR_ID" Type="int" />
+          <Property Name="TB_LOGIN_ID" Type="int" Nullable="false" />
+          <Property Name="TB_LOGIN_ATIVO" Type="bit" Nullable="false" />
+          <Property Name="TB_LOGIN_SENHA" Type="varchar" MaxLength="255" />
+          <Property Name="TB_LOGIN_DATA_CADASTRO" Type="datetime" />
+          <Property Name="TB_LOGIN_TENTATIVAS_INVALIDAS" Type="int" />
+          <Property Name="TB_LOGIN_BLOQUEADO" Type="bit" />
+          <Property Name="TB_LOGIN_TROCAR_SENHA" Type="bit" />
+          <Property Name="QTD_TOTAL_ACESSOS" Type="int" Nullable="false" />
+          <Property Name="QTD_ACESSOS_30DIAS" Type="int" Nullable="false" />
+          <Property Name="QTD_ACESSOS_90DIAS" Type="int" Nullable="false" />
+          <Property Name="QTD_ACESSOS_180DIAS" Type="int" Nullable="false" />
+          <Property Name="ULTIMO_ACESSO" Type="int" />
+          <Property Name="DESCRICAO_PERFIL" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="CODIGOS_PERFIL" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="TB_PERFIL_ID" Type="int" Nullable="false" />
+          <Property Name="TB_PERFIL_DESCRICAO_PADRAO" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="RowId" Type="bigint" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'dbSEG_Desenv.dbo.VW_LOG_USUARIO_QTD_ACESSOS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_LOG_USUARIO_QTD_ACESSOS">
+          <Key>
+            <PropertyRef Name="TB_LOGIN_ID" />
+            <PropertyRef Name="TB_LOG_USUARIO_TRANSACAO_ID" />
+          </Key>
+          <Property Name="TB_LOGIN_ID" Type="int" Nullable="false" />
+          <Property Name="TB_LOG_USUARIO_TRANSACAO_ID" Type="int" Nullable="false" />
+          <Property Name="QTD_TOTAL_ACESSOS" Type="int" />
+          <Property Name="QTD_ACESSOS_180DIAS" Type="int" />
+          <Property Name="QTD_ACESSOS_90DIAS" Type="int" />
+          <Property Name="QTD_ACESSOS_30DIAS" Type="int" />
+          <Property Name="ULTIMO_ACESSO" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'dbSEG_Desenv.dbo.VW_USUARIO_LOGIN_ACESSOS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_USUARIO_LOGIN_ACESSOS">
+          <Key>
+            <PropertyRef Name="TB_USUARIO_ID" />
+            <PropertyRef Name="TB_USUARIO_CPF" />
+            <PropertyRef Name="TB_USUARIO_IND_ATIVO" />
+            <PropertyRef Name="TB_USUARIO_NOME_USUARIO" />
+            <PropertyRef Name="TB_USUARIO_RESPONSAVEL_ID_USUARIO_PAI" />
+            <PropertyRef Name="TB_LOGIN_ID" />
+            <PropertyRef Name="TB_LOGIN_ATIVO" />
+            <PropertyRef Name="TB_PERFIL_ID" />
+            <PropertyRef Name="TB_PERFIL_LOGIN_ID" />
+            <PropertyRef Name="TB_PERFIL_DESCRICAO" />
+            <PropertyRef Name="DESCRICAO_PERFIL" />
+          </Key>
+          <Property Name="TB_USUARIO_ID" Type="int" Nullable="false" />
+          <Property Name="TB_USUARIO_CPF" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="TB_USUARIO_IND_ATIVO" Type="bit" Nullable="false" />
+          <Property Name="TB_USUARIO_NOME_USUARIO" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="TB_USUARIO_END_FONE" Type="varchar" MaxLength="10" />
+          <Property Name="TB_USUARIO_RESPONSAVEL_ID_USUARIO_PAI" Type="int" Nullable="false" />
+          <Property Name="TB_USUARIO_EMAIL" Type="varchar" MaxLength="100" />
+          <Property Name="TB_ORGAO_ID" Type="int" />
+          <Property Name="TB_GESTOR_ID" Type="int" />
+          <Property Name="TB_LOGIN_ID" Type="int" Nullable="false" />
+          <Property Name="TB_LOGIN_ATIVO" Type="bit" Nullable="false" />
+          <Property Name="TB_LOGIN_SENHA" Type="varchar" MaxLength="255" />
+          <Property Name="TB_LOGIN_DATA_CADASTRO" Type="datetime" />
+          <Property Name="TB_LOGIN_TENTATIVAS_INVALIDAS" Type="int" />
+          <Property Name="TB_LOGIN_BLOQUEADO" Type="bit" />
+          <Property Name="TB_LOGIN_TROCAR_SENHA" Type="bit" />
+          <Property Name="TB_PERFIL_ID" Type="smallint" Nullable="false" />
+          <Property Name="TB_PERFIL_LOGIN_ID" Type="int" Nullable="false" />
+          <Property Name="TB_PERFIL_DESCRICAO" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DESCRICAO_PERFIL" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CODIGOS_PERFIL" Type="varchar" MaxLength="8000" />
+          <Property Name="TB_PERFIL_PESO" Type="int" />
+          <Property Name="TB_ORGAO_ID_PADRAO" Type="int" />
+          <Property Name="QTD_TOTAL_ACESSOS" Type="int" />
+          <Property Name="QTD_ACESSOS_30DIAS" Type="int" />
+          <Property Name="QTD_ACESSOS_90DIAS" Type="int" />
+          <Property Name="QTD_ACESSOS_180DIAS" Type="int" />
+          <Property Name="ULTIMO_ACESSO" Type="datetime" />
+          <Property Name="RowId" Type="bigint" />
+        </EntityType>
+        <Association Name="FK__TB_CONVEN__TB_MO__33D4B598">
+          <End Role="TB_MODULO" Type="Self.TB_MODULO" Multiplicity="1" />
+          <End Role="TB_CONVENIO" Type="Self.TB_CONVENIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_MODULO">
+              <PropertyRef Name="TB_MODULO_ID" />
+            </Principal>
+            <Dependent Role="TB_CONVENIO">
+              <PropertyRef Name="TB_MODULO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_CONVEN__TB_MO__4316F928">
+          <End Role="TB_MODULO" Type="Self.TB_MODULO" Multiplicity="1" />
+          <End Role="TB_CONVENIO" Type="Self.TB_CONVENIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_MODULO">
+              <PropertyRef Name="TB_MODULO_ID" />
+            </Principal>
+            <Dependent Role="TB_CONVENIO">
+              <PropertyRef Name="TB_MODULO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_LOGIN___TB_LO__35BCFE0A">
+          <End Role="TB_LOGIN_NIVEL_ACESSO" Type="Self.TB_LOGIN_NIVEL_ACESSO" Multiplicity="0..1" />
+          <End Role="TB_LOGIN_NIVEL_ACESSO1" Type="Self.TB_LOGIN_NIVEL_ACESSO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_LOGIN_NIVEL_ACESSO">
+              <PropertyRef Name="TB_LOGIN_NIVEL_ACESSO_ID" />
+            </Principal>
+            <Dependent Role="TB_LOGIN_NIVEL_ACESSO1">
+              <PropertyRef Name="TB_LOGIN_NIVEL_ACESSO_ID_PAI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_LOGIN___TB_LO__440B1D61">
+          <End Role="TB_LOGIN_NIVEL_ACESSO" Type="Self.TB_LOGIN_NIVEL_ACESSO" Multiplicity="0..1" />
+          <End Role="TB_LOGIN_NIVEL_ACESSO1" Type="Self.TB_LOGIN_NIVEL_ACESSO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_LOGIN_NIVEL_ACESSO">
+              <PropertyRef Name="TB_LOGIN_NIVEL_ACESSO_ID" />
+            </Principal>
+            <Dependent Role="TB_LOGIN_NIVEL_ACESSO1">
+              <PropertyRef Name="TB_LOGIN_NIVEL_ACESSO_ID_PAI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_LOGIN___TB_NI__36B12243">
+          <End Role="TB_NIVEL" Type="Self.TB_NIVEL" Multiplicity="1" />
+          <End Role="TB_LOGIN_NIVEL_ACESSO" Type="Self.TB_LOGIN_NIVEL_ACESSO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_NIVEL">
+              <PropertyRef Name="TB_NIVEL_ID" />
+            </Principal>
+            <Dependent Role="TB_LOGIN_NIVEL_ACESSO">
+              <PropertyRef Name="TB_NIVEL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_LOGIN___TB_NI__44FF419A">
+          <End Role="TB_NIVEL" Type="Self.TB_NIVEL" Multiplicity="1" />
+          <End Role="TB_LOGIN_NIVEL_ACESSO" Type="Self.TB_LOGIN_NIVEL_ACESSO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_NIVEL">
+              <PropertyRef Name="TB_NIVEL_ID" />
+            </Principal>
+            <Dependent Role="TB_LOGIN_NIVEL_ACESSO">
+              <PropertyRef Name="TB_NIVEL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_LOGIN__TB_USU__0519C6AF">
+          <End Role="TB_USUARIO" Type="Self.TB_USUARIO" Multiplicity="1" />
+          <End Role="TB_LOGIN" Type="Self.TB_LOGIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_USUARIO">
+              <PropertyRef Name="TB_USUARIO_ID" />
+            </Principal>
+            <Dependent Role="TB_LOGIN">
+              <PropertyRef Name="TB_USUARIO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_MODULO__TB_MO__38996AB5">
+          <End Role="TB_MODULO" Type="Self.TB_MODULO" Multiplicity="0..1" />
+          <End Role="TB_MODULO1" Type="Self.TB_MODULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_MODULO">
+              <PropertyRef Name="TB_MODULO_ID" />
+            </Principal>
+            <Dependent Role="TB_MODULO1">
+              <PropertyRef Name="TB_MODULO_ID_PAI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_MODULO__TB_MO__45F365D3">
+          <End Role="TB_MODULO" Type="Self.TB_MODULO" Multiplicity="0..1" />
+          <End Role="TB_MODULO1" Type="Self.TB_MODULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_MODULO">
+              <PropertyRef Name="TB_MODULO_ID" />
+            </Principal>
+            <Dependent Role="TB_MODULO1">
+              <PropertyRef Name="TB_MODULO_ID_PAI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_MODULO__TB_SI__398D8EEE">
+          <End Role="TB_SISTEMA" Type="Self.TB_SISTEMA" Multiplicity="1" />
+          <End Role="TB_MODULO" Type="Self.TB_MODULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_SISTEMA">
+              <PropertyRef Name="TB_SISTEMA_ID" />
+            </Principal>
+            <Dependent Role="TB_MODULO">
+              <PropertyRef Name="TB_SISTEMA_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_MODULO__TB_SI__46E78A0C">
+          <End Role="TB_SISTEMA" Type="Self.TB_SISTEMA" Multiplicity="1" />
+          <End Role="TB_MODULO" Type="Self.TB_MODULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_SISTEMA">
+              <PropertyRef Name="TB_SISTEMA_ID" />
+            </Principal>
+            <Dependent Role="TB_MODULO">
+              <PropertyRef Name="TB_SISTEMA_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_NIVEL__TB_NIV__3A81B327">
+          <End Role="TB_NIVEL" Type="Self.TB_NIVEL" Multiplicity="0..1" />
+          <End Role="TB_NIVEL1" Type="Self.TB_NIVEL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_NIVEL">
+              <PropertyRef Name="TB_NIVEL_ID" />
+            </Principal>
+            <Dependent Role="TB_NIVEL1">
+              <PropertyRef Name="TB_NIVEL_ID_PAI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_NIVEL__TB_NIV__47DBAE45">
+          <End Role="TB_NIVEL" Type="Self.TB_NIVEL" Multiplicity="0..1" />
+          <End Role="TB_NIVEL1" Type="Self.TB_NIVEL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_NIVEL">
+              <PropertyRef Name="TB_NIVEL_ID" />
+            </Principal>
+            <Dependent Role="TB_NIVEL1">
+              <PropertyRef Name="TB_NIVEL_ID_PAI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_NOTIFI__TB_PE__59063A47">
+          <End Role="TB_PERFIL" Type="Self.TB_PERFIL" Multiplicity="0..1" />
+          <End Role="TB_NOTIFICACAO" Type="Self.TB_NOTIFICACAO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_PERFIL">
+              <PropertyRef Name="TB_PERFIL_ID" />
+            </Principal>
+            <Dependent Role="TB_NOTIFICACAO">
+              <PropertyRef Name="TB_PERFIL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_PERFIL__TB_LO__117F9D94">
+          <End Role="TB_LOGIN" Type="Self.TB_LOGIN" Multiplicity="1" />
+          <End Role="TB_PERFIL_LOGIN" Type="Self.TB_PERFIL_LOGIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_LOGIN">
+              <PropertyRef Name="TB_LOGIN_ID" />
+            </Principal>
+            <Dependent Role="TB_PERFIL_LOGIN">
+              <PropertyRef Name="TB_LOGIN_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_PERFIL__TB_NI__3D5E1FD2">
+          <End Role="TB_NIVEL" Type="Self.TB_NIVEL" Multiplicity="1" />
+          <End Role="TB_PERFIL_NIVEL" Type="Self.TB_PERFIL_NIVEL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_NIVEL">
+              <PropertyRef Name="TB_NIVEL_ID" />
+            </Principal>
+            <Dependent Role="TB_PERFIL_NIVEL">
+              <PropertyRef Name="TB_NIVEL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_PERFIL__TB_NI__48CFD27E">
+          <End Role="TB_NIVEL" Type="Self.TB_NIVEL" Multiplicity="1" />
+          <End Role="TB_PERFIL_NIVEL" Type="Self.TB_PERFIL_NIVEL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_NIVEL">
+              <PropertyRef Name="TB_NIVEL_ID" />
+            </Principal>
+            <Dependent Role="TB_PERFIL_NIVEL">
+              <PropertyRef Name="TB_NIVEL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_PERFIL__TB_PE__108B795B">
+          <End Role="TB_PERFIL" Type="Self.TB_PERFIL" Multiplicity="1" />
+          <End Role="TB_PERFIL_LOGIN" Type="Self.TB_PERFIL_LOGIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_PERFIL">
+              <PropertyRef Name="TB_PERFIL_ID" />
+            </Principal>
+            <Dependent Role="TB_PERFIL_LOGIN">
+              <PropertyRef Name="TB_PERFIL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_PERFIL__TB_PE__3E52440B">
+          <End Role="TB_PERFIL" Type="Self.TB_PERFIL" Multiplicity="1" />
+          <End Role="TB_PERFIL_NIVEL" Type="Self.TB_PERFIL_NIVEL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_PERFIL">
+              <PropertyRef Name="TB_PERFIL_ID" />
+            </Principal>
+            <Dependent Role="TB_PERFIL_NIVEL">
+              <PropertyRef Name="TB_PERFIL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_PERFIL__TB_PE__49C3F6B7">
+          <End Role="TB_PERFIL" Type="Self.TB_PERFIL" Multiplicity="1" />
+          <End Role="TB_PERFIL_NIVEL" Type="Self.TB_PERFIL_NIVEL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_PERFIL">
+              <PropertyRef Name="TB_PERFIL_ID" />
+            </Principal>
+            <Dependent Role="TB_PERFIL_NIVEL">
+              <PropertyRef Name="TB_PERFIL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_TRANSA__TB_MO__3C69FB99">
+          <End Role="TB_MODULO" Type="Self.TB_MODULO" Multiplicity="1" />
+          <End Role="TB_TRANSACAO" Type="Self.TB_TRANSACAO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_MODULO">
+              <PropertyRef Name="TB_MODULO_ID" />
+            </Principal>
+            <Dependent Role="TB_TRANSACAO">
+              <PropertyRef Name="TB_MODULO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_TRANSA__TB_PE__403A8C7D">
+          <End Role="TB_PERFIL" Type="Self.TB_PERFIL" Multiplicity="1" />
+          <End Role="TB_TRANSACAO_PERFIL" Type="Self.TB_TRANSACAO_PERFIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_PERFIL">
+              <PropertyRef Name="TB_PERFIL_ID" />
+            </Principal>
+            <Dependent Role="TB_TRANSACAO_PERFIL">
+              <PropertyRef Name="TB_PERFIL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_TRANSA__TB_PE__412EB0B6">
+          <End Role="TB_PERFIL" Type="Self.TB_PERFIL" Multiplicity="1" />
+          <End Role="TB_TRANSACAO_PERFIL" Type="Self.TB_TRANSACAO_PERFIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_PERFIL">
+              <PropertyRef Name="TB_PERFIL_ID" />
+            </Principal>
+            <Dependent Role="TB_TRANSACAO_PERFIL">
+              <PropertyRef Name="TB_PERFIL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_TRANSA__TB_PE__4AB81AF0">
+          <End Role="TB_PERFIL" Type="Self.TB_PERFIL" Multiplicity="1" />
+          <End Role="TB_TRANSACAO_PERFIL" Type="Self.TB_TRANSACAO_PERFIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_PERFIL">
+              <PropertyRef Name="TB_PERFIL_ID" />
+            </Principal>
+            <Dependent Role="TB_TRANSACAO_PERFIL">
+              <PropertyRef Name="TB_PERFIL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_TRANSA__TB_PE__4BAC3F29">
+          <End Role="TB_PERFIL" Type="Self.TB_PERFIL" Multiplicity="1" />
+          <End Role="TB_TRANSACAO_PERFIL" Type="Self.TB_TRANSACAO_PERFIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_PERFIL">
+              <PropertyRef Name="TB_PERFIL_ID" />
+            </Principal>
+            <Dependent Role="TB_TRANSACAO_PERFIL">
+              <PropertyRef Name="TB_PERFIL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_TRANSA__TB_TR__3D5E1FD2">
+          <End Role="TB_TRANSACAO" Type="Self.TB_TRANSACAO" Multiplicity="1" />
+          <End Role="TB_TRANSACAO_PERFIL" Type="Self.TB_TRANSACAO_PERFIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_TRANSACAO">
+              <PropertyRef Name="TB_TRANSACAO_ID" />
+            </Principal>
+            <Dependent Role="TB_TRANSACAO_PERFIL">
+              <PropertyRef Name="TB_TRANSACAO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TB_LOGIN_NIVEL_ACESSO_TB_PERFIL_LOGIN">
+          <End Role="TB_PERFIL_LOGIN" Type="Self.TB_PERFIL_LOGIN" Multiplicity="1" />
+          <End Role="TB_LOGIN_NIVEL_ACESSO" Type="Self.TB_LOGIN_NIVEL_ACESSO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_PERFIL_LOGIN">
+              <PropertyRef Name="TB_PERFIL_LOGIN_ID" />
+            </Principal>
+            <Dependent Role="TB_LOGIN_NIVEL_ACESSO">
+              <PropertyRef Name="TB_PERFIL_LOGIN_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TB_LOGIN_TB_USUARIO_LOGADO_LOGIN_ID">
+          <End Role="TB_LOGIN" Type="Self.TB_LOGIN" Multiplicity="0..1" />
+          <End Role="TB_USUARIO_LOGADO" Type="Self.TB_USUARIO_LOGADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_LOGIN">
+              <PropertyRef Name="TB_LOGIN_ID" />
+            </Principal>
+            <Dependent Role="TB_USUARIO_LOGADO">
+              <PropertyRef Name="TB_LOGIN_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="PRC_ATUALIZAR_ESTATISTICA_ACESSO_USUARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PRC_LISTAR_USUARIOS_LOGIN_ACESSOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cpfLogin" Type="varchar" Mode="In" />
+          <Parameter Name="orgaoId" Type="int" Mode="In" />
+          <Parameter Name="gestorId" Type="int" Mode="In" />
+          <Parameter Name="peso" Type="int" Mode="In" />
+          <Parameter Name="pesquisa" Type="varchar(max)" Mode="In" />
+          <Parameter Name="perfilId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PROC_CRIACAO_MODULO_RELATORIOS_E_TRANSACOES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_PERFIL_LOGIN_OBTER_BY_LOGIN_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LoginId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_PERFIL_NIVEL_LISTAR_BY_ID_PERFIL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TB_PERFIL_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_PERFIL_NIVEL_OBTER_BY_ID_PERFIL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TB_PERFIL_ID" Type="int" Mode="In" />
+          <Parameter Name="TB_LOGIN_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_TB_LOGIN_DESLOGAR_USUARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TB_LOGIN_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_TB_LOGIN_LOGAR_USUARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TB_LOGIN_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_TB_LOGIN_NIVEL_ACESSO_OBTER_BY_ID_PERFIL_LOGIN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TB_PERFIL_LOGIN_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_TB_TRANSACAO_PERFIL_LISTAR_POR_ID_PERFIL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TB_PERFIL_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="TB_LOGIN_OBTER_LOGIN_BY_USERNAME" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="TB_NIVEL_OBTER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TB_NIVEL_ID" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="DBSEGModelStoreContainer">
+          <EntitySet Name="TB_CONVENIO" EntityType="Self.TB_CONVENIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_HISTORICO_OPERACAO" EntityType="Self.TB_HISTORICO_OPERACAO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_LOGIN" EntityType="Self.TB_LOGIN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_LOGIN_NIVEL_ACESSO" EntityType="Self.TB_LOGIN_NIVEL_ACESSO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_MATERIAL_APOIO" EntityType="Self.TB_MATERIAL_APOIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_MODULO" EntityType="Self.TB_MODULO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_NIVEL" EntityType="Self.TB_NIVEL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_NOTIFICACAO" EntityType="Self.TB_NOTIFICACAO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_PERFIL" EntityType="Self.TB_PERFIL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_PERFIL_LOGIN" EntityType="Self.TB_PERFIL_LOGIN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_PERFIL_NIVEL" EntityType="Self.TB_PERFIL_NIVEL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_SISTEMA" EntityType="Self.TB_SISTEMA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_TRANSACAO" EntityType="Self.TB_TRANSACAO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_TRANSACAO_PERFIL" EntityType="Self.TB_TRANSACAO_PERFIL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_USUARIO" EntityType="Self.TB_USUARIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_USUARIO_LOGADO" EntityType="Self.TB_USUARIO_LOGADO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VW_DADOS_USUARIO_PERFIS" EntityType="Self.VW_DADOS_USUARIO_PERFIS" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[VW_DADOS_USUARIO_PERFIS].[TB_LOGIN_ID] AS [TB_LOGIN_ID], 
+[VW_DADOS_USUARIO_PERFIS].[TB_USUARIO_ID] AS [TB_USUARIO_ID], 
+[VW_DADOS_USUARIO_PERFIS].[TB_USUARIO_CPF] AS [TB_USUARIO_CPF], 
+[VW_DADOS_USUARIO_PERFIS].[TB_USUARIO_IND_ATIVO] AS [TB_USUARIO_IND_ATIVO], 
+[VW_DADOS_USUARIO_PERFIS].[TB_USUARIO_NOME_USUARIO] AS [TB_USUARIO_NOME_USUARIO], 
+[VW_DADOS_USUARIO_PERFIS].[TB_USUARIO_END_FONE] AS [TB_USUARIO_END_FONE], 
+[VW_DADOS_USUARIO_PERFIS].[TB_USUARIO_RESPONSAVEL_ID_USUARIO_PAI] AS [TB_USUARIO_RESPONSAVEL_ID_USUARIO_PAI], 
+[VW_DADOS_USUARIO_PERFIS].[TB_USUARIO_EMAIL] AS [TB_USUARIO_EMAIL], 
+[VW_DADOS_USUARIO_PERFIS].[TB_PERFIL_LOGIN_ID] AS [TB_PERFIL_LOGIN_ID], 
+[VW_DADOS_USUARIO_PERFIS].[TB_PERFIL_ID] AS [TB_PERFIL_ID], 
+[VW_DADOS_USUARIO_PERFIS].[TB_PERFIL_DESCRICAO] AS [TB_PERFIL_DESCRICAO], 
+[VW_DADOS_USUARIO_PERFIS].[TB_PERFIL_PESO] AS [TB_PERFIL_PESO], 
+[VW_DADOS_USUARIO_PERFIS].[TB_ORGAO_ID] AS [TB_ORGAO_ID], 
+[VW_DADOS_USUARIO_PERFIS].[TB_GESTOR_ID] AS [TB_GESTOR_ID], 
+[VW_DADOS_USUARIO_PERFIS].[TB_GESTOR_ID_PADRAO] AS [TB_GESTOR_ID_PADRAO], 
+[VW_DADOS_USUARIO_PERFIS].[TB_ORGAO_ID_PADRAO] AS [TB_ORGAO_ID_PADRAO], 
+[VW_DADOS_USUARIO_PERFIS].[TB_UO_ID] AS [TB_UO_ID], 
+[VW_DADOS_USUARIO_PERFIS].[TB_UGE_ID] AS [TB_UGE_ID], 
+[VW_DADOS_USUARIO_PERFIS].[TB_UA_ID] AS [TB_UA_ID], 
+[VW_DADOS_USUARIO_PERFIS].[TB_DIVISAO_ID] AS [TB_DIVISAO_ID], 
+[VW_DADOS_USUARIO_PERFIS].[TB_ALMOXARIFADO_ID] AS [TB_ALMOXARIFADO_ID], 
+[VW_DADOS_USUARIO_PERFIS].[DESCRICAO_PERFIL] AS [DESCRICAO_PERFIL], 
+[VW_DADOS_USUARIO_PERFIS].[CODIGOS_PERFIL] AS [CODIGOS_PERFIL], 
+[VW_DADOS_USUARIO_PERFIS].[PERFIL_RELATORIO] AS [PERFIL_RELATORIO], 
+[VW_DADOS_USUARIO_PERFIS].[ULTIMO_ACESSO] AS [ULTIMO_ACESSO], 
+[VW_DADOS_USUARIO_PERFIS].[QTD_TOTAL_ACESSOS] AS [QTD_TOTAL_ACESSOS], 
+[VW_DADOS_USUARIO_PERFIS].[QTD_ACESSOS_30DIAS] AS [QTD_ACESSOS_30DIAS], 
+[VW_DADOS_USUARIO_PERFIS].[QTD_ACESSOS_90DIAS] AS [QTD_ACESSOS_90DIAS], 
+[VW_DADOS_USUARIO_PERFIS].[QTD_ACESSOS_180DIAS] AS [QTD_ACESSOS_180DIAS], 
+[VW_DADOS_USUARIO_PERFIS].[RowId] AS [RowId]
+FROM [dbo].[VW_DADOS_USUARIO_PERFIS] AS [VW_DADOS_USUARIO_PERFIS]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_DADOS_USUARIO_SEMPERFIS" EntityType="Self.VW_DADOS_USUARIO_SEMPERFIS" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[VW_DADOS_USUARIO_SEMPERFIS].[TB_USUARIO_ID] AS [TB_USUARIO_ID], 
+[VW_DADOS_USUARIO_SEMPERFIS].[TB_USUARIO_CPF] AS [TB_USUARIO_CPF], 
+[VW_DADOS_USUARIO_SEMPERFIS].[TB_USUARIO_IND_ATIVO] AS [TB_USUARIO_IND_ATIVO], 
+[VW_DADOS_USUARIO_SEMPERFIS].[TB_USUARIO_NOME_USUARIO] AS [TB_USUARIO_NOME_USUARIO], 
+[VW_DADOS_USUARIO_SEMPERFIS].[TB_USUARIO_END_FONE] AS [TB_USUARIO_END_FONE], 
+[VW_DADOS_USUARIO_SEMPERFIS].[TB_USUARIO_RESPONSAVEL_ID_USUARIO_PAI] AS [TB_USUARIO_RESPONSAVEL_ID_USUARIO_PAI], 
+[VW_DADOS_USUARIO_SEMPERFIS].[TB_USUARIO_EMAIL] AS [TB_USUARIO_EMAIL], 
+[VW_DADOS_USUARIO_SEMPERFIS].[TB_ORGAO_ID] AS [TB_ORGAO_ID], 
+[VW_DADOS_USUARIO_SEMPERFIS].[TB_GESTOR_ID] AS [TB_GESTOR_ID], 
+[VW_DADOS_USUARIO_SEMPERFIS].[TB_LOGIN_ID] AS [TB_LOGIN_ID], 
+[VW_DADOS_USUARIO_SEMPERFIS].[TB_LOGIN_ATIVO] AS [TB_LOGIN_ATIVO], 
+[VW_DADOS_USUARIO_SEMPERFIS].[TB_LOGIN_SENHA] AS [TB_LOGIN_SENHA], 
+[VW_DADOS_USUARIO_SEMPERFIS].[TB_LOGIN_DATA_CADASTRO] AS [TB_LOGIN_DATA_CADASTRO], 
+[VW_DADOS_USUARIO_SEMPERFIS].[TB_LOGIN_TENTATIVAS_INVALIDAS] AS [TB_LOGIN_TENTATIVAS_INVALIDAS], 
+[VW_DADOS_USUARIO_SEMPERFIS].[TB_LOGIN_BLOQUEADO] AS [TB_LOGIN_BLOQUEADO], 
+[VW_DADOS_USUARIO_SEMPERFIS].[TB_LOGIN_TROCAR_SENHA] AS [TB_LOGIN_TROCAR_SENHA], 
+[VW_DADOS_USUARIO_SEMPERFIS].[QTD_TOTAL_ACESSOS] AS [QTD_TOTAL_ACESSOS], 
+[VW_DADOS_USUARIO_SEMPERFIS].[QTD_ACESSOS_30DIAS] AS [QTD_ACESSOS_30DIAS], 
+[VW_DADOS_USUARIO_SEMPERFIS].[QTD_ACESSOS_90DIAS] AS [QTD_ACESSOS_90DIAS], 
+[VW_DADOS_USUARIO_SEMPERFIS].[QTD_ACESSOS_180DIAS] AS [QTD_ACESSOS_180DIAS], 
+[VW_DADOS_USUARIO_SEMPERFIS].[ULTIMO_ACESSO] AS [ULTIMO_ACESSO], 
+[VW_DADOS_USUARIO_SEMPERFIS].[DESCRICAO_PERFIL] AS [DESCRICAO_PERFIL], 
+[VW_DADOS_USUARIO_SEMPERFIS].[CODIGOS_PERFIL] AS [CODIGOS_PERFIL], 
+[VW_DADOS_USUARIO_SEMPERFIS].[TB_PERFIL_ID] AS [TB_PERFIL_ID], 
+[VW_DADOS_USUARIO_SEMPERFIS].[TB_PERFIL_DESCRICAO_PADRAO] AS [TB_PERFIL_DESCRICAO_PADRAO], 
+[VW_DADOS_USUARIO_SEMPERFIS].[RowId] AS [RowId]
+FROM [dbo].[VW_DADOS_USUARIO_SEMPERFIS] AS [VW_DADOS_USUARIO_SEMPERFIS]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_LOG_USUARIO_QTD_ACESSOS" EntityType="Self.VW_LOG_USUARIO_QTD_ACESSOS" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[VW_LOG_USUARIO_QTD_ACESSOS].[TB_LOGIN_ID] AS [TB_LOGIN_ID], 
+[VW_LOG_USUARIO_QTD_ACESSOS].[TB_LOG_USUARIO_TRANSACAO_ID] AS [TB_LOG_USUARIO_TRANSACAO_ID], 
+[VW_LOG_USUARIO_QTD_ACESSOS].[QTD_TOTAL_ACESSOS] AS [QTD_TOTAL_ACESSOS], 
+[VW_LOG_USUARIO_QTD_ACESSOS].[QTD_ACESSOS_180DIAS] AS [QTD_ACESSOS_180DIAS], 
+[VW_LOG_USUARIO_QTD_ACESSOS].[QTD_ACESSOS_90DIAS] AS [QTD_ACESSOS_90DIAS], 
+[VW_LOG_USUARIO_QTD_ACESSOS].[QTD_ACESSOS_30DIAS] AS [QTD_ACESSOS_30DIAS], 
+[VW_LOG_USUARIO_QTD_ACESSOS].[ULTIMO_ACESSO] AS [ULTIMO_ACESSO]
+FROM [dbo].[VW_LOG_USUARIO_QTD_ACESSOS] AS [VW_LOG_USUARIO_QTD_ACESSOS]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_USUARIO_LOGIN_ACESSOS" EntityType="Self.VW_USUARIO_LOGIN_ACESSOS" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[VW_USUARIO_LOGIN_ACESSOS].[TB_USUARIO_ID] AS [TB_USUARIO_ID], 
+[VW_USUARIO_LOGIN_ACESSOS].[TB_USUARIO_CPF] AS [TB_USUARIO_CPF], 
+[VW_USUARIO_LOGIN_ACESSOS].[TB_USUARIO_IND_ATIVO] AS [TB_USUARIO_IND_ATIVO], 
+[VW_USUARIO_LOGIN_ACESSOS].[TB_USUARIO_NOME_USUARIO] AS [TB_USUARIO_NOME_USUARIO], 
+[VW_USUARIO_LOGIN_ACESSOS].[TB_USUARIO_END_FONE] AS [TB_USUARIO_END_FONE], 
+[VW_USUARIO_LOGIN_ACESSOS].[TB_USUARIO_RESPONSAVEL_ID_USUARIO_PAI] AS [TB_USUARIO_RESPONSAVEL_ID_USUARIO_PAI], 
+[VW_USUARIO_LOGIN_ACESSOS].[TB_USUARIO_EMAIL] AS [TB_USUARIO_EMAIL], 
+[VW_USUARIO_LOGIN_ACESSOS].[TB_ORGAO_ID] AS [TB_ORGAO_ID], 
+[VW_USUARIO_LOGIN_ACESSOS].[TB_GESTOR_ID] AS [TB_GESTOR_ID], 
+[VW_USUARIO_LOGIN_ACESSOS].[TB_LOGIN_ID] AS [TB_LOGIN_ID], 
+[VW_USUARIO_LOGIN_ACESSOS].[TB_LOGIN_ATIVO] AS [TB_LOGIN_ATIVO], 
+[VW_USUARIO_LOGIN_ACESSOS].[TB_LOGIN_SENHA] AS [TB_LOGIN_SENHA], 
+[VW_USUARIO_LOGIN_ACESSOS].[TB_LOGIN_DATA_CADASTRO] AS [TB_LOGIN_DATA_CADASTRO], 
+[VW_USUARIO_LOGIN_ACESSOS].[TB_LOGIN_TENTATIVAS_INVALIDAS] AS [TB_LOGIN_TENTATIVAS_INVALIDAS], 
+[VW_USUARIO_LOGIN_ACESSOS].[TB_LOGIN_BLOQUEADO] AS [TB_LOGIN_BLOQUEADO], 
+[VW_USUARIO_LOGIN_ACESSOS].[TB_LOGIN_TROCAR_SENHA] AS [TB_LOGIN_TROCAR_SENHA], 
+[VW_USUARIO_LOGIN_ACESSOS].[TB_PERFIL_ID] AS [TB_PERFIL_ID], 
+[VW_USUARIO_LOGIN_ACESSOS].[TB_PERFIL_LOGIN_ID] AS [TB_PERFIL_LOGIN_ID], 
+[VW_USUARIO_LOGIN_ACESSOS].[TB_PERFIL_DESCRICAO] AS [TB_PERFIL_DESCRICAO], 
+[VW_USUARIO_LOGIN_ACESSOS].[DESCRICAO_PERFIL] AS [DESCRICAO_PERFIL], 
+[VW_USUARIO_LOGIN_ACESSOS].[CODIGOS_PERFIL] AS [CODIGOS_PERFIL], 
+[VW_USUARIO_LOGIN_ACESSOS].[TB_PERFIL_PESO] AS [TB_PERFIL_PESO], 
+[VW_USUARIO_LOGIN_ACESSOS].[TB_ORGAO_ID_PADRAO] AS [TB_ORGAO_ID_PADRAO], 
+[VW_USUARIO_LOGIN_ACESSOS].[QTD_TOTAL_ACESSOS] AS [QTD_TOTAL_ACESSOS], 
+[VW_USUARIO_LOGIN_ACESSOS].[QTD_ACESSOS_30DIAS] AS [QTD_ACESSOS_30DIAS], 
+[VW_USUARIO_LOGIN_ACESSOS].[QTD_ACESSOS_90DIAS] AS [QTD_ACESSOS_90DIAS], 
+[VW_USUARIO_LOGIN_ACESSOS].[QTD_ACESSOS_180DIAS] AS [QTD_ACESSOS_180DIAS], 
+[VW_USUARIO_LOGIN_ACESSOS].[ULTIMO_ACESSO] AS [ULTIMO_ACESSO], 
+[VW_USUARIO_LOGIN_ACESSOS].[RowId] AS [RowId]
+FROM [dbo].[VW_USUARIO_LOGIN_ACESSOS] AS [VW_USUARIO_LOGIN_ACESSOS]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__TB_CONVEN__TB_MO__33D4B598" Association="Self.FK__TB_CONVEN__TB_MO__33D4B598">
+            <End Role="TB_MODULO" EntitySet="TB_MODULO" />
+            <End Role="TB_CONVENIO" EntitySet="TB_CONVENIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_CONVEN__TB_MO__4316F928" Association="Self.FK__TB_CONVEN__TB_MO__4316F928">
+            <End Role="TB_MODULO" EntitySet="TB_MODULO" />
+            <End Role="TB_CONVENIO" EntitySet="TB_CONVENIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_LOGIN___TB_LO__35BCFE0A" Association="Self.FK__TB_LOGIN___TB_LO__35BCFE0A">
+            <End Role="TB_LOGIN_NIVEL_ACESSO" EntitySet="TB_LOGIN_NIVEL_ACESSO" />
+            <End Role="TB_LOGIN_NIVEL_ACESSO1" EntitySet="TB_LOGIN_NIVEL_ACESSO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_LOGIN___TB_LO__440B1D61" Association="Self.FK__TB_LOGIN___TB_LO__440B1D61">
+            <End Role="TB_LOGIN_NIVEL_ACESSO" EntitySet="TB_LOGIN_NIVEL_ACESSO" />
+            <End Role="TB_LOGIN_NIVEL_ACESSO1" EntitySet="TB_LOGIN_NIVEL_ACESSO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_LOGIN___TB_NI__36B12243" Association="Self.FK__TB_LOGIN___TB_NI__36B12243">
+            <End Role="TB_NIVEL" EntitySet="TB_NIVEL" />
+            <End Role="TB_LOGIN_NIVEL_ACESSO" EntitySet="TB_LOGIN_NIVEL_ACESSO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_LOGIN___TB_NI__44FF419A" Association="Self.FK__TB_LOGIN___TB_NI__44FF419A">
+            <End Role="TB_NIVEL" EntitySet="TB_NIVEL" />
+            <End Role="TB_LOGIN_NIVEL_ACESSO" EntitySet="TB_LOGIN_NIVEL_ACESSO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_LOGIN__TB_USU__0519C6AF" Association="Self.FK__TB_LOGIN__TB_USU__0519C6AF">
+            <End Role="TB_USUARIO" EntitySet="TB_USUARIO" />
+            <End Role="TB_LOGIN" EntitySet="TB_LOGIN" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_MODULO__TB_MO__38996AB5" Association="Self.FK__TB_MODULO__TB_MO__38996AB5">
+            <End Role="TB_MODULO" EntitySet="TB_MODULO" />
+            <End Role="TB_MODULO1" EntitySet="TB_MODULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_MODULO__TB_MO__45F365D3" Association="Self.FK__TB_MODULO__TB_MO__45F365D3">
+            <End Role="TB_MODULO" EntitySet="TB_MODULO" />
+            <End Role="TB_MODULO1" EntitySet="TB_MODULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_MODULO__TB_SI__398D8EEE" Association="Self.FK__TB_MODULO__TB_SI__398D8EEE">
+            <End Role="TB_SISTEMA" EntitySet="TB_SISTEMA" />
+            <End Role="TB_MODULO" EntitySet="TB_MODULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_MODULO__TB_SI__46E78A0C" Association="Self.FK__TB_MODULO__TB_SI__46E78A0C">
+            <End Role="TB_SISTEMA" EntitySet="TB_SISTEMA" />
+            <End Role="TB_MODULO" EntitySet="TB_MODULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_NIVEL__TB_NIV__3A81B327" Association="Self.FK__TB_NIVEL__TB_NIV__3A81B327">
+            <End Role="TB_NIVEL" EntitySet="TB_NIVEL" />
+            <End Role="TB_NIVEL1" EntitySet="TB_NIVEL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_NIVEL__TB_NIV__47DBAE45" Association="Self.FK__TB_NIVEL__TB_NIV__47DBAE45">
+            <End Role="TB_NIVEL" EntitySet="TB_NIVEL" />
+            <End Role="TB_NIVEL1" EntitySet="TB_NIVEL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_NOTIFI__TB_PE__59063A47" Association="Self.FK__TB_NOTIFI__TB_PE__59063A47">
+            <End Role="TB_PERFIL" EntitySet="TB_PERFIL" />
+            <End Role="TB_NOTIFICACAO" EntitySet="TB_NOTIFICACAO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PERFIL__TB_LO__117F9D94" Association="Self.FK__TB_PERFIL__TB_LO__117F9D94">
+            <End Role="TB_LOGIN" EntitySet="TB_LOGIN" />
+            <End Role="TB_PERFIL_LOGIN" EntitySet="TB_PERFIL_LOGIN" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PERFIL__TB_NI__3D5E1FD2" Association="Self.FK__TB_PERFIL__TB_NI__3D5E1FD2">
+            <End Role="TB_NIVEL" EntitySet="TB_NIVEL" />
+            <End Role="TB_PERFIL_NIVEL" EntitySet="TB_PERFIL_NIVEL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PERFIL__TB_NI__48CFD27E" Association="Self.FK__TB_PERFIL__TB_NI__48CFD27E">
+            <End Role="TB_NIVEL" EntitySet="TB_NIVEL" />
+            <End Role="TB_PERFIL_NIVEL" EntitySet="TB_PERFIL_NIVEL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PERFIL__TB_PE__108B795B" Association="Self.FK__TB_PERFIL__TB_PE__108B795B">
+            <End Role="TB_PERFIL" EntitySet="TB_PERFIL" />
+            <End Role="TB_PERFIL_LOGIN" EntitySet="TB_PERFIL_LOGIN" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PERFIL__TB_PE__3E52440B" Association="Self.FK__TB_PERFIL__TB_PE__3E52440B">
+            <End Role="TB_PERFIL" EntitySet="TB_PERFIL" />
+            <End Role="TB_PERFIL_NIVEL" EntitySet="TB_PERFIL_NIVEL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PERFIL__TB_PE__49C3F6B7" Association="Self.FK__TB_PERFIL__TB_PE__49C3F6B7">
+            <End Role="TB_PERFIL" EntitySet="TB_PERFIL" />
+            <End Role="TB_PERFIL_NIVEL" EntitySet="TB_PERFIL_NIVEL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_TRANSA__TB_MO__3C69FB99" Association="Self.FK__TB_TRANSA__TB_MO__3C69FB99">
+            <End Role="TB_MODULO" EntitySet="TB_MODULO" />
+            <End Role="TB_TRANSACAO" EntitySet="TB_TRANSACAO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_TRANSA__TB_PE__403A8C7D" Association="Self.FK__TB_TRANSA__TB_PE__403A8C7D">
+            <End Role="TB_PERFIL" EntitySet="TB_PERFIL" />
+            <End Role="TB_TRANSACAO_PERFIL" EntitySet="TB_TRANSACAO_PERFIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_TRANSA__TB_PE__412EB0B6" Association="Self.FK__TB_TRANSA__TB_PE__412EB0B6">
+            <End Role="TB_PERFIL" EntitySet="TB_PERFIL" />
+            <End Role="TB_TRANSACAO_PERFIL" EntitySet="TB_TRANSACAO_PERFIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_TRANSA__TB_PE__4AB81AF0" Association="Self.FK__TB_TRANSA__TB_PE__4AB81AF0">
+            <End Role="TB_PERFIL" EntitySet="TB_PERFIL" />
+            <End Role="TB_TRANSACAO_PERFIL" EntitySet="TB_TRANSACAO_PERFIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_TRANSA__TB_PE__4BAC3F29" Association="Self.FK__TB_TRANSA__TB_PE__4BAC3F29">
+            <End Role="TB_PERFIL" EntitySet="TB_PERFIL" />
+            <End Role="TB_TRANSACAO_PERFIL" EntitySet="TB_TRANSACAO_PERFIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_TRANSA__TB_TR__3D5E1FD2" Association="Self.FK__TB_TRANSA__TB_TR__3D5E1FD2">
+            <End Role="TB_TRANSACAO" EntitySet="TB_TRANSACAO" />
+            <End Role="TB_TRANSACAO_PERFIL" EntitySet="TB_TRANSACAO_PERFIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TB_LOGIN_NIVEL_ACESSO_TB_PERFIL_LOGIN" Association="Self.FK_TB_LOGIN_NIVEL_ACESSO_TB_PERFIL_LOGIN">
+            <End Role="TB_PERFIL_LOGIN" EntitySet="TB_PERFIL_LOGIN" />
+            <End Role="TB_LOGIN_NIVEL_ACESSO" EntitySet="TB_LOGIN_NIVEL_ACESSO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TB_LOGIN_TB_USUARIO_LOGADO_LOGIN_ID" Association="Self.FK_TB_LOGIN_TB_USUARIO_LOGADO_LOGIN_ID">
+            <End Role="TB_LOGIN" EntitySet="TB_LOGIN" />
+            <End Role="TB_USUARIO_LOGADO" EntitySet="TB_USUARIO_LOGADO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBSEGModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="SEGwebEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TB_CONVENIO" EntityType="DBSEGModel.TB_CONVENIO" />
+          <EntitySet Name="TB_HISTORICO_OPERACAO" EntityType="DBSEGModel.TB_HISTORICO_OPERACAO" />
+          <EntitySet Name="TB_LOGIN_NIVEL_ACESSO" EntityType="DBSEGModel.TB_LOGIN_NIVEL_ACESSO" />
+          <EntitySet Name="TB_MODULO" EntityType="DBSEGModel.TB_MODULO" />
+          <EntitySet Name="TB_NIVEL" EntityType="DBSEGModel.TB_NIVEL" />
+          <EntitySet Name="TB_PERFIL" EntityType="DBSEGModel.TB_PERFIL" />
+          <EntitySet Name="TB_PERFIL_LOGIN" EntityType="DBSEGModel.TB_PERFIL_LOGIN" />
+          <EntitySet Name="TB_PERFIL_NIVEL" EntityType="DBSEGModel.TB_PERFIL_NIVEL" />
+          <EntitySet Name="TB_SISTEMA" EntityType="DBSEGModel.TB_SISTEMA" />
+          <EntitySet Name="TB_TRANSACAO" EntityType="DBSEGModel.TB_TRANSACAO" />
+          <EntitySet Name="TB_TRANSACAO_PERFIL" EntityType="DBSEGModel.TB_TRANSACAO_PERFIL" />
+          <EntitySet Name="TB_USUARIO_LOGADO" EntityType="DBSEGModel.TB_USUARIO_LOGADO" />
+          <!--<EntitySet Name="VW_DADOS_USUARIO_SEMPERFIS" EntityType="DBSEGModel.VW_DADOS_USUARIO_SEMPERFIS" />-->
+          <AssociationSet Name="FK__TB_CONVEN__TB_MO__2E1BDC42" Association="DBSEGModel.FK__TB_CONVEN__TB_MO__2E1BDC42">
+            <End Role="TB_MODULO" EntitySet="TB_MODULO" />
+            <End Role="TB_CONVENIO" EntitySet="TB_CONVENIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_LOGIN___TB_LO__3E52440B" Association="DBSEGModel.FK__TB_LOGIN___TB_LO__3E52440B">
+            <End Role="TB_LOGIN_NIVEL_ACESSO" EntitySet="TB_LOGIN_NIVEL_ACESSO" />
+            <End Role="TB_LOGIN_NIVEL_ACESSO1" EntitySet="TB_LOGIN_NIVEL_ACESSO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_LOGIN___TB_NI__182C9B23" Association="DBSEGModel.FK__TB_LOGIN___TB_NI__182C9B23">
+            <End Role="TB_NIVEL" EntitySet="TB_NIVEL" />
+            <End Role="TB_LOGIN_NIVEL_ACESSO" EntitySet="TB_LOGIN_NIVEL_ACESSO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TB_LOGIN_NIVEL_ACESSO_TB_PERFIL_LOGIN" Association="DBSEGModel.FK_TB_LOGIN_NIVEL_ACESSO_TB_PERFIL_LOGIN">
+            <End Role="TB_PERFIL_LOGIN" EntitySet="TB_PERFIL_LOGIN" />
+            <End Role="TB_LOGIN_NIVEL_ACESSO" EntitySet="TB_LOGIN_NIVEL_ACESSO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_MODULO__TB_MO__4D94879B" Association="DBSEGModel.FK__TB_MODULO__TB_MO__4D94879B">
+            <End Role="TB_MODULO" EntitySet="TB_MODULO" />
+            <End Role="TB_MODULO1" EntitySet="TB_MODULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_MODULO__TB_SI__2B3F6F97" Association="DBSEGModel.FK__TB_MODULO__TB_SI__2B3F6F97">
+            <End Role="TB_SISTEMA" EntitySet="TB_SISTEMA" />
+            <End Role="TB_MODULO" EntitySet="TB_MODULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_TRANSA__TB_MO__3C69FB99" Association="DBSEGModel.FK__TB_TRANSA__TB_MO__3C69FB99">
+            <End Role="TB_MODULO" EntitySet="TB_MODULO" />
+            <End Role="TB_TRANSACAO" EntitySet="TB_TRANSACAO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_NIVEL__TB_NIV__08EA5793" Association="DBSEGModel.FK__TB_NIVEL__TB_NIV__08EA5793">
+            <End Role="TB_NIVEL" EntitySet="TB_NIVEL" />
+            <End Role="TB_NIVEL1" EntitySet="TB_NIVEL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PERFIL__TB_NI__15502E78" Association="DBSEGModel.FK__TB_PERFIL__TB_NI__15502E78">
+            <End Role="TB_NIVEL" EntitySet="TB_NIVEL" />
+            <End Role="TB_PERFIL_NIVEL" EntitySet="TB_PERFIL_NIVEL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PERFIL__TB_PE__108B795B" Association="DBSEGModel.FK__TB_PERFIL__TB_PE__108B795B">
+            <End Role="TB_PERFIL" EntitySet="TB_PERFIL" />
+            <End Role="TB_PERFIL_LOGIN" EntitySet="TB_PERFIL_LOGIN" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PERFIL__TB_PE__145C0A3F" Association="DBSEGModel.FK__TB_PERFIL__TB_PE__145C0A3F">
+            <End Role="TB_PERFIL" EntitySet="TB_PERFIL" />
+            <End Role="TB_PERFIL_NIVEL" EntitySet="TB_PERFIL_NIVEL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_TRANSA__TB_PE__36B12243" Association="DBSEGModel.FK__TB_TRANSA__TB_PE__36B12243">
+            <End Role="TB_PERFIL" EntitySet="TB_PERFIL" />
+            <End Role="TB_TRANSACAO_PERFIL" EntitySet="TB_TRANSACAO_PERFIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_TRANSA__TB_PE__38996AB5" Association="DBSEGModel.FK__TB_TRANSA__TB_PE__38996AB5">
+            <End Role="TB_PERFIL" EntitySet="TB_PERFIL" />
+            <End Role="TB_TRANSACAO_PERFIL" EntitySet="TB_TRANSACAO_PERFIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_TRANSA__TB_TR__3D5E1FD2" Association="DBSEGModel.FK__TB_TRANSA__TB_TR__3D5E1FD2">
+            <End Role="TB_TRANSACAO" EntitySet="TB_TRANSACAO" />
+            <End Role="TB_TRANSACAO_PERFIL" EntitySet="TB_TRANSACAO_PERFIL" />
+          </AssociationSet>
+          <EntitySet Name="TB_MATERIAL_APOIO" EntityType="DBSEGModel.TB_MATERIAL_APOIO" />
+          <EntitySet Name="TB_NOTIFICACAO" EntityType="DBSEGModel.TB_NOTIFICACAO" />
+          <AssociationSet Name="FK__TB_NOTIFI__TB_PE__6C190EBB" Association="DBSEGModel.FK__TB_NOTIFI__TB_PE__6C190EBB">
+            <End Role="TB_PERFIL" EntitySet="TB_PERFIL" />
+            <End Role="TB_NOTIFICACAO" EntitySet="TB_NOTIFICACAO" />
+          </AssociationSet>
+          <EntitySet Name="TB_LOGIN" EntityType="DBSEGModel.TB_LOGIN" />
+          <EntitySet Name="TB_USUARIO" EntityType="DBSEGModel.TB_USUARIO" />
+          <AssociationSet Name="FK__TB_LOGIN__TB_USU__0519C6AF" Association="DBSEGModel.FK__TB_LOGIN__TB_USU__0519C6AF">
+            <End Role="TB_USUARIO" EntitySet="TB_USUARIO" />
+            <End Role="TB_LOGIN" EntitySet="TB_LOGIN" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PERFIL__TB_LO__117F9D94" Association="DBSEGModel.FK__TB_PERFIL__TB_LO__117F9D94">
+            <End Role="TB_LOGIN" EntitySet="TB_LOGIN" />
+            <End Role="TB_PERFIL_LOGIN" EntitySet="TB_PERFIL_LOGIN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TB_LOGIN_TB_USUARIO_LOGADO_LOGIN_ID" Association="DBSEGModel.FK_TB_LOGIN_TB_USUARIO_LOGADO_LOGIN_ID">
+            <End Role="TB_LOGIN" EntitySet="TB_LOGIN" />
+            <End Role="TB_USUARIO_LOGADO" EntitySet="TB_USUARIO_LOGADO" />
+          </AssociationSet>
+          <EntitySet Name="VW_DADOS_USUARIO_PERFIS" EntityType="DBSEGModel.VW_DADOS_USUARIO_PERFIS" />
+          <EntitySet Name="VW_DADOS_USUARIO_SEMPERFIS" EntityType="DBSEGModel.VW_DADOS_USUARIO_SEMPERFIS" />
+          <EntitySet Name="VW_LOG_USUARIO_QTD_ACESSOS" EntityType="DBSEGModel.VW_LOG_USUARIO_QTD_ACESSOS" />
+          <EntitySet Name="VW_USUARIO_LOGIN_ACESSOS" EntityType="DBSEGModel.VW_USUARIO_LOGIN_ACESSOS" />
+          <FunctionImport Name="PRC_ATUALIZAR_ESTATISTICA_ACESSO_USUARIO" />
+          <FunctionImport Name="PRC_LISTAR_USUARIOS_LOGIN_ACESSOS" ReturnType="Collection(DBSEGModel.PRC_LISTAR_USUARIOS_LOGIN_ACESSOS_Result)">
+            <Parameter Name="cpfLogin" Mode="In" Type="String" />
+            <Parameter Name="orgaoId" Mode="In" Type="Int32" />
+            <Parameter Name="gestorId" Mode="In" Type="Int32" />
+            <Parameter Name="peso" Mode="In" Type="Int32" />
+            <Parameter Name="pesquisa" Mode="In" Type="String" />
+            <Parameter Name="perfilId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PROC_CRIACAO_MODULO_RELATORIOS_E_TRANSACOES" />
+          <FunctionImport Name="SP_PERFIL_LOGIN_OBTER_BY_LOGIN_ID" ReturnType="Collection(DBSEGModel.SP_PERFIL_LOGIN_OBTER_BY_LOGIN_ID_Result)">
+            <Parameter Name="LoginId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_PERFIL_NIVEL_LISTAR_BY_ID_PERFIL" ReturnType="Collection(DBSEGModel.SP_PERFIL_NIVEL_LISTAR_BY_ID_PERFIL_Result)">
+            <Parameter Name="TB_PERFIL_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_PERFIL_NIVEL_OBTER_BY_ID_PERFIL" ReturnType="Collection(DBSEGModel.SP_PERFIL_NIVEL_OBTER_BY_ID_PERFIL_Result)">
+            <Parameter Name="TB_PERFIL_ID" Mode="In" Type="Int32" />
+            <Parameter Name="TB_LOGIN_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_TB_LOGIN_DESLOGAR_USUARIO">
+            <Parameter Name="TB_LOGIN_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_TB_LOGIN_LOGAR_USUARIO">
+            <Parameter Name="TB_LOGIN_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_TB_LOGIN_NIVEL_ACESSO_OBTER_BY_ID_PERFIL_LOGIN" ReturnType="Collection(DBSEGModel.SP_TB_LOGIN_NIVEL_ACESSO_OBTER_BY_ID_PERFIL_LOGIN_Result)">
+            <Parameter Name="TB_PERFIL_LOGIN_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_TB_TRANSACAO_PERFIL_LISTAR_POR_ID_PERFIL" ReturnType="Collection(DBSEGModel.SP_TB_TRANSACAO_PERFIL_LISTAR_POR_ID_PERFIL_Result)">
+            <Parameter Name="TB_PERFIL_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="TB_LOGIN_OBTER_LOGIN_BY_USERNAME" ReturnType="Collection(DBSEGModel.TB_LOGIN_OBTER_LOGIN_BY_USERNAME_Result)">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="TB_NIVEL_OBTER" ReturnType="Collection(DBSEGModel.TB_NIVEL_OBTER_Result)">
+            <Parameter Name="TB_NIVEL_ID" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="TB_CONVENIO">
+          <Key>
+            <PropertyRef Name="TB_CONVENIO_ID" />
+          </Key>
+          <Property Type="Int32" Name="TB_CONVENIO_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="TB_GESTOR_ID" Nullable="false" />
+          <Property Type="Int32" Name="TB_MODULO_ID" Nullable="false" />
+          <Property Type="Boolean" Name="TB_CONVENIO_IND_ATIVO" Nullable="false" />
+          <Property Type="String" Name="TB_CONVENIO_DESCRICAO" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TB_MODULO" Relationship="DBSEGModel.FK__TB_CONVEN__TB_MO__2E1BDC42" FromRole="TB_CONVENIO" ToRole="TB_MODULO" />
+        </EntityType>
+        <EntityType Name="TB_HISTORICO_OPERACAO">
+          <Key>
+            <PropertyRef Name="TB_HISTORICO_OPERACAO_ID" />
+          </Key>
+          <Property Type="Int64" Name="TB_HISTORICO_OPERACAO_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="TB_HISTORICO_OPERACAO_ID_ORIGEM" />
+          <Property Type="Int32" Name="TB_HISTORICO_OPERACAO_MODULO_ID" />
+          <Property Type="DateTime" Name="TB_HISTORICO_OPERACAO_DATA" Precision="3" />
+          <Property Type="String" Name="TB_HISTORICO_OPERACAO_IP" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="TB_PERFIL_TRANSACAO_ID" />
+        </EntityType>
+        <EntityType Name="TB_LOGIN_NIVEL_ACESSO">
+          <Key>
+            <PropertyRef Name="TB_LOGIN_NIVEL_ACESSO_ID" />
+          </Key>
+          <Property Type="Int32" Name="TB_LOGIN_NIVEL_ACESSO_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Byte" Name="TB_NIVEL_ID" Nullable="false" />
+          <Property Type="Int32" Name="TB_PERFIL_LOGIN_ID" Nullable="false" />
+          <Property Type="Int32" Name="TB_LOGIN_NIVEL_ACESSO_VALOR" Nullable="false" />
+          <Property Type="Int32" Name="TB_LOGIN_NIVEL_ACESSO_ID_PAI" />
+          <Property Type="Boolean" Name="TB_LOGIN_NIVEL_ACESSO_DEFAULT" />
+          <Property Type="Boolean" Name="TB_LOGIN_NIVEL_ACESSO_PADRAO" />
+          <NavigationProperty Name="TB_LOGIN_NIVEL_ACESSO1" Relationship="DBSEGModel.FK__TB_LOGIN___TB_LO__3E52440B" FromRole="TB_LOGIN_NIVEL_ACESSO" ToRole="TB_LOGIN_NIVEL_ACESSO1" />
+          <NavigationProperty Name="TB_LOGIN_NIVEL_ACESSO2" Relationship="DBSEGModel.FK__TB_LOGIN___TB_LO__3E52440B" FromRole="TB_LOGIN_NIVEL_ACESSO1" ToRole="TB_LOGIN_NIVEL_ACESSO" />
+          <NavigationProperty Name="TB_NIVEL" Relationship="DBSEGModel.FK__TB_LOGIN___TB_NI__182C9B23" FromRole="TB_LOGIN_NIVEL_ACESSO" ToRole="TB_NIVEL" />
+          <NavigationProperty Name="TB_PERFIL_LOGIN" Relationship="DBSEGModel.FK_TB_LOGIN_NIVEL_ACESSO_TB_PERFIL_LOGIN" FromRole="TB_LOGIN_NIVEL_ACESSO" ToRole="TB_PERFIL_LOGIN" />
+          <Property Type="Boolean" Name="TB_LOGIN_NIVEL_ACESSO_ATIVO" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_MODULO">
+          <Key>
+            <PropertyRef Name="TB_MODULO_ID" />
+          </Key>
+          <Property Type="Int32" Name="TB_MODULO_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="TB_SISTEMA_ID" Nullable="false" />
+          <Property Type="Boolean" Name="TB_MODULO_IND_ATIVO" Nullable="false" />
+          <Property Type="String" Name="TB_MODULO_SIGLA" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TB_MODULO_DESCRICAO" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int16" Name="TB_MODULO_ORDEM" />
+          <Property Type="String" Name="TB_MODULO_CAMINHO" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="TB_MODULO_ID_PAI" />
+          <NavigationProperty Name="TB_CONVENIO" Relationship="DBSEGModel.FK__TB_CONVEN__TB_MO__2E1BDC42" FromRole="TB_MODULO" ToRole="TB_CONVENIO" />
+          <NavigationProperty Name="TB_MODULO1" Relationship="DBSEGModel.FK__TB_MODULO__TB_MO__4D94879B" FromRole="TB_MODULO" ToRole="TB_MODULO1" />
+          <NavigationProperty Name="TB_MODULO2" Relationship="DBSEGModel.FK__TB_MODULO__TB_MO__4D94879B" FromRole="TB_MODULO1" ToRole="TB_MODULO" />
+          <NavigationProperty Name="TB_SISTEMA" Relationship="DBSEGModel.FK__TB_MODULO__TB_SI__2B3F6F97" FromRole="TB_MODULO" ToRole="TB_SISTEMA" />
+          <NavigationProperty Name="TB_TRANSACAO" Relationship="DBSEGModel.FK__TB_TRANSA__TB_MO__3C69FB99" FromRole="TB_MODULO" ToRole="TB_TRANSACAO" />
+        </EntityType>
+        <EntityType Name="TB_NIVEL">
+          <Key>
+            <PropertyRef Name="TB_NIVEL_ID" />
+          </Key>
+          <Property Type="Byte" Name="TB_NIVEL_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="TB_NIVEL_DESCRICAO" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="Byte" Name="TB_NIVEL_ID_PAI" />
+          <NavigationProperty Name="TB_LOGIN_NIVEL_ACESSO" Relationship="DBSEGModel.FK__TB_LOGIN___TB_NI__182C9B23" FromRole="TB_NIVEL" ToRole="TB_LOGIN_NIVEL_ACESSO" />
+          <NavigationProperty Name="TB_NIVEL1" Relationship="DBSEGModel.FK__TB_NIVEL__TB_NIV__08EA5793" FromRole="TB_NIVEL" ToRole="TB_NIVEL1" />
+          <NavigationProperty Name="TB_NIVEL2" Relationship="DBSEGModel.FK__TB_NIVEL__TB_NIV__08EA5793" FromRole="TB_NIVEL1" ToRole="TB_NIVEL" />
+          <NavigationProperty Name="TB_PERFIL_NIVEL" Relationship="DBSEGModel.FK__TB_PERFIL__TB_NI__15502E78" FromRole="TB_NIVEL" ToRole="TB_PERFIL_NIVEL" />
+        </EntityType>
+        <EntityType Name="TB_PERFIL">
+          <Key>
+            <PropertyRef Name="TB_PERFIL_ID" />
+          </Key>
+          <Property Type="Int16" Name="TB_PERFIL_ID" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Type="Boolean" Name="TB_PERFIL_ATIVO" Nullable="false" />
+          <Property Type="String" Name="TB_PERFIL_DESCRICAO" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="TB_PERFIL_PESO" />
+          <NavigationProperty Name="TB_PERFIL_LOGIN" Relationship="DBSEGModel.FK__TB_PERFIL__TB_PE__108B795B" FromRole="TB_PERFIL" ToRole="TB_PERFIL_LOGIN" />
+          <NavigationProperty Name="TB_PERFIL_NIVEL" Relationship="DBSEGModel.FK__TB_PERFIL__TB_PE__145C0A3F" FromRole="TB_PERFIL" ToRole="TB_PERFIL_NIVEL" />
+          <NavigationProperty Name="TB_TRANSACAO_PERFIL" Relationship="DBSEGModel.FK__TB_TRANSA__TB_PE__36B12243" FromRole="TB_PERFIL" ToRole="TB_TRANSACAO_PERFIL" />
+          <NavigationProperty Name="TB_TRANSACAO_PERFIL1" Relationship="DBSEGModel.FK__TB_TRANSA__TB_PE__38996AB5" FromRole="TB_PERFIL" ToRole="TB_TRANSACAO_PERFIL" />
+          <NavigationProperty Name="TB_NOTIFICACAO" Relationship="DBSEGModel.FK__TB_NOTIFI__TB_PE__6C190EBB" FromRole="TB_PERFIL" ToRole="TB_NOTIFICACAO" />
+        </EntityType>
+        <EntityType Name="TB_PERFIL_LOGIN">
+          <Key>
+            <PropertyRef Name="TB_PERFIL_LOGIN_ID" />
+          </Key>
+          <Property Type="Int32" Name="TB_PERFIL_LOGIN_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int16" Name="TB_PERFIL_ID" Nullable="false" />
+          <Property Type="Int32" Name="TB_LOGIN_ID" Nullable="false" />
+          <Property Type="Int32" Name="TB_ORGAO_ID_PADRAO" />
+          <Property Type="Int32" Name="TB_GESTOR_ID_PADRAO" />
+          <Property Type="Int32" Name="TB_ALMOXARIFADO_ID_PADRAO" />
+          <Property Type="Int32" Name="TB_UO_ID_PADRAO" />
+          <Property Type="Int32" Name="TB_UGE_ID_PADRAO" />
+          <Property Type="Int32" Name="TB_UA_ID_PADRAO" />
+          <Property Type="Int32" Name="TB_DIVISAO_ID_PADRAO" />
+          <NavigationProperty Name="TB_LOGIN_NIVEL_ACESSO" Relationship="DBSEGModel.FK_TB_LOGIN_NIVEL_ACESSO_TB_PERFIL_LOGIN" FromRole="TB_PERFIL_LOGIN" ToRole="TB_LOGIN_NIVEL_ACESSO" />
+          <NavigationProperty Name="TB_PERFIL" Relationship="DBSEGModel.FK__TB_PERFIL__TB_PE__108B795B" FromRole="TB_PERFIL_LOGIN" ToRole="TB_PERFIL" />
+          <Property Type="Boolean" Name="TB_PERFIL_LOGIN_ATIVO" Nullable="false" />
+          <NavigationProperty Name="TB_LOGIN" Relationship="DBSEGModel.FK__TB_PERFIL__TB_LO__117F9D94" FromRole="TB_PERFIL_LOGIN" ToRole="TB_LOGIN" />
+        </EntityType>
+        <EntityType Name="TB_PERFIL_NIVEL">
+          <Key>
+            <PropertyRef Name="TB_PERFIL_NIVEL_ID" />
+          </Key>
+          <Property Type="Int32" Name="TB_PERFIL_NIVEL_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int16" Name="TB_PERFIL_ID" Nullable="false" />
+          <Property Type="Byte" Name="TB_NIVEL_ID" Nullable="false" />
+          <NavigationProperty Name="TB_NIVEL" Relationship="DBSEGModel.FK__TB_PERFIL__TB_NI__15502E78" FromRole="TB_PERFIL_NIVEL" ToRole="TB_NIVEL" />
+          <NavigationProperty Name="TB_PERFIL" Relationship="DBSEGModel.FK__TB_PERFIL__TB_PE__145C0A3F" FromRole="TB_PERFIL_NIVEL" ToRole="TB_PERFIL" />
+        </EntityType>
+        <EntityType Name="TB_SISTEMA">
+          <Key>
+            <PropertyRef Name="TB_SISTEMA_ID" />
+          </Key>
+          <Property Type="Int32" Name="TB_SISTEMA_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="TB_SISTEMA_ATIVO" Nullable="false" />
+          <Property Type="String" Name="TB_SISTEMA_SIGLA" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TB_SISTEMA_DESCRICAO" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TB_MODULO" Relationship="DBSEGModel.FK__TB_MODULO__TB_SI__2B3F6F97" FromRole="TB_SISTEMA" ToRole="TB_MODULO" />
+        </EntityType>
+        <EntityType Name="TB_TRANSACAO">
+          <Key>
+            <PropertyRef Name="TB_TRANSACAO_ID" />
+          </Key>
+          <Property Type="Int32" Name="TB_TRANSACAO_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="TB_MODULO_ID" Nullable="false" />
+          <Property Type="Boolean" Name="TB_TRANSACAO_ATIVO" Nullable="false" />
+          <Property Type="String" Name="TB_TRANSACAO_SIGLA" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TB_TRANSACAO_DESCRICAO" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TB_TRANSACAO_CAMINHO" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="TB_TRANSACAO_ORDEM" />
+          <NavigationProperty Name="TB_MODULO" Relationship="DBSEGModel.FK__TB_TRANSA__TB_MO__3C69FB99" FromRole="TB_TRANSACAO" ToRole="TB_MODULO" />
+          <NavigationProperty Name="TB_TRANSACAO_PERFIL" Relationship="DBSEGModel.FK__TB_TRANSA__TB_TR__3D5E1FD2" FromRole="TB_TRANSACAO" ToRole="TB_TRANSACAO_PERFIL" />
+        </EntityType>
+        <EntityType Name="TB_TRANSACAO_PERFIL">
+          <Key>
+            <PropertyRef Name="TB_TRANSACAO_PERFIL_ID" />
+          </Key>
+          <Property Type="Int32" Name="TB_TRANSACAO_PERFIL_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="TB_TRANSACAO_ID" Nullable="false" />
+          <Property Type="Int16" Name="TB_PERFIL_ID" Nullable="false" />
+          <Property Type="Boolean" Name="TB_TRANSACAO_ATIVO" Nullable="false" />
+          <Property Type="Boolean" Name="TB_TRANSACAO_PERFIL_EDITA" Nullable="false" />
+          <Property Type="Boolean" Name="TB_TRANSACAO_FILTRA_COMBO" />
+          <NavigationProperty Name="TB_PERFIL" Relationship="DBSEGModel.FK__TB_TRANSA__TB_PE__36B12243" FromRole="TB_TRANSACAO_PERFIL" ToRole="TB_PERFIL" />
+          <NavigationProperty Name="TB_PERFIL1" Relationship="DBSEGModel.FK__TB_TRANSA__TB_PE__38996AB5" FromRole="TB_TRANSACAO_PERFIL" ToRole="TB_PERFIL" />
+          <NavigationProperty Name="TB_TRANSACAO" Relationship="DBSEGModel.FK__TB_TRANSA__TB_TR__3D5E1FD2" FromRole="TB_TRANSACAO_PERFIL" ToRole="TB_TRANSACAO" />
+        </EntityType>
+        <EntityType Name="TB_USUARIO_LOGADO">
+          <Key>
+            <PropertyRef Name="TB_USUARIO_LOGADO_ID" />
+          </Key>
+          <Property Name="TB_USUARIO_LOGADO_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TB_LOGIN_ID" Type="Int32" />
+          <Property Name="TB_DATA_HORA_LOGADO" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TB_IP_LOGADO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TB_SESSION_ID" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TB_LOGIN" Relationship="DBSEGModel.FK_TB_LOGIN_TB_USUARIO_LOGADO_LOGIN_ID" FromRole="TB_USUARIO_LOGADO" ToRole="TB_LOGIN" />
+        </EntityType>
+        <!--<EntityType Name="VW_DADOS_USUARIO_SEMPERFIS">
+          <Key>
+            <PropertyRef Name="TB_LOGIN_ID" />
+          </Key>
+          <Property Name="TB_LOGIN_ID" Type="Int32" Nullable="false" />
+          <Property Name="TB_USUARIO_CPF" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="TB_USUARIO_ID" Type="Int32" />
+          <Property Name="TB_ORGAO_ID" Type="Int32" />
+          <Property Name="TB_ORGAO_CODIGO" Type="Int32" />
+          <Property Name="TB_ORGAO_DESCRICAO" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <Property Name="TB_GESTOR_ID" Type="Int32" />
+          <Property Name="TB_GESTOR_CODIGO_GESTAO" Type="Int32" />
+          <Property Name="TB_GESTOR_NOME" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <Property Name="TB_GESTOR_NOME_REDUZIDO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="RowId" Type="Int64" />
+        </EntityType>-->
+        <Association Name="FK__TB_CONVEN__TB_MO__2E1BDC42">
+          <End Type="DBSEGModel.TB_MODULO" Role="TB_MODULO" Multiplicity="1" />
+          <End Type="DBSEGModel.TB_CONVENIO" Role="TB_CONVENIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_MODULO">
+              <PropertyRef Name="TB_MODULO_ID" />
+            </Principal>
+            <Dependent Role="TB_CONVENIO">
+              <PropertyRef Name="TB_MODULO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_LOGIN___TB_LO__3E52440B">
+          <End Type="DBSEGModel.TB_LOGIN_NIVEL_ACESSO" Role="TB_LOGIN_NIVEL_ACESSO" Multiplicity="0..1" />
+          <End Type="DBSEGModel.TB_LOGIN_NIVEL_ACESSO" Role="TB_LOGIN_NIVEL_ACESSO1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_LOGIN_NIVEL_ACESSO">
+              <PropertyRef Name="TB_LOGIN_NIVEL_ACESSO_ID" />
+            </Principal>
+            <Dependent Role="TB_LOGIN_NIVEL_ACESSO1">
+              <PropertyRef Name="TB_LOGIN_NIVEL_ACESSO_ID_PAI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_LOGIN___TB_NI__182C9B23">
+          <End Type="DBSEGModel.TB_NIVEL" Role="TB_NIVEL" Multiplicity="1" />
+          <End Type="DBSEGModel.TB_LOGIN_NIVEL_ACESSO" Role="TB_LOGIN_NIVEL_ACESSO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_NIVEL">
+              <PropertyRef Name="TB_NIVEL_ID" />
+            </Principal>
+            <Dependent Role="TB_LOGIN_NIVEL_ACESSO">
+              <PropertyRef Name="TB_NIVEL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TB_LOGIN_NIVEL_ACESSO_TB_PERFIL_LOGIN">
+          <End Type="DBSEGModel.TB_PERFIL_LOGIN" Role="TB_PERFIL_LOGIN" Multiplicity="1" />
+          <End Type="DBSEGModel.TB_LOGIN_NIVEL_ACESSO" Role="TB_LOGIN_NIVEL_ACESSO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_PERFIL_LOGIN">
+              <PropertyRef Name="TB_PERFIL_LOGIN_ID" />
+            </Principal>
+            <Dependent Role="TB_LOGIN_NIVEL_ACESSO">
+              <PropertyRef Name="TB_PERFIL_LOGIN_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_MODULO__TB_MO__4D94879B">
+          <End Type="DBSEGModel.TB_MODULO" Role="TB_MODULO" Multiplicity="0..1" />
+          <End Type="DBSEGModel.TB_MODULO" Role="TB_MODULO1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_MODULO">
+              <PropertyRef Name="TB_MODULO_ID" />
+            </Principal>
+            <Dependent Role="TB_MODULO1">
+              <PropertyRef Name="TB_MODULO_ID_PAI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_MODULO__TB_SI__2B3F6F97">
+          <End Type="DBSEGModel.TB_SISTEMA" Role="TB_SISTEMA" Multiplicity="1" />
+          <End Type="DBSEGModel.TB_MODULO" Role="TB_MODULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_SISTEMA">
+              <PropertyRef Name="TB_SISTEMA_ID" />
+            </Principal>
+            <Dependent Role="TB_MODULO">
+              <PropertyRef Name="TB_SISTEMA_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_TRANSA__TB_MO__3C69FB99">
+          <End Type="DBSEGModel.TB_MODULO" Role="TB_MODULO" Multiplicity="1" />
+          <End Type="DBSEGModel.TB_TRANSACAO" Role="TB_TRANSACAO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_MODULO">
+              <PropertyRef Name="TB_MODULO_ID" />
+            </Principal>
+            <Dependent Role="TB_TRANSACAO">
+              <PropertyRef Name="TB_MODULO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_NIVEL__TB_NIV__08EA5793">
+          <End Type="DBSEGModel.TB_NIVEL" Role="TB_NIVEL" Multiplicity="0..1" />
+          <End Type="DBSEGModel.TB_NIVEL" Role="TB_NIVEL1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_NIVEL">
+              <PropertyRef Name="TB_NIVEL_ID" />
+            </Principal>
+            <Dependent Role="TB_NIVEL1">
+              <PropertyRef Name="TB_NIVEL_ID_PAI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_PERFIL__TB_NI__15502E78">
+          <End Type="DBSEGModel.TB_NIVEL" Role="TB_NIVEL" Multiplicity="1" />
+          <End Type="DBSEGModel.TB_PERFIL_NIVEL" Role="TB_PERFIL_NIVEL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_NIVEL">
+              <PropertyRef Name="TB_NIVEL_ID" />
+            </Principal>
+            <Dependent Role="TB_PERFIL_NIVEL">
+              <PropertyRef Name="TB_NIVEL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_PERFIL__TB_PE__108B795B">
+          <End Type="DBSEGModel.TB_PERFIL" Role="TB_PERFIL" Multiplicity="1" />
+          <End Type="DBSEGModel.TB_PERFIL_LOGIN" Role="TB_PERFIL_LOGIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_PERFIL">
+              <PropertyRef Name="TB_PERFIL_ID" />
+            </Principal>
+            <Dependent Role="TB_PERFIL_LOGIN">
+              <PropertyRef Name="TB_PERFIL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_PERFIL__TB_PE__145C0A3F">
+          <End Type="DBSEGModel.TB_PERFIL" Role="TB_PERFIL" Multiplicity="1" />
+          <End Type="DBSEGModel.TB_PERFIL_NIVEL" Role="TB_PERFIL_NIVEL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_PERFIL">
+              <PropertyRef Name="TB_PERFIL_ID" />
+            </Principal>
+            <Dependent Role="TB_PERFIL_NIVEL">
+              <PropertyRef Name="TB_PERFIL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_TRANSA__TB_PE__36B12243">
+          <End Type="DBSEGModel.TB_PERFIL" Role="TB_PERFIL" Multiplicity="1" />
+          <End Type="DBSEGModel.TB_TRANSACAO_PERFIL" Role="TB_TRANSACAO_PERFIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_PERFIL">
+              <PropertyRef Name="TB_PERFIL_ID" />
+            </Principal>
+            <Dependent Role="TB_TRANSACAO_PERFIL">
+              <PropertyRef Name="TB_PERFIL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_TRANSA__TB_PE__38996AB5">
+          <End Type="DBSEGModel.TB_PERFIL" Role="TB_PERFIL" Multiplicity="1" />
+          <End Type="DBSEGModel.TB_TRANSACAO_PERFIL" Role="TB_TRANSACAO_PERFIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_PERFIL">
+              <PropertyRef Name="TB_PERFIL_ID" />
+            </Principal>
+            <Dependent Role="TB_TRANSACAO_PERFIL">
+              <PropertyRef Name="TB_PERFIL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_TRANSA__TB_TR__3D5E1FD2">
+          <End Type="DBSEGModel.TB_TRANSACAO" Role="TB_TRANSACAO" Multiplicity="1" />
+          <End Type="DBSEGModel.TB_TRANSACAO_PERFIL" Role="TB_TRANSACAO_PERFIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_TRANSACAO">
+              <PropertyRef Name="TB_TRANSACAO_ID" />
+            </Principal>
+            <Dependent Role="TB_TRANSACAO_PERFIL">
+              <PropertyRef Name="TB_TRANSACAO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TB_MATERIAL_APOIO">
+          <Key>
+            <PropertyRef Name="TB_MATERIAL_APOIO_ID" />
+          </Key>
+          <Property Type="Int16" Name="TB_MATERIAL_APOIO_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="TB_MATERIAL_APOIO_PATH_ARQUIVO" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TB_MATERIAL_APOIO_NOME_ARQUIVO" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="TB_MATERIAL_APOIO_CODIGO" />
+          <Property Type="String" Name="TB_MATERIAL_APOIO_TIPO_RECURSO" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TB_MATERIAL_APOIO_DESCRICAO" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TB_MATERIAL_APOIO_DESCRICAO_DETALHADA" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="TB_PERFIL_ID" />
+        </EntityType>
+        <EntityType Name="TB_NOTIFICACAO">
+          <Key>
+            <PropertyRef Name="TB_NOTIFICACAO_ID" />
+          </Key>
+          <Property Type="Int32" Name="TB_NOTIFICACAO_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int16" Name="TB_PERFIL_ID" />
+          <Property Type="String" Name="TB_NOTIFICACAO_TITULO" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TB_NOTIFICACAO_MENSAGEM" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="TB_NOTIFICACAO_DATA" Nullable="false" Precision="3" />
+          <Property Type="Boolean" Name="TB_NOTIFICACAO_IND_ATIVO" Nullable="false" />
+          <NavigationProperty Name="TB_PERFIL" Relationship="DBSEGModel.FK__TB_NOTIFI__TB_PE__6C190EBB" FromRole="TB_NOTIFICACAO" ToRole="TB_PERFIL" />
+        </EntityType>
+        <Association Name="FK__TB_NOTIFI__TB_PE__6C190EBB">
+          <End Type="DBSEGModel.TB_PERFIL" Role="TB_PERFIL" Multiplicity="0..1" />
+          <End Type="DBSEGModel.TB_NOTIFICACAO" Role="TB_NOTIFICACAO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_PERFIL">
+              <PropertyRef Name="TB_PERFIL_ID" />
+            </Principal>
+            <Dependent Role="TB_NOTIFICACAO">
+              <PropertyRef Name="TB_PERFIL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TB_LOGIN">
+          <Key>
+            <PropertyRef Name="TB_LOGIN_ID" />
+          </Key>
+          <Property Name="TB_LOGIN_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TB_USUARIO_ID" Type="Int32" Nullable="false" />
+          <Property Name="TB_LOGIN_ATIVO" Type="Boolean" Nullable="false" />
+          <Property Name="TB_LOGIN_SENHA" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TB_LOGIN_DATA_CADASTRO" Type="DateTime" Precision="3" />
+          <Property Name="TB_LOGIN_TENTATIVAS_INVALIDAS" Type="Int32" />
+          <Property Name="TB_LOGIN_BLOQUEADO" Type="Boolean" />
+          <Property Name="TB_LOGIN_TROCAR_SENHA" Type="Boolean" />
+          <NavigationProperty Name="TB_USUARIO" Relationship="DBSEGModel.FK__TB_LOGIN__TB_USU__0519C6AF" FromRole="TB_LOGIN" ToRole="TB_USUARIO" />
+          <NavigationProperty Name="TB_PERFIL_LOGIN" Relationship="DBSEGModel.FK__TB_PERFIL__TB_LO__117F9D94" FromRole="TB_LOGIN" ToRole="TB_PERFIL_LOGIN" />
+          <NavigationProperty Name="TB_USUARIO_LOGADO" Relationship="DBSEGModel.FK_TB_LOGIN_TB_USUARIO_LOGADO_LOGIN_ID" FromRole="TB_LOGIN" ToRole="TB_USUARIO_LOGADO" />
+        </EntityType>
+        <EntityType Name="TB_USUARIO">
+          <Key>
+            <PropertyRef Name="TB_USUARIO_ID" />
+          </Key>
+          <Property Name="TB_USUARIO_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TB_USUARIO_CPF" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="TB_USUARIO_IND_ATIVO" Type="Boolean" Nullable="false" />
+          <Property Name="TB_USUARIO_NOME_USUARIO" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="TB_USUARIO_END_FONE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TB_USUARIO_RESPONSAVEL_ID_USUARIO_PAI" Type="Int32" Nullable="false" />
+          <Property Name="TB_USUARIO_EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TB_ORGAO_ID" Type="Int32" />
+          <Property Name="TB_GESTOR_ID" Type="Int32" />
+          <NavigationProperty Name="TB_LOGIN" Relationship="DBSEGModel.FK__TB_LOGIN__TB_USU__0519C6AF" FromRole="TB_USUARIO" ToRole="TB_LOGIN" />
+        </EntityType>
+        <Association Name="FK__TB_LOGIN__TB_USU__0519C6AF">
+          <End Type="DBSEGModel.TB_USUARIO" Role="TB_USUARIO" Multiplicity="1" />
+          <End Type="DBSEGModel.TB_LOGIN" Role="TB_LOGIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_USUARIO">
+              <PropertyRef Name="TB_USUARIO_ID" />
+            </Principal>
+            <Dependent Role="TB_LOGIN">
+              <PropertyRef Name="TB_USUARIO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_PERFIL__TB_LO__117F9D94">
+          <End Type="DBSEGModel.TB_LOGIN" Role="TB_LOGIN" Multiplicity="1" />
+          <End Type="DBSEGModel.TB_PERFIL_LOGIN" Role="TB_PERFIL_LOGIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_LOGIN">
+              <PropertyRef Name="TB_LOGIN_ID" />
+            </Principal>
+            <Dependent Role="TB_PERFIL_LOGIN">
+              <PropertyRef Name="TB_LOGIN_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TB_LOGIN_TB_USUARIO_LOGADO_LOGIN_ID">
+          <End Type="DBSEGModel.TB_LOGIN" Role="TB_LOGIN" Multiplicity="0..1" />
+          <End Type="DBSEGModel.TB_USUARIO_LOGADO" Role="TB_USUARIO_LOGADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_LOGIN">
+              <PropertyRef Name="TB_LOGIN_ID" />
+            </Principal>
+            <Dependent Role="TB_USUARIO_LOGADO">
+              <PropertyRef Name="TB_LOGIN_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="VW_DADOS_USUARIO_PERFIS">
+          <Key>
+            <PropertyRef Name="TB_LOGIN_ID" />
+            <PropertyRef Name="TB_USUARIO_ID" />
+            <PropertyRef Name="TB_USUARIO_CPF" />
+            <PropertyRef Name="TB_USUARIO_IND_ATIVO" />
+            <PropertyRef Name="TB_USUARIO_RESPONSAVEL_ID_USUARIO_PAI" />
+            <PropertyRef Name="TB_PERFIL_LOGIN_ID" />
+            <PropertyRef Name="TB_PERFIL_ID" />
+            <PropertyRef Name="TB_PERFIL_DESCRICAO" />
+            <PropertyRef Name="DESCRICAO_PERFIL" />
+          </Key>
+          <Property Name="TB_LOGIN_ID" Type="Int32" Nullable="false" />
+          <Property Name="TB_USUARIO_ID" Type="Int32" Nullable="false" />
+          <Property Name="TB_USUARIO_CPF" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="TB_USUARIO_IND_ATIVO" Type="Boolean" Nullable="false" />
+          <Property Name="TB_USUARIO_NOME_USUARIO" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="TB_USUARIO_END_FONE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TB_USUARIO_RESPONSAVEL_ID_USUARIO_PAI" Type="Int32" Nullable="false" />
+          <Property Name="TB_USUARIO_EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TB_PERFIL_LOGIN_ID" Type="Int32" Nullable="false" />
+          <Property Name="TB_PERFIL_ID" Type="Int16" Nullable="false" />
+          <Property Name="TB_PERFIL_DESCRICAO" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TB_PERFIL_PESO" Type="Int32" />
+          <Property Name="TB_ORGAO_ID" Type="Int32" />
+          <Property Name="TB_GESTOR_ID" Type="Int32" />
+          <Property Name="TB_GESTOR_ID_PADRAO" Type="Int32" />
+          <Property Name="TB_ORGAO_ID_PADRAO" Type="Int32" />
+          <Property Name="TB_UO_ID" Type="Int32" />
+          <Property Name="TB_UGE_ID" Type="Int32" />
+          <Property Name="TB_UA_ID" Type="Int32" />
+          <Property Name="TB_DIVISAO_ID" Type="Int32" />
+          <Property Name="TB_ALMOXARIFADO_ID" Type="Int32" />
+          <Property Name="DESCRICAO_PERFIL" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CODIGOS_PERFIL" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="PERFIL_RELATORIO" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="ULTIMO_ACESSO" Type="DateTime" Precision="3" />
+          <Property Name="QTD_TOTAL_ACESSOS" Type="Int32" />
+          <Property Name="QTD_ACESSOS_30DIAS" Type="Int32" />
+          <Property Name="QTD_ACESSOS_90DIAS" Type="Int32" />
+          <Property Name="QTD_ACESSOS_180DIAS" Type="Int32" />
+          <Property Name="RowId" Type="Int64" />
+        </EntityType>
+        <EntityType Name="VW_DADOS_USUARIO_SEMPERFIS">
+          <Key>
+            <PropertyRef Name="TB_USUARIO_ID" />
+            <PropertyRef Name="TB_USUARIO_CPF" />
+            <PropertyRef Name="TB_USUARIO_IND_ATIVO" />
+            <PropertyRef Name="TB_USUARIO_NOME_USUARIO" />
+            <PropertyRef Name="TB_USUARIO_RESPONSAVEL_ID_USUARIO_PAI" />
+            <PropertyRef Name="TB_LOGIN_ID" />
+            <PropertyRef Name="TB_LOGIN_ATIVO" />
+            <PropertyRef Name="QTD_TOTAL_ACESSOS" />
+            <PropertyRef Name="QTD_ACESSOS_30DIAS" />
+            <PropertyRef Name="QTD_ACESSOS_90DIAS" />
+            <PropertyRef Name="QTD_ACESSOS_180DIAS" />
+            <PropertyRef Name="DESCRICAO_PERFIL" />
+            <PropertyRef Name="CODIGOS_PERFIL" />
+            <PropertyRef Name="TB_PERFIL_ID" />
+            <PropertyRef Name="TB_PERFIL_DESCRICAO_PADRAO" />
+          </Key>
+          <Property Name="TB_USUARIO_ID" Type="Int32" Nullable="false" />
+          <Property Name="TB_USUARIO_CPF" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="TB_USUARIO_IND_ATIVO" Type="Boolean" Nullable="false" />
+          <Property Name="TB_USUARIO_NOME_USUARIO" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="TB_USUARIO_END_FONE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TB_USUARIO_RESPONSAVEL_ID_USUARIO_PAI" Type="Int32" Nullable="false" />
+          <Property Name="TB_USUARIO_EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TB_ORGAO_ID" Type="Int32" />
+          <Property Name="TB_GESTOR_ID" Type="Int32" />
+          <Property Name="TB_LOGIN_ID" Type="Int32" Nullable="false" />
+          <Property Name="TB_LOGIN_ATIVO" Type="Boolean" Nullable="false" />
+          <Property Name="TB_LOGIN_SENHA" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TB_LOGIN_DATA_CADASTRO" Type="DateTime" Precision="3" />
+          <Property Name="TB_LOGIN_TENTATIVAS_INVALIDAS" Type="Int32" />
+          <Property Name="TB_LOGIN_BLOQUEADO" Type="Boolean" />
+          <Property Name="TB_LOGIN_TROCAR_SENHA" Type="Boolean" />
+          <Property Name="QTD_TOTAL_ACESSOS" Type="Int32" Nullable="false" />
+          <Property Name="QTD_ACESSOS_30DIAS" Type="Int32" Nullable="false" />
+          <Property Name="QTD_ACESSOS_90DIAS" Type="Int32" Nullable="false" />
+          <Property Name="QTD_ACESSOS_180DIAS" Type="Int32" Nullable="false" />
+          <Property Name="ULTIMO_ACESSO" Type="Int32" />
+          <Property Name="DESCRICAO_PERFIL" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="CODIGOS_PERFIL" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="TB_PERFIL_ID" Type="Int32" Nullable="false" />
+          <Property Name="TB_PERFIL_DESCRICAO_PADRAO" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="RowId" Type="Int64" />
+        </EntityType>
+        <EntityType Name="VW_LOG_USUARIO_QTD_ACESSOS">
+          <Key>
+            <PropertyRef Name="TB_LOGIN_ID" />
+            <PropertyRef Name="TB_LOG_USUARIO_TRANSACAO_ID" />
+          </Key>
+          <Property Name="TB_LOGIN_ID" Type="Int32" Nullable="false" />
+          <Property Name="TB_LOG_USUARIO_TRANSACAO_ID" Type="Int32" Nullable="false" />
+          <Property Name="QTD_TOTAL_ACESSOS" Type="Int32" />
+          <Property Name="QTD_ACESSOS_180DIAS" Type="Int32" />
+          <Property Name="QTD_ACESSOS_90DIAS" Type="Int32" />
+          <Property Name="QTD_ACESSOS_30DIAS" Type="Int32" />
+          <Property Name="ULTIMO_ACESSO" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="VW_USUARIO_LOGIN_ACESSOS">
+          <Key>
+            <PropertyRef Name="TB_USUARIO_ID" />
+            <PropertyRef Name="TB_USUARIO_CPF" />
+            <PropertyRef Name="TB_USUARIO_IND_ATIVO" />
+            <PropertyRef Name="TB_USUARIO_NOME_USUARIO" />
+            <PropertyRef Name="TB_USUARIO_RESPONSAVEL_ID_USUARIO_PAI" />
+            <PropertyRef Name="TB_LOGIN_ID" />
+            <PropertyRef Name="TB_LOGIN_ATIVO" />
+            <PropertyRef Name="TB_PERFIL_ID" />
+            <PropertyRef Name="TB_PERFIL_LOGIN_ID" />
+            <PropertyRef Name="TB_PERFIL_DESCRICAO" />
+            <PropertyRef Name="DESCRICAO_PERFIL" />
+          </Key>
+          <Property Name="TB_USUARIO_ID" Type="Int32" Nullable="false" />
+          <Property Name="TB_USUARIO_CPF" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="TB_USUARIO_IND_ATIVO" Type="Boolean" Nullable="false" />
+          <Property Name="TB_USUARIO_NOME_USUARIO" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="TB_USUARIO_END_FONE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TB_USUARIO_RESPONSAVEL_ID_USUARIO_PAI" Type="Int32" Nullable="false" />
+          <Property Name="TB_USUARIO_EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TB_ORGAO_ID" Type="Int32" />
+          <Property Name="TB_GESTOR_ID" Type="Int32" />
+          <Property Name="TB_LOGIN_ID" Type="Int32" Nullable="false" />
+          <Property Name="TB_LOGIN_ATIVO" Type="Boolean" Nullable="false" />
+          <Property Name="TB_LOGIN_SENHA" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TB_LOGIN_DATA_CADASTRO" Type="DateTime" Precision="3" />
+          <Property Name="TB_LOGIN_TENTATIVAS_INVALIDAS" Type="Int32" />
+          <Property Name="TB_LOGIN_BLOQUEADO" Type="Boolean" />
+          <Property Name="TB_LOGIN_TROCAR_SENHA" Type="Boolean" />
+          <Property Name="TB_PERFIL_ID" Type="Int16" Nullable="false" />
+          <Property Name="TB_PERFIL_LOGIN_ID" Type="Int32" Nullable="false" />
+          <Property Name="TB_PERFIL_DESCRICAO" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRICAO_PERFIL" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CODIGOS_PERFIL" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="TB_PERFIL_PESO" Type="Int32" />
+          <Property Name="TB_ORGAO_ID_PADRAO" Type="Int32" />
+          <Property Name="QTD_TOTAL_ACESSOS" Type="Int32" />
+          <Property Name="QTD_ACESSOS_30DIAS" Type="Int32" />
+          <Property Name="QTD_ACESSOS_90DIAS" Type="Int32" />
+          <Property Name="QTD_ACESSOS_180DIAS" Type="Int32" />
+          <Property Name="ULTIMO_ACESSO" Type="DateTime" Precision="3" />
+          <Property Name="RowId" Type="Int64" />
+        </EntityType>
+        <ComplexType Name="PRC_LISTAR_USUARIOS_LOGIN_ACESSOS_Result">
+          <Property Type="Int32" Name="TB_USUARIO_ID" Nullable="false" />
+          <Property Type="String" Name="TB_USUARIO_CPF" Nullable="false" MaxLength="11" />
+          <Property Type="Boolean" Name="TB_USUARIO_IND_ATIVO" Nullable="false" />
+          <Property Type="String" Name="TB_USUARIO_NOME_USUARIO" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="TB_USUARIO_END_FONE" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="TB_USUARIO_RESPONSAVEL_ID_USUARIO_PAI" Nullable="false" />
+          <Property Type="String" Name="TB_USUARIO_EMAIL" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="TB_ORGAO_ID" Nullable="true" />
+          <Property Type="Int32" Name="TB_GESTOR_ID" Nullable="true" />
+          <Property Type="Int32" Name="TB_LOGIN_ID" Nullable="false" />
+          <Property Type="Boolean" Name="TB_LOGIN_ATIVO" Nullable="false" />
+          <Property Type="String" Name="TB_LOGIN_SENHA" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="TB_LOGIN_DATA_CADASTRO" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="TB_LOGIN_TENTATIVAS_INVALIDAS" Nullable="true" />
+          <Property Type="Boolean" Name="TB_LOGIN_BLOQUEADO" Nullable="true" />
+          <Property Type="Boolean" Name="TB_LOGIN_TROCAR_SENHA" Nullable="true" />
+          <Property Type="Int32" Name="QTD_TOTAL_ACESSOS" Nullable="true" />
+          <Property Type="Int32" Name="QTD_ACESSOS_30DIAS" Nullable="true" />
+          <Property Type="Int32" Name="QTD_ACESSOS_90DIAS" Nullable="true" />
+          <Property Type="Int32" Name="QTD_ACESSOS_180DIAS" Nullable="true" />
+          <Property Type="DateTime" Name="ULTIMO_ACESSO" Nullable="true" Precision="23" />
+          <Property Type="String" Name="DESCRICAO_PERFIL" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="CODIGOS_PERFIL" Nullable="true" MaxLength="8000" />
+          <Property Type="Int16" Name="TB_PERFIL_ID" Nullable="false" />
+          <Property Type="String" Name="TB_PERFIL_DESCRICAO_PADRAO" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="SP_PERFIL_LOGIN_OBTER_BY_LOGIN_ID_Result">
+          <Property Type="Int32" Name="TB_PERFIL_LOGIN_ID" Nullable="false" />
+          <Property Type="Int16" Name="TB_PERFIL_ID" Nullable="false" />
+          <Property Type="Int32" Name="TB_LOGIN_ID" Nullable="false" />
+          <Property Type="Int32" Name="TB_ORGAO_ID_PADRAO" Nullable="true" />
+          <Property Type="Int32" Name="TB_GESTOR_ID_PADRAO" Nullable="true" />
+          <Property Type="Int32" Name="TB_ALMOXARIFADO_ID_PADRAO" Nullable="true" />
+          <Property Type="Int32" Name="TB_UO_ID_PADRAO" Nullable="true" />
+          <Property Type="Int32" Name="TB_UGE_ID_PADRAO" Nullable="true" />
+          <Property Type="Int32" Name="TB_UA_ID_PADRAO" Nullable="true" />
+          <Property Type="Int32" Name="TB_DIVISAO_ID_PADRAO" Nullable="true" />
+          <Property Type="Boolean" Name="TB_PERFIL_LOGIN_ATIVO" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_PERFIL_NIVEL_LISTAR_BY_ID_PERFIL_Result">
+          <Property Type="Int32" Name="TB_PERFIL_NIVEL_ID" Nullable="false" />
+          <Property Type="Int16" Name="TB_PERFIL_ID" Nullable="false" />
+          <Property Type="Byte" Name="TB_NIVEL_ID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_PERFIL_NIVEL_OBTER_BY_ID_PERFIL_Result">
+          <Property Type="Int32" Name="TB_PERFIL_NIVEL_ID" Nullable="false" />
+          <Property Type="Int16" Name="TB_PERFIL_ID" Nullable="false" />
+          <Property Type="Byte" Name="TB_NIVEL_ID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_TB_LOGIN_NIVEL_ACESSO_OBTER_BY_ID_PERFIL_LOGIN_Result">
+          <Property Type="Int32" Name="TB_LOGIN_NIVEL_ACESSO_ID" Nullable="false" />
+          <Property Type="Byte" Name="TB_NIVEL_ID" Nullable="false" />
+          <Property Type="Int32" Name="TB_PERFIL_LOGIN_ID" Nullable="false" />
+          <Property Type="Int32" Name="TB_LOGIN_NIVEL_ACESSO_VALOR" Nullable="false" />
+          <Property Type="Int32" Name="TB_LOGIN_NIVEL_ACESSO_ID_PAI" Nullable="true" />
+          <Property Type="Boolean" Name="TB_LOGIN_NIVEL_ACESSO_DEFAULT" Nullable="true" />
+          <Property Type="Boolean" Name="TB_LOGIN_NIVEL_ACESSO_PADRAO" Nullable="true" />
+          <Property Type="Boolean" Name="TB_LOGIN_NIVEL_ACESSO_ATIVO" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_TB_TRANSACAO_PERFIL_LISTAR_POR_ID_PERFIL_Result">
+          <Property Type="Int32" Name="TB_TRANSACAO_PERFIL_ID" Nullable="false" />
+          <Property Type="Int32" Name="TB_TRANSACAO_ID" Nullable="false" />
+          <Property Type="Int16" Name="TB_PERFIL_ID" Nullable="false" />
+          <Property Type="Boolean" Name="TB_TRANSACAO_ATIVO" Nullable="false" />
+          <Property Type="Boolean" Name="TB_TRANSACAO_PERFIL_EDITA" Nullable="false" />
+          <Property Type="Boolean" Name="TB_TRANSACAO_FILTRA_COMBO" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="TB_LOGIN_OBTER_LOGIN_BY_USERNAME_Result">
+          <Property Type="Int32" Name="TB_LOGIN_ID" Nullable="false" />
+          <Property Type="Int32" Name="TB_USUARIO_ID" Nullable="false" />
+          <Property Type="Boolean" Name="TB_LOGIN_ATIVO" Nullable="false" />
+          <Property Type="String" Name="TB_LOGIN_SENHA" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="TB_LOGIN_DATA_CADASTRO" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="TB_LOGIN_TENTATIVAS_INVALIDAS" Nullable="true" />
+          <Property Type="Boolean" Name="TB_LOGIN_BLOQUEADO" Nullable="true" />
+          <Property Type="Boolean" Name="TB_LOGIN_TROCAR_SENHA" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="TB_NIVEL_OBTER_Result">
+          <Property Type="Byte" Name="TB_NIVEL_ID" Nullable="false" />
+          <Property Type="String" Name="TB_NIVEL_DESCRICAO" Nullable="false" MaxLength="30" />
+          <Property Type="Byte" Name="TB_NIVEL_ID_PAI" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBSEGModelStoreContainer" CdmEntityContainer="SEGwebEntities">
+          <EntitySetMapping Name="TB_CONVENIO">
+            <EntityTypeMapping TypeName="DBSEGModel.TB_CONVENIO">
+              <MappingFragment StoreEntitySet="TB_CONVENIO">
+                <ScalarProperty Name="TB_CONVENIO_DESCRICAO" ColumnName="TB_CONVENIO_DESCRICAO" />
+                <ScalarProperty Name="TB_CONVENIO_IND_ATIVO" ColumnName="TB_CONVENIO_IND_ATIVO" />
+                <ScalarProperty Name="TB_MODULO_ID" ColumnName="TB_MODULO_ID" />
+                <ScalarProperty Name="TB_GESTOR_ID" ColumnName="TB_GESTOR_ID" />
+                <ScalarProperty Name="TB_CONVENIO_ID" ColumnName="TB_CONVENIO_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_HISTORICO_OPERACAO">
+            <EntityTypeMapping TypeName="DBSEGModel.TB_HISTORICO_OPERACAO">
+              <MappingFragment StoreEntitySet="TB_HISTORICO_OPERACAO">
+                <ScalarProperty Name="TB_PERFIL_TRANSACAO_ID" ColumnName="TB_PERFIL_TRANSACAO_ID" />
+                <ScalarProperty Name="TB_HISTORICO_OPERACAO_IP" ColumnName="TB_HISTORICO_OPERACAO_IP" />
+                <ScalarProperty Name="TB_HISTORICO_OPERACAO_DATA" ColumnName="TB_HISTORICO_OPERACAO_DATA" />
+                <ScalarProperty Name="TB_HISTORICO_OPERACAO_MODULO_ID" ColumnName="TB_HISTORICO_OPERACAO_MODULO_ID" />
+                <ScalarProperty Name="TB_HISTORICO_OPERACAO_ID_ORIGEM" ColumnName="TB_HISTORICO_OPERACAO_ID_ORIGEM" />
+                <ScalarProperty Name="TB_HISTORICO_OPERACAO_ID" ColumnName="TB_HISTORICO_OPERACAO_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_LOGIN_NIVEL_ACESSO">
+            <EntityTypeMapping TypeName="DBSEGModel.TB_LOGIN_NIVEL_ACESSO">
+              <MappingFragment StoreEntitySet="TB_LOGIN_NIVEL_ACESSO">
+                <ScalarProperty Name="TB_LOGIN_NIVEL_ACESSO_ATIVO" ColumnName="TB_LOGIN_NIVEL_ACESSO_ATIVO" />
+                <ScalarProperty Name="TB_LOGIN_NIVEL_ACESSO_PADRAO" ColumnName="TB_LOGIN_NIVEL_ACESSO_PADRAO" />
+                <ScalarProperty Name="TB_LOGIN_NIVEL_ACESSO_DEFAULT" ColumnName="TB_LOGIN_NIVEL_ACESSO_DEFAULT" />
+                <ScalarProperty Name="TB_LOGIN_NIVEL_ACESSO_ID_PAI" ColumnName="TB_LOGIN_NIVEL_ACESSO_ID_PAI" />
+                <ScalarProperty Name="TB_LOGIN_NIVEL_ACESSO_VALOR" ColumnName="TB_LOGIN_NIVEL_ACESSO_VALOR" />
+                <ScalarProperty Name="TB_PERFIL_LOGIN_ID" ColumnName="TB_PERFIL_LOGIN_ID" />
+                <ScalarProperty Name="TB_NIVEL_ID" ColumnName="TB_NIVEL_ID" />
+                <ScalarProperty Name="TB_LOGIN_NIVEL_ACESSO_ID" ColumnName="TB_LOGIN_NIVEL_ACESSO_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_MODULO">
+            <EntityTypeMapping TypeName="DBSEGModel.TB_MODULO">
+              <MappingFragment StoreEntitySet="TB_MODULO">
+                <ScalarProperty Name="TB_MODULO_ID_PAI" ColumnName="TB_MODULO_ID_PAI" />
+                <ScalarProperty Name="TB_MODULO_CAMINHO" ColumnName="TB_MODULO_CAMINHO" />
+                <ScalarProperty Name="TB_MODULO_ORDEM" ColumnName="TB_MODULO_ORDEM" />
+                <ScalarProperty Name="TB_MODULO_DESCRICAO" ColumnName="TB_MODULO_DESCRICAO" />
+                <ScalarProperty Name="TB_MODULO_SIGLA" ColumnName="TB_MODULO_SIGLA" />
+                <ScalarProperty Name="TB_MODULO_IND_ATIVO" ColumnName="TB_MODULO_IND_ATIVO" />
+                <ScalarProperty Name="TB_SISTEMA_ID" ColumnName="TB_SISTEMA_ID" />
+                <ScalarProperty Name="TB_MODULO_ID" ColumnName="TB_MODULO_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_NIVEL">
+            <EntityTypeMapping TypeName="DBSEGModel.TB_NIVEL">
+              <MappingFragment StoreEntitySet="TB_NIVEL">
+                <ScalarProperty Name="TB_NIVEL_ID_PAI" ColumnName="TB_NIVEL_ID_PAI" />
+                <ScalarProperty Name="TB_NIVEL_DESCRICAO" ColumnName="TB_NIVEL_DESCRICAO" />
+                <ScalarProperty Name="TB_NIVEL_ID" ColumnName="TB_NIVEL_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_PERFIL">
+            <EntityTypeMapping TypeName="DBSEGModel.TB_PERFIL">
+              <MappingFragment StoreEntitySet="TB_PERFIL">
+                <ScalarProperty Name="TB_PERFIL_PESO" ColumnName="TB_PERFIL_PESO" />
+                <ScalarProperty Name="TB_PERFIL_DESCRICAO" ColumnName="TB_PERFIL_DESCRICAO" />
+                <ScalarProperty Name="TB_PERFIL_ATIVO" ColumnName="TB_PERFIL_ATIVO" />
+                <ScalarProperty Name="TB_PERFIL_ID" ColumnName="TB_PERFIL_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_PERFIL_LOGIN">
+            <EntityTypeMapping TypeName="DBSEGModel.TB_PERFIL_LOGIN">
+              <MappingFragment StoreEntitySet="TB_PERFIL_LOGIN">
+                <ScalarProperty Name="TB_PERFIL_LOGIN_ATIVO" ColumnName="TB_PERFIL_LOGIN_ATIVO" />
+                <ScalarProperty Name="TB_DIVISAO_ID_PADRAO" ColumnName="TB_DIVISAO_ID_PADRAO" />
+                <ScalarProperty Name="TB_UA_ID_PADRAO" ColumnName="TB_UA_ID_PADRAO" />
+                <ScalarProperty Name="TB_UGE_ID_PADRAO" ColumnName="TB_UGE_ID_PADRAO" />
+                <ScalarProperty Name="TB_UO_ID_PADRAO" ColumnName="TB_UO_ID_PADRAO" />
+                <ScalarProperty Name="TB_ALMOXARIFADO_ID_PADRAO" ColumnName="TB_ALMOXARIFADO_ID_PADRAO" />
+                <ScalarProperty Name="TB_GESTOR_ID_PADRAO" ColumnName="TB_GESTOR_ID_PADRAO" />
+                <ScalarProperty Name="TB_ORGAO_ID_PADRAO" ColumnName="TB_ORGAO_ID_PADRAO" />
+                <ScalarProperty Name="TB_LOGIN_ID" ColumnName="TB_LOGIN_ID" />
+                <ScalarProperty Name="TB_PERFIL_ID" ColumnName="TB_PERFIL_ID" />
+                <ScalarProperty Name="TB_PERFIL_LOGIN_ID" ColumnName="TB_PERFIL_LOGIN_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_PERFIL_NIVEL">
+            <EntityTypeMapping TypeName="DBSEGModel.TB_PERFIL_NIVEL">
+              <MappingFragment StoreEntitySet="TB_PERFIL_NIVEL">
+                <ScalarProperty Name="TB_NIVEL_ID" ColumnName="TB_NIVEL_ID" />
+                <ScalarProperty Name="TB_PERFIL_ID" ColumnName="TB_PERFIL_ID" />
+                <ScalarProperty Name="TB_PERFIL_NIVEL_ID" ColumnName="TB_PERFIL_NIVEL_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_SISTEMA">
+            <EntityTypeMapping TypeName="DBSEGModel.TB_SISTEMA">
+              <MappingFragment StoreEntitySet="TB_SISTEMA">
+                <ScalarProperty Name="TB_SISTEMA_DESCRICAO" ColumnName="TB_SISTEMA_DESCRICAO" />
+                <ScalarProperty Name="TB_SISTEMA_SIGLA" ColumnName="TB_SISTEMA_SIGLA" />
+                <ScalarProperty Name="TB_SISTEMA_ATIVO" ColumnName="TB_SISTEMA_ATIVO" />
+                <ScalarProperty Name="TB_SISTEMA_ID" ColumnName="TB_SISTEMA_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_TRANSACAO">
+            <EntityTypeMapping TypeName="DBSEGModel.TB_TRANSACAO">
+              <MappingFragment StoreEntitySet="TB_TRANSACAO">
+                <ScalarProperty Name="TB_TRANSACAO_ORDEM" ColumnName="TB_TRANSACAO_ORDEM" />
+                <ScalarProperty Name="TB_TRANSACAO_CAMINHO" ColumnName="TB_TRANSACAO_CAMINHO" />
+                <ScalarProperty Name="TB_TRANSACAO_DESCRICAO" ColumnName="TB_TRANSACAO_DESCRICAO" />
+                <ScalarProperty Name="TB_TRANSACAO_SIGLA" ColumnName="TB_TRANSACAO_SIGLA" />
+                <ScalarProperty Name="TB_TRANSACAO_ATIVO" ColumnName="TB_TRANSACAO_ATIVO" />
+                <ScalarProperty Name="TB_MODULO_ID" ColumnName="TB_MODULO_ID" />
+                <ScalarProperty Name="TB_TRANSACAO_ID" ColumnName="TB_TRANSACAO_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_TRANSACAO_PERFIL">
+            <EntityTypeMapping TypeName="DBSEGModel.TB_TRANSACAO_PERFIL">
+              <MappingFragment StoreEntitySet="TB_TRANSACAO_PERFIL">
+                <ScalarProperty Name="TB_TRANSACAO_FILTRA_COMBO" ColumnName="TB_TRANSACAO_FILTRA_COMBO" />
+                <ScalarProperty Name="TB_TRANSACAO_PERFIL_EDITA" ColumnName="TB_TRANSACAO_PERFIL_EDITA" />
+                <ScalarProperty Name="TB_TRANSACAO_ATIVO" ColumnName="TB_TRANSACAO_ATIVO" />
+                <ScalarProperty Name="TB_PERFIL_ID" ColumnName="TB_PERFIL_ID" />
+                <ScalarProperty Name="TB_TRANSACAO_ID" ColumnName="TB_TRANSACAO_ID" />
+                <ScalarProperty Name="TB_TRANSACAO_PERFIL_ID" ColumnName="TB_TRANSACAO_PERFIL_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_MATERIAL_APOIO">
+            <EntityTypeMapping TypeName="DBSEGModel.TB_MATERIAL_APOIO">
+              <MappingFragment StoreEntitySet="TB_MATERIAL_APOIO">
+                <ScalarProperty Name="TB_PERFIL_ID" ColumnName="TB_PERFIL_ID" />
+                <ScalarProperty Name="TB_MATERIAL_APOIO_DESCRICAO_DETALHADA" ColumnName="TB_MATERIAL_APOIO_DESCRICAO_DETALHADA" />
+                <ScalarProperty Name="TB_MATERIAL_APOIO_DESCRICAO" ColumnName="TB_MATERIAL_APOIO_DESCRICAO" />
+                <ScalarProperty Name="TB_MATERIAL_APOIO_TIPO_RECURSO" ColumnName="TB_MATERIAL_APOIO_TIPO_RECURSO" />
+                <ScalarProperty Name="TB_MATERIAL_APOIO_CODIGO" ColumnName="TB_MATERIAL_APOIO_CODIGO" />
+                <ScalarProperty Name="TB_MATERIAL_APOIO_NOME_ARQUIVO" ColumnName="TB_MATERIAL_APOIO_NOME_ARQUIVO" />
+                <ScalarProperty Name="TB_MATERIAL_APOIO_PATH_ARQUIVO" ColumnName="TB_MATERIAL_APOIO_PATH_ARQUIVO" />
+                <ScalarProperty Name="TB_MATERIAL_APOIO_ID" ColumnName="TB_MATERIAL_APOIO_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_NOTIFICACAO">
+            <EntityTypeMapping TypeName="DBSEGModel.TB_NOTIFICACAO">
+              <MappingFragment StoreEntitySet="TB_NOTIFICACAO">
+                <ScalarProperty Name="TB_NOTIFICACAO_IND_ATIVO" ColumnName="TB_NOTIFICACAO_IND_ATIVO" />
+                <ScalarProperty Name="TB_NOTIFICACAO_DATA" ColumnName="TB_NOTIFICACAO_DATA" />
+                <ScalarProperty Name="TB_NOTIFICACAO_MENSAGEM" ColumnName="TB_NOTIFICACAO_MENSAGEM" />
+                <ScalarProperty Name="TB_NOTIFICACAO_TITULO" ColumnName="TB_NOTIFICACAO_TITULO" />
+                <ScalarProperty Name="TB_PERFIL_ID" ColumnName="TB_PERFIL_ID" />
+                <ScalarProperty Name="TB_NOTIFICACAO_ID" ColumnName="TB_NOTIFICACAO_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_USUARIO_LOGADO">
+            <EntityTypeMapping TypeName="DBSEGModel.TB_USUARIO_LOGADO">
+              <MappingFragment StoreEntitySet="TB_USUARIO_LOGADO">
+                <ScalarProperty Name="TB_SESSION_ID" ColumnName="TB_SESSION_ID" />
+                <ScalarProperty Name="TB_IP_LOGADO" ColumnName="TB_IP_LOGADO" />
+                <ScalarProperty Name="TB_DATA_HORA_LOGADO" ColumnName="TB_DATA_HORA_LOGADO" />
+                <ScalarProperty Name="TB_LOGIN_ID" ColumnName="TB_LOGIN_ID" />
+                <ScalarProperty Name="TB_USUARIO_LOGADO_ID" ColumnName="TB_USUARIO_LOGADO_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_LOGIN">
+            <EntityTypeMapping TypeName="DBSEGModel.TB_LOGIN">
+              <MappingFragment StoreEntitySet="TB_LOGIN">
+                <ScalarProperty Name="TB_LOGIN_TROCAR_SENHA" ColumnName="TB_LOGIN_TROCAR_SENHA" />
+                <ScalarProperty Name="TB_LOGIN_BLOQUEADO" ColumnName="TB_LOGIN_BLOQUEADO" />
+                <ScalarProperty Name="TB_LOGIN_TENTATIVAS_INVALIDAS" ColumnName="TB_LOGIN_TENTATIVAS_INVALIDAS" />
+                <ScalarProperty Name="TB_LOGIN_DATA_CADASTRO" ColumnName="TB_LOGIN_DATA_CADASTRO" />
+                <ScalarProperty Name="TB_LOGIN_SENHA" ColumnName="TB_LOGIN_SENHA" />
+                <ScalarProperty Name="TB_LOGIN_ATIVO" ColumnName="TB_LOGIN_ATIVO" />
+                <ScalarProperty Name="TB_USUARIO_ID" ColumnName="TB_USUARIO_ID" />
+                <ScalarProperty Name="TB_LOGIN_ID" ColumnName="TB_LOGIN_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_USUARIO">
+            <EntityTypeMapping TypeName="DBSEGModel.TB_USUARIO">
+              <MappingFragment StoreEntitySet="TB_USUARIO">
+                <ScalarProperty Name="TB_GESTOR_ID" ColumnName="TB_GESTOR_ID" />
+                <ScalarProperty Name="TB_ORGAO_ID" ColumnName="TB_ORGAO_ID" />
+                <ScalarProperty Name="TB_USUARIO_EMAIL" ColumnName="TB_USUARIO_EMAIL" />
+                <ScalarProperty Name="TB_USUARIO_RESPONSAVEL_ID_USUARIO_PAI" ColumnName="TB_USUARIO_RESPONSAVEL_ID_USUARIO_PAI" />
+                <ScalarProperty Name="TB_USUARIO_END_FONE" ColumnName="TB_USUARIO_END_FONE" />
+                <ScalarProperty Name="TB_USUARIO_NOME_USUARIO" ColumnName="TB_USUARIO_NOME_USUARIO" />
+                <ScalarProperty Name="TB_USUARIO_IND_ATIVO" ColumnName="TB_USUARIO_IND_ATIVO" />
+                <ScalarProperty Name="TB_USUARIO_CPF" ColumnName="TB_USUARIO_CPF" />
+                <ScalarProperty Name="TB_USUARIO_ID" ColumnName="TB_USUARIO_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_DADOS_USUARIO_PERFIS">
+            <EntityTypeMapping TypeName="DBSEGModel.VW_DADOS_USUARIO_PERFIS">
+              <MappingFragment StoreEntitySet="VW_DADOS_USUARIO_PERFIS">
+                <ScalarProperty Name="RowId" ColumnName="RowId" />
+                <ScalarProperty Name="QTD_ACESSOS_180DIAS" ColumnName="QTD_ACESSOS_180DIAS" />
+                <ScalarProperty Name="QTD_ACESSOS_90DIAS" ColumnName="QTD_ACESSOS_90DIAS" />
+                <ScalarProperty Name="QTD_ACESSOS_30DIAS" ColumnName="QTD_ACESSOS_30DIAS" />
+                <ScalarProperty Name="QTD_TOTAL_ACESSOS" ColumnName="QTD_TOTAL_ACESSOS" />
+                <ScalarProperty Name="ULTIMO_ACESSO" ColumnName="ULTIMO_ACESSO" />
+                <ScalarProperty Name="PERFIL_RELATORIO" ColumnName="PERFIL_RELATORIO" />
+                <ScalarProperty Name="CODIGOS_PERFIL" ColumnName="CODIGOS_PERFIL" />
+                <ScalarProperty Name="DESCRICAO_PERFIL" ColumnName="DESCRICAO_PERFIL" />
+                <ScalarProperty Name="TB_ALMOXARIFADO_ID" ColumnName="TB_ALMOXARIFADO_ID" />
+                <ScalarProperty Name="TB_DIVISAO_ID" ColumnName="TB_DIVISAO_ID" />
+                <ScalarProperty Name="TB_UA_ID" ColumnName="TB_UA_ID" />
+                <ScalarProperty Name="TB_UGE_ID" ColumnName="TB_UGE_ID" />
+                <ScalarProperty Name="TB_UO_ID" ColumnName="TB_UO_ID" />
+                <ScalarProperty Name="TB_ORGAO_ID_PADRAO" ColumnName="TB_ORGAO_ID_PADRAO" />
+                <ScalarProperty Name="TB_GESTOR_ID_PADRAO" ColumnName="TB_GESTOR_ID_PADRAO" />
+                <ScalarProperty Name="TB_GESTOR_ID" ColumnName="TB_GESTOR_ID" />
+                <ScalarProperty Name="TB_ORGAO_ID" ColumnName="TB_ORGAO_ID" />
+                <ScalarProperty Name="TB_PERFIL_PESO" ColumnName="TB_PERFIL_PESO" />
+                <ScalarProperty Name="TB_PERFIL_DESCRICAO" ColumnName="TB_PERFIL_DESCRICAO" />
+                <ScalarProperty Name="TB_PERFIL_ID" ColumnName="TB_PERFIL_ID" />
+                <ScalarProperty Name="TB_PERFIL_LOGIN_ID" ColumnName="TB_PERFIL_LOGIN_ID" />
+                <ScalarProperty Name="TB_USUARIO_EMAIL" ColumnName="TB_USUARIO_EMAIL" />
+                <ScalarProperty Name="TB_USUARIO_RESPONSAVEL_ID_USUARIO_PAI" ColumnName="TB_USUARIO_RESPONSAVEL_ID_USUARIO_PAI" />
+                <ScalarProperty Name="TB_USUARIO_END_FONE" ColumnName="TB_USUARIO_END_FONE" />
+                <ScalarProperty Name="TB_USUARIO_NOME_USUARIO" ColumnName="TB_USUARIO_NOME_USUARIO" />
+                <ScalarProperty Name="TB_USUARIO_IND_ATIVO" ColumnName="TB_USUARIO_IND_ATIVO" />
+                <ScalarProperty Name="TB_USUARIO_CPF" ColumnName="TB_USUARIO_CPF" />
+                <ScalarProperty Name="TB_USUARIO_ID" ColumnName="TB_USUARIO_ID" />
+                <ScalarProperty Name="TB_LOGIN_ID" ColumnName="TB_LOGIN_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_DADOS_USUARIO_SEMPERFIS">
+            <EntityTypeMapping TypeName="DBSEGModel.VW_DADOS_USUARIO_SEMPERFIS">
+              <MappingFragment StoreEntitySet="VW_DADOS_USUARIO_SEMPERFIS">
+                <ScalarProperty Name="RowId" ColumnName="RowId" />
+                <ScalarProperty Name="TB_PERFIL_DESCRICAO_PADRAO" ColumnName="TB_PERFIL_DESCRICAO_PADRAO" />
+                <ScalarProperty Name="TB_PERFIL_ID" ColumnName="TB_PERFIL_ID" />
+                <ScalarProperty Name="CODIGOS_PERFIL" ColumnName="CODIGOS_PERFIL" />
+                <ScalarProperty Name="DESCRICAO_PERFIL" ColumnName="DESCRICAO_PERFIL" />
+                <ScalarProperty Name="ULTIMO_ACESSO" ColumnName="ULTIMO_ACESSO" />
+                <ScalarProperty Name="QTD_ACESSOS_180DIAS" ColumnName="QTD_ACESSOS_180DIAS" />
+                <ScalarProperty Name="QTD_ACESSOS_90DIAS" ColumnName="QTD_ACESSOS_90DIAS" />
+                <ScalarProperty Name="QTD_ACESSOS_30DIAS" ColumnName="QTD_ACESSOS_30DIAS" />
+                <ScalarProperty Name="QTD_TOTAL_ACESSOS" ColumnName="QTD_TOTAL_ACESSOS" />
+                <ScalarProperty Name="TB_LOGIN_TROCAR_SENHA" ColumnName="TB_LOGIN_TROCAR_SENHA" />
+                <ScalarProperty Name="TB_LOGIN_BLOQUEADO" ColumnName="TB_LOGIN_BLOQUEADO" />
+                <ScalarProperty Name="TB_LOGIN_TENTATIVAS_INVALIDAS" ColumnName="TB_LOGIN_TENTATIVAS_INVALIDAS" />
+                <ScalarProperty Name="TB_LOGIN_DATA_CADASTRO" ColumnName="TB_LOGIN_DATA_CADASTRO" />
+                <ScalarProperty Name="TB_LOGIN_SENHA" ColumnName="TB_LOGIN_SENHA" />
+                <ScalarProperty Name="TB_LOGIN_ATIVO" ColumnName="TB_LOGIN_ATIVO" />
+                <ScalarProperty Name="TB_LOGIN_ID" ColumnName="TB_LOGIN_ID" />
+                <ScalarProperty Name="TB_GESTOR_ID" ColumnName="TB_GESTOR_ID" />
+                <ScalarProperty Name="TB_ORGAO_ID" ColumnName="TB_ORGAO_ID" />
+                <ScalarProperty Name="TB_USUARIO_EMAIL" ColumnName="TB_USUARIO_EMAIL" />
+                <ScalarProperty Name="TB_USUARIO_RESPONSAVEL_ID_USUARIO_PAI" ColumnName="TB_USUARIO_RESPONSAVEL_ID_USUARIO_PAI" />
+                <ScalarProperty Name="TB_USUARIO_END_FONE" ColumnName="TB_USUARIO_END_FONE" />
+                <ScalarProperty Name="TB_USUARIO_NOME_USUARIO" ColumnName="TB_USUARIO_NOME_USUARIO" />
+                <ScalarProperty Name="TB_USUARIO_IND_ATIVO" ColumnName="TB_USUARIO_IND_ATIVO" />
+                <ScalarProperty Name="TB_USUARIO_CPF" ColumnName="TB_USUARIO_CPF" />
+                <ScalarProperty Name="TB_USUARIO_ID" ColumnName="TB_USUARIO_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_LOG_USUARIO_QTD_ACESSOS">
+            <EntityTypeMapping TypeName="DBSEGModel.VW_LOG_USUARIO_QTD_ACESSOS">
+              <MappingFragment StoreEntitySet="VW_LOG_USUARIO_QTD_ACESSOS">
+                <ScalarProperty Name="ULTIMO_ACESSO" ColumnName="ULTIMO_ACESSO" />
+                <ScalarProperty Name="QTD_ACESSOS_30DIAS" ColumnName="QTD_ACESSOS_30DIAS" />
+                <ScalarProperty Name="QTD_ACESSOS_90DIAS" ColumnName="QTD_ACESSOS_90DIAS" />
+                <ScalarProperty Name="QTD_ACESSOS_180DIAS" ColumnName="QTD_ACESSOS_180DIAS" />
+                <ScalarProperty Name="QTD_TOTAL_ACESSOS" ColumnName="QTD_TOTAL_ACESSOS" />
+                <ScalarProperty Name="TB_LOG_USUARIO_TRANSACAO_ID" ColumnName="TB_LOG_USUARIO_TRANSACAO_ID" />
+                <ScalarProperty Name="TB_LOGIN_ID" ColumnName="TB_LOGIN_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_USUARIO_LOGIN_ACESSOS">
+            <EntityTypeMapping TypeName="DBSEGModel.VW_USUARIO_LOGIN_ACESSOS">
+              <MappingFragment StoreEntitySet="VW_USUARIO_LOGIN_ACESSOS">
+                <ScalarProperty Name="RowId" ColumnName="RowId" />
+                <ScalarProperty Name="ULTIMO_ACESSO" ColumnName="ULTIMO_ACESSO" />
+                <ScalarProperty Name="QTD_ACESSOS_180DIAS" ColumnName="QTD_ACESSOS_180DIAS" />
+                <ScalarProperty Name="QTD_ACESSOS_90DIAS" ColumnName="QTD_ACESSOS_90DIAS" />
+                <ScalarProperty Name="QTD_ACESSOS_30DIAS" ColumnName="QTD_ACESSOS_30DIAS" />
+                <ScalarProperty Name="QTD_TOTAL_ACESSOS" ColumnName="QTD_TOTAL_ACESSOS" />
+                <ScalarProperty Name="TB_ORGAO_ID_PADRAO" ColumnName="TB_ORGAO_ID_PADRAO" />
+                <ScalarProperty Name="TB_PERFIL_PESO" ColumnName="TB_PERFIL_PESO" />
+                <ScalarProperty Name="CODIGOS_PERFIL" ColumnName="CODIGOS_PERFIL" />
+                <ScalarProperty Name="DESCRICAO_PERFIL" ColumnName="DESCRICAO_PERFIL" />
+                <ScalarProperty Name="TB_PERFIL_DESCRICAO" ColumnName="TB_PERFIL_DESCRICAO" />
+                <ScalarProperty Name="TB_PERFIL_LOGIN_ID" ColumnName="TB_PERFIL_LOGIN_ID" />
+                <ScalarProperty Name="TB_PERFIL_ID" ColumnName="TB_PERFIL_ID" />
+                <ScalarProperty Name="TB_LOGIN_TROCAR_SENHA" ColumnName="TB_LOGIN_TROCAR_SENHA" />
+                <ScalarProperty Name="TB_LOGIN_BLOQUEADO" ColumnName="TB_LOGIN_BLOQUEADO" />
+                <ScalarProperty Name="TB_LOGIN_TENTATIVAS_INVALIDAS" ColumnName="TB_LOGIN_TENTATIVAS_INVALIDAS" />
+                <ScalarProperty Name="TB_LOGIN_DATA_CADASTRO" ColumnName="TB_LOGIN_DATA_CADASTRO" />
+                <ScalarProperty Name="TB_LOGIN_SENHA" ColumnName="TB_LOGIN_SENHA" />
+                <ScalarProperty Name="TB_LOGIN_ATIVO" ColumnName="TB_LOGIN_ATIVO" />
+                <ScalarProperty Name="TB_LOGIN_ID" ColumnName="TB_LOGIN_ID" />
+                <ScalarProperty Name="TB_GESTOR_ID" ColumnName="TB_GESTOR_ID" />
+                <ScalarProperty Name="TB_ORGAO_ID" ColumnName="TB_ORGAO_ID" />
+                <ScalarProperty Name="TB_USUARIO_EMAIL" ColumnName="TB_USUARIO_EMAIL" />
+                <ScalarProperty Name="TB_USUARIO_RESPONSAVEL_ID_USUARIO_PAI" ColumnName="TB_USUARIO_RESPONSAVEL_ID_USUARIO_PAI" />
+                <ScalarProperty Name="TB_USUARIO_END_FONE" ColumnName="TB_USUARIO_END_FONE" />
+                <ScalarProperty Name="TB_USUARIO_NOME_USUARIO" ColumnName="TB_USUARIO_NOME_USUARIO" />
+                <ScalarProperty Name="TB_USUARIO_IND_ATIVO" ColumnName="TB_USUARIO_IND_ATIVO" />
+                <ScalarProperty Name="TB_USUARIO_CPF" ColumnName="TB_USUARIO_CPF" />
+                <ScalarProperty Name="TB_USUARIO_ID" ColumnName="TB_USUARIO_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="PRC_ATUALIZAR_ESTATISTICA_ACESSO_USUARIO" FunctionName="DBSEGModel.Store.PRC_ATUALIZAR_ESTATISTICA_ACESSO_USUARIO" />
+          <FunctionImportMapping FunctionImportName="PRC_LISTAR_USUARIOS_LOGIN_ACESSOS" FunctionName="DBSEGModel.Store.PRC_LISTAR_USUARIOS_LOGIN_ACESSOS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBSEGModel.PRC_LISTAR_USUARIOS_LOGIN_ACESSOS_Result">
+                <ScalarProperty Name="TB_USUARIO_ID" ColumnName="TB_USUARIO_ID" />
+                <ScalarProperty Name="TB_USUARIO_CPF" ColumnName="TB_USUARIO_CPF" />
+                <ScalarProperty Name="TB_USUARIO_IND_ATIVO" ColumnName="TB_USUARIO_IND_ATIVO" />
+                <ScalarProperty Name="TB_USUARIO_NOME_USUARIO" ColumnName="TB_USUARIO_NOME_USUARIO" />
+                <ScalarProperty Name="TB_USUARIO_END_FONE" ColumnName="TB_USUARIO_END_FONE" />
+                <ScalarProperty Name="TB_USUARIO_RESPONSAVEL_ID_USUARIO_PAI" ColumnName="TB_USUARIO_RESPONSAVEL_ID_USUARIO_PAI" />
+                <ScalarProperty Name="TB_USUARIO_EMAIL" ColumnName="TB_USUARIO_EMAIL" />
+                <ScalarProperty Name="TB_ORGAO_ID" ColumnName="TB_ORGAO_ID" />
+                <ScalarProperty Name="TB_GESTOR_ID" ColumnName="TB_GESTOR_ID" />
+                <ScalarProperty Name="TB_LOGIN_ID" ColumnName="TB_LOGIN_ID" />
+                <ScalarProperty Name="TB_LOGIN_ATIVO" ColumnName="TB_LOGIN_ATIVO" />
+                <ScalarProperty Name="TB_LOGIN_SENHA" ColumnName="TB_LOGIN_SENHA" />
+                <ScalarProperty Name="TB_LOGIN_DATA_CADASTRO" ColumnName="TB_LOGIN_DATA_CADASTRO" />
+                <ScalarProperty Name="TB_LOGIN_TENTATIVAS_INVALIDAS" ColumnName="TB_LOGIN_TENTATIVAS_INVALIDAS" />
+                <ScalarProperty Name="TB_LOGIN_BLOQUEADO" ColumnName="TB_LOGIN_BLOQUEADO" />
+                <ScalarProperty Name="TB_LOGIN_TROCAR_SENHA" ColumnName="TB_LOGIN_TROCAR_SENHA" />
+                <ScalarProperty Name="QTD_TOTAL_ACESSOS" ColumnName="QTD_TOTAL_ACESSOS" />
+                <ScalarProperty Name="QTD_ACESSOS_30DIAS" ColumnName="QTD_ACESSOS_30DIAS" />
+                <ScalarProperty Name="QTD_ACESSOS_90DIAS" ColumnName="QTD_ACESSOS_90DIAS" />
+                <ScalarProperty Name="QTD_ACESSOS_180DIAS" ColumnName="QTD_ACESSOS_180DIAS" />
+                <ScalarProperty Name="ULTIMO_ACESSO" ColumnName="ULTIMO_ACESSO" />
+                <ScalarProperty Name="DESCRICAO_PERFIL" ColumnName="DESCRICAO_PERFIL" />
+                <ScalarProperty Name="CODIGOS_PERFIL" ColumnName="CODIGOS_PERFIL" />
+                <ScalarProperty Name="TB_PERFIL_ID" ColumnName="TB_PERFIL_ID" />
+                <ScalarProperty Name="TB_PERFIL_DESCRICAO_PADRAO" ColumnName="TB_PERFIL_DESCRICAO_PADRAO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PROC_CRIACAO_MODULO_RELATORIOS_E_TRANSACOES" FunctionName="DBSEGModel.Store.PROC_CRIACAO_MODULO_RELATORIOS_E_TRANSACOES" />
+          <FunctionImportMapping FunctionImportName="SP_PERFIL_LOGIN_OBTER_BY_LOGIN_ID" FunctionName="DBSEGModel.Store.SP_PERFIL_LOGIN_OBTER_BY_LOGIN_ID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBSEGModel.SP_PERFIL_LOGIN_OBTER_BY_LOGIN_ID_Result">
+                <ScalarProperty Name="TB_PERFIL_LOGIN_ID" ColumnName="TB_PERFIL_LOGIN_ID" />
+                <ScalarProperty Name="TB_PERFIL_ID" ColumnName="TB_PERFIL_ID" />
+                <ScalarProperty Name="TB_LOGIN_ID" ColumnName="TB_LOGIN_ID" />
+                <ScalarProperty Name="TB_ORGAO_ID_PADRAO" ColumnName="TB_ORGAO_ID_PADRAO" />
+                <ScalarProperty Name="TB_GESTOR_ID_PADRAO" ColumnName="TB_GESTOR_ID_PADRAO" />
+                <ScalarProperty Name="TB_ALMOXARIFADO_ID_PADRAO" ColumnName="TB_ALMOXARIFADO_ID_PADRAO" />
+                <ScalarProperty Name="TB_UO_ID_PADRAO" ColumnName="TB_UO_ID_PADRAO" />
+                <ScalarProperty Name="TB_UGE_ID_PADRAO" ColumnName="TB_UGE_ID_PADRAO" />
+                <ScalarProperty Name="TB_UA_ID_PADRAO" ColumnName="TB_UA_ID_PADRAO" />
+                <ScalarProperty Name="TB_DIVISAO_ID_PADRAO" ColumnName="TB_DIVISAO_ID_PADRAO" />
+                <ScalarProperty Name="TB_PERFIL_LOGIN_ATIVO" ColumnName="TB_PERFIL_LOGIN_ATIVO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_PERFIL_NIVEL_LISTAR_BY_ID_PERFIL" FunctionName="DBSEGModel.Store.SP_PERFIL_NIVEL_LISTAR_BY_ID_PERFIL">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBSEGModel.SP_PERFIL_NIVEL_LISTAR_BY_ID_PERFIL_Result">
+                <ScalarProperty Name="TB_PERFIL_NIVEL_ID" ColumnName="TB_PERFIL_NIVEL_ID" />
+                <ScalarProperty Name="TB_PERFIL_ID" ColumnName="TB_PERFIL_ID" />
+                <ScalarProperty Name="TB_NIVEL_ID" ColumnName="TB_NIVEL_ID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_PERFIL_NIVEL_OBTER_BY_ID_PERFIL" FunctionName="DBSEGModel.Store.SP_PERFIL_NIVEL_OBTER_BY_ID_PERFIL">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBSEGModel.SP_PERFIL_NIVEL_OBTER_BY_ID_PERFIL_Result">
+                <ScalarProperty Name="TB_PERFIL_NIVEL_ID" ColumnName="TB_PERFIL_NIVEL_ID" />
+                <ScalarProperty Name="TB_PERFIL_ID" ColumnName="TB_PERFIL_ID" />
+                <ScalarProperty Name="TB_NIVEL_ID" ColumnName="TB_NIVEL_ID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_TB_LOGIN_DESLOGAR_USUARIO" FunctionName="DBSEGModel.Store.SP_TB_LOGIN_DESLOGAR_USUARIO" />
+          <FunctionImportMapping FunctionImportName="SP_TB_LOGIN_LOGAR_USUARIO" FunctionName="DBSEGModel.Store.SP_TB_LOGIN_LOGAR_USUARIO" />
+          <FunctionImportMapping FunctionImportName="SP_TB_LOGIN_NIVEL_ACESSO_OBTER_BY_ID_PERFIL_LOGIN" FunctionName="DBSEGModel.Store.SP_TB_LOGIN_NIVEL_ACESSO_OBTER_BY_ID_PERFIL_LOGIN">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBSEGModel.SP_TB_LOGIN_NIVEL_ACESSO_OBTER_BY_ID_PERFIL_LOGIN_Result">
+                <ScalarProperty Name="TB_LOGIN_NIVEL_ACESSO_ID" ColumnName="TB_LOGIN_NIVEL_ACESSO_ID" />
+                <ScalarProperty Name="TB_NIVEL_ID" ColumnName="TB_NIVEL_ID" />
+                <ScalarProperty Name="TB_PERFIL_LOGIN_ID" ColumnName="TB_PERFIL_LOGIN_ID" />
+                <ScalarProperty Name="TB_LOGIN_NIVEL_ACESSO_VALOR" ColumnName="TB_LOGIN_NIVEL_ACESSO_VALOR" />
+                <ScalarProperty Name="TB_LOGIN_NIVEL_ACESSO_ID_PAI" ColumnName="TB_LOGIN_NIVEL_ACESSO_ID_PAI" />
+                <ScalarProperty Name="TB_LOGIN_NIVEL_ACESSO_DEFAULT" ColumnName="TB_LOGIN_NIVEL_ACESSO_DEFAULT" />
+                <ScalarProperty Name="TB_LOGIN_NIVEL_ACESSO_PADRAO" ColumnName="TB_LOGIN_NIVEL_ACESSO_PADRAO" />
+                <ScalarProperty Name="TB_LOGIN_NIVEL_ACESSO_ATIVO" ColumnName="TB_LOGIN_NIVEL_ACESSO_ATIVO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_TB_TRANSACAO_PERFIL_LISTAR_POR_ID_PERFIL" FunctionName="DBSEGModel.Store.SP_TB_TRANSACAO_PERFIL_LISTAR_POR_ID_PERFIL">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBSEGModel.SP_TB_TRANSACAO_PERFIL_LISTAR_POR_ID_PERFIL_Result">
+                <ScalarProperty Name="TB_TRANSACAO_PERFIL_ID" ColumnName="TB_TRANSACAO_PERFIL_ID" />
+                <ScalarProperty Name="TB_TRANSACAO_ID" ColumnName="TB_TRANSACAO_ID" />
+                <ScalarProperty Name="TB_PERFIL_ID" ColumnName="TB_PERFIL_ID" />
+                <ScalarProperty Name="TB_TRANSACAO_ATIVO" ColumnName="TB_TRANSACAO_ATIVO" />
+                <ScalarProperty Name="TB_TRANSACAO_PERFIL_EDITA" ColumnName="TB_TRANSACAO_PERFIL_EDITA" />
+                <ScalarProperty Name="TB_TRANSACAO_FILTRA_COMBO" ColumnName="TB_TRANSACAO_FILTRA_COMBO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="TB_LOGIN_OBTER_LOGIN_BY_USERNAME" FunctionName="DBSEGModel.Store.TB_LOGIN_OBTER_LOGIN_BY_USERNAME">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBSEGModel.TB_LOGIN_OBTER_LOGIN_BY_USERNAME_Result">
+                <ScalarProperty Name="TB_LOGIN_ID" ColumnName="TB_LOGIN_ID" />
+                <ScalarProperty Name="TB_USUARIO_ID" ColumnName="TB_USUARIO_ID" />
+                <ScalarProperty Name="TB_LOGIN_ATIVO" ColumnName="TB_LOGIN_ATIVO" />
+                <ScalarProperty Name="TB_LOGIN_SENHA" ColumnName="TB_LOGIN_SENHA" />
+                <ScalarProperty Name="TB_LOGIN_DATA_CADASTRO" ColumnName="TB_LOGIN_DATA_CADASTRO" />
+                <ScalarProperty Name="TB_LOGIN_TENTATIVAS_INVALIDAS" ColumnName="TB_LOGIN_TENTATIVAS_INVALIDAS" />
+                <ScalarProperty Name="TB_LOGIN_BLOQUEADO" ColumnName="TB_LOGIN_BLOQUEADO" />
+                <ScalarProperty Name="TB_LOGIN_TROCAR_SENHA" ColumnName="TB_LOGIN_TROCAR_SENHA" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="TB_NIVEL_OBTER" FunctionName="DBSEGModel.Store.TB_NIVEL_OBTER">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBSEGModel.TB_NIVEL_OBTER_Result">
+                <ScalarProperty Name="TB_NIVEL_ID" ColumnName="TB_NIVEL_ID" />
+                <ScalarProperty Name="TB_NIVEL_DESCRICAO" ColumnName="TB_NIVEL_DESCRICAO" />
+                <ScalarProperty Name="TB_NIVEL_ID_PAI" ColumnName="TB_NIVEL_ID_PAI" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <!--<EntitySetMapping Name="VW_DADOS_USUARIO_SEMPERFIS">
+            <EntityTypeMapping TypeName="dbSEG_DesenvModel.VW_DADOS_USUARIO_SEMPERFIS">
+              <MappingFragment StoreEntitySet="VW_DADOS_USUARIO_SEMPERFIS">
+                <ScalarProperty Name="TB_LOGIN_ID" ColumnName="TB_LOGIN_ID" />
+                <ScalarProperty Name="TB_USUARIO_CPF" ColumnName="TB_USUARIO_CPF" />
+                <ScalarProperty Name="TB_USUARIO_ID" ColumnName="TB_USUARIO_ID" />
+                <ScalarProperty Name="TB_ORGAO_ID" ColumnName="TB_ORGAO_ID" />
+                <ScalarProperty Name="TB_ORGAO_CODIGO" ColumnName="TB_ORGAO_CODIGO" />
+                <ScalarProperty Name="TB_ORGAO_DESCRICAO" ColumnName="TB_ORGAO_DESCRICAO" />
+                <ScalarProperty Name="TB_GESTOR_ID" ColumnName="TB_GESTOR_ID" />
+                <ScalarProperty Name="TB_GESTOR_CODIGO_GESTAO" ColumnName="TB_GESTOR_CODIGO_GESTAO" />
+                <ScalarProperty Name="TB_GESTOR_NOME" ColumnName="TB_GESTOR_NOME" />
+                <ScalarProperty Name="TB_GESTOR_NOME_REDUZIDO" ColumnName="TB_GESTOR_NOME_REDUZIDO" />
+                <ScalarProperty Name="RowId" ColumnName="RowId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>-->
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="SegModel" ZoomLevel="94">
+        <EntityTypeShape EntityType="DBSEGModel.TB_CONVENIO" Width="1.5" PointX="5.25" PointY="1.125" Height="1.9210009765625031" />
+        <EntityTypeShape EntityType="DBSEGModel.TB_HISTORICO_OPERACAO" Width="1.5" PointX="0.75" PointY="6.75" Height="1.9210009765625031" />
+        <EntityTypeShape EntityType="DBSEGModel.TB_LOGIN_NIVEL_ACESSO" Width="1.5" PointX="10" PointY="9.375" Height="2.7427376302083388" />
+        <EntityTypeShape EntityType="DBSEGModel.TB_MODULO" Width="1.5" PointX="3" PointY="2.125" Height="3.0714322916666674" />
+        <EntityTypeShape EntityType="DBSEGModel.TB_NIVEL" Width="1.5" PointX="7.75" PointY="9.625" Height="2.0853483072916674" />
+        <EntityTypeShape EntityType="DBSEGModel.TB_PERFIL" Width="1.5" PointX="5.25" PointY="7.875" Height="2.2496956380208282" />
+        <EntityTypeShape EntityType="DBSEGModel.TB_PERFIL_LOGIN" Width="2.875" PointX="7.75" PointY="13.125" Height="3.0714322916666674" />
+        <EntityTypeShape EntityType="DBSEGModel.TB_PERFIL_NIVEL" Width="1.5" PointX="10" PointY="5.875" Height="1.7566536458333388" />
+        <EntityTypeShape EntityType="DBSEGModel.TB_SISTEMA" Width="1.5" PointX="0.75" PointY="2.75" Height="1.7566536458333251" />
+        <EntityTypeShape EntityType="DBSEGModel.TB_TRANSACAO" Width="1.5" PointX="5.25" PointY="3.75" Height="2.4140429687500102" />
+        <EntityTypeShape EntityType="DBSEGModel.TB_TRANSACAO_PERFIL" Width="1.5" PointX="7.5" PointY="3.75" Height="2.4140429687500102" />
+        <AssociationConnector Association="DBSEGModel.FK__TB_CONVEN__TB_MO__2E1BDC42" >
+          <ConnectorPoint PointX="4.5" PointY="2.5855004882812516" />
+          <ConnectorPoint PointX="5.25" PointY="2.5855004882812516" />
+        </AssociationConnector>
+        <AssociationConnector Association="DBSEGModel.FK__TB_LOGIN___TB_LO__3E52440B" >
+          <ConnectorPoint PointX="10.531923076923077" PointY="9.375" />
+          <ConnectorPoint PointX="10.531923076923077" PointY="9.125" />
+          <ConnectorPoint PointX="10.978461538461538" PointY="9.125" />
+          <ConnectorPoint PointX="10.978461538461538" PointY="9.375" />
+        </AssociationConnector>
+        <AssociationConnector Association="DBSEGModel.FK__TB_LOGIN___TB_NI__182C9B23" >
+          <ConnectorPoint PointX="9.25" PointY="10.667674153645834" />
+          <ConnectorPoint PointX="10" PointY="10.667674153645834" />
+        </AssociationConnector>
+        <AssociationConnector Association="DBSEGModel.FK_TB_LOGIN_NIVEL_ACESSO_TB_PERFIL_LOGIN" >
+          <ConnectorPoint PointX="10.3125" PointY="13.125" />
+          <ConnectorPoint PointX="10.3125" PointY="12.2820849609375" />
+        </AssociationConnector>
+        <AssociationConnector Association="DBSEGModel.FK__TB_MODULO__TB_MO__4D94879B" >
+          <ConnectorPoint PointX="3.5319230769230767" PointY="5.1964322916666674" />
+          <ConnectorPoint PointX="3.5319230769230767" PointY="5.4464322916666674" />
+          <ConnectorPoint PointX="3.9784615384615383" PointY="5.4464322916666674" />
+          <ConnectorPoint PointX="3.9784615384615383" PointY="5.1964322916666674" />
+        </AssociationConnector>
+        <AssociationConnector Association="DBSEGModel.FK__TB_MODULO__TB_SI__2B3F6F97" >
+          <ConnectorPoint PointX="2.25" PointY="3.6283268229166623" />
+          <ConnectorPoint PointX="3" PointY="3.6283268229166623" />
+        </AssociationConnector>
+        <AssociationConnector Association="DBSEGModel.FK__TB_TRANSA__TB_MO__3C69FB99" >
+          <ConnectorPoint PointX="4.5" PointY="4.4732161458333337" />
+          <ConnectorPoint PointX="5.25" PointY="4.4732161458333337" />
+        </AssociationConnector>
+        <AssociationConnector Association="DBSEGModel.FK__TB_NIVEL__TB_NIV__08EA5793" >
+          <ConnectorPoint PointX="8.2819230769230767" PointY="11.710348307291667" />
+          <ConnectorPoint PointX="8.2819230769230767" PointY="11.960348307291667" />
+          <ConnectorPoint PointX="8.72846153846154" PointY="11.960348307291667" />
+          <ConnectorPoint PointX="8.72846153846154" PointY="11.710348307291667" />
+        </AssociationConnector>
+        <AssociationConnector Association="DBSEGModel.FK__TB_PERFIL__TB_NI__15502E78" >
+          <ConnectorPoint PointX="9.15625" PointY="9.625" />
+          <ConnectorPoint PointX="9.15625" PointY="7.1214786197916666" />
+          <ConnectorPoint PointX="10" PointY="7.1214786197916666" />
+        </AssociationConnector>
+        <AssociationConnector Association="DBSEGModel.FK__TB_PERFIL__TB_PE__108B795B" >
+          <ConnectorPoint PointX="5.34375" PointY="10.28904296875" />
+          <ConnectorPoint PointX="5.34375" PointY="13.21875" />
+          <ConnectorPoint PointX="7.75" PointY="13.21875" />
+        </AssociationConnector>
+        <AssociationConnector Association="DBSEGModel.FK__TB_PERFIL__TB_PE__145C0A3F" >
+          <ConnectorPoint PointX="6.75" PointY="7.875" />
+          <ConnectorPoint PointX="7.125" PointY="7.5" />
+          <ConnectorPoint PointX="7.125" PointY="8.2302864583333317" />
+          <ConnectorPoint PointX="7.4791604166666668" PointY="8.2302864583333317" />
+          <ConnectorPoint PointX="7.6770795833333336" PointY="8.2302864583333317" />
+          <ConnectorPoint PointX="9.0729166666666661" PointY="8.2302864583333317" />
+          <ConnectorPoint PointX="9.2395833333333339" PointY="8.2302864583333317" />
+          <ConnectorPoint PointX="9.625" PointY="8.2302864583333317" />
+          <ConnectorPoint PointX="10" PointY="7.8552864583333326" />
+        </AssociationConnector>
+        <AssociationConnector Association="DBSEGModel.FK__TB_TRANSA__TB_PE__36B12243" >
+          <ConnectorPoint PointX="6.75" PointY="9.1088519602275415" />
+          <ConnectorPoint PointX="7.56249375" PointY="9.1088519602275415" />
+          <ConnectorPoint PointX="7.56249375" PointY="6.4994921875" />
+        </AssociationConnector>
+        <AssociationConnector Association="DBSEGModel.FK__TB_TRANSA__TB_PE__38996AB5" >
+          <ConnectorPoint PointX="6.75" PointY="8.6383167092804349" />
+          <ConnectorPoint PointX="7.59374625" PointY="8.6383167092804349" />
+          <ConnectorPoint PointX="7.59374625" PointY="6.4994921875" />
+        </AssociationConnector>
+        <AssociationConnector Association="DBSEGModel.FK__TB_TRANSA__TB_TR__3D5E1FD2" >
+          <ConnectorPoint PointX="6.75" PointY="4.9570214843750051" />
+          <ConnectorPoint PointX="7.5" PointY="4.9570214843750051" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="DBSEGModel.TB_MATERIAL_APOIO" Width="1.5" PointX="0.75" PointY="9.75" Height="2.2496956380208388" />
+        <EntityTypeShape EntityType="DBSEGModel.TB_NOTIFICACAO" Width="1.5" PointX="7.5" PointY="18.125" Height="2.3648893229166674" />
+        <AssociationConnector Association="DBSEGModel.FK__TB_NOTIFI__TB_PE__6C190EBB" >
+          <ConnectorPoint PointX="5.3750025" PointY="10.6244921875" />
+          <ConnectorPoint PointX="5.3750025" PointY="19.307444661458334" />
+          <ConnectorPoint PointX="7.5" PointY="19.307444661458334" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="DBSEGModel.TB_USUARIO_LOGADO" Width="1.5" PointX="7.75" PointY="7" />
+        <EntityTypeShape EntityType="DBSEGModel.TB_LOGIN" Width="3.125" PointX="16.5" PointY="11.125" />
+        <EntityTypeShape EntityType="DBSEGModel.TB_USUARIO" Width="2.125" PointX="14.25" PointY="11.25" />
+        <AssociationConnector Association="DBSEGModel.FK__TB_LOGIN__TB_USU__0519C6AF" />
+        <AssociationConnector Association="DBSEGModel.FK__TB_PERFIL__TB_LO__117F9D94" />
+        <AssociationConnector Association="DBSEGModel.FK_TB_LOGIN_TB_USUARIO_LOGADO_LOGIN_ID" />
+        <EntityTypeShape EntityType="DBSEGModel.VW_DADOS_USUARIO_PERFIS" Width="1.5" PointX="3.75" PointY="11.75" />
+        <EntityTypeShape EntityType="DBSEGModel.VW_DADOS_USUARIO_SEMPERFIS" Width="1.5" PointX="12.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DBSEGModel.VW_LOG_USUARIO_QTD_ACESSOS" Width="1.5" PointX="12.75" PointY="7.75" />
+        <EntityTypeShape EntityType="DBSEGModel.VW_USUARIO_LOGIN_ACESSOS" Width="1.5" PointX="0.75" PointY="13.75" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,1293 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Sam.ServiceInfraestructure;
+using Sam.Domain.Entity;
+using Sam.Common.Util;
+using System.Transactions;
+using Sam.Common;
+using Sam.Domain.Entity.Relatorios;
+
+namespace Sam.Domain.Business
+{
+    public class FechamentoMensalBusiness : BaseBusiness
+    {
+        private FechamentoMensalEntity fechamento = new FechamentoMensalEntity();
+
+        public FechamentoMensalEntity Fechamento
+        {
+            get { return fechamento; }
+            set { fechamento = value; }
+        }
+
+        public bool EstornarFechamentoMensal()
+        {
+            try
+            {
+                this.Service<IFechamentoMensalService>().Entity = Fechamento;
+
+                //using (TransactionScope tras = new TransactionScope(TransactionScopeOption.RequiresNew, new TransactionOptions() { IsolationLevel = IsolationLevel.ReadUncommitted }))
+                //{                    
+                    string lStrDataTratada = string.Empty;
+
+                    Fechamento.AnoMesRef = ListarUltimoFechamento();
+
+                    if (Fechamento.AnoMesRef == null)
+                    {
+                        this.ListaErro.Add("Não consta fechamento para reabertura!");
+                        return false;
+                    }
+
+                    using (TransactionScope tras = new TransactionScope(TransactionScopeOption.Suppress, new TransactionOptions() { IsolationLevel = IsolationLevel.ReadUncommitted }))
+                    {
+                        this.Service<IFechamentoMensalService>().Excluir();
+                    }
+
+                    //atualiza o almoxarifado
+                    string mesRef = TratamentoDados.ValidarAnoMesRef(Fechamento.AnoMesRef.Value.ToString(), 0);
+                    using (TransactionScope tras = new TransactionScope(TransactionScopeOption.Suppress, new TransactionOptions() { IsolationLevel = IsolationLevel.ReadUncommitted }))
+                    {
+                        this.Service<IFechamentoMensalService>().AtualizarMesRefAlmoxarifadoFechamento(Fechamento.Almoxarifado.Id.Value, mesRef);
+                    }
+
+                    this.fechamento.AnoMesRef = Convert.ToInt32(mesRef);
+
+                //    tras.Complete();
+                //}
+            }
+            catch (Exception e)
+            {
+                if (e.Message.Contains("truncated"))
+                    return true;
+
+                new LogErro().GravarLogErro(e);
+                this.ListaErro.Add("Erro no sistema: " + e.Message);
+                return false;
+        }
+
+            return true;
+        }
+
+        public int? ListarUltimoFechamento()
+        {
+            using (TransactionScope tras = new TransactionScope(TransactionScopeOption.Suppress, new TransactionOptions() { IsolationLevel = IsolationLevel.ReadUncommitted }))
+            {
+                return this.Service<IFechamentoMensalService>().ListarUltimoFechamento(Fechamento.Almoxarifado.Id);
+            }
+        }
+
+
+        public bool SalvarFechamentoMensal(IList<SaldoSubItemEntity> lstSaldoSubItem, GeralEnum.SituacaoFechamento situacaoFechamento)
+        {
+            this.Service<IFechamentoMensalService>().Entity = Fechamento;
+            PTResMensalBusiness ptResBusiness = new PTResMensalBusiness();
+
+            IList<int> retorno = (from s in lstSaldoSubItem select s.SubItemMaterial.NaturezaDespesa.Id.Value).Distinct().ToList();
+
+            int[] naturezaDespesa = new int[retorno.Count];
+
+            foreach (int subItem in retorno)
+            {
+                naturezaDespesa[retorno.IndexOf(subItem)] = subItem;
+            }
+
+            //if (ptResBusiness.getRetornaPtResMensalParaConsumo(fechamento.Almoxarifado.Id.Value, fechamento.AnoMesRef.Value, 0, 0, naturezaDespesa, 0) != null)
+            //{
+
+            //    this.ListaErro.Add("Existe Nota de Consumo Pendente, não será possível realizar o fechamento");
+            //    return false;
+            //}
+            try
+            {
+                using (TransactionScope tras = new TransactionScope(TransactionScopeOption.RequiresNew, new TransactionOptions() { IsolationLevel = IsolationLevel.RepeatableRead }))
+                {
+                    IList<FechamentoMensalEntity> listaFechamento = MontarFechamentoMensal(lstSaldoSubItem);
+
+                    if (ListaErro.Count > 0)
+                        return false;
+
+                    //Adiciona a situação do fechamento para todos os itens
+                    foreach (var list in listaFechamento)
+                    {
+                        list.SituacaoFechamento = (int)situacaoFechamento;
+                    }
+
+                    if (situacaoFechamento == GeralEnum.SituacaoFechamento.Executar)
+                    {
+                        var result = SalvarFechamentoMensal(lstSaldoSubItem, listaFechamento);
+                        tras.Complete();
+                        return result;
+                        
+                    }
+                    else if (situacaoFechamento == GeralEnum.SituacaoFechamento.Simular)
+                    {
+                        var result = SalvarSimulacaoFechamentoMensal(lstSaldoSubItem, listaFechamento);
+                        tras.Complete();
+                        return result;                        
+                    }
+                    else
+                    {
+                        throw new Exception("A situação do fechamento não foi implementada.");
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                if (e.Message.Contains("truncated"))
+                    return true;
+
+                throw new Exception(e.Message);
+            }
+        }
+
+        private bool SalvarSimulacaoFechamentoMensal(IList<SaldoSubItemEntity> lstSaldoSubItem, IList<FechamentoMensalEntity> listaFechamento)
+        {
+            try
+            {
+                this.Service<IFechamentoMensalService>().Entity = Fechamento;
+                
+                // salva todo o fechamento mensal
+                this.Service<IFechamentoMensalService>().Salvar(listaFechamento);
+
+                if (ListaErro.Count > 0)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                if (e.Message.Contains("truncated"))
+                    return true;
+
+                new LogErro().GravarLogErro(e);
+                this.ListaErro.Add("Erro no sistema: " + e.Message);
+                return false;
+            }
+        }
+
+        private bool SalvarFechamentoMensal(IList<SaldoSubItemEntity> lstSaldoSubItem, IList<FechamentoMensalEntity> listaFechamento)
+        {
+            try
+            {
+                this.Service<IFechamentoMensalService>().Entity = Fechamento;
+
+                // *** NÃO IMPLEMENTAR POR ENQUANTO!
+                //ConsistirMesAtual();
+
+                if (ListaErro.Count > 0)
+                {
+                    return false;
+                }
+
+                //salva todo o fechamento mensal
+                this.Service<IFechamentoMensalService>().Salvar(listaFechamento);
+
+                //adianta um mês
+                string mesRef = TratamentoDados.ValidarAnoMesRef(Fechamento.AnoMesRef.Value.ToString(), 1);
+
+                //Atualiza o mês ref do almoxarifado
+                this.Service<IFechamentoMensalService>().AtualizarMesRefAlmoxarifadoFechamento((int)Fechamento.Almoxarifado.Id, mesRef);
+
+                if (ListaErro.Count > 0)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                if (!e.Message.Contains("truncated"))
+                {
+                    new LogErro().GravarLogErro(e);
+                    this.ListaErro.Add("Erro no sistema: " + e.Message);
+                    return false;
+                }
+                else
+                    return true;
+            }
+        }
+
+        protected void ConsistirMesAtual()
+        {
+            DateTime data;
+            DateTime dataCorrente = DateTime.Now;
+            if (Fechamento.AnoMesRef.HasValue)
+            {
+                data = new DateTime(Convert.ToInt32(Fechamento.AnoMesRef.ToString().Substring(0, 4)), Convert.ToInt32(Fechamento.AnoMesRef.ToString().Substring(4, 2)), 1);
+
+                // verificar se o anomês do fechamento encontra-se na data atual. caso encontre. não permitirá o fechamento
+                if (data.Month == dataCorrente.Month && data.Year == dataCorrente.Year)
+                {
+                    this.ListaErro.Add("O ano/mês de referência não pode ser fechado (ano/mês corrente ainda não foi fechado).");
+                }
+            }
+        }
+
+        public IList<FechamentoMensalEntity> ImprimirFechamentoMensal()
+        {
+            try
+            {
+                this.Service<IFechamentoMensalService>().Entity = this.Fechamento;
+                return this.Service<IFechamentoMensalService>().Imprimir();
+            }
+            catch (Exception e)
+            {
+                new LogErro().GravarLogErro(e);
+                this.ListaErro.Add("Erro no sistema: " + e.Message);
+                return new List<FechamentoMensalEntity>();
+            }
+        }
+
+
+        public IList<relInventarioFechamentoMensalEntity> ImprimirInventarioMensal(int almoxID, int anoMesRef)
+        {
+            try
+            {
+                this.Service<IFechamentoMensalService>().Entity = this.Fechamento;
+
+                return this.Service<IFechamentoMensalService>()._xpImprimirInventarioBalanceteMensal(almoxID, anoMesRef);
+            }
+            catch (Exception e)
+            {
+                new LogErro().GravarLogErro(e);
+                this.ListaErro.Add("Erro no sistema: " + e.Message);
+                return new List<relInventarioFechamentoMensalEntity>();
+            }
+        }
+
+        public IList<relAnaliticoFechamentoMensalEntity> ImprimirAnaliticoBalanceteMensal(int almoxID, int anoMesRef)
+        {
+            try
+            {
+                this.Service<IFechamentoMensalService>().Entity = this.Fechamento;
+
+                return this.Service<IFechamentoMensalService>().ImprimirAnaliticoBalanceteMensal(almoxID, anoMesRef);
+            }
+            catch (Exception e)
+            {
+                new LogErro().GravarLogErro(e);
+                this.ListaErro.Add("Erro no sistema: " + e.Message);
+                return new List<relAnaliticoFechamentoMensalEntity>();
+            }
+        }
+
+        private void ValidarFechamentoMensal(SaldoSubItemEntity saldoSubItem)
+        {
+            if (saldoSubItem.SubItemMaterial == null)
+                throw new Exception("O SubItem está nulo");
+            
+            if (saldoSubItem.QtdeFechamento < 0)
+                this.ListaErro.Add(String.Format("Estoque negativo no subitem: {0} - {1}. Saldo Quantidade: {2}", saldoSubItem.SubItemMaterialCodigo, saldoSubItem.SubItemMaterial.Descricao, saldoSubItem.QtdeFechamento.ToString()));
+
+            if (saldoSubItem.ValFechamento < 0)
+                this.ListaErro.Add(String.Format("Saldo negativo no subitem: {0} - {1}. Saldo Valor: {2}", saldoSubItem.SubItemMaterialCodigo, saldoSubItem.SubItemMaterial.Descricao, saldoSubItem.ValFechamento.ToString()));                
+
+            if (saldoSubItem.Almoxarifado == null)
+                this.ListaErro.Add(String.Format("Não há almoxarifado associado ao saldo do subitem de material {0} - {1}.", saldoSubItem.SubItemMaterialCodigo, saldoSubItem.SubItemMaterial.Descricao));            
+
+            if (saldoSubItem.UGE == null)
+                this.ListaErro.Add("Não há UGE associada ao saldo do subitem de material {0} - {1}");
+        }
+
+        public IList<FechamentoMensalEntity> MontarFechamentoMensal(IList<SaldoSubItemEntity> lstSaldoSubItem)
+        {
+            List<FechamentoMensalEntity> listaFecha = new List<FechamentoMensalEntity>();
+
+            try
+            {
+                foreach (SaldoSubItemEntity fecha in lstSaldoSubItem)
+                {
+                    FechamentoMensalEntity fechamentoMes = new FechamentoMensalEntity();
+
+                    ValidarFechamentoMensal(fecha);
+
+                    if (fecha.Almoxarifado != null)
+                        fechamentoMes.Almoxarifado = new AlmoxarifadoEntity(fecha.Almoxarifado.Id);
+
+                    if (fecha.SubItemMaterial != null)
+                        fechamentoMes.SubItemMaterial = new SubItemMaterialEntity(fecha.SubItemMaterial.Id.Value);
+
+                    if (fecha.UGE != null)
+                        fechamentoMes.UGE = new UGEEntity(fecha.UGE.Id);
+
+                    fechamentoMes.AnoMesRef = Fechamento.AnoMesRef;
+                    fechamentoMes.QtdeEntrada = fecha.QtdeEntrada;
+                    fechamentoMes.QtdeSaida = fecha.QtdeSaida;
+                    fechamentoMes.ValorEntrada = fecha.ValEntrada;
+                    fechamentoMes.ValorSaida = fecha.ValSaida;
+                    fechamentoMes.SaldoQtde = fecha.QtdeFechamento;
+                    fechamentoMes.SaldoValor = fecha.ValFechamento;
+
+                    listaFecha.Add(fechamentoMes);
+                }
+            }
+            catch (Exception e)
+            {
+                this.ListaErro.Add(e.Message);
+            }
+
+            return listaFecha;            
+        }
+
+        public IList<PTResMensalEntity> ListarPtResMensalParaConsumo(int idAlmoxarifado, int intAnoMesRef)
+        {
+            return this.Service<IPTResMensalService>().ListarPtResMensalParaConsumo(idAlmoxarifado, intAnoMesRef);
+        }
+
+        public bool ExcluirFechamento()
+        {
+            this.Service<IFechamentoMensalService>().Entity = this.Fechamento;
+
+            try
+            {
+                this.Service<IFechamentoMensalService>().Excluir();
+            }
+            catch (Exception ex)
+            {
+                TratarErro(ex);
+            }
+
+            return this.Consistido;
+        }
+
+        public IList<FechamentoMensalEntity> Listar(int pIntAlmoxarifado, bool pBlnAgruparResultados)
+        {
+            IList<FechamentoMensalEntity> lista = new List<FechamentoMensalEntity>();
+            try
+            {
+                lista = this.Service<IFechamentoMensalService>().Listar(pIntAlmoxarifado, pBlnAgruparResultados);
+            }
+            catch (Exception ex)
+            {
+                TratarErro(ex);
+            }
+
+            return lista;
+
+        }
+        public IList<string> ListarMesesFechados(int almoxId)
+        {
+            IList<string> lstRetorno = new List<string>();
+            try
+            {
+                lstRetorno = this.Service<IFechamentoMensalService>().ListarMesesFechados(almoxId);
+            }
+            catch (Exception excErroConsulta)
+            {
+                Exception excErroParaPropagacao = new Exception("Erro ao consultar relação de fechamentos para almoxarifado corrente.", excErroConsulta);
+                throw excErroParaPropagacao;
+            }
+            return lstRetorno;
+        }
+
+        #region WS SIAFNLCONSUMO
+
+        public IList<PTResMensalEntity> ProcessaConsumoPtResMensal(int pIntAlmoxarifadoLogadoID, int pIntGestorAlmoxarifadoLogadoID, int pIntAnoMesReferenciaAlmoxarifadoLogado)
+        {
+
+            #region Variaveis
+            AlmoxarifadoEntity       lObjAlmoxarifadoLogado = null;
+            PTResMensalBusiness      lObjBusiness           = null;
+            IList<PTResMensalEntity> lILstPtResMensal       = null;
+            IList<PTResMensalEntity> lILstPtResConsumidas   = null;
+
+            //string lStrMsgEstimulo           = string.Empty;
+            string lStrCodigoUgeAlmoxarifado = string.Empty;
+            string lStrCodigoUge             = string.Empty;
+            string lStrCodigoUa              = string.Empty;
+            string lStrCodigoPtRes           = string.Empty;
+            string lStrCodigoNatDespesa      = string.Empty;
+            string lStrCodigoGestao          = string.Empty;
+            string lStrCodigoUnidadeGestora  = string.Empty;
+            string lStrErroTratado           = string.Empty;
+            string lStrLoginUsuario          = string.Empty;
+            string lStrSenhaUsuario          = string.Empty;
+            string lStrAnoBase               = string.Empty;
+            string lStrDataReferencia        = string.Empty;
+            string lStrMsgRetornoWs          = string.Empty;
+            string lStrMsgEstimuloWs         = string.Empty;
+            string strNomeMensagem           = string.Empty;
+
+            //string lStrErroTratado           = string.Empty;
+
+            #endregion Variaveis
+
+            #region Dados Login WS
+            lStrLoginUsuario = Siafem.userNameEnvio;
+            lStrSenhaUsuario = Siafem.passEnvio;
+            //lStrAnoBase      = _intAnoMesReferencia.ToString().Substring(0, 4);
+
+            lStrDataReferencia = DateTime.Today.ToString("ddMMMyyyy").ToUpper();
+            #endregion Dados Login WS
+
+            #region Processamento chave "UA|PT_Res|ND"
+
+                lILstPtResConsumidas = new List<PTResMensalEntity>();
+                lObjBusiness         = new PTResMensalBusiness();
+
+                lObjAlmoxarifadoLogado = new EstruturaOrganizacionalBusiness().ListarAlmoxarifadoPorGestorTodosCod(pIntGestorAlmoxarifadoLogadoID, true)
+                                                                              .Where(Almoxarifado => Almoxarifado.Id == pIntAlmoxarifadoLogadoID)
+                                                                              .FirstOrDefault();
+
+                if (lObjAlmoxarifadoLogado != null && lObjAlmoxarifadoLogado.Id.HasValue)
+                {
+                    if (lObjAlmoxarifadoLogado.Uge == null)
+                        lObjAlmoxarifadoLogado.Uge = new EstruturaOrganizacionalBusiness().ListarUgesTodosCod(lObjAlmoxarifadoLogado.Orgao.Id.Value)
+                                                                                          .Where(UGE => UGE.Id == lObjAlmoxarifadoLogado.Uge.Id.Value)
+                                                                                          .FirstOrDefault();
+
+                    //lILstPtResMensal = lObjBusiness.ListarPtResMensalParaConsumo(lObjAlmoxarifadoLogado.Id.Value, Convert.ToInt32(lObjAlmoxarifadoLogado.MesRef));
+                    //lILstPtResMensal = lObjBusiness.ListarPtResMensalParaConsumo(lObjAlmoxarifadoLogado.Id.Value, pIntAnoMesReferenciaAlmoxarifadoLogado);
+                    lILstPtResMensal = lObjBusiness._xpGerarNotasFechamentoMensalParaConsumo(lObjAlmoxarifadoLogado.Id.Value, pIntAnoMesReferenciaAlmoxarifadoLogado);
+                }
+                else
+                {
+                    return lILstPtResConsumidas;
+                }
+
+
+                lStrAnoBase              = lObjAlmoxarifadoLogado.MesRef.Substring(0,4);
+                lStrCodigoUnidadeGestora = lObjAlmoxarifadoLogado.Uge.Codigo.ToString();
+
+                foreach (PTResMensalEntity PtResMensal in lILstPtResMensal)
+                {
+                    //lStrCodigoUgeAlmoxarifado = PtResMensal.UgeAlmoxarifado.Codigo.ToString();
+                    //lStrCodigoUge             = PtResMensal.UGE.Codigo.ToString();
+                    //lStrCodigoUa              = PtResMensal.UA.Codigo.ToString();
+                    //lStrCodigoPtRes           = PtResMensal.PtRes.Codigo.ToString();
+                    //lStrCodigoNatDespesa      = PtResMensal.NaturezaDespesa.Codigo.ToString();
+                    //lStrCodigoGestao          = PtResMensal.Gestor.CodigoGestao.ToString();
+                    //lStrCodigoUnidadeGestora = lObjAlmoxarifadoLogado.Uge.Codigo.ToString();
+
+                    //lStrMsgEstimuloWs = Siafem.wsSIAFNLConsumo(lStrCodigoUgeAlmoxarifado,
+                    //                                         lStrCodigoUge,
+                    //                                         lStrCodigoUa,
+                    //                                         lStrCodigoPtRes,
+                    //                                         lStrCodigoGestao,
+                    //                                         false,
+                    //                                         lStrDataReferencia,
+                    //                                         lStrCodigoNatDespesa,
+                    //                                         PtResMensal.Valor);
+
+                    lStrMsgEstimuloWs = Siafem.SiafemDocNLConsumo((int)PtResMensal.UgeAlmoxarifado.Codigo,
+                                                                 (int)PtResMensal.UGE.Codigo,
+                                                                 (int)PtResMensal.UA.Codigo,
+                                                                 (int)PtResMensal.PtRes.Codigo,
+                                                                 (int)PtResMensal.Gestor.CodigoGestao,
+                                                                 false,
+                                                                 lStrDataReferencia,
+                                                                 PtResMensal.NaturezaDespesa.Codigo,
+                                                                 (decimal)PtResMensal.Valor);
+
+                    try
+                    {
+                        lStrMsgRetornoWs = Siafem.recebeMsg(lStrLoginUsuario, lStrSenhaUsuario, lStrAnoBase, lStrCodigoUnidadeGestora, lStrMsgEstimuloWs, false);
+                    }
+                    catch (Exception lExcExcecaoRuntime)
+                    {
+                        new LogErro().GravarLogErro(lExcExcecaoRuntime);
+                        this.ListaErro.Add(String.Format("Erro ao efetuar fechamento referente a PTRes {0}, UGE: {1}, UA: {2}.\nException: {3}.", PtResMensal.CodigoFormatado, PtResMensal.UGE.Codigo, PtResMensal.UA.Codigo, lExcExcecaoRuntime.Message));
+                        continue;
+                    }
+
+                    // trata erro
+                    if (Siafem.VerificarErroMensagem(lStrMsgRetornoWs, out strNomeMensagem, out lStrErroTratado))
+                    {
+                        //this.ListaErro.Add(lStrErroTratado);
+                        if (!String.IsNullOrWhiteSpace(lStrErroTratado))
+                        {
+                            lStrErroTratado.BreakLine(Environment.NewLine.ToCharArray()).ToList().ForEach(linhaErro => this.ListaErro.Add(linhaErro));
+                            return null;
+                        }
+                    }
+
+                    PtResMensal.MensagemWs = lStrMsgEstimuloWs;
+                    PtResMensal.Retorno    = lStrMsgRetornoWs;
+
+                    lILstPtResConsumidas.Add(PtResMensal);
+                }
+
+            #endregion Processamento chave "UA|PT_Res|ND"
+
+
+            return lILstPtResConsumidas;
+        }
+        public bool SalvarListaPtResMensalAtualizada(IList<PTResMensalEntity> pListaPtRes)
+        {
+            if (pListaPtRes == null || pListaPtRes.Count == 0)
+            {
+                this.ListaErro.Add("Não há PTResMensal a registrar na base!");
+                return false;
+            }
+
+            bool lBlnStatusGravacao = true;
+
+            PTResMensalBusiness      lObjBusiness    = null;
+            IList<PTResMensalEntity> lLstPtResMensal = null;
+
+
+            lObjBusiness    = new PTResMensalBusiness();
+            lLstPtResMensal = lObjBusiness.AtualizarPtResMensalConsumidas(pListaPtRes).ToList();
+
+            if (lLstPtResMensal.Count == 0)
+            {
+                this.ListaErro = lObjBusiness.ListaErro;
+                return false;
+            }
+
+            foreach (PTResMensalEntity lObjPtResMensal in lLstPtResMensal)
+            {
+                lObjBusiness.PTResMensal = lObjPtResMensal;
+                lBlnStatusGravacao &= lObjBusiness.SalvarPTResMensal();
+
+                lObjBusiness.PTResMensal = null;
+            }
+
+            this.ListaErro = lObjBusiness.ListaErro;
+
+            return lBlnStatusGravacao;
+        }
+        public bool AtualizaListagemMovimentosComPtResConsumidas(IList<PTResMensalEntity> pLstPtResMensalConsumidas)
+        {
+            bool lBlnRetorno = true;
+
+            MovimentoBusiness      lObjBusiness    = null; 
+            IList<MovimentoEntity> lILstMovimentos = null;
+
+
+            if (pLstPtResMensalConsumidas == null || pLstPtResMensalConsumidas.Count == 0)
+            {
+                this.ListaErro.Add("Não há PTResMensal a atualizar na base!");
+                return false;
+            }
+
+            lObjBusiness = new MovimentoBusiness();
+
+            foreach (PTResMensalEntity lObjPtResMensal in pLstPtResMensalConsumidas)
+            {
+                //GeralEnum.TipoMovimento.RequisicaoAprovada (Id = 11, Codigo = 21)
+                lILstMovimentos = lObjBusiness.ListarRequisicaoByAlmoxarifado((int)lObjPtResMensal.Almoxarifado.Id, (int)lObjPtResMensal.Almoxarifado.Gestor.CodigoGestao, (int)GeralEnum.TipoMovimento.RequisicaoAprovada, lObjPtResMensal.AnoMesRef.ToString().Substring(4, 2));
+
+                foreach (MovimentoEntity lObjMovimento in lILstMovimentos)
+                {
+                    lObjBusiness.Movimento = lObjMovimento;
+                    lBlnRetorno &= lObjBusiness.SalvarMovimento();
+
+                    lObjBusiness.Movimento = null;
+                }
+            }
+
+            return lBlnRetorno;
+        }
+        public bool AtualizarAlmoxarifado(int pIntAlmoxarifadoLogadoID, int pIntGestorAlmoxarifadoLogadoID)
+        {
+            bool lBlnRetorno = true;
+
+            AlmoxarifadoEntity              lObjAlmoxarifadoLogado = null;
+            EstruturaOrganizacionalBusiness lObjBusiness           = new EstruturaOrganizacionalBusiness();
+
+            int      lIntMesReferenciaAlmoxarifado = 0;
+            int      lIntAnoReferenciaAlmoxarifado = 0;
+            DateTime lDtDataAtual                  = new DateTime(0);
+
+
+            lObjAlmoxarifadoLogado = lObjBusiness.ListarAlmoxarifadoPorGestorTodosCod(pIntGestorAlmoxarifadoLogadoID, true)
+                                                 .Where(Almoxarifado => Almoxarifado.Id == pIntAlmoxarifadoLogadoID)
+                                                 .FirstOrDefault();
+
+            lIntMesReferenciaAlmoxarifado = TratamentoDados.TryParseInt32(lObjAlmoxarifadoLogado.MesRef.Substring(4, 2)).Value;
+            lIntAnoReferenciaAlmoxarifado = TratamentoDados.TryParseInt32(lObjAlmoxarifadoLogado.MesRef.Substring(0, 4)).Value;
+            lDtDataAtual                  = new DateTime(lIntAnoReferenciaAlmoxarifado, lIntMesReferenciaAlmoxarifado, 01);
+
+
+            lObjAlmoxarifadoLogado.Descricao = lObjAlmoxarifadoLogado.Descricao.Substring(lObjAlmoxarifadoLogado.Descricao.IndexOf(" - ") + 3);
+            lObjAlmoxarifadoLogado.MesRef    = lDtDataAtual.ToString("yyyyMM");
+
+            lObjBusiness.Almoxarifado = lObjAlmoxarifadoLogado;
+            lBlnRetorno &= lObjBusiness.SalvarAlmoxarifado();
+
+            return lBlnRetorno;
+        }
+        public bool ExcluirFechamento(FechamentoMensalEntity pFechamentoMensal)
+        {
+            bool lBlnRetorno = false;
+
+            FechamentoMensalBusiness businessFechamentoMensal = new FechamentoMensalBusiness();
+
+            businessFechamentoMensal.Fechamento = pFechamentoMensal;
+            lBlnRetorno = businessFechamentoMensal.ExcluirFechamento();
+
+            return lBlnRetorno;
+        }
+        public bool ExcluirPtResMensalNaoConsumidas()
+        {
+            bool lBlnStatusGravacao = true;
+
+            PTResMensalBusiness      lObjBusiness     = null;
+            IList<PTResMensalEntity> lILstPtResMensal = null;
+
+            if (lILstPtResMensal.Count == 0)
+                return false;
+
+            lObjBusiness     = new PTResMensalBusiness();
+            lILstPtResMensal = lObjBusiness.ListarPTResMensal()
+                                           .Where(a => a.FlagLancamento.ToString().ToUpperInvariant() == "N")
+                                           .ToList();
+
+            foreach (PTResMensalEntity lObjPtResMensal in lILstPtResMensal)
+            {
+                lObjBusiness.PTResMensal = lObjPtResMensal;
+                lBlnStatusGravacao &= lObjBusiness.ExcluirPTResMensal();
+
+                lObjBusiness.PTResMensal = null;
+            }
+
+            return lBlnStatusGravacao;
+
+        }
+
+        #endregion WS SIAFNLCONSUMO
+
+        #region WS SIAFNLCONSUMO (refactored code)
+
+        /// <summary>
+        /// Finado 'public IList[PTResMensalEntity] _xpProcessaConsumoPtResMensal(int pIntAlmoxarifadoLogadoID, int pIntGestorAlmoxarifadoLogadoID, int pIntAnoMesReferenciaAlmoxarifadoLogado)'
+        /// </summary>
+        /// <param name="pIntAlmoxarifadoLogadoID"></param>
+        /// <param name="pIntGestorAlmoxarifadoLogadoID"></param>
+        /// <param name="pIntAnoMesReferenciaAlmoxarifadoLogado"></param>
+        /// <returns></returns>
+        public IList<PTResMensalEntity> _xpProcessaConsumoAlmoxarifado(int almoxID, int anoMesRefAlmoxarifado, string loginSiafem, string senhaSiafem, bool isEstorno = false)
+        {
+            #region Variaveis
+            AlmoxarifadoEntity almoxLogado = null;
+            PTResMensalBusiness objBusiness = null;
+            IList<PTResMensalEntity> lstLancamentosParaLiquidar = new List<PTResMensalEntity>(); 
+            IList<PTResMensalEntity> lstPTResLiquidadas = new List<PTResMensalEntity>();
+            IList<PTResMensalEntity> lstPTResInconsistentes = new List<PTResMensalEntity>();
+            IList<string> lstMsgEstimuloSIAFEM = new List<string>();
+            IList<string> lstRetornoEstimuloSIAFEM = new List<string>();
+
+            string strUgeAlmox = string.Empty;
+            string strUGE = string.Empty;
+            string strUAConsumidora = string.Empty;
+            string strPtRes = string.Empty;
+            string strNatDespesa = string.Empty;
+            string strCodigoGestao = string.Empty;
+            string strUGConsumidora = string.Empty;
+            string strErroTratado = string.Empty;
+            string strLoginUsuario = string.Empty;
+            string strSenhaUsuario = string.Empty;
+            string strAnoBase = string.Empty;
+            string strDataReferencia = string.Empty;
+            string strMsgRetornoWs = string.Empty;
+            string strMsgEstimuloWs = string.Empty;
+            string strNomeMensagem = string.Empty;
+            string strDescritivoErro = string.Empty;
+            string strAcaoSIAFEM = string.Empty;
+
+            string strXmlPattern = "/*/SiafemDocNLConsumo/*/";
+            #endregion Variaveis
+
+            #region Dados Login WS
+            strLoginUsuario = loginSiafem;
+            strSenhaUsuario = senhaSiafem;
+
+            strDataReferencia = null;// DateTime.Today.ToString("ddMMMyyyy").ToUpper();
+            #endregion Dados Login WS
+
+            #region Processamento chave "UA|PT_Res|ND"
+
+            lstPTResLiquidadas = new List<PTResMensalEntity>();
+            objBusiness = new PTResMensalBusiness();
+
+            almoxLogado = (new EstruturaOrganizacionalBusiness()).ObterAlmoxarifado(almoxID);
+            lstLancamentosParaLiquidar = objBusiness._xpGerarNotasFechamentoMensalParaConsumo(almoxID, anoMesRefAlmoxarifado);
+
+            strAnoBase = almoxLogado.MesRef.Substring(0, 4);
+            strUgeAlmox = almoxLogado.Uge.Codigo.ToString();
+
+            int mesRef = Int32.Parse(almoxLogado.MesRef.Substring(4, 2));
+            int anoRef = Int32.Parse(almoxLogado.MesRef.Substring(0, 4));
+            int ultimoDiaMes = DateTime.DaysInMonth(anoRef, mesRef);
+            strDataReferencia = String.Format("{0}{1}{2}", ultimoDiaMes, MesExtenso.Mes[mesRef].ToUpperInvariant(), anoRef);
+
+            //Geração Estímulos
+            foreach (PTResMensalEntity PtResMensal in lstLancamentosParaLiquidar)
+            {
+                if (!PtResMensal.PtRes.Id.HasValue)
+                {
+                    lstPTResInconsistentes.Add(PtResMensal);
+                    continue;
+                }
+
+                strMsgEstimuloWs = Siafem.SiafemDocNLConsumo((int)PtResMensal.UgeAlmoxarifado.Codigo,
+                                                               (int)PtResMensal.UGE.Codigo,
+                                                               (int)PtResMensal.UA.Codigo,
+                                                               (int)PtResMensal.PtRes.Codigo,
+                                                               (int)PtResMensal.Gestor.CodigoGestao,
+                                                               isEstorno,
+                                                               strDataReferencia,
+                                                               PtResMensal.NaturezaDespesa.Codigo,
+                                                               (decimal)PtResMensal.Valor);
+                lstMsgEstimuloSIAFEM.Add(strMsgEstimuloWs);
+            }
+
+            //Pagamento Lote SIAFEM
+            foreach (var msgEstimuloPagamentoConsumo in lstMsgEstimuloSIAFEM)
+            {
+                try
+                {
+                    strPtRes = XmlUtil.getXmlValue(msgEstimuloPagamentoConsumo, String.Format("{0}{1}", strXmlPattern, "PTRes"));
+                    strUGConsumidora = XmlUtil.getXmlValue(msgEstimuloPagamentoConsumo, String.Format("{0}{1}", strXmlPattern, "UGConsumidora"));
+                    strUAConsumidora = XmlUtil.getXmlValue(msgEstimuloPagamentoConsumo, String.Format("{0}{1}", strXmlPattern, "UAConsumidora"));
+                    strAcaoSIAFEM = XmlUtil.getXmlValue(msgEstimuloPagamentoConsumo, String.Format("{0}{1}", strXmlPattern, "Lancamento"));
+
+                    strAcaoSIAFEM = ((strAcaoSIAFEM == "E") ? "estorno de " : "");
+                    strMsgRetornoWs = Siafem.recebeMsg(strLoginUsuario, strSenhaUsuario, strAnoBase, strUGE, strMsgEstimuloWs, false);
+                    if (Siafem.VerificarErroMensagem(strMsgRetornoWs, out strNomeMensagem, out strErroTratado))
+                    {
+                        if (!String.IsNullOrWhiteSpace(strErroTratado) && this.ListaErro.Contains(strErroTratado))
+                            continue;
+                        else
+                        {
+                            strDescritivoErro = String.Format("Erro ao efetuar {0} pagamento de consumo referente a PTRes {1}, UGE: {2}, UA: {3}. [{4}].", strAcaoSIAFEM, strPtRes, strUGConsumidora, strUAConsumidora, strErroTratado);
+                            this.ListaErro.Add(strDescritivoErro);
+
+                            continue;
+                        }
+                    }
+
+                    lstRetornoEstimuloSIAFEM.Add(strMsgRetornoWs);
+                }
+                catch (Exception excErroExecucao)
+                {
+                    bool existeDetalhe = excErroExecucao.InnerException.IsNotNull();
+                    var strDescricaoDetalhe = (existeDetalhe) ? excErroExecucao.InnerException.Message : string.Empty;
+                    var fmtMsgErro = (existeDetalhe) ? "\nException: {0}. Detalhe: {1}" : "Exception: {0}";
+
+                    strDescritivoErro = String.Format("Erro ao efetuar {0} pagamento de consumo referente a PTRes {1}, UGE: {2}, UA: {3}.[{4}].", strAcaoSIAFEM, strPtRes, strUGConsumidora, strUAConsumidora, String.Format(fmtMsgErro, excErroExecucao.Message, strDescricaoDetalhe));
+
+                    LogErro.GravarStackTrace(strDescritivoErro, true);
+                    this.ListaErro.Add(strDescritivoErro);
+                    continue;
+                }
+            }
+
+            //Repactuação chamada SIAFEM x BD
+            foreach (PTResMensalEntity ptResMensal in lstLancamentosParaLiquidar)
+            {
+                string _selectMsgRetornoEstimulo = null;
+                string _selectMsgEstimulo = null;
+                string _xmlScratch = null;
+                string _xmlScratchUA = null;
+                string _xmlScratchPTRes = null;
+                string _xmlScratchND = null;
+
+                if (ptResMensal.UA.Codigo.HasValue && ptResMensal.PtRes.Codigo.HasValue && ptResMensal.NaturezaDespesa.Codigo != 0)
+                {
+                    _xmlScratch = String.Format("<UAConsumidora>{0}</UAConsumidora><PTRes>{1}</PTRes><ClassificacaoDespesa>3{2:D8}</ClassificacaoDespesa>", ptResMensal.UA.Codigo.Value.ToString("D6"), ptResMensal.PtRes.Codigo.Value.ToString("D5"), ptResMensal.NaturezaDespesa.Codigo);
+                    _xmlScratchUA = String.Format("<UAConsumidora>{0}</UAConsumidora>", ptResMensal.UA.Codigo.Value.ToString("D6"));
+                    _xmlScratchPTRes = String.Format("<PTRes>{0}</PTRes>", ptResMensal.PtRes.Codigo.Value.ToString("D5"));
+                    _xmlScratchND = String.Format("<ClassificacaoDespesa>3{0:D8}</ClassificacaoDespesa>", ptResMensal.NaturezaDespesa.Codigo);
+                }
+                else
+                    continue;
+
+                _selectMsgEstimulo = lstMsgEstimuloSIAFEM.Where(_estimuloWS => _estimuloWS.RetirarLinhasEEspacosEmBranco().Contains(_xmlScratch)).FirstOrDefault();
+                
+                if (!String.IsNullOrWhiteSpace(_selectMsgEstimulo))
+                {
+                    _selectMsgRetornoEstimulo = lstRetornoEstimuloSIAFEM.Where(_retornoSIAFEM => _retornoSIAFEM.RetirarLinhasEEspacosEmBranco().Contains(_selectMsgEstimulo.RetirarLinhasEEspacosEmBranco())).FirstOrDefault();
+
+                    _selectMsgRetornoEstimulo = lstRetornoEstimuloSIAFEM.Where(_retornoSIAFEM => _retornoSIAFEM.Contains(_xmlScratchUA)
+                                                                                          && _retornoSIAFEM.Contains(_xmlScratchPTRes)
+                                                                                          && _retornoSIAFEM.Contains(_xmlScratchND))
+                                                                        .FirstOrDefault();
+                }
+                else
+                    continue;
+
+                ptResMensal.MensagemWs = _selectMsgEstimulo;
+                ptResMensal.Retorno = _selectMsgRetornoEstimulo;
+                ptResMensal.NlLancamento = (!String.IsNullOrWhiteSpace(_selectMsgRetornoEstimulo)) ? XmlUtil.getXmlValue(_selectMsgRetornoEstimulo, String.Format("{0}{1}", strXmlPattern, "NumeroNL")) : null;
+
+                lstPTResLiquidadas.Add(ptResMensal);
+            }
+
+
+            lstLancamentosParaLiquidar.ToList().ForEach(_ptresMensal => { objBusiness.PTResMensal = _ptresMensal;
+                                                                          objBusiness.SalvarPTResMensal();
+
+                                                                          objBusiness.PTResMensal = null;
+                                                                        });
+
+            #endregion Processamento chave "UA|PT_Res|ND"
+
+
+            return lstPTResLiquidadas;
+        }
+
+        /// <summary>
+        /// Finado 'public IList[PTResMensalEntity] _xpProcessaConsumoPtResMensal(int pIntAlmoxarifadoLogadoID, int pIntGestorAlmoxarifadoLogadoID, int pIntAnoMesReferenciaAlmoxarifadoLogado)'
+        /// </summary>
+        /// <param name="pIntAlmoxarifadoLogadoID"></param>
+        /// <param name="pIntGestorAlmoxarifadoLogadoID"></param>
+        /// <param name="pIntAnoMesReferenciaAlmoxarifadoLogado"></param>
+        /// <returns></returns>
+        public IList<PTResMensalEntity> processarConsumoAlmoxEmLote(IList<PTResMensalEntity> notasConsumoParaPagamento, string loginSiafem, string senhaSiafem, bool isEstorno = false)
+        {
+            #region Variaveis
+            AlmoxarifadoEntity almoxLogado = null;
+            PTResMensalBusiness objBusiness = null;
+            IList<PTResMensalEntity> lstLancamentosParaLiquidar = new List<PTResMensalEntity>();
+            IList<PTResMensalEntity> lstPTResLiquidadas = new List<PTResMensalEntity>();
+            IList<PTResMensalEntity> lstPTResInconsistentes = new List<PTResMensalEntity>();
+            IList<string> lstMsgEstimuloSIAFEM = new List<string>();
+            IList<string> lstRetornoEstimuloSIAFEM = new List<string>();
+
+            string strUgeAlmox = string.Empty;
+            string strUGE = string.Empty;
+            string strUAConsumidora = string.Empty;
+            string strPtRes = string.Empty;
+            string strNatDespesa = string.Empty;
+            string strCodigoGestao = string.Empty;
+            string strUGConsumidora = string.Empty;
+            string strErroTratado = string.Empty;
+            string strLoginUsuario = string.Empty;
+            string strSenhaUsuario = string.Empty;
+            string strAnoBase = string.Empty;
+            string strDataReferencia = string.Empty;
+            string strMsgRetornoWs = string.Empty;
+            string strMsgEstimuloWs = string.Empty;
+            string strNomeMensagem = string.Empty;
+            string strDescritivoErro = string.Empty;
+            string strAcaoSIAFEM = string.Empty;
+
+            string strXmlPattern = "/*/SiafemDocNLConsumo/*/";
+            #endregion Variaveis
+
+            #region Dados Login WS
+            strLoginUsuario = loginSiafem;
+            strSenhaUsuario = senhaSiafem;
+
+            strDataReferencia = null; // DateTime.Today.ToString("ddMMMyyyy").ToUpper();
+            #endregion Dados Login WS
+
+            #region Processamento chave "UA|PT_Res|ND"
+
+            lstPTResLiquidadas = new List<PTResMensalEntity>();
+            objBusiness = new PTResMensalBusiness();
+
+            almoxLogado = (new EstruturaOrganizacionalBusiness()).ObterAlmoxarifado(notasConsumoParaPagamento[0].Almoxarifado.Id.Value);
+            //almoxLogado = notasConsumoParaPagamento[0].Almoxarifado;
+            lstLancamentosParaLiquidar = notasConsumoParaPagamento;
+
+            strAnoBase = almoxLogado.MesRef.Substring(0, 4);
+            strUgeAlmox = almoxLogado.Uge.Codigo.ToString();
+
+            int mesRef = Int32.Parse(almoxLogado.MesRef.Substring(4, 2));
+            int anoRef = Int32.Parse(almoxLogado.MesRef.Substring(0, 4));
+            int ultimoDiaMes = DateTime.DaysInMonth(anoRef, mesRef);
+            strDataReferencia = String.Format("{0}{1}{2}", ultimoDiaMes, MesExtenso.Mes[mesRef].ToUpperInvariant(), anoRef);
+
+            //Geração Estímulos
+            foreach (PTResMensalEntity PtResMensal in lstLancamentosParaLiquidar)
+            {
+                if (!PtResMensal.PtRes.Id.HasValue)
+                {
+                    lstPTResInconsistentes.Add(PtResMensal);
+                    continue;
+                }
+
+                strMsgEstimuloWs = Siafem.SiafemDocNLConsumo((int)PtResMensal.UgeAlmoxarifado.Codigo,
+                                                               (int)PtResMensal.UGE.Codigo,
+                                                               (int)PtResMensal.UA.Codigo,
+                                                               (int)PtResMensal.PtRes.Codigo,
+                                                               (int)PtResMensal.Gestor.CodigoGestao,
+                                                               isEstorno,
+                                                               strDataReferencia,
+                                                               PtResMensal.NaturezaDespesa.Codigo,
+                                                               (decimal)PtResMensal.Valor);
+                lstMsgEstimuloSIAFEM.Add(strMsgEstimuloWs);
+            }
+
+            //Pagamento Lote SIAFEM
+            foreach (var msgEstimuloPagamentoConsumo in lstMsgEstimuloSIAFEM)
+            {
+                try
+                {
+                    strPtRes = XmlUtil.getXmlValue(msgEstimuloPagamentoConsumo, String.Format("{0}{1}", strXmlPattern, "PTRes"));
+                    strUGConsumidora = XmlUtil.getXmlValue(msgEstimuloPagamentoConsumo, String.Format("{0}{1}", strXmlPattern, "UGConsumidora"));
+                    strUAConsumidora = XmlUtil.getXmlValue(msgEstimuloPagamentoConsumo, String.Format("{0}{1}", strXmlPattern, "UAConsumidora"));
+                    strAcaoSIAFEM = XmlUtil.getXmlValue(msgEstimuloPagamentoConsumo, String.Format("{0}{1}", strXmlPattern, "Lancamento"));
+
+                    strAcaoSIAFEM = ((strAcaoSIAFEM == "E") ? "estorno de " : "");
+                    strMsgRetornoWs = Siafem.recebeMsg(strLoginUsuario, strSenhaUsuario, strAnoBase, strUGE, strMsgEstimuloWs, false);
+                    if (Siafem.VerificarErroMensagem(strMsgRetornoWs, out strNomeMensagem, out strErroTratado))
+                    {
+                        if (!String.IsNullOrWhiteSpace(strErroTratado) && this.ListaErro.Contains(strErroTratado))
+                            continue;
+                        else
+                        {
+                            strDescritivoErro = String.Format("Erro ao efetuar {0} pagamento de consumo referente a PTRes {1}, UGE: {2}, UA: {3}. [{4}].", strAcaoSIAFEM, strPtRes, strUGConsumidora, strUAConsumidora, strErroTratado);
+                            this.ListaErro.Add(strDescritivoErro);
+
+                            continue;
+                        }
+                    }
+
+                    lstRetornoEstimuloSIAFEM.Add(strMsgRetornoWs);
+                }
+                catch (Exception excErroExecucao)
+                {
+                    bool existeDetalhe = excErroExecucao.InnerException.IsNotNull();
+                    var strDescricaoDetalhe = (existeDetalhe) ? excErroExecucao.InnerException.Message : string.Empty;
+                    var fmtMsgErro = (existeDetalhe) ? "\nException: {0}. Detalhe: {1}" : "Exception: {0}";
+
+                    strDescritivoErro = String.Format("Erro ao efetuar pagamento de consumo referente a PTRes {0}, UGE: {1}, UA: {2}.[{3}].", strPtRes, strUGConsumidora, strUAConsumidora, String.Format(fmtMsgErro, excErroExecucao.Message, strDescricaoDetalhe));
+
+                    LogErro.GravarStackTrace(strDescritivoErro, true);
+                    this.ListaErro.Add(strDescritivoErro);
+                    continue;
+                }
+            }
+
+            //Repactuação chamada SIAFEM x BD
+            foreach (PTResMensalEntity ptResMensal in lstLancamentosParaLiquidar)
+            {
+                string _selectMsgRetornoEstimulo = null;
+                string _selectMsgEstimulo = null;
+                string _xmlScratch = null;
+                string _xmlScratchUA = null;
+                string _xmlScratchPTRes = null;
+                string _xmlScratchND = null;
+
+                if (ptResMensal.UA.Codigo.HasValue && ptResMensal.PtRes.Codigo.HasValue && ptResMensal.NaturezaDespesa.Codigo != 0)
+                {
+                    _xmlScratch = String.Format("<UAConsumidora>{0}</UAConsumidora><PTRes>{1}</PTRes><ClassificacaoDespesa>3{2:D8}</ClassificacaoDespesa>", ptResMensal.UA.Codigo.Value.ToString("D6"), ptResMensal.PtRes.Codigo.Value.ToString("D5"), ptResMensal.NaturezaDespesa.Codigo);
+                    _xmlScratchUA = String.Format("<UAConsumidora>{0}</UAConsumidora>", ptResMensal.UA.Codigo.Value.ToString("D6"));
+                    _xmlScratchPTRes = String.Format("<PTRes>{0}</PTRes>", ptResMensal.PtRes.Codigo.Value.ToString("D5"));
+                    _xmlScratchND = String.Format("<ClassificacaoDespesa>3{0:D8}</ClassificacaoDespesa>", ptResMensal.NaturezaDespesa.Codigo);
+                }
+                else
+                    continue;
+
+                _selectMsgEstimulo = lstMsgEstimuloSIAFEM.Where(_estimuloWS => _estimuloWS.RetirarLinhasEEspacosEmBranco().Contains(_xmlScratch)).FirstOrDefault();
+
+                if (!String.IsNullOrWhiteSpace(_selectMsgEstimulo))
+                {
+                    _selectMsgRetornoEstimulo = lstRetornoEstimuloSIAFEM.Where(_retornoSIAFEM => _retornoSIAFEM.RetirarLinhasEEspacosEmBranco().Contains(_selectMsgEstimulo.RetirarLinhasEEspacosEmBranco())).FirstOrDefault();
+
+                    _selectMsgRetornoEstimulo = lstRetornoEstimuloSIAFEM.Where(_retornoSIAFEM => _retornoSIAFEM.Contains(_xmlScratchUA)
+                                                                                          && _retornoSIAFEM.Contains(_xmlScratchPTRes)
+                                                                                          && _retornoSIAFEM.Contains(_xmlScratchND))
+                                                                        .FirstOrDefault();
+                }
+                else
+                    continue;
+
+                ptResMensal.MensagemWs = _selectMsgEstimulo;
+                ptResMensal.Retorno = _selectMsgRetornoEstimulo;
+                ptResMensal.NlLancamento = (!String.IsNullOrWhiteSpace(_selectMsgRetornoEstimulo)) ? XmlUtil.getXmlValue(_selectMsgRetornoEstimulo, String.Format("{0}{1}", strXmlPattern, "NumeroNL")) : null;
+
+                lstPTResLiquidadas.Add(ptResMensal);
+            }
+
+
+            lstLancamentosParaLiquidar.ToList().ForEach(_ptresMensal =>
+            {
+                objBusiness.PTResMensal = _ptresMensal;
+                objBusiness.SalvarPTResMensal();
+
+                objBusiness.PTResMensal = null;
+            });
+
+            #endregion Processamento chave "UA|PT_Res|ND"
+
+            return lstPTResLiquidadas;
+        }
+
+        public PTResMensalEntity _xpGerarNotaIndividualConsumo(int usuarioSamID, string loginSiafem, string senhaSiafem, int almoxID, int uaID, int ptresID, int natDespesaID, decimal valorConsumo, bool isEstorno = false)
+        {
+            var _strDescLog = String.Format("Início Método Sam.Domain.Business.FechamentoMensalBusiness._xpGerarNotaIndividualConsumo - args(usuarioSamID:{7}, loginSiafem:{0}, almoxID:{1}, uaID:{2}, ptresID:{3}, natDespesaID:{4}, valorConsumo:{5}, isEstorno:{6})", loginSiafem, almoxID, uaID, ptresID, natDespesaID, valorConsumo, isEstorno, usuarioSamID);
+            LogErro.GravarMsgInfo(Constante.CST_DEBUG_DEPLOY_HOMOLOGACAO, _strDescLog);
+
+            #region Variaveis
+            AlmoxarifadoEntity almoxConsumo = null;
+            UAEntity uaConsumo = null;
+            PTResEntity ptResConsumo = null;
+            PTResMensalEntity ptResMensal = null;
+            NaturezaDespesaEntity natDespesaConsumo = null;
+            PTResMensalBusiness objBusiness = null;
+            EstruturaOrganizacionalBusiness eoBusiness = null;
+
+            string strUgeAlmox = string.Empty;
+            string strUGE = string.Empty;
+            string strUAConsumidora = string.Empty;
+            string strPtRes = string.Empty;
+            string strNatDespesa = string.Empty;
+            string strCodigoGestao = string.Empty;
+            string strUGConsumidora = string.Empty;
+            string strErroTratado = string.Empty;
+            string strLoginUsuario = string.Empty;
+            string strSenhaUsuario = string.Empty;
+            string strAnoBase = string.Empty;
+            string strDataReferencia = string.Empty;
+            string strMsgRetornoWs = string.Empty;
+            string strMsgEstimuloWs = string.Empty;
+            string strNomeMensagem = string.Empty;
+            string strDescritivoErro = string.Empty;
+
+            string strXmlPattern = "/*/SiafemDocNLConsumo/*/";
+            #endregion Variaveis
+
+            #region Dados Login WS
+            strLoginUsuario = loginSiafem;
+            strSenhaUsuario = senhaSiafem;
+
+            strDataReferencia = null;// DateTime.Today.ToString("ddMMMyyyy").ToUpper();
+            
+            #endregion Dados Login WS
+
+            #region Processamento chave "UA|PT_Res|ND"
+
+            objBusiness = new PTResMensalBusiness();
+            eoBusiness = new EstruturaOrganizacionalBusiness();
+
+            almoxConsumo = eoBusiness.ObterAlmoxarifado(almoxID);
+            uaConsumo = eoBusiness.ObterUA(uaID);
+            ptResConsumo = eoBusiness.ObterPTRes(ptresID);
+            natDespesaConsumo = (new CatalogoBusiness()).ObterNaturezaDespesa(natDespesaID);
+
+            strAnoBase = DateTime.Now.Year.ToString();
+            strUgeAlmox = almoxConsumo.Uge.Codigo.ToString();
+
+            ptResMensal = new PTResMensalEntity();
+            ptResMensal.UsuarioSamId = usuarioSamID;
+            ptResMensal.Almoxarifado = almoxConsumo;
+            ptResMensal.UA = uaConsumo;
+            ptResMensal.UGE = uaConsumo.Uge;
+            ptResMensal.Gestor = uaConsumo.Gestor;
+            ptResMensal.PtRes = ptResConsumo;
+            ptResMensal.NaturezaDespesa = natDespesaConsumo;
+            ptResMensal.UgeAlmoxarifado = uaConsumo.Uge;
+            ptResMensal.AnoMesRef = Int32.Parse(almoxConsumo.MesRef);
+            ptResMensal.Valor = valorConsumo;
+            ptResMensal.TipoLancamento = (isEstorno)? 'E' : 'N';
+
+            int mesRef = Int32.Parse(almoxConsumo.MesRef.Substring(4, 2));
+            int anoRef = Int32.Parse(almoxConsumo.MesRef.Substring(0, 4));
+            int ultimoDiaMes = DateTime.DaysInMonth(anoRef, mesRef);
+            strDataReferencia = String.Format("{0}{1}{2}", ultimoDiaMes, MesExtenso.Mes[mesRef].ToUpperInvariant(), anoRef);
+            //Pagamento SIAFEM
+            try
+            {
+                //Geração Estímulo
+                strMsgEstimuloWs = Siafem.SiafemDocNLConsumo((int)ptResMensal.UgeAlmoxarifado.Codigo,
+                                                                (int)ptResMensal.UGE.Codigo,
+                                                                (int)ptResMensal.UA.Codigo,
+                                                                (int)ptResConsumo.Codigo,
+                                                                (int)ptResMensal.Gestor.CodigoGestao,
+                                                                isEstorno,
+                                                                strDataReferencia,
+                                                                ptResMensal.NaturezaDespesa.Codigo,
+                                                                (decimal)ptResMensal.Valor);
+
+                strPtRes = XmlUtil.getXmlValue(strMsgEstimuloWs, String.Format("{0}{1}", strXmlPattern, "PTRes"));
+                strUGE = XmlUtil.getXmlValue(strMsgEstimuloWs, String.Format("{0}{1}", strXmlPattern, "UnidadeGestora"));
+                strUGConsumidora = XmlUtil.getXmlValue(strMsgEstimuloWs, String.Format("{0}{1}", strXmlPattern, "UGConsumidora"));
+                strUAConsumidora = XmlUtil.getXmlValue(strMsgEstimuloWs, String.Format("{0}{1}", strXmlPattern, "UAConsumidora"));
+                strNatDespesa = XmlUtil.getXmlValue(strMsgEstimuloWs, String.Format("{0}{1}", strXmlPattern, "ClassificacaoDespesa"));
+
+                _strDescLog = String.Format("Envio Mensagem WS SIAFNLCONSUMO para SIAFEM");
+                LogErro.GravarMsgInfo(Constante.CST_DEBUG_DEPLOY_HOMOLOGACAO, _strDescLog);
+
+                strMsgRetornoWs = Siafem.recebeMsg(strLoginUsuario, strSenhaUsuario, strAnoBase, strUGE, strMsgEstimuloWs, false);
+
+                _strDescLog = String.Format("Retorno Transação SIAFEM SIAFNLCONSUMO: {0}", strMsgRetornoWs);
+                LogErro.GravarMsgInfo(Constante.CST_DEBUG_DEPLOY_HOMOLOGACAO, _strDescLog);
+
+                if (Siafem.VerificarErroMensagem(strMsgRetornoWs, out strNomeMensagem, out strErroTratado))
+                {
+                    if (!String.IsNullOrWhiteSpace(strErroTratado) && !this.ListaErro.Contains(strErroTratado))
+                    {
+                        strDescritivoErro = String.Format("MSG Referente a NC PTRes {0}, ND: {1}, UGE: {2}, UA: {3}.\n{4}.", strPtRes, strNatDespesa, strUGConsumidora, strUAConsumidora, strErroTratado);
+                        strDescritivoErro.BreakLine(Environment.NewLine.ToCharArray()).ToList().ForEach(linhaErro => this.ListaErro.Add(linhaErro));
+
+                        _strDescLog = String.Format("Erro retorno transação SIAFEM SIAFNLCONSUMO: {0}", strDescritivoErro);
+                        LogErro.GravarMsgInfo(Constante.CST_DEBUG_DEPLOY_HOMOLOGACAO, _strDescLog);
+                    }
+                }
+            }
+            catch (Exception excErroExecucao)
+            {
+                bool existeDetalhe = excErroExecucao.InnerException.IsNotNull();
+                var strDescricaoDetalhe = (existeDetalhe) ? excErroExecucao.InnerException.Message : string.Empty;
+                var fmtMsgErro = (existeDetalhe) ? "\nException: {0}. Detalhe: {1}" : "Exception: {0}";
+
+                strDescritivoErro = String.Format("Erro ao efetuar pagamento da NL Consumo referente a PTRes {0}, UGE: {1}, UA: {2}..", strPtRes, strUGConsumidora, strUAConsumidora);
+
+                LogErro.GravarStackTrace(strDescritivoErro, true);
+                this.ListaErro.Add(strDescritivoErro);
+
+                _strDescLog = String.Format("Exception processando transação SIAFEM SIAFNLCONSUMO: {0}", strDescritivoErro);
+                LogErro.GravarMsgInfo(Constante.CST_DEBUG_DEPLOY_HOMOLOGACAO, _strDescLog);
+            }
+
+            //Repactuação chamada SIAFEM x BD
+            strXmlPattern = "/*/*/*/*/SiafemDocNLConsumo/*/";
+
+            ptResMensal.MensagemWs = strMsgEstimuloWs;
+            ptResMensal.Retorno = strMsgRetornoWs;
+            ptResMensal.NlLancamento = (!String.IsNullOrWhiteSpace(strMsgRetornoWs)) ? XmlUtil.getXmlValue(strMsgRetornoWs, String.Format("{0}{1}", strXmlPattern, "NumeroNL")) : null;
+            ptResMensal.FlagLancamento = (!String.IsNullOrWhiteSpace(ptResMensal.NlLancamento)) ? 'S' : 'N';
+
+            objBusiness.PTResMensal = ptResMensal;
+            objBusiness.SalvarPTResMensal();
+
+            #endregion Processamento chave "UA|PT_Res|ND"
+
+            if (objBusiness.ListaErro.HasElements())
+                this.ListaErro.AddRange(objBusiness.ListaErro);
+
+            _strDescLog = String.Format("Fim Método Sam.Domain.Business.FechamentoMensalBusiness._xpGerarNotaIndividualConsumo");
+            LogErro.GravarMsgInfo(Constante.CST_DEBUG_DEPLOY_HOMOLOGACAO, _strDescLog);
+
+            return ptResMensal;
+        }
+
+        public PTResMensalEntity _xpObterNLConsumoPaga(int almoxID, int uaID, int ptresID, int natDespesaID, decimal valorNotaConsumo)
+        {
+            var _strDescLog = String.Format("Início Método Sam.Domain.Business.FechamentoMensalBusiness._xpObterNLConsumoPaga - args(almoxID:{0}, uaID:{1}, ptresID:{2}, natDespesaID:{3}, valorConsumo:{4})", almoxID, uaID, ptresID, natDespesaID, valorNotaConsumo);
+            LogErro.GravarMsgInfo(Constante.CST_DEBUG_DEPLOY_HOMOLOGACAO, _strDescLog);
+
+            #region Variaveis
+            AlmoxarifadoEntity almoxConsumo = null;
+            PTResMensalBusiness objBusiness = null;
+            PTResMensalEntity notaPaga = null;
+            EstruturaOrganizacionalBusiness eoBusiness = null;
+            int anoMesRef = 0;
+            #endregion Variaveis
+
+
+            objBusiness = new PTResMensalBusiness();
+            eoBusiness = new EstruturaOrganizacionalBusiness();
+            almoxConsumo = eoBusiness.ObterAlmoxarifado(almoxID);
+
+            anoMesRef = Int32.Parse(almoxConsumo.MesRef);
+            notaPaga = objBusiness._xpObterNLConsumoPaga(almoxID, uaID, ptresID, natDespesaID, anoMesRef, valorNotaConsumo);
+
+            _strDescLog = String.Format("Fim Método Sam.Domain.Business.FechamentoMensalBusiness._xpGerarNotaIndividualConsumo");
+            LogErro.GravarMsgInfo(Constante.CST_DEBUG_DEPLOY_HOMOLOGACAO, _strDescLog);
+
+            return notaPaga;
+        }
+
+        private string generateRandomNL()
+        {
+            return String.Format("{0}NL{1:D5}", DateTime.Now.Year, (new Random()).Next(0, 10000));
+        }
+
+        public bool _SalvarListaPtResMensalAtualizada(IList<PTResMensalEntity> pListaPtRes)
+        {
+            if (pListaPtRes == null || pListaPtRes.Count == 0)
+            {
+                this.ListaErro.Add("Não há PTResMensal a registrar na base!");
+                return false;
+            }
+
+            bool lBlnStatusGravacao = true;
+
+            PTResMensalBusiness      lObjBusiness    = null;
+            IList<PTResMensalEntity> lLstPtResMensal = null;
+
+
+            lObjBusiness    = new PTResMensalBusiness();
+            lLstPtResMensal = lObjBusiness.AtualizarPtResMensalConsumidas(pListaPtRes).ToList();
+
+            if (lLstPtResMensal.Count == 0)
+            {
+                this.ListaErro = lObjBusiness.ListaErro;
+                return false;
+            }
+
+            foreach (PTResMensalEntity lObjPtResMensal in lLstPtResMensal)
+            {
+                lObjBusiness.PTResMensal = lObjPtResMensal;
+                lBlnStatusGravacao &= lObjBusiness.SalvarPTResMensal();
+
+                lObjBusiness.PTResMensal = null;
+            }
+
+            this.ListaErro = lObjBusiness.ListaErro;
+
+            return lBlnStatusGravacao;
+        }
+        public bool _xpAtualizarAlmoxarifado(int almoxID)
+        {
+            bool blnRetorno = true;
+
+            AlmoxarifadoEntity              almoxLogado = null;
+            EstruturaOrganizacionalBusiness objBusiness = new EstruturaOrganizacionalBusiness();
+
+            int      mesRefAlmox = 0;
+            int      anoRefAlmox = 0;
+            DateTime dtAnoMesRefAlmox   = new DateTime(0);
+
+
+            almoxLogado = objBusiness.ObterAlmoxarifado(almoxID);
+
+            mesRefAlmox = TratamentoDados.TryParseInt32(almoxLogado.MesRef.Substring(4, 2)).Value;
+            anoRefAlmox = TratamentoDados.TryParseInt32(almoxLogado.MesRef.Substring(0, 4)).Value;
+            dtAnoMesRefAlmox = new DateTime(anoRefAlmox, mesRefAlmox, 01);
+
+
+            almoxLogado.Descricao = almoxLogado.Descricao.Substring(almoxLogado.Descricao.IndexOf(" - ") + 3);
+            almoxLogado.MesRef = dtAnoMesRefAlmox.ToString("yyyyMM");
+
+            objBusiness.Almoxarifado = almoxLogado;
+            blnRetorno &= objBusiness.SalvarAlmoxarifado();
+
+            return blnRetorno;
+        }
+        /// <summary>
+        /// Finado 'public bool ExcluirPtResMensalNaoConsumidas()'
+        /// </summary>
+        /// <returns></returns>
+        public bool _xpExcluirPTResMensalNaoConsumidas()
+        {
+            bool blnStatusGravacao = false;
+
+            PTResMensalBusiness      objBusiness     = null;
+            IList<PTResMensalEntity> lstPTResMensal = null;
+
+            if (lstPTResMensal.Count == 0)
+                return false;
+
+            objBusiness     = new PTResMensalBusiness();
+            lstPTResMensal = objBusiness.ListarPTResMensal()
+                                           .Where(a => a.FlagLancamento.ToString().ToUpperInvariant() == "N")
+                                           .ToList();
+
+            foreach (PTResMensalEntity lObjPtResMensal in lstPTResMensal)
+            {
+                objBusiness.PTResMensal = lObjPtResMensal;
+                blnStatusGravacao &= objBusiness.ExcluirPTResMensal();
+
+                objBusiness.PTResMensal = null;
+            }
+
+            return blnStatusGravacao;
+
+        }
+
+        #endregion WS SIAFNLCONSUMO (refactored code)
+
+
+    }
+}

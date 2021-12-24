@@ -1,0 +1,46 @@
+/*********************************************
+Sistema: SAM - Sistema de Administração de Materiais
+Autor: Prodesp
+Versão: 08/2011
+
+ESTILO PARA O MODO CONTRASTE
+*********************************************/
+
+/* IMPORTA ESTILO DO ARQUIVO estilo.css */
+@import url(estilo.css);
+
+body{background-color: #000;}
+
+#global, #barraGestor {background-color:#000; color: #FFF;}
+
+#nav_main ul li a, #topbar
+{background-image: none !important;}
+
+#nav_main ul li a, #nav_main ul li a.firstNavMain, #topbar {background-color: #FFF; color: #000 !important;}
+#nav_main { background-image: none;  background-color: #FFF;}
+
+#logo a {background: url(../imagens/logoInvertido.gif) no-repeat left top;}
+
+#barraCliente{background-color:#666;color:#FFF;}
+
+p, a, h1, ul#usuario li
+{color:#FFF !important;}
+
+#footer span, a.button
+{color:#000 !important;}
+
+#footer{background-color:#FFF !important;border-top:3px solid #CCC;}
+
+table.tabela td, form.formulario fieldset {border: 1px solid #FFF; background-color: #000; color: #FFF;}
+table.tabela th, .paginacao ul.nav li.active {background-color: #FFF; color: #000;}
+
+#nav li a { background:#CCC;	color:#000;}
+#nav li a:hover {	color:#FFF;	background:#666;}
+#nav li a.corrente {	background:#000;	border-bottom:1px solid #000;	color: #FFF;}
+
+#tabelas, #almoxarifado, #patrimonio, #minha_area{ border: 1px solid #CCC;}
+#tabelas h2, #almoxarifado h2, #patrimonio h2, #minha_area h2{
+	background-color: #CCC;
+	border-bottom: 1px dotted #CCC;
+	color: #000;
+}

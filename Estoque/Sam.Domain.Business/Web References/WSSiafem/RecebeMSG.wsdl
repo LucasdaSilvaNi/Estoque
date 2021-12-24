@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="https://www.bec.sp.gov.br/SIAFISICO/RecebeMSG/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="https://www.bec.sp.gov.br/SIAFISICO/RecebeMSG/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">PRODESP - Cia de Processamento de Dados do Estado de São Paulo  &lt;br&gt;--------------------------------------&lt;br&gt;Recebe mensagens para integração com base de dados MF&lt;br&gt;&lt;br&gt;&lt;br&gt;12/12/2011 V4.19b - MWAS- SIAFLISTABOLETOS, SIAFALTLISTABOLETOS&lt;BR&gt;13/01/2012 V4.20  - MWAS- SIAFALTPROCESS, SIAFCanPD,SIAFConsultaPD,SIAFAnulSiafi, SIAFEXCProcess, SFCOConNLEst,SFCOAnulSiafi,SFCOConNLEstDet   &lt;BR&gt;07/02/2012 V4.21b - MWAS- SIAFEXCLICOBAR, SIAFREAPROCESSO, SIAFCONPROCESSO, SIAFLISTAPROCESSO,SFCOCONTNLBECDET, SFCOCONTNLBEC, SFCOANULRESIDUO,SFCOCANNETES,SFCOLISTAEMPENHOS   &lt;BR&gt;28/03/2012 V4.22e - MWAS- SFCOCANNEVINC &lt;BR&gt;11/04/2012 V4.23  - MWAS- SIAFCONLISTA, SFCOINCFORPFITESP &lt;BR&gt;10/05/2012 V4.25  - MWAS- SIAFLISTAOB, SIAFLISTAGR &lt;BR&gt;</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="https://www.bec.sp.gov.br/SIAFISICO/RecebeMSG/">
+      <s:element name="Mensagem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Senha" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AnoBase" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UnidadeGestora" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DocumentoXML" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MensagemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MensagemResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="MensagemSoapIn">
+    <wsdl:part name="parameters" element="tns:Mensagem" />
+  </wsdl:message>
+  <wsdl:message name="MensagemSoapOut">
+    <wsdl:part name="parameters" element="tns:MensagemResponse" />
+  </wsdl:message>
+  <wsdl:portType name="RecebeMSGSoap">
+    <wsdl:operation name="Mensagem">
+      <wsdl:input message="tns:MensagemSoapIn" />
+      <wsdl:output message="tns:MensagemSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RecebeMSGSoap" type="tns:RecebeMSGSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Mensagem">
+      <soap:operation soapAction="https://www.bec.sp.gov.br/SIAFISICO/RecebeMSG/Mensagem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="RecebeMSGSoap12" type="tns:RecebeMSGSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Mensagem">
+      <soap12:operation soapAction="https://www.bec.sp.gov.br/SIAFISICO/RecebeMSG/Mensagem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RecebeMSG">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">PRODESP - Cia de Processamento de Dados do Estado de São Paulo  &lt;br&gt;--------------------------------------&lt;br&gt;Recebe mensagens para integração com base de dados MF&lt;br&gt;&lt;br&gt;&lt;br&gt;12/12/2011 V4.19b - MWAS- SIAFLISTABOLETOS, SIAFALTLISTABOLETOS&lt;BR&gt;13/01/2012 V4.20  - MWAS- SIAFALTPROCESS, SIAFCanPD,SIAFConsultaPD,SIAFAnulSiafi, SIAFEXCProcess, SFCOConNLEst,SFCOAnulSiafi,SFCOConNLEstDet   &lt;BR&gt;07/02/2012 V4.21b - MWAS- SIAFEXCLICOBAR, SIAFREAPROCESSO, SIAFCONPROCESSO, SIAFLISTAPROCESSO,SFCOCONTNLBECDET, SFCOCONTNLBEC, SFCOANULRESIDUO,SFCOCANNETES,SFCOLISTAEMPENHOS   &lt;BR&gt;28/03/2012 V4.22e - MWAS- SFCOCANNEVINC &lt;BR&gt;11/04/2012 V4.23  - MWAS- SIAFCONLISTA, SFCOINCFORPFITESP &lt;BR&gt;10/05/2012 V4.25  - MWAS- SIAFLISTAOB, SIAFLISTAGR &lt;BR&gt;</wsdl:documentation>
+    <wsdl:port name="RecebeMSGSoap" binding="tns:RecebeMSGSoap">
+      <soap:address location="https://www6.fazenda.sp.gov.br/siafisico/RecebeMSG.asmx" />
+    </wsdl:port>
+    <wsdl:port name="RecebeMSGSoap12" binding="tns:RecebeMSGSoap12">
+      <soap12:address location="https://www6.fazenda.sp.gov.br/siafisico/RecebeMSG.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
